@@ -93,8 +93,11 @@ namespace SeerRandomSkin
             //页面加载完毕后
             chromium.FrameLoadEnd += (sender, args) =>
             {
-                if (args.Frame.IsMain)//隐藏滚动条
+                if (args.Frame.IsMain)
                 {
+                    // 自动静音
+                    args.Browser.GetHost().SetAudioMuted(true);
+                    // 隐藏滚动条
                     args.Browser.MainFrame.ExecuteJavaScriptAsync("document.body.style.overflow = 'hidden'");
                     if (address == gameH5Address)
                     {
@@ -354,6 +357,16 @@ namespace SeerRandomSkin
             var client = new HttpClient();
             byte[] content = await client.GetByteArrayAsync(url);
             return Encoding.UTF8.GetString(content, 0, content.Length);
+        }
+
+        private void 开启ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            chromiumBrowser.GetBrowser().GetHost().SetAudioMuted(false);
+        }
+
+        private void 静音ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            chromiumBrowser.GetBrowser().GetHost().SetAudioMuted(true);
         }
     }
 }
