@@ -19,7 +19,7 @@ namespace SeerRandomSkin
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            richTextBox1.Text = @"作者：https://space.bilibili.com/435657414\n\n开源地址：https://github.com/wx11-00-1/SeerRandomSkin";
+            richTextBox1.Text = "作者：https://space.bilibili.com/435657414\n开源地址：https://github.com/wx11-00-1/SeerRandomSkin";
         }
     }
 }

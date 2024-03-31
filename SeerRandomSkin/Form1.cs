@@ -131,10 +131,18 @@ namespace SeerRandomSkin
                 // https://seer.61.com/resource/fightResource/pet/swf/3788.swf
                 string pattern = "https:\\/\\/seer\\.61\\.com\\/resource\\/fightResource\\/pet\\/swf\\/(\\d{4,})\\.swf\\?";
 
+                private int GetRandomSkinId()
+                {
+                    int rand_idx = skinIds[random_obj.Next(skinIds.Count)];
+                    while (rand_idx < 1000 || (rand_idx > 5000 && rand_idx < 10000))
+                    {
+                        rand_idx = skinIds[random_obj.Next(skinIds.Count)];
+                    }
+                    return rand_idx;
+                }
+
                 protected override CefReturnValue OnBeforeResourceLoad(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, IRequestCallback callback)
                 {
-                    if (skinIds.Count == 0) return CefReturnValue.Continue;
-
                     // 随机替换 1000 以后的精灵皮肤
                     var ms = Regex.Matches(request.Url, pattern, RegexOptions.None);
                     if (ms.Count > 0)
@@ -144,12 +152,7 @@ namespace SeerRandomSkin
                         {
                             //request.Url = @"https://seer.61.com/resource/fightResource/pet/swf/" + random_obj.Next(1000, 3290) + @".swf";
                             
-                            int rand_idx = skinIds[random_obj.Next(skinIds.Count)];
-                            while (rand_idx < 1000)
-                            {
-                                rand_idx = skinIds[random_obj.Next(skinIds.Count)];
-                            }
-                            request.Url = @"https://seer.61.com/resource/fightResource/pet/swf/" + rand_idx + @".swf";
+                            request.Url = @"https://seer.61.com/resource/fightResource/pet/swf/" + GetRandomSkinId() + @".swf";
                         }
                     }
 
