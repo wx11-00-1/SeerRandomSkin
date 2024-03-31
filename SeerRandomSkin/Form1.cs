@@ -12,6 +12,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Management;
+using System.Net.Http;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -29,6 +30,7 @@ namespace SeerRandomSkin
 
         private ChromiumWebBrowser chromiumBrowser;
         private Form2 childForm2 = null;
+        private static List<int> skinIds = new List<int>();
 
         public Form1()
         {
@@ -50,8 +52,22 @@ namespace SeerRandomSkin
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private async void Form1_Load(object sender, EventArgs e)
         {
+            // 初始化皮肤列表
+            if (Properties.Settings.Default.SkinIds == "")
+            {
+                await GetSkinData();
+            }
+            string[] strings = Properties.Settings.Default.SkinIds.Split(',');
+            foreach (string s in strings)
+            {
+                if (s != "")
+                {
+                    skinIds.Add(int.Parse(s));
+                }
+            }
+
             chromiumBrowser = CreateChromium(gameAddress);
             Controls.Add(chromiumBrowser);
             new Thread(() =>
@@ -106,7 +122,6 @@ namespace SeerRandomSkin
             protected override IResourceRequestHandler GetResourceRequestHandler(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame,
             IRequest request, bool isNavigation, bool isDownload, string requestInitiator, ref bool disableDefaultHandling)
             {
-                // 先调用基类的实现，断点调试
                 return new MyResourceRequestHandler();
             }
 
@@ -118,17 +133,25 @@ namespace SeerRandomSkin
 
                 protected override CefReturnValue OnBeforeResourceLoad(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, IRequestCallback callback)
                 {
-                    // 随机替换 1000 以后的精灵皮肤
+                    if (skinIds.Count == 0) return CefReturnValue.Continue;
 
-                        var ms = Regex.Matches(request.Url, pattern, RegexOptions.None);
-                        if (ms.Count > 0)
+                    // 随机替换 1000 以后的精灵皮肤
+                    var ms = Regex.Matches(request.Url, pattern, RegexOptions.None);
+                    if (ms.Count > 0)
+                    {
+                        int skin_id = int.Parse(ms[0].Groups[1].Value);
+                        if (skin_id != 3788 && skin_id != 290003788 && skin_id != 1400512 && skin_id != 2900512)
                         {
-                            int skin_id = int.Parse(ms[0].Groups[1].Value);
-                            if (skin_id != 3788 && skin_id != 290003788 && skin_id != 1400512 && skin_id != 2900512)
+                            //request.Url = @"https://seer.61.com/resource/fightResource/pet/swf/" + random_obj.Next(1000, 3290) + @".swf";
+                            
+                            int rand_idx = skinIds[random_obj.Next(skinIds.Count)];
+                            while (rand_idx < 1000)
                             {
-                                request.Url = @"https://seer.61.com/resource/fightResource/pet/swf/" + random_obj.Next(1000, 3290) + @".swf";
+                                rand_idx = skinIds[random_obj.Next(skinIds.Count)];
                             }
+                            request.Url = @"https://seer.61.com/resource/fightResource/pet/swf/" + rand_idx + @".swf";
                         }
+                    }
 
                     return CefReturnValue.Continue;
                 }
@@ -299,6 +322,35 @@ namespace SeerRandomSkin
                 }
                 catch(Exception ex) { }
             }
+        }
+
+        private void 获取皮肤数据ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GetSkinData();
+        }
+
+        private static async Task GetSkinData()
+        {
+            string monsters_str = await GetJsonStringAsync("http://seerh5.61.com/resource/config/xml/monsters_191616a2.json");
+            //await Console.Out.WriteLineAsync(monsters_str.Substring(0,500));
+            string pattern = "\"ID\":(\\d{1,}),\"DefName";
+            string ids = "";
+            foreach (Match match in Regex.Matches(monsters_str, pattern, RegexOptions.None))
+            {
+                int skin_id = int.Parse(match.Groups[1].Value);
+                //await Console.Out.WriteAsync(skin_id + ", ");
+                ids += skin_id + ",";
+            }
+            Properties.Settings.Default.SkinIds = ids;
+            Properties.Settings.Default.Save();
+            MessageBox.Show("获取皮肤数据完成");
+        }
+
+        private static async Task<string> GetJsonStringAsync(string url)//从url获取文件内容
+        {
+            var client = new HttpClient();
+            byte[] content = await client.GetByteArrayAsync(url);
+            return Encoding.UTF8.GetString(content, 0, content.Length);
         }
     }
 }
