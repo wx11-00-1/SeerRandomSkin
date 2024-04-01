@@ -30,6 +30,7 @@ namespace SeerRandomSkin
 
         private ChromiumWebBrowser chromiumBrowser;
         private Form2 childForm2 = null;
+        private FormConfig childFormConfig = null;
         private static readonly List<int> skinIds = new List<int>();
 
         public Form1()
@@ -150,6 +151,8 @@ namespace SeerRandomSkin
 
                 protected override CefReturnValue OnBeforeResourceLoad(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, IRequestCallback callback)
                 {
+                    if(!Properties.Settings.Default.IsRandomSkin) return CefReturnValue.Continue;
+
                     // 随机替换 1000 以后的精灵皮肤
                     var ms = Regex.Matches(request.Url, pattern, RegexOptions.None);
                     if (ms.Count > 0)
@@ -394,8 +397,27 @@ namespace SeerRandomSkin
                 if(s!="") set.Add(int.Parse(s));
             }
             skinIds.RemoveAll(data => set.Contains(data));
+
+            string blackList = Properties.Settings.Default.SkinBlackList;
+            string[] blacks = skin404.Split(',');
+            HashSet<int> set1 = new HashSet<int>();
+            foreach (string s in blacks)
+            {
+                if (s != "") set1.Add(int.Parse(s));
+            }
+            skinIds.RemoveAll(data => set1.Contains(data));
+
             SaveConfigSkinIds();
             MessageBox.Show("筛选完成");
+        }
+
+        private void 配置ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (childFormConfig == null)
+            {
+                childFormConfig = new FormConfig();
+                childFormConfig.Show();
+            }
         }
     }
 }

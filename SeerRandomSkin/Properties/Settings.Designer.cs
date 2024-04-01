@@ -34,5 +34,29 @@ namespace SeerRandomSkin.Properties {
                 this["SkinIds"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsRandomSkin {
+            get {
+                return ((bool)(this["IsRandomSkin"]));
+            }
+            set {
+                this["IsRandomSkin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SkinBlackList {
+            get {
+                return ((string)(this["SkinBlackList"]));
+            }
+            set {
+                this["SkinBlackList"] = value;
+            }
+        }
     }
 }

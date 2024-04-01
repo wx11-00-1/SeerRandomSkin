@@ -43,6 +43,7 @@
             this.自动ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_CureOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_AutoCureClose = new System.Windows.Forms.ToolStripMenuItem();
+            this.配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,7 +67,8 @@
             this.关于ToolStripMenuItem,
             this.获取皮肤数据ToolStripMenuItem,
             this.toolStripMenuItem_FilterSkins,
-            this.音量ToolStripMenuItem});
+            this.音量ToolStripMenuItem,
+            this.配置ToolStripMenuItem});
             this.菜单ToolStripMenuItem.Name = "菜单ToolStripMenuItem";
             this.菜单ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.菜单ToolStripMenuItem.Text = "菜单";
@@ -167,6 +169,13 @@
             this.toolStripMenuItem_AutoCureClose.Text = "关";
             this.toolStripMenuItem_AutoCureClose.Click += new System.EventHandler(this.toolStripMenuItem_AutoCureClose_Click);
             // 
+            // 配置ToolStripMenuItem
+            // 
+            this.配置ToolStripMenuItem.Name = "配置ToolStripMenuItem";
+            this.配置ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.配置ToolStripMenuItem.Text = "配置";
+            this.配置ToolStripMenuItem.Click += new System.EventHandler(this.配置ToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -201,6 +210,7 @@
         private System.Windows.Forms.ToolStripMenuItem 开启ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 静音ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_FilterSkins;
+        private System.Windows.Forms.ToolStripMenuItem 配置ToolStripMenuItem;
     }
 }
 
