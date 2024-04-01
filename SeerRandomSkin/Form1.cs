@@ -30,7 +30,7 @@ namespace SeerRandomSkin
 
         private ChromiumWebBrowser chromiumBrowser;
         private Form2 childForm2 = null;
-        private static List<int> skinIds = new List<int>();
+        private static readonly List<int> skinIds = new List<int>();
 
         public Form1()
         {
@@ -59,12 +59,15 @@ namespace SeerRandomSkin
             {
                 await GetSkinData();
             }
-            string[] strings = Properties.Settings.Default.SkinIds.Split(',');
-            foreach (string s in strings)
+            else
             {
-                if (s != "")
+                string[] strings = Properties.Settings.Default.SkinIds.Split(',');
+                foreach (string s in strings)
                 {
-                    skinIds.Add(int.Parse(s));
+                    if (s != "")
+                    {
+                        skinIds.Add(int.Parse(s));
+                    }
                 }
             }
 
@@ -136,8 +139,9 @@ namespace SeerRandomSkin
 
                 private int GetRandomSkinId()
                 {
-                    int rand_idx = skinIds[random_obj.Next(skinIds.Count)];
-                    while (rand_idx < 1000 || (rand_idx > 5000 && rand_idx < 10000))
+                    int rand_idx = 0;
+                    // 452 及以前的精灵皮肤，脚本结构与之后的精灵略有不同，替换上去可能会卡
+                    while (rand_idx < 453)
                     {
                         rand_idx = skinIds[random_obj.Next(skinIds.Count)];
                     }
@@ -176,6 +180,10 @@ namespace SeerRandomSkin
                     else if (url.Contains(@"login/ServerAdPanel1.swf"))
                     {
                         return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\NoAd.swf");
+                    }
+                    else if (url.Contains(@"/resource/forApp/superMarket/tip.swf"))
+                    {
+                        return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\tip_230831_closeBattery.swf");
                     }
 
                     return base.GetResourceHandler(chromiumWebBrowser, browser, frame, request);
@@ -339,17 +347,24 @@ namespace SeerRandomSkin
         {
             string monsters_str = await GetJsonStringAsync("http://seerh5.61.com/resource/config/xml/monsters_191616a2.json");
             //await Console.Out.WriteLineAsync(monsters_str.Substring(0,500));
-            string pattern = "\"ID\":(\\d{1,}),\"DefName";
-            string ids = "";
+            string pattern = "\"ID\":(\\d{3,}),\"DefName";
             foreach (Match match in Regex.Matches(monsters_str, pattern, RegexOptions.None))
             {
-                int skin_id = int.Parse(match.Groups[1].Value);
-                //await Console.Out.WriteAsync(skin_id + ", ");
-                ids += skin_id + ",";
+                skinIds.Add(int.Parse(match.Groups[1].Value));
             }
-            Properties.Settings.Default.SkinIds = ids;
-            Properties.Settings.Default.Save();
+            SaveConfigSkinIds();
             MessageBox.Show("获取皮肤数据完成");
+        }
+
+        private static void SaveConfigSkinIds()
+        {
+            string s = "";
+            foreach(var skinId in skinIds)
+            {
+                s = s + skinId + ",";
+            }
+            Properties.Settings.Default.SkinIds = s;
+            Properties.Settings.Default.Save();
         }
 
         private static async Task<string> GetJsonStringAsync(string url)//从url获取文件内容
@@ -367,6 +382,20 @@ namespace SeerRandomSkin
         private void 静音ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             chromiumBrowser.GetBrowser().GetHost().SetAudioMuted(true);
+        }
+
+        private void toolStripMenuItem_FilterSkins_Click(object sender, EventArgs e)
+        {
+            string skin404 = File.ReadAllText(@"file\txt\Skin404.txt");
+            string[] skins = skin404.Split(',');
+            HashSet<int> set=new HashSet<int>();
+            foreach(string s in skins)
+            {
+                if(s!="") set.Add(int.Parse(s));
+            }
+            skinIds.RemoveAll(data => set.Contains(data));
+            SaveConfigSkinIds();
+            MessageBox.Show("筛选完成");
         }
     }
 }
