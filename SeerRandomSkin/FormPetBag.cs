@@ -14,8 +14,6 @@ namespace SeerRandomSkin
 {
     public partial class FormPetBag : Form
     {
-        private const string CLOTH_NAME_PREX = "SeerCloth_";
-
         private static string ClothName = "";
 
         public static string seer_cloth = "";
@@ -45,7 +43,7 @@ namespace SeerRandomSkin
         {
             if (textBox_Name.Text == "") return;
 
-            ClothName = CLOTH_NAME_PREX + textBox_Name.Text;
+            ClothName = textBox_Name.Text;
             Form1.chromiumBrowser.GetMainFrame().ExecuteJavaScriptAsync(
                 "window.seer_cloth_obj = {};" +
                 // 获取背包
