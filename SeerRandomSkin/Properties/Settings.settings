@@ -11,5 +11,8 @@
     <Setting Name="SkinBlackList" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="SeerCloth" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{}</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

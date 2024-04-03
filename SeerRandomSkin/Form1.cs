@@ -28,9 +28,10 @@ namespace SeerRandomSkin
         public const string gameAddress = "https://seer.61.com/play.shtml";
         public const string gameH5Address = "https://seerh5.61.com";
 
-        private ChromiumWebBrowser chromiumBrowser;
+        public static ChromiumWebBrowser chromiumBrowser;
         private Form2 childForm2 = null;
         private FormConfig childFormConfig = null;
+        private FormPetBag chileFormPetBag = null;
         private static readonly List<int> skinIds = new List<int>();
 
         public Form1()
@@ -94,6 +95,10 @@ namespace SeerRandomSkin
                 Size = new Size(960, 560),
                 RequestHandler = new MyRequestHandler(),
             };
+            // 注册 js 类
+            CefSharpSettings.WcfEnabled = true;
+            chromium.JavascriptObjectRepository.Settings.LegacyBindingEnabled = true;
+            chromium.JavascriptObjectRepository.Register("seerRandomSkinObj", new SeerRandomSkinObj(), false, BindingOptions.DefaultBinder);
             //页面加载完毕后
             chromium.FrameLoadEnd += (sender, args) =>
             {
@@ -357,6 +362,7 @@ namespace SeerRandomSkin
             }
             SaveConfigSkinIds();
             MessageBox.Show("获取皮肤数据完成");
+            FilterSkins();
         }
 
         private static void SaveConfigSkinIds()
@@ -389,12 +395,17 @@ namespace SeerRandomSkin
 
         private void toolStripMenuItem_FilterSkins_Click(object sender, EventArgs e)
         {
+            FilterSkins();
+        }
+
+        private static void FilterSkins()
+        {
             string skin404 = File.ReadAllText(@"file\txt\Skin404.txt");
             string[] skins = skin404.Split(',');
-            HashSet<int> set=new HashSet<int>();
-            foreach(string s in skins)
+            HashSet<int> set = new HashSet<int>();
+            foreach (string s in skins)
             {
-                if(s!="") set.Add(int.Parse(s));
+                if (s != "") set.Add(int.Parse(s));
             }
             skinIds.RemoveAll(data => set.Contains(data));
 
@@ -407,6 +418,9 @@ namespace SeerRandomSkin
             }
             skinIds.RemoveAll(data => set1.Contains(data));
 
+            // 452 及以前的精灵皮肤，脚本结构与之后的精灵略有不同，替换上去可能会卡
+            skinIds.RemoveAll(data => data < 453);
+
             SaveConfigSkinIds();
             MessageBox.Show("筛选完成");
         }
@@ -417,6 +431,15 @@ namespace SeerRandomSkin
             {
                 childFormConfig = new FormConfig();
                 childFormConfig.Show();
+            }
+        }
+
+        private void 换装ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (chileFormPetBag == null)
+            {
+                chileFormPetBag = new FormPetBag();
+                chileFormPetBag.Show();
             }
         }
     }

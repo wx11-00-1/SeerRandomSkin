@@ -58,5 +58,17 @@ namespace SeerRandomSkin.Properties {
                 this["SkinBlackList"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{}")]
+        public string SeerCloth {
+            get {
+                return ((string)(this["SeerCloth"]));
+            }
+            set {
+                this["SeerCloth"] = value;
+            }
+        }
     }
 }
