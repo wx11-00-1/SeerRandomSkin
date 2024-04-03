@@ -95,7 +95,18 @@ namespace SeerRandomSkin
                 Location = new Point(0, 25),
                 Size = new Size(960, 560),
                 RequestHandler = new MyRequestHandler(),
+                BrowserSettings = new BrowserSettings(),
             };
+            if (Properties.Settings.Default.BrowserFont != "")
+            {
+                chromium.BrowserSettings.StandardFontFamily =
+                chromium.BrowserSettings.SansSerifFontFamily =
+                chromium.BrowserSettings.SerifFontFamily =
+                chromium.BrowserSettings.FantasyFontFamily =
+                chromium.BrowserSettings.FixedFontFamily =
+                chromium.BrowserSettings.CursiveFontFamily = Properties.Settings.Default.BrowserFont;
+            }
+            
             // 注册 js 类
             CefSharpSettings.WcfEnabled = true;
             chromium.JavascriptObjectRepository.Settings.LegacyBindingEnabled = true;

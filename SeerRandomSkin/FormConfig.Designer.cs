@@ -33,6 +33,8 @@
             this.richTextBox_SkinBlackList = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBox_font = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // checkBox_RandomSkin
@@ -81,11 +83,30 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "123,124,125,";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(321, 45);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 12);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "字体：";
+            // 
+            // comboBox_font
+            // 
+            this.comboBox_font.FormattingEnabled = true;
+            this.comboBox_font.Location = new System.Drawing.Point(368, 41);
+            this.comboBox_font.Name = "comboBox_font";
+            this.comboBox_font.Size = new System.Drawing.Size(121, 20);
+            this.comboBox_font.TabIndex = 6;
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(680, 450);
+            this.Controls.Add(this.comboBox_font);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.richTextBox_SkinBlackList);
@@ -106,5 +127,7 @@
         private System.Windows.Forms.RichTextBox richTextBox_SkinBlackList;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBox_font;
     }
 }

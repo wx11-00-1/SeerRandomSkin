@@ -70,5 +70,17 @@ namespace SeerRandomSkin.Properties {
                 this["SeerCloth"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string BrowserFont {
+            get {
+                return ((string)(this["BrowserFont"]));
+            }
+            set {
+                this["BrowserFont"] = value;
+            }
+        }
     }
 }
