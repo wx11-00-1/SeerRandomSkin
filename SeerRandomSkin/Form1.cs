@@ -31,7 +31,8 @@ namespace SeerRandomSkin
         public static ChromiumWebBrowser chromiumBrowser;
         private Form2 childForm2 = null;
         private FormConfig childFormConfig = null;
-        private FormPetBag chileFormPetBag = null;
+        private FormPetBag childFormPetBag = null;
+        public static FormScreenShot childFormScreenShot = null;
         private static readonly List<int> skinIds = new List<int>();
 
         public Form1()
@@ -42,9 +43,9 @@ namespace SeerRandomSkin
             settings.CefCommandLineArgs.Add("ppapi-flash-path", @"file/dll/pepflashplayer32_15_0_0_152.dll");
             settings.CachePath = AppDomain.CurrentDomain.BaseDirectory + @"\cache";
             settings.LogSeverity = LogSeverity.Disable;//关闭记录debug.log的功能
-
+            Cef.EnableHighDPISupport();
             Cef.Initialize(settings);
-            // 自动插件
+            // 自动 flash 插件
             var contx = Cef.GetGlobalRequestContext();
             Cef.UIThreadTaskFactory.StartNew(delegate
             {
@@ -118,6 +119,7 @@ namespace SeerRandomSkin
                             "   get: () => {" +
                             "       if (WxSeerUtil.Initialized) return;" +
                             "       SocketConnection.addCmdListener(2506, () => { if (WxSeerUtil.AutoCurePet) PetManager.noAlarmCureAll(); });" +
+                            "       SocketConnection.addCmdListener(45144, () => { seerRandomSkinObj.screenShot(); });" +
                             "       WxSeerUtil.Initialized = true;" +
                             "       return 0;" +
                             "   }," +
@@ -436,11 +438,32 @@ namespace SeerRandomSkin
 
         private void 换装ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (chileFormPetBag == null)
+            if (childFormPetBag == null)
             {
-                chileFormPetBag = new FormPetBag();
-                chileFormPetBag.Show();
+                childFormPetBag = new FormPetBag();
+                childFormPetBag.Show();
             }
+        }
+
+        private void 记牌器ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (childFormScreenShot != null) return;
+            childFormScreenShot = new FormScreenShot
+            {
+                MainForm = this
+            };
+            childFormScreenShot.Show();
+            childFormScreenShot.ScreenShot();
+        }
+
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+            chromiumBrowser.Dock = DockStyle.Fill;
+            int tmpW = chromiumBrowser.Width;
+            int tmpH = chromiumBrowser.Height;
+            chromiumBrowser.Dock = DockStyle.None;
+            chromiumBrowser.Width = tmpW;
+            chromiumBrowser.Height = tmpH - 25;
         }
     }
 }

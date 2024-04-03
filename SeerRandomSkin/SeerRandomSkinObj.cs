@@ -15,5 +15,11 @@ namespace SeerRandomSkin
         {
             FormPetBag.SeerCloth = bag;
         }
+
+        public void ScreenShot()
+        {
+            if (Form1.childFormScreenShot == null) return;
+            Form1.childFormScreenShot.ScreenShot();
+        }
     }
 }
