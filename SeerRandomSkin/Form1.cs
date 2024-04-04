@@ -76,7 +76,7 @@ namespace SeerRandomSkin
                 }
             }
 
-            chromiumBrowser = CreateChromium(gameAddress);
+            chromiumBrowser = CreateChromium(Properties.Settings.Default.IsH5First ? gameH5Address : gameAddress);
             Controls.Add(chromiumBrowser);
             new Thread(() =>
             {
@@ -155,19 +155,13 @@ namespace SeerRandomSkin
 
             public class MyResourceRequestHandler : ResourceRequestHandler
             {
-                static Random random_obj = new Random();
+                static readonly Random random_obj = new Random();
                 // https://seer.61.com/resource/fightResource/pet/swf/3788.swf
-                string pattern = "https:\\/\\/seer\\.61\\.com\\/resource\\/fightResource\\/pet\\/swf\\/(\\d{4,})\\.swf\\?";
+                readonly string pattern = "https:\\/\\/seer\\.61\\.com\\/resource\\/fightResource\\/pet\\/swf\\/(\\d{4,})\\.swf\\?";
 
                 private int GetRandomSkinId()
                 {
-                    int rand_idx = 0;
-                    // 452 及以前的精灵皮肤，脚本结构与之后的精灵略有不同，替换上去可能会卡
-                    while (rand_idx < 453)
-                    {
-                        rand_idx = skinIds[random_obj.Next(skinIds.Count)];
-                    }
-                    return rand_idx;
+                    return skinIds[random_obj.Next(skinIds.Count)];
                 }
 
                 protected override CefReturnValue OnBeforeResourceLoad(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, IRequestCallback callback)
@@ -369,7 +363,14 @@ namespace SeerRandomSkin
 
         private static async Task GetSkinData()
         {
-            string monsters_str = await GetJsonStringAsync("http://seerh5.61.com/resource/config/xml/monsters_191616a2.json");
+            string version_str = await GetJsonStringAsync("https://seerh5.61.com/version/version.json");
+            Match m = Regex.Match(version_str, "\"monsters\\.json\":\"(.*?\\.json)\"");
+            if(!m.Success)
+            {
+                MessageBox.Show("version文件读取异常");
+                return;
+            }
+            string monsters_str = await GetJsonStringAsync("http://seerh5.61.com/resource/config/xml/" + m.Groups[1].Value);
             foreach (Match match in Regex.Matches(monsters_str, "\"ID\":(\\d{3,}),\"DefName", RegexOptions.None))
             {
                 skinIds.Add(int.Parse(match.Groups[1].Value));

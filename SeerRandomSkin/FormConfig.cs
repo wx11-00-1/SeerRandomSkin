@@ -22,6 +22,7 @@ namespace SeerRandomSkin
         {
             // 初始化配置项
             checkBox_RandomSkin.Checked = Properties.Settings.Default.IsRandomSkin;
+            checkBox_h5_first.Checked = Properties.Settings.Default.IsH5First;
             richTextBox_SkinBlackList.Text = Properties.Settings.Default.SkinBlackList;
             comboBox_font.Text = Properties.Settings.Default.BrowserFont;
             // 遍历系统字体
@@ -34,6 +35,7 @@ namespace SeerRandomSkin
         private void button_Save_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.IsRandomSkin = checkBox_RandomSkin.Checked;
+            Properties.Settings.Default.IsH5First = checkBox_RandomSkin.Checked;
             // 检查黑名单字符串格式是否正确
             string pattern = "^[0-9,]*$";
             var m = Regex.Match(richTextBox_SkinBlackList.Text, pattern);

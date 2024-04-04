@@ -35,6 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox_font = new System.Windows.Forms.ComboBox();
+            this.checkBox_h5_first = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // checkBox_RandomSkin
@@ -100,11 +101,22 @@
             this.comboBox_font.Size = new System.Drawing.Size(121, 20);
             this.comboBox_font.TabIndex = 6;
             // 
+            // checkBox_h5_first
+            // 
+            this.checkBox_h5_first.AutoSize = true;
+            this.checkBox_h5_first.Location = new System.Drawing.Point(152, 41);
+            this.checkBox_h5_first.Name = "checkBox_h5_first";
+            this.checkBox_h5_first.Size = new System.Drawing.Size(96, 16);
+            this.checkBox_h5_first.TabIndex = 7;
+            this.checkBox_h5_first.Text = "优先进入h5端";
+            this.checkBox_h5_first.UseVisualStyleBackColor = true;
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(680, 450);
+            this.Controls.Add(this.checkBox_h5_first);
             this.Controls.Add(this.comboBox_font);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -129,5 +141,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBox_font;
+        private System.Windows.Forms.CheckBox checkBox_h5_first;
     }
 }
