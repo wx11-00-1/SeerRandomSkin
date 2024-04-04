@@ -49,10 +49,10 @@ namespace SeerRandomSkin
                 // 获取背包
                 "seer_cloth_obj.pet_bag1 = [];" +
                 "var clear_pet_bag_tmp_arr = PetManager.getBagMap();" +
-                "for (var i in clear_pet_bag_tmp_arr) { seer_cloth_obj.pet_bag1.push(clear_pet_bag_tmp_arr[i].id); }" +
+                "for (var i in clear_pet_bag_tmp_arr) { seer_cloth_obj.pet_bag1.push(clear_pet_bag_tmp_arr[i]); }" +
                 "seer_cloth_obj.pet_bag2 = [];" +
                 "clear_pet_bag_tmp_arr = PetManager.getSecondBagMap();" +
-                "for (var i in clear_pet_bag_tmp_arr) { seer_cloth_obj.pet_bag2.push(clear_pet_bag_tmp_arr[i].id); }" +
+                "for (var i in clear_pet_bag_tmp_arr) { seer_cloth_obj.pet_bag2.push(clear_pet_bag_tmp_arr[i]); }" +
                 // 套装
                 "seer_cloth_obj.clothes = [];" +
                 "for (var i in MainManager.actorInfo.clothes) { seer_cloth_obj.clothes.push(MainManager.actorInfo.clothes[i].id); }" +
@@ -117,12 +117,10 @@ namespace SeerRandomSkin
                 "for (var i in clear_pet_bag_tmp_arr) { PetManager.secondBagToStorage(clear_pet_bag_tmp_arr[i].catchTime); }" +
                 // 换精灵
                 "for (var i in seer_cloth_obj.pet_bag1) {" +
-                "   var pet_info_storage_got_by_id = PetStorage2015InfoManager.getInfoByID(seer_cloth_obj.pet_bag1[i]);" +
-                "   if (pet_info_storage_got_by_id.length > 0) { SocketConnection.sendByQueue(CommandID.PET_RELEASE, [pet_info_storage_got_by_id[0].catchTime, 1]); }" +
+                "   SocketConnection.sendByQueue(CommandID.PET_RELEASE, [seer_cloth_obj.pet_bag1[i].catchTime, 1]);" +
                 "}" +
                 "for (var i in seer_cloth_obj.pet_bag2) {" +
-                "   var pet_info_storage_got_by_id = PetStorage2015InfoManager.getInfoByID(seer_cloth_obj.pet_bag2[i]);" +
-                "   if (pet_info_storage_got_by_id.length > 0) { SocketConnection.sendByQueue(CommandID.PET_RELEASE, [pet_info_storage_got_by_id[0].catchTime, 2]); }" +
+                "   SocketConnection.sendByQueue(CommandID.PET_RELEASE, [seer_cloth_obj.pet_bag2[i].catchTime, 2]);" +
                 "}" +
                 // 套装
                 "if (seer_cloth_obj.clothes.length > 0) {" +

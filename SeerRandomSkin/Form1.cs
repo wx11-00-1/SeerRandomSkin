@@ -33,6 +33,8 @@ namespace SeerRandomSkin
         private FormConfig childFormConfig = null;
         private FormPetBag childFormPetBag = null;
         public static FormScreenShot childFormScreenShot = null;
+
+        public bool isFullScreen = false;
         private static readonly List<int> skinIds = new List<int>();
 
         public Form1()
@@ -96,6 +98,7 @@ namespace SeerRandomSkin
                 Size = new Size(960, 560),
                 RequestHandler = new MyRequestHandler(),
                 BrowserSettings = new BrowserSettings(),
+                KeyboardHandler = new KeyBoardHandler() { mainForm = this }
             };
             if (Properties.Settings.Default.BrowserFont != "")
             {
@@ -367,9 +370,7 @@ namespace SeerRandomSkin
         private static async Task GetSkinData()
         {
             string monsters_str = await GetJsonStringAsync("http://seerh5.61.com/resource/config/xml/monsters_191616a2.json");
-            //await Console.Out.WriteLineAsync(monsters_str.Substring(0,500));
-            string pattern = "\"ID\":(\\d{3,}),\"DefName";
-            foreach (Match match in Regex.Matches(monsters_str, pattern, RegexOptions.None))
+            foreach (Match match in Regex.Matches(monsters_str, "\"ID\":(\\d{3,}),\"DefName", RegexOptions.None))
             {
                 skinIds.Add(int.Parse(match.Groups[1].Value));
             }
@@ -467,9 +468,45 @@ namespace SeerRandomSkin
             childFormScreenShot.ScreenShot();
         }
 
-        private void Form1_SizeChanged(object sender, EventArgs e)
+        private class KeyBoardHandler : IKeyboardHandler
+        {
+            public Form1 mainForm = null;
+
+            public bool OnKeyEvent(IWebBrowser chromiumWebBrowser, IBrowser browser, KeyType type, int windowsKeyCode, int nativeKeyCode, CefEventFlags modifiers, bool isSystemKey)
+            {
+                return false;
+            }
+
+            public bool OnPreKeyEvent(IWebBrowser chromiumWebBrowser, IBrowser browser, KeyType type, int windowsKeyCode, int nativeKeyCode, CefEventFlags modifiers, bool isSystemKey, ref bool isKeyboardShortcut)
+            {
+                if (type != KeyType.KeyUp) return false;
+                switch(windowsKeyCode)
+                {
+                    case 0x7A:
+                        // F11 全屏切换
+                        mainForm.isFullScreen = !mainForm.isFullScreen;
+                        if (!mainForm.isFullScreen)
+                        {
+                            mainForm.menuStrip1.Visible = true;
+                            mainForm.FormBorderStyle = FormBorderStyle.Sizable;
+                            mainForm.WindowState = FormWindowState.Normal;
+                        }
+                        else
+                        {
+                            mainForm.menuStrip1.Visible = false;
+                            mainForm.FormBorderStyle = FormBorderStyle.None;
+                            mainForm.WindowState = FormWindowState.Maximized;
+                        }
+                        break;
+                }
+                return false;
+            }
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
         {
             chromiumBrowser.Dock = DockStyle.Fill;
+            if (isFullScreen) return;
             int tmpW = chromiumBrowser.Width;
             int tmpH = chromiumBrowser.Height;
             chromiumBrowser.Dock = DockStyle.None;

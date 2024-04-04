@@ -37,6 +37,7 @@
             this.button_refresh = new System.Windows.Forms.Button();
             this.button_confirm = new System.Windows.Forms.Button();
             this.button_remove = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listView1
@@ -120,11 +121,20 @@
             this.button_remove.UseVisualStyleBackColor = true;
             this.button_remove.Click += new System.EventHandler(this.button_remove_Click);
             // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(59, 261);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(167, 44);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "套装+称号+精灵，一并更换，但换上的套装称号不会及时显示，实际已生效。";
+            // 
             // FormPetBag
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(491, 321);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.button_remove);
             this.Controls.Add(this.button_confirm);
             this.Controls.Add(this.button_refresh);
@@ -150,5 +160,6 @@
         private System.Windows.Forms.Button button_refresh;
         private System.Windows.Forms.Button button_confirm;
         private System.Windows.Forms.Button button_remove;
+        private System.Windows.Forms.Label label2;
     }
 }

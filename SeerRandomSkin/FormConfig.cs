@@ -46,6 +46,7 @@ namespace SeerRandomSkin
                 MessageBox.Show("皮肤黑名单格式错误");
             }
             Properties.Settings.Default.BrowserFont = comboBox_font.Text;
+            Properties.Settings.Default.Save();
         }
     }
 }
