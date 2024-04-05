@@ -155,8 +155,8 @@
             this.换装ToolStripMenuItem,
             this.记牌器ToolStripMenuItem});
             this.h5功能ToolStripMenuItem.Name = "h5功能ToolStripMenuItem";
-            this.h5功能ToolStripMenuItem.Size = new System.Drawing.Size(60, 21);
-            this.h5功能ToolStripMenuItem.Text = "H5功能";
+            this.h5功能ToolStripMenuItem.Size = new System.Drawing.Size(36, 21);
+            this.h5功能ToolStripMenuItem.Text = "H5";
             // 
             // 自动ToolStripMenuItem
             // 
@@ -164,7 +164,7 @@
             this.toolStripMenuItem_CureOpen,
             this.toolStripMenuItem_AutoCureClose});
             this.自动ToolStripMenuItem.Name = "自动ToolStripMenuItem";
-            this.自动ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.自动ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.自动ToolStripMenuItem.Text = "自动回血";
             // 
             // toolStripMenuItem_CureOpen
@@ -184,14 +184,14 @@
             // 换装ToolStripMenuItem
             // 
             this.换装ToolStripMenuItem.Name = "换装ToolStripMenuItem";
-            this.换装ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.换装ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.换装ToolStripMenuItem.Text = "换装";
             this.换装ToolStripMenuItem.Click += new System.EventHandler(this.换装ToolStripMenuItem_Click);
             // 
             // 记牌器ToolStripMenuItem
             // 
             this.记牌器ToolStripMenuItem.Name = "记牌器ToolStripMenuItem";
-            this.记牌器ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.记牌器ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.记牌器ToolStripMenuItem.Text = "记牌器";
             this.记牌器ToolStripMenuItem.Click += new System.EventHandler(this.记牌器ToolStripMenuItem_Click);
             // 

@@ -47,6 +47,7 @@
             this.ClientSize = new System.Drawing.Size(411, 215);
             this.Controls.Add(this.richTextBox1);
             this.Name = "Form2";
+            this.ShowIcon = false;
             this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
 

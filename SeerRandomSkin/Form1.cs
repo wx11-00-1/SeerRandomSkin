@@ -59,6 +59,9 @@ namespace SeerRandomSkin
 
         private async void Form1_Load(object sender, EventArgs e)
         {
+            Width = (int)Properties.Settings.Default.WinWidth;
+            Height = (int)Properties.Settings.Default.WinHeight;
+
             // 初始化皮肤列表
             if (Properties.Settings.Default.SkinIds == "")
             {
@@ -367,7 +370,6 @@ namespace SeerRandomSkin
             Match m = Regex.Match(version_str, "\"monsters\\.json\":\"(.*?\\.json)\"");
             if(!m.Success)
             {
-                MessageBox.Show("version文件读取异常");
                 return;
             }
             string monsters_str = await GetJsonStringAsync("http://seerh5.61.com/resource/config/xml/" + m.Groups[1].Value);

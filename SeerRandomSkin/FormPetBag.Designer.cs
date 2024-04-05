@@ -143,6 +143,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listView1);
             this.Name = "FormPetBag";
+            this.ShowIcon = false;
             this.Text = "衣柜";
             this.Load += new System.EventHandler(this.FormPetBag_Load);
             this.ResumeLayout(false);

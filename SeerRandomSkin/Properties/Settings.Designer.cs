@@ -94,5 +94,29 @@ namespace SeerRandomSkin.Properties {
                 this["IsH5First"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("976")]
+        public decimal WinWidth {
+            get {
+                return ((decimal)(this["WinWidth"]));
+            }
+            set {
+                this["WinWidth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("624")]
+        public decimal WinHeight {
+            get {
+                return ((decimal)(this["WinHeight"]));
+            }
+            set {
+                this["WinHeight"] = value;
+            }
+        }
     }
 }

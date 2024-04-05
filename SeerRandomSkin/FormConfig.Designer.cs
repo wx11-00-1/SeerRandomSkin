@@ -36,6 +36,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox_font = new System.Windows.Forms.ComboBox();
             this.checkBox_h5_first = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.numericUpDown_win_width = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_win_height = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_width)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_height)).BeginInit();
             this.SuspendLayout();
             // 
             // checkBox_RandomSkin
@@ -111,11 +117,57 @@
             this.checkBox_h5_first.Text = "优先进入h5端";
             this.checkBox_h5_first.UseVisualStyleBackColor = true;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(273, 86);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(89, 12);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "默认窗口大小：";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(423, 87);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(11, 12);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "x";
+            // 
+            // numericUpDown_win_width
+            // 
+            this.numericUpDown_win_width.Location = new System.Drawing.Point(368, 84);
+            this.numericUpDown_win_width.Maximum = new decimal(new int[] {
+            40000,
+            0,
+            0,
+            0});
+            this.numericUpDown_win_width.Name = "numericUpDown_win_width";
+            this.numericUpDown_win_width.Size = new System.Drawing.Size(45, 21);
+            this.numericUpDown_win_width.TabIndex = 11;
+            // 
+            // numericUpDown_win_height
+            // 
+            this.numericUpDown_win_height.Location = new System.Drawing.Point(444, 84);
+            this.numericUpDown_win_height.Maximum = new decimal(new int[] {
+            40000,
+            0,
+            0,
+            0});
+            this.numericUpDown_win_height.Name = "numericUpDown_win_height";
+            this.numericUpDown_win_height.Size = new System.Drawing.Size(45, 21);
+            this.numericUpDown_win_height.TabIndex = 12;
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(680, 450);
+            this.Controls.Add(this.numericUpDown_win_height);
+            this.Controls.Add(this.numericUpDown_win_width);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.checkBox_h5_first);
             this.Controls.Add(this.comboBox_font);
             this.Controls.Add(this.label3);
@@ -125,8 +177,11 @@
             this.Controls.Add(this.button_Save);
             this.Controls.Add(this.checkBox_RandomSkin);
             this.Name = "FormConfig";
+            this.ShowIcon = false;
             this.Text = "配置";
             this.Load += new System.EventHandler(this.FormConfig_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_width)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_height)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,5 +197,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBox_font;
         private System.Windows.Forms.CheckBox checkBox_h5_first;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown numericUpDown_win_width;
+        private System.Windows.Forms.NumericUpDown numericUpDown_win_height;
     }
 }

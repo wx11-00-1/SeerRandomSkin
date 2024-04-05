@@ -20,5 +20,11 @@
     <Setting Name="IsH5First" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="WinWidth" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">976</Value>
+    </Setting>
+    <Setting Name="WinHeight" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">624</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

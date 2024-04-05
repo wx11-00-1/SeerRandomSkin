@@ -25,8 +25,10 @@ namespace SeerRandomSkin
             checkBox_h5_first.Checked = Properties.Settings.Default.IsH5First;
             richTextBox_SkinBlackList.Text = Properties.Settings.Default.SkinBlackList;
             comboBox_font.Text = Properties.Settings.Default.BrowserFont;
+            numericUpDown_win_width.Value = Properties.Settings.Default.WinWidth;
+            numericUpDown_win_height.Value = Properties.Settings.Default.WinHeight;
             // 遍历系统字体
-            foreach(var f in System.Drawing.FontFamily.Families)
+            foreach(var f in FontFamily.Families)
             {
                 comboBox_font.Items.Add(f.Name);
             }
@@ -36,6 +38,8 @@ namespace SeerRandomSkin
         {
             Properties.Settings.Default.IsRandomSkin = checkBox_RandomSkin.Checked;
             Properties.Settings.Default.IsH5First = checkBox_RandomSkin.Checked;
+            Properties.Settings.Default.WinWidth = numericUpDown_win_width.Value;
+            Properties.Settings.Default.WinHeight = numericUpDown_win_height.Value;
             // 检查黑名单字符串格式是否正确
             string pattern = "^[0-9,]*$";
             var m = Regex.Match(richTextBox_SkinBlackList.Text, pattern);
