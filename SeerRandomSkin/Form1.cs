@@ -39,6 +39,9 @@ namespace SeerRandomSkin
 
         public Form1()
         {
+            Width = (int)Properties.Settings.Default.WinWidth;
+            Height = (int)Properties.Settings.Default.WinHeight;
+
             //初始化cef
             CefSettings settings = new CefSettings();
             settings.CefCommandLineArgs.Add("ppapi-flash-version", "99.0.0.999"); //显示out of date时，直接冒充一下版本
@@ -59,9 +62,6 @@ namespace SeerRandomSkin
 
         private async void Form1_Load(object sender, EventArgs e)
         {
-            Width = (int)Properties.Settings.Default.WinWidth;
-            Height = (int)Properties.Settings.Default.WinHeight;
-
             // 初始化皮肤列表
             if (Properties.Settings.Default.SkinIds == "")
             {
@@ -81,6 +81,8 @@ namespace SeerRandomSkin
 
             chromiumBrowser = CreateChromium(Properties.Settings.Default.IsH5First ? gameH5Address : gameAddress);
             Controls.Add(chromiumBrowser);
+            ResizeChromiumBrowser();
+
             new Thread(() =>
             {
                 Thread.Sleep(10000);
@@ -312,6 +314,7 @@ namespace SeerRandomSkin
             chromiumBrowser = null;
             chromiumBrowser = CreateChromium(gameAddress);
             Controls.Add(chromiumBrowser);
+            ResizeChromiumBrowser();
         }
 
         private void h5ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -321,6 +324,7 @@ namespace SeerRandomSkin
             chromiumBrowser = null;
             chromiumBrowser = CreateChromium(gameH5Address);
             Controls.Add(chromiumBrowser);
+            ResizeChromiumBrowser();
 
         }
 
@@ -508,6 +512,12 @@ namespace SeerRandomSkin
 
         private void Form1_Resize(object sender, EventArgs e)
         {
+            ResizeChromiumBrowser();
+        }
+
+        private void ResizeChromiumBrowser()
+        {
+            if (chromiumBrowser == null) return;
             chromiumBrowser.Dock = DockStyle.Fill;
             if (isFullScreen) return;
             int tmpW = chromiumBrowser.Width;

@@ -49,7 +49,9 @@ namespace SeerRandomSkin.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("5001,5002,5005,5017,5044,5045,5069,5098,5375,5376,5377,5379,5380,5381,5383,5384,5" +
+            "385,5387,5388,5389,5391,5392,5393,5395,5396,5397,5399,5400,5401,5596,5597,5598,5" +
+            "599,5600,5604,5609,")]
         public string SkinBlackList {
             get {
                 return ((string)(this["SkinBlackList"]));

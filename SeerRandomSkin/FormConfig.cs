@@ -37,7 +37,7 @@ namespace SeerRandomSkin
         private void button_Save_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.IsRandomSkin = checkBox_RandomSkin.Checked;
-            Properties.Settings.Default.IsH5First = checkBox_RandomSkin.Checked;
+            Properties.Settings.Default.IsH5First = checkBox_h5_first.Checked;
             Properties.Settings.Default.WinWidth = numericUpDown_win_width.Value;
             Properties.Settings.Default.WinHeight = numericUpDown_win_height.Value;
             // 检查黑名单字符串格式是否正确

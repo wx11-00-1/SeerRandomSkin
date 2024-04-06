@@ -49,9 +49,9 @@
             this.checkBox_RandomSkin.AutoSize = true;
             this.checkBox_RandomSkin.Location = new System.Drawing.Point(53, 41);
             this.checkBox_RandomSkin.Name = "checkBox_RandomSkin";
-            this.checkBox_RandomSkin.Size = new System.Drawing.Size(72, 16);
+            this.checkBox_RandomSkin.Size = new System.Drawing.Size(107, 17);
             this.checkBox_RandomSkin.TabIndex = 0;
-            this.checkBox_RandomSkin.Text = "随机皮肤";
+            this.checkBox_RandomSkin.Text = "启用随机皮肤";
             this.checkBox_RandomSkin.UseVisualStyleBackColor = true;
             // 
             // button_Save
@@ -77,7 +77,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(51, 86);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(149, 12);
+            this.label1.Size = new System.Drawing.Size(163, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "皮肤黑名单（格式如下）：";
             // 
@@ -86,7 +86,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(51, 110);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 12);
+            this.label2.Size = new System.Drawing.Size(91, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "123,124,125,";
             // 
@@ -95,7 +95,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(321, 45);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 12);
+            this.label3.Size = new System.Drawing.Size(46, 13);
             this.label3.TabIndex = 5;
             this.label3.Text = "字体：";
             // 
@@ -110,9 +110,9 @@
             // checkBox_h5_first
             // 
             this.checkBox_h5_first.AutoSize = true;
-            this.checkBox_h5_first.Location = new System.Drawing.Point(152, 41);
+            this.checkBox_h5_first.Location = new System.Drawing.Point(173, 41);
             this.checkBox_h5_first.Name = "checkBox_h5_first";
-            this.checkBox_h5_first.Size = new System.Drawing.Size(96, 16);
+            this.checkBox_h5_first.Size = new System.Drawing.Size(108, 17);
             this.checkBox_h5_first.TabIndex = 7;
             this.checkBox_h5_first.Text = "优先进入h5端";
             this.checkBox_h5_first.UseVisualStyleBackColor = true;
@@ -122,7 +122,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(273, 86);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(89, 12);
+            this.label4.Size = new System.Drawing.Size(98, 13);
             this.label4.TabIndex = 8;
             this.label4.Text = "默认窗口大小：";
             // 
@@ -131,7 +131,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(423, 87);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(11, 12);
+            this.label5.Size = new System.Drawing.Size(14, 13);
             this.label5.TabIndex = 10;
             this.label5.Text = "x";
             // 
