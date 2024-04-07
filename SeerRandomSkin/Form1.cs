@@ -37,10 +37,27 @@ namespace SeerRandomSkin
         public bool isFullScreen = false;
         private static readonly List<int> skinIds = new List<int>();
 
+        System.Diagnostics.Process childProcess;
+
         public Form1()
         {
-            Width = (int)Properties.Settings.Default.WinWidth;
-            Height = (int)Properties.Settings.Default.WinHeight;
+            if (Properties.Settings.Default.AutoExecuteSoftwarePath1 != "")
+            {
+                using (childProcess = new System.Diagnostics.Process())
+                {
+                    childProcess.StartInfo.FileName = @"C:\Windows\System32\cmd.exe";
+                    childProcess.StartInfo.UseShellExecute = false; //是否使用操作系统shell启动
+                    childProcess.StartInfo.RedirectStandardInput = true; //接受来自调用程序的输入信息
+                    childProcess.StartInfo.RedirectStandardOutput = true; //由调用程序获取输出信息
+                    childProcess.StartInfo.RedirectStandardError = true; //重定向标准错误输出
+                    childProcess.StartInfo.CreateNoWindow = true; //不显示程序窗口
+                    childProcess.Start();//启动程序
+
+                    //向cmd窗口写入命令
+                    childProcess.StandardInput.WriteLine(Properties.Settings.Default.AutoExecuteSoftwarePath1);
+                    childProcess.StandardInput.AutoFlush = true;
+                }
+            }
 
             //初始化cef
             CefSettings settings = new CefSettings();
@@ -62,6 +79,10 @@ namespace SeerRandomSkin
 
         private async void Form1_Load(object sender, EventArgs e)
         {
+            Width = (int)Properties.Settings.Default.WinWidth;
+            Height = (int)Properties.Settings.Default.WinHeight;
+            CenterToScreen();
+
             // 初始化皮肤列表
             if (Properties.Settings.Default.SkinIds == "")
             {
@@ -166,7 +187,12 @@ namespace SeerRandomSkin
 
                 private int GetRandomSkinId()
                 {
-                    return skinIds[random_obj.Next(skinIds.Count)];
+                    int id = skinIds[random_obj.Next(skinIds.Count)];
+                    if (Properties.Settings.Default.IsOnlyOldPet)
+                    {
+                        while (id > 3000) id = skinIds[random_obj.Next(skinIds.Count)];
+                    }
+                    return id;
                 }
 
                 protected override CefReturnValue OnBeforeResourceLoad(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, IRequestCallback callback)
@@ -180,8 +206,6 @@ namespace SeerRandomSkin
                         int skin_id = int.Parse(ms[0].Groups[1].Value);
                         if (skin_id != 3788 && skin_id != 290003788 && skin_id != 1400512 && skin_id != 2900512)
                         {
-                            //request.Url = @"https://seer.61.com/resource/fightResource/pet/swf/" + random_obj.Next(1000, 3290) + @".swf";
-                            
                             request.Url = @"https://seer.61.com/resource/fightResource/pet/swf/" + GetRandomSkinId() + @".swf";
                         }
                     }
@@ -192,15 +216,15 @@ namespace SeerRandomSkin
                 protected override IResourceHandler GetResourceHandler(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request)
                 {
                     string url = request.Url;
-                    if (url == @"https://seer.61.com/dll/Assets.swf?lsx13yv4")
+                    if (url == @"https://seer.61.com/dll/Assets.swf?lsx13yv4" && Properties.Settings.Default.IsChangeBackground)
                     {
                         return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\Assets.swf");
                     }
-                    else if (url == @"https://seer.61.com/resource/uiIcon/yearvip_icon.swf?lqp17ri0")
+                    else if (url == @"https://seer.61.com/resource/uiIcon/yearvip_icon.swf?lqp17ri0" && Properties.Settings.Default.IsChangeVipIcon)
                     {
                         return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\yearvip_icon.swf");
                     }
-                    else if (url.Contains(@"login/ServerAdPanel1.swf"))
+                    else if (url.Contains(@"login/ServerAdPanel1.swf") && Properties.Settings.Default.IsChangeAdPanel)
                     {
                         return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\NoAd.swf");
                     }
@@ -412,11 +436,6 @@ namespace SeerRandomSkin
         private void 静音ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             chromiumBrowser.GetBrowser().GetHost().SetAudioMuted(true);
-        }
-
-        private void toolStripMenuItem_FilterSkins_Click(object sender, EventArgs e)
-        {
-            FilterSkins();
         }
 
         private static void FilterSkins()

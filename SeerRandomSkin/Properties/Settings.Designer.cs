@@ -120,5 +120,65 @@ namespace SeerRandomSkin.Properties {
                 this["WinHeight"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsOnlyOldPet {
+            get {
+                return ((bool)(this["IsOnlyOldPet"]));
+            }
+            set {
+                this["IsOnlyOldPet"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsChangeBackground {
+            get {
+                return ((bool)(this["IsChangeBackground"]));
+            }
+            set {
+                this["IsChangeBackground"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsChangeAdPanel {
+            get {
+                return ((bool)(this["IsChangeAdPanel"]));
+            }
+            set {
+                this["IsChangeAdPanel"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsChangeVipIcon {
+            get {
+                return ((bool)(this["IsChangeVipIcon"]));
+            }
+            set {
+                this["IsChangeVipIcon"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string AutoExecuteSoftwarePath1 {
+            get {
+                return ((string)(this["AutoExecuteSoftwarePath1"]));
+            }
+            set {
+                this["AutoExecuteSoftwarePath1"] = value;
+            }
+        }
     }
 }
