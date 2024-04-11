@@ -93,10 +93,10 @@ namespace SeerRandomSkin
                 string[] strings = Properties.Settings.Default.SkinIds.Split(',');
                 foreach (string s in strings)
                 {
-                    if (s != "")
-                    {
-                        skinIds.Add(int.Parse(s));
-                    }
+                    if (s == "") continue;
+                    int id = int.Parse(s);
+                    if (id < Properties.Settings.Default.SkinRangeFloor || id > Properties.Settings.Default.SkinRangeCeiling) continue;
+                    skinIds.Add(id);
                 }
             }
 
@@ -187,12 +187,7 @@ namespace SeerRandomSkin
 
                 private int GetRandomSkinId()
                 {
-                    int id = 0;
-                    while (id < Properties.Settings.Default.SkinRangeFloor || id > Properties.Settings.Default.SkinRangeCeiling)
-                    {
-                        id = skinIds[random_obj.Next(skinIds.Count)];
-                    }
-                    return id;
+                    return skinIds[random_obj.Next(skinIds.Count)];
                 }
 
                 protected override CefReturnValue OnBeforeResourceLoad(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, IRequestCallback callback)
@@ -374,17 +369,6 @@ namespace SeerRandomSkin
                 childForm2 = new Form2();
                 childForm2.Show();
             }
-            else
-            {
-                try
-                {
-                    childForm2.Dispose();
-                    childForm2 = null;
-                    childForm2 = new Form2();
-                    childForm2.Show();
-                }
-                catch(Exception ex) { }
-            }
         }
 
         private void 获取皮肤数据ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -401,13 +385,13 @@ namespace SeerRandomSkin
                 return;
             }
             string monsters_str = await GetJsonStringAsync("http://seerh5.61.com/resource/config/xml/" + m.Groups[1].Value);
-            foreach (Match match in Regex.Matches(monsters_str, "\"ID\":(\\d{3,}),\"DefName", RegexOptions.None))
+            foreach (Match match in Regex.Matches(monsters_str, "\"ID\":(\\d+),\"DefName", RegexOptions.None))
             {
                 skinIds.Add(int.Parse(match.Groups[1].Value));
             }
-            SaveConfigSkinIds();
             MessageBox.Show("获取皮肤数据完成");
             FilterSkins();
+            SaveConfigSkinIds();
         }
 
         private static void SaveConfigSkinIds()
@@ -449,8 +433,7 @@ namespace SeerRandomSkin
             }
             skinIds.RemoveAll(data => set.Contains(data));
 
-            string blackList = Properties.Settings.Default.SkinBlackList;
-            string[] blacks = skin404.Split(',');
+            string[] blacks = Properties.Settings.Default.SkinBlackList.Split(',');
             HashSet<int> set1 = new HashSet<int>();
             foreach (string s in blacks)
             {
@@ -458,7 +441,6 @@ namespace SeerRandomSkin
             }
             skinIds.RemoveAll(data => set1.Contains(data));
 
-            SaveConfigSkinIds();
             MessageBox.Show("筛选完成");
         }
 
