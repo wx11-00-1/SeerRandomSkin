@@ -212,9 +212,6 @@
     <Content Include="file\txt\Skin404.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="file\txt\可能卡住的皮肤.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SpeedhackWrapper\SpeedhackWrapper.csproj">

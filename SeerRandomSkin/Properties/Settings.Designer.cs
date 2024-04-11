@@ -12,7 +12,7 @@ namespace SeerRandomSkin.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.9.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.8.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -49,9 +49,7 @@ namespace SeerRandomSkin.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5001,5002,5005,5017,5044,5045,5069,5098,5375,5376,5377,5379,5380,5381,5383,5384,5" +
-            "385,5387,5388,5389,5391,5392,5393,5395,5396,5397,5399,5400,5401,5596,5597,5598,5" +
-            "599,5600,5604,5609,")]
+        [global::System.Configuration.DefaultSettingValueAttribute("5001,5098,")]
         public string SkinBlackList {
             get {
                 return ((string)(this["SkinBlackList"]));
@@ -123,18 +121,6 @@ namespace SeerRandomSkin.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool IsOnlyOldPet {
-            get {
-                return ((bool)(this["IsOnlyOldPet"]));
-            }
-            set {
-                this["IsOnlyOldPet"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool IsChangeBackground {
             get {
@@ -178,6 +164,30 @@ namespace SeerRandomSkin.Properties {
             }
             set {
                 this["AutoExecuteSoftwarePath1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("453")]
+        public int SkinRangeFloor {
+            get {
+                return ((int)(this["SkinRangeFloor"]));
+            }
+            set {
+                this["SkinRangeFloor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2147483647")]
+        public int SkinRangeCeiling {
+            get {
+                return ((int)(this["SkinRangeCeiling"]));
+            }
+            set {
+                this["SkinRangeCeiling"] = value;
             }
         }
     }

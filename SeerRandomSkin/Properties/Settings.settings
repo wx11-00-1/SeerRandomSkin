@@ -9,7 +9,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="SkinBlackList" Type="System.String" Scope="User">
-      <Value Profile="(Default)">5001,5002,5005,5017,5044,5045,5069,5098,5375,5376,5377,5379,5380,5381,5383,5384,5385,5387,5388,5389,5391,5392,5393,5395,5396,5397,5399,5400,5401,5596,5597,5598,5599,5600,5604,5609,</Value>
+      <Value Profile="(Default)">5001,5098,</Value>
     </Setting>
     <Setting Name="SeerCloth" Type="System.String" Scope="User">
       <Value Profile="(Default)">{}</Value>
@@ -26,9 +26,6 @@
     <Setting Name="WinHeight" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">624</Value>
     </Setting>
-    <Setting Name="IsOnlyOldPet" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="IsChangeBackground" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -40,6 +37,12 @@
     </Setting>
     <Setting Name="AutoExecuteSoftwarePath1" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SkinRangeFloor" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">453</Value>
+    </Setting>
+    <Setting Name="SkinRangeCeiling" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2147483647</Value>
     </Setting>
   </Settings>
 </SettingsFile>

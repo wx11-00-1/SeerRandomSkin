@@ -23,11 +23,12 @@ namespace SeerRandomSkin
             // 初始化配置项
             checkBox_RandomSkin.Checked = Properties.Settings.Default.IsRandomSkin;
             checkBox_h5_first.Checked = Properties.Settings.Default.IsH5First;
+            numericUpDown_skinCeiling.Value = Properties.Settings.Default.SkinRangeCeiling;
+            numericUpDown_skinFloor.Value = Properties.Settings.Default.SkinRangeFloor;
             richTextBox_SkinBlackList.Text = Properties.Settings.Default.SkinBlackList;
             comboBox_font.Text = Properties.Settings.Default.BrowserFont;
             numericUpDown_win_width.Value = Properties.Settings.Default.WinWidth;
             numericUpDown_win_height.Value = Properties.Settings.Default.WinHeight;
-            checkBox_onlyOldPet.Checked = Properties.Settings.Default.IsOnlyOldPet;
             checkBox_resource_ad_panel.Checked = Properties.Settings.Default.IsChangeAdPanel;
             checkBox_resource_background.Checked = Properties.Settings.Default.IsChangeBackground;
             checkBox_resource_vip_icon.Checked = Properties.Settings.Default.IsChangeVipIcon;
@@ -45,7 +46,8 @@ namespace SeerRandomSkin
             Properties.Settings.Default.IsH5First = checkBox_h5_first.Checked;
             Properties.Settings.Default.WinWidth = numericUpDown_win_width.Value;
             Properties.Settings.Default.WinHeight = numericUpDown_win_height.Value;
-            Properties.Settings.Default.IsOnlyOldPet = checkBox_onlyOldPet.Checked;
+            Properties.Settings.Default.SkinRangeCeiling = (int)numericUpDown_skinCeiling.Value;
+            Properties.Settings.Default.SkinRangeFloor = (int)numericUpDown_skinFloor.Value;
             Properties.Settings.Default.IsChangeAdPanel = checkBox_resource_ad_panel.Checked;
             Properties.Settings.Default.IsChangeBackground = checkBox_resource_background.Checked;
             Properties.Settings.Default.IsChangeVipIcon = checkBox_resource_vip_icon.Checked;

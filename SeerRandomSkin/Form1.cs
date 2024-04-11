@@ -187,10 +187,10 @@ namespace SeerRandomSkin
 
                 private int GetRandomSkinId()
                 {
-                    int id = skinIds[random_obj.Next(skinIds.Count)];
-                    if (Properties.Settings.Default.IsOnlyOldPet)
+                    int id = 0;
+                    while (id < Properties.Settings.Default.SkinRangeFloor || id > Properties.Settings.Default.SkinRangeCeiling)
                     {
-                        while (id > 3000) id = skinIds[random_obj.Next(skinIds.Count)];
+                        id = skinIds[random_obj.Next(skinIds.Count)];
                     }
                     return id;
                 }
@@ -457,9 +457,6 @@ namespace SeerRandomSkin
                 if (s != "") set1.Add(int.Parse(s));
             }
             skinIds.RemoveAll(data => set1.Contains(data));
-
-            // 452 及以前的精灵皮肤，脚本结构与之后的精灵略有不同，替换上去可能会卡
-            skinIds.RemoveAll(data => data < 453);
 
             SaveConfigSkinIds();
             MessageBox.Show("筛选完成");
