@@ -9,7 +9,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="SkinBlackList" Type="System.String" Scope="User">
-      <Value Profile="(Default)">5001,5098,</Value>
+      <Value Profile="(Default)">5001,5003,5098,</Value>
     </Setting>
     <Setting Name="SeerCloth" Type="System.String" Scope="User">
       <Value Profile="(Default)">{}</Value>
@@ -39,7 +39,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="SkinRangeFloor" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">453</Value>
+      <Value Profile="(Default)">998</Value>
     </Setting>
     <Setting Name="SkinRangeCeiling" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">2147483647</Value>

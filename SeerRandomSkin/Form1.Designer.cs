@@ -46,6 +46,7 @@
             this.toolStripMenuItem_AutoCureClose = new System.Windows.Forms.ToolStripMenuItem();
             this.换装ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.记牌器ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.flash变速ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,7 +58,7 @@
             this.h5功能ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(960, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1280, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -70,7 +71,8 @@
             this.关于ToolStripMenuItem,
             this.获取皮肤数据ToolStripMenuItem,
             this.音量ToolStripMenuItem,
-            this.配置ToolStripMenuItem});
+            this.配置ToolStripMenuItem,
+            this.flash变速ToolStripMenuItem});
             this.菜单ToolStripMenuItem.Name = "菜单ToolStripMenuItem";
             this.菜单ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.菜单ToolStripMenuItem.Text = "菜单";
@@ -122,14 +124,14 @@
             // 开启ToolStripMenuItem
             // 
             this.开启ToolStripMenuItem.Name = "开启ToolStripMenuItem";
-            this.开启ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.开启ToolStripMenuItem.Size = new System.Drawing.Size(122, 26);
             this.开启ToolStripMenuItem.Text = "开启";
             this.开启ToolStripMenuItem.Click += new System.EventHandler(this.开启ToolStripMenuItem_Click);
             // 
             // 静音ToolStripMenuItem
             // 
             this.静音ToolStripMenuItem.Name = "静音ToolStripMenuItem";
-            this.静音ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.静音ToolStripMenuItem.Size = new System.Drawing.Size(122, 26);
             this.静音ToolStripMenuItem.Text = "静音";
             this.静音ToolStripMenuItem.Click += new System.EventHandler(this.静音ToolStripMenuItem_Click);
             // 
@@ -156,7 +158,7 @@
             this.toolStripMenuItem_CureOpen,
             this.toolStripMenuItem_AutoCureClose});
             this.自动ToolStripMenuItem.Name = "自动ToolStripMenuItem";
-            this.自动ToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
+            this.自动ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.自动ToolStripMenuItem.Text = "自动回血";
             // 
             // toolStripMenuItem_CureOpen
@@ -176,25 +178,33 @@
             // 换装ToolStripMenuItem
             // 
             this.换装ToolStripMenuItem.Name = "换装ToolStripMenuItem";
-            this.换装ToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
+            this.换装ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.换装ToolStripMenuItem.Text = "换装";
             this.换装ToolStripMenuItem.Click += new System.EventHandler(this.换装ToolStripMenuItem_Click);
             // 
             // 记牌器ToolStripMenuItem
             // 
             this.记牌器ToolStripMenuItem.Name = "记牌器ToolStripMenuItem";
-            this.记牌器ToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
+            this.记牌器ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.记牌器ToolStripMenuItem.Text = "记牌器";
             this.记牌器ToolStripMenuItem.Click += new System.EventHandler(this.记牌器ToolStripMenuItem_Click);
             // 
+            // flash变速ToolStripMenuItem
+            // 
+            this.flash变速ToolStripMenuItem.Name = "flash变速ToolStripMenuItem";
+            this.flash变速ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.flash变速ToolStripMenuItem.Text = "Flash 变速";
+            this.flash变速ToolStripMenuItem.Click += new System.EventHandler(this.flash变速ToolStripMenuItem_Click);
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(960, 585);
+            this.ClientSize = new System.Drawing.Size(1280, 731);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Resize += new System.EventHandler(this.Form1_Resize);
@@ -224,6 +234,7 @@
         private System.Windows.Forms.ToolStripMenuItem 配置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 换装ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 记牌器ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem flash变速ToolStripMenuItem;
     }
 }
 

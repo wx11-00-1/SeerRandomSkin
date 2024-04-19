@@ -107,10 +107,7 @@ namespace SeerRandomSkin
             new Thread(() =>
             {
                 Thread.Sleep(10000);
-                string libPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "SpeedhackWrapper.dll");
-                int pid = (int)GetCefSubprocessPid("type=ppapi");
-                if (pid == 0) return;
-                RemoteHooking.Inject(pid, libPath, libPath, null);
+                FlashSpeedHack();
             })
             { IsBackground = true }.Start();
         }
@@ -201,7 +198,9 @@ namespace SeerRandomSkin
                         int skin_id = int.Parse(ms[0].Groups[1].Value);
                         if (skin_id != 3788 && skin_id != 290003788 && skin_id != 1400512 && skin_id != 2900512)
                         {
-                            request.Url = @"https://seer.61.com/resource/fightResource/pet/swf/" + GetRandomSkinId() + @".swf";
+                            int rid = GetRandomSkinId();
+                            request.Url = @"https://seer.61.com/resource/fightResource/pet/swf/" + rid + @".swf";
+                            browser.MainFrame.ExecuteJavaScriptAsync("console.log(" + skin_id + "+' -> '+" + rid + ");");
                         }
                     }
 
@@ -523,6 +522,19 @@ namespace SeerRandomSkin
             chromiumBrowser.Dock = DockStyle.None;
             chromiumBrowser.Width = tmpW;
             chromiumBrowser.Height = tmpH - 25;
+        }
+
+        private void flash变速ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FlashSpeedHack();
+        }
+
+        private void FlashSpeedHack()
+        {
+            string libPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "SpeedhackWrapper.dll");
+            int pid = (int)GetCefSubprocessPid("type=ppapi");
+            if (pid == 0) return;
+            RemoteHooking.Inject(pid, libPath, libPath, null);
         }
     }
 }
