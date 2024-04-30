@@ -36,6 +36,7 @@ namespace SeerRandomSkin
 
         public bool isFullScreen = false;
         private static readonly List<int> skinIds = new List<int>();
+        private static readonly List<int> skinExclusion = new List<int>();
 
         System.Diagnostics.Process childProcess;
 
@@ -98,6 +99,12 @@ namespace SeerRandomSkin
                     if (id < Properties.Settings.Default.SkinRangeFloor || id > Properties.Settings.Default.SkinRangeCeiling) continue;
                     skinIds.Add(id);
                 }
+            }
+            // 初始化随机皮肤的排除项
+            string[] exc = Properties.Settings.Default.RandomSkinExclusion.Split(',');
+            foreach (string ex in exc)
+            {
+                if (ex == "") continue; int id = int.Parse(ex); skinExclusion.Add(id);
             }
 
             chromiumBrowser = CreateChromium(Properties.Settings.Default.IsH5First ? gameH5Address : gameAddress);
@@ -196,7 +203,7 @@ namespace SeerRandomSkin
                     if (ms.Count > 0)
                     {
                         int skin_id = int.Parse(ms[0].Groups[1].Value);
-                        if (skin_id != 3788 && skin_id != 290003788 && skin_id != 1400512 && skin_id != 2900512)
+                        if (!skinExclusion.Contains(skin_id))
                         {
                             int rid = GetRandomSkinId();
                             request.Url = @"https://seer.61.com/resource/fightResource/pet/swf/" + rid + @".swf";

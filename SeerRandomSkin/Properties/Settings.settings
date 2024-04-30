@@ -44,5 +44,8 @@
     <Setting Name="SkinRangeCeiling" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">2147483647</Value>
     </Setting>
+    <Setting Name="RandomSkinExclusion" Type="System.String" Scope="User">
+      <Value Profile="(Default)">3788,290003788,1400512,2900512,</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

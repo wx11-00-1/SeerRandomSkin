@@ -209,5 +209,17 @@ namespace SeerRandomSkin.Properties {
                 this["SkinRangeCeiling"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3788,290003788,1400512,2900512,")]
+        public string RandomSkinExclusion {
+            get {
+                return ((string)(this["RandomSkinExclusion"]));
+            }
+            set {
+                this["RandomSkinExclusion"] = value;
+            }
+        }
     }
 }
