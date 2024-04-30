@@ -54,6 +54,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.checkBox_resource_bg_h5 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_width)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_height)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -179,6 +180,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.checkBox_resource_bg_h5);
             this.groupBox1.Controls.Add(this.checkBox_resource_vip_icon);
             this.groupBox1.Controls.Add(this.checkBox_resource_ad_panel);
             this.groupBox1.Controls.Add(this.checkBox_resource_background);
@@ -202,7 +204,7 @@
             // checkBox_resource_ad_panel
             // 
             this.checkBox_resource_ad_panel.AutoSize = true;
-            this.checkBox_resource_ad_panel.Location = new System.Drawing.Point(99, 22);
+            this.checkBox_resource_ad_panel.Location = new System.Drawing.Point(103, 22);
             this.checkBox_resource_ad_panel.Name = "checkBox_resource_ad_panel";
             this.checkBox_resource_ad_panel.Size = new System.Drawing.Size(72, 16);
             this.checkBox_resource_ad_panel.TabIndex = 16;
@@ -252,9 +254,9 @@
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Location = new System.Drawing.Point(54, 78);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(220, 91);
             this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
@@ -339,6 +341,16 @@
             this.richTextBox1.TabIndex = 21;
             this.richTextBox1.Text = "";
             // 
+            // checkBox_resource_bg_h5
+            // 
+            this.checkBox_resource_bg_h5.AutoSize = true;
+            this.checkBox_resource_bg_h5.Location = new System.Drawing.Point(103, 57);
+            this.checkBox_resource_bg_h5.Name = "checkBox_resource_bg_h5";
+            this.checkBox_resource_bg_h5.Size = new System.Drawing.Size(84, 16);
+            this.checkBox_resource_bg_h5.TabIndex = 18;
+            this.checkBox_resource_bg_h5.Text = "H5登录背景";
+            this.checkBox_resource_bg_h5.UseVisualStyleBackColor = true;
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -407,5 +419,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.CheckBox checkBox_resource_bg_h5;
     }
 }

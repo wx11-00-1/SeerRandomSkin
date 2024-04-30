@@ -47,5 +47,8 @@
     <Setting Name="RandomSkinExclusion" Type="System.String" Scope="User">
       <Value Profile="(Default)">3788,290003788,1400512,2900512,</Value>
     </Setting>
+    <Setting Name="IsChangeH5LoginBg2024" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -233,6 +233,17 @@ namespace SeerRandomSkin
                     {
                         return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\tip_230831_closeBattery.swf");
                     }
+                    else if(Properties.Settings.Default.IsChangeH5LoginBg2024)
+                    {
+                        if(url == @"https://seerh5.61.com/resource/assets/ui/login202202/outside/2024nianfeidaiji.png")
+                        {
+                            return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\png\pixel.png");
+                        }
+                        else if (url == @"https://seerh5.61.com/resource/assets/ui/login202202/outside/2024nianfeidaijiBg.png")
+                        {
+                            return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\png\bg_login_h5.png");
+                        }
+                    }
 
                     return base.GetResourceHandler(chromiumWebBrowser, browser, frame, request);
                 }
