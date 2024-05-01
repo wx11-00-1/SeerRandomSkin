@@ -115,6 +115,12 @@
     <Compile Include="FormConfig.Designer.cs">
       <DependentUpon>FormConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormPack.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPack.Designer.cs">
+      <DependentUpon>FormPack.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPetBag.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormConfig.resx">
       <DependentUpon>FormConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPack.resx">
+      <DependentUpon>FormPack.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPetBag.resx">
       <DependentUpon>FormPetBag.cs</DependentUpon>

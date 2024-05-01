@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SeerRandomSkin
 {
@@ -20,6 +21,16 @@ namespace SeerRandomSkin
         {
             if (Form1.childFormScreenShot == null) return;
             Form1.childFormScreenShot.ScreenShot();
+        }
+
+        public void GetRecvPackArray(string pack)
+        {
+            Form1.childFormPack.ShowRecvPack(pack);
+        }
+
+        public void GetSendPackArray(string pack)
+        {
+            Form1.childFormPack.ShowRecvSend(pack);
         }
     }
 }

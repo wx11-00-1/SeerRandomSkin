@@ -33,6 +33,7 @@ namespace SeerRandomSkin
         private FormConfig childFormConfig = null;
         private FormPetBag childFormPetBag = null;
         public static FormScreenShot childFormScreenShot = null;
+        public static FormPack childFormPack = null;
 
         public bool isFullScreen = false;
         private static readonly List<int> skinIds = new List<int>();
@@ -159,11 +160,53 @@ namespace SeerRandomSkin
                             "WxSeerUtil = {};" +
                             "WxSeerUtil.AutoCurePet = true;" +
                             "WxSeerUtil.Initialized = false;" +
+
+                            // 是否显示收发包的标志
+                            "WxSeerUtil.HideRecv = true;" +
+                            "WxSeerUtil.HideSend = true;" +
+                            // hook 对象 prototype 函数
+                            "WxSeerUtil.rsPrototypeWrapRecv = (obj, meth) => {" +
+                            "   var orig = obj[meth];" +
+                            "   obj[meth] = function rsPrototypeWrapper(){" +
+                            "       if(!WxSeerUtil.HideRecv) {" +
+                            "           let view = arguments[0].data;" +
+                            "           let abLen = view.buffer.byteLength;" +
+                            "           let packStr=\"\";" +
+                            "           for(var i=0; i<abLen; ++i) { packStr += (view.getUint8(i)).toString(16).padStart(2, '0').toUpperCase(); }" +
+                            "           seerRandomSkinObj.getRecvPackArray(packStr);" +
+                            "       }" +
+                            "       var res = orig.apply(this, arguments);" +
+                            "       return res;" +
+                            "   }" +
+                            "};" +
+                            "WxSeerUtil.rsPrototypeWrapSend = (obj, meth) => {" +
+                            "   var orig = obj[meth];" +
+                            "   obj[meth] = function rsPrototypeWrapper(){" +
+                            "       var res = orig.apply(this, arguments);" +
+                            "       if (!WxSeerUtil.HideSend) {" +
+                            "           let view = res.data;" +
+                            "           let abLen = view.buffer.byteLength;" +
+                            "           let packStr = '';" +
+                            "           for (var i = 0; i < abLen; ++i) { packStr += (view.getUint8(i)).toString(16).padStart(2, '0').toUpperCase(); }" +
+                            "           seerRandomSkinObj.getSendPackArray(packStr);" +
+                            "       }" +
+                            "       return res;" +
+                            "   }" +
+                            "};" +
+
                             "Object.defineProperty(window, 'ActivityAnnouncement', {" +
                             "   get: () => {" +
                             "       if (WxSeerUtil.Initialized) return;" +
+                            // 自动治疗
                             "       SocketConnection.addCmdListener(2506, () => { if (WxSeerUtil.AutoCurePet) PetManager.noAlarmCureAll(); });" +
+                            // H5 巅峰记牌器
                             "       SocketConnection.addCmdListener(45144, () => { seerRandomSkinObj.screenShot(); });" +
+
+                            // hook 接受包的数据解析函数
+                            "       WxSeerUtil.rsPrototypeWrapRecv(SocketEncryptImpl.prototype, 'parseData');" +
+                            // hook 发送包
+                            "       WxSeerUtil.rsPrototypeWrapSend(SocketEncryptImpl.prototype, 'pack');" +
+
                             "       WxSeerUtil.Initialized = true;" +
                             "       return 0;" +
                             "   }," +
@@ -553,6 +596,11 @@ namespace SeerRandomSkin
             int pid = (int)GetCefSubprocessPid("type=ppapi");
             if (pid == 0) return;
             RemoteHooking.Inject(pid, libPath, libPath, null);
+        }
+
+        private void 收发包ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            childFormPack = new FormPack(); childFormPack.Show();
         }
     }
 }
