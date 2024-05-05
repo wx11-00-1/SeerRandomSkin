@@ -111,10 +111,12 @@ namespace SeerRandomSkin
             chromiumBrowser = CreateChromium(Properties.Settings.Default.IsH5First ? gameH5Address : gameAddress);
             Controls.Add(chromiumBrowser);
             ResizeChromiumBrowser();
+            
+            FlashSocketHack();
 
             new Thread(() =>
             {
-                Thread.Sleep(10000);
+                Thread.Sleep(6000);
                 FlashSpeedHack();
             })
             { IsBackground = true }.Start();
@@ -596,6 +598,14 @@ namespace SeerRandomSkin
             int pid = (int)GetCefSubprocessPid("type=ppapi");
             if (pid == 0) return;
             RemoteHooking.Inject(pid, libPath, libPath, null);
+        }
+
+        private void FlashSocketHack()
+        {
+            string libPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "SocketHack.dll");
+            int pid = (int)GetCefSubprocessPid("type=network.mojom");
+            if (pid == 0) return;
+            RemoteHooking.Inject(pid, libPath, libPath, Width, Height, Location.X, Location.Y);
         }
 
         private void 收发包ToolStripMenuItem_Click(object sender, EventArgs e)
