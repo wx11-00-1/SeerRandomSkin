@@ -61,5 +61,20 @@ namespace SeerRandomSkin
                 Clipboard.SetDataObject(listViewPack.SelectedItems[0].SubItems[1].Text);
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string packHex = textBox1.Text;
+            if (packHex.Length < 17 * 2) return;
+
+            string[] pars = new string[(packHex.Length - 17 * 2) / 8];
+            for (int i = 0; i < packHex.Length - 17 * 2; i += 8) { pars[i / 8] = Convert.ToInt32(packHex.Substring(17 * 2 + i, 8), 16).ToString(); }
+
+            int cmd = Convert.ToInt32(packHex.Substring(10, 8), 16);
+            Form1.chromiumBrowser.GetBrowser().MainFrame.ExecuteJavaScriptAsync(
+                packHex.Length == 17 * 2 ?
+                $"SocketConnection.send({cmd})" :
+                $"SocketConnection.send({cmd},{string.Join(",", pars)})");
+        }
     }
 }
