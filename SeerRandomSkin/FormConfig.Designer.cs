@@ -41,6 +41,7 @@
             this.numericUpDown_win_height = new System.Windows.Forms.NumericUpDown();
             this.checkBox_RandomSkin = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBox_resource_bg_h5 = new System.Windows.Forms.CheckBox();
             this.checkBox_resource_vip_icon = new System.Windows.Forms.CheckBox();
             this.checkBox_resource_ad_panel = new System.Windows.Forms.CheckBox();
             this.checkBox_resource_background = new System.Windows.Forms.CheckBox();
@@ -54,7 +55,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.checkBox_resource_bg_h5 = new System.Windows.Forms.CheckBox();
+            this.checkBox_flash_jipaiqi = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_width)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_height)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -77,7 +78,7 @@
             // 
             this.richTextBox_SkinBlackList.Location = new System.Drawing.Point(53, 238);
             this.richTextBox_SkinBlackList.Name = "richTextBox_SkinBlackList";
-            this.richTextBox_SkinBlackList.Size = new System.Drawing.Size(436, 135);
+            this.richTextBox_SkinBlackList.Size = new System.Drawing.Size(573, 135);
             this.richTextBox_SkinBlackList.TabIndex = 2;
             this.richTextBox_SkinBlackList.Text = "";
             // 
@@ -102,7 +103,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(321, 45);
+            this.label3.Location = new System.Drawing.Point(458, 43);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 12);
             this.label3.TabIndex = 5;
@@ -111,7 +112,7 @@
             // comboBox_font
             // 
             this.comboBox_font.FormattingEnabled = true;
-            this.comboBox_font.Location = new System.Drawing.Point(368, 41);
+            this.comboBox_font.Location = new System.Drawing.Point(505, 39);
             this.comboBox_font.Name = "comboBox_font";
             this.comboBox_font.Size = new System.Drawing.Size(121, 20);
             this.comboBox_font.TabIndex = 6;
@@ -129,7 +130,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(290, 81);
+            this.label4.Location = new System.Drawing.Point(427, 79);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(89, 12);
             this.label4.TabIndex = 8;
@@ -138,7 +139,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(429, 81);
+            this.label5.Location = new System.Drawing.Point(566, 79);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(11, 12);
             this.label5.TabIndex = 10;
@@ -146,7 +147,7 @@
             // 
             // numericUpDown_win_width
             // 
-            this.numericUpDown_win_width.Location = new System.Drawing.Point(380, 78);
+            this.numericUpDown_win_width.Location = new System.Drawing.Point(517, 76);
             this.numericUpDown_win_width.Maximum = new decimal(new int[] {
             40000,
             0,
@@ -158,7 +159,7 @@
             // 
             // numericUpDown_win_height
             // 
-            this.numericUpDown_win_height.Location = new System.Drawing.Point(444, 78);
+            this.numericUpDown_win_height.Location = new System.Drawing.Point(581, 76);
             this.numericUpDown_win_height.Maximum = new decimal(new int[] {
             40000,
             0,
@@ -186,10 +187,20 @@
             this.groupBox1.Controls.Add(this.checkBox_resource_background);
             this.groupBox1.Location = new System.Drawing.Point(292, 114);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(196, 87);
+            this.groupBox1.Size = new System.Drawing.Size(334, 88);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "替换";
+            this.groupBox1.Text = "资源替换";
+            // 
+            // checkBox_resource_bg_h5
+            // 
+            this.checkBox_resource_bg_h5.AutoSize = true;
+            this.checkBox_resource_bg_h5.Location = new System.Drawing.Point(109, 57);
+            this.checkBox_resource_bg_h5.Name = "checkBox_resource_bg_h5";
+            this.checkBox_resource_bg_h5.Size = new System.Drawing.Size(84, 16);
+            this.checkBox_resource_bg_h5.TabIndex = 18;
+            this.checkBox_resource_bg_h5.Text = "H5登录背景";
+            this.checkBox_resource_bg_h5.UseVisualStyleBackColor = true;
             // 
             // checkBox_resource_vip_icon
             // 
@@ -204,7 +215,7 @@
             // checkBox_resource_ad_panel
             // 
             this.checkBox_resource_ad_panel.AutoSize = true;
-            this.checkBox_resource_ad_panel.Location = new System.Drawing.Point(103, 22);
+            this.checkBox_resource_ad_panel.Location = new System.Drawing.Point(109, 22);
             this.checkBox_resource_ad_panel.Name = "checkBox_resource_ad_panel";
             this.checkBox_resource_ad_panel.Size = new System.Drawing.Size(72, 16);
             this.checkBox_resource_ad_panel.TabIndex = 16;
@@ -337,25 +348,26 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(53, 416);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(436, 84);
+            this.richTextBox1.Size = new System.Drawing.Size(573, 84);
             this.richTextBox1.TabIndex = 21;
             this.richTextBox1.Text = "";
             // 
-            // checkBox_resource_bg_h5
+            // checkBox_flash_jipaiqi
             // 
-            this.checkBox_resource_bg_h5.AutoSize = true;
-            this.checkBox_resource_bg_h5.Location = new System.Drawing.Point(103, 57);
-            this.checkBox_resource_bg_h5.Name = "checkBox_resource_bg_h5";
-            this.checkBox_resource_bg_h5.Size = new System.Drawing.Size(84, 16);
-            this.checkBox_resource_bg_h5.TabIndex = 18;
-            this.checkBox_resource_bg_h5.Text = "H5登录背景";
-            this.checkBox_resource_bg_h5.UseVisualStyleBackColor = true;
+            this.checkBox_flash_jipaiqi.AutoSize = true;
+            this.checkBox_flash_jipaiqi.Location = new System.Drawing.Point(292, 42);
+            this.checkBox_flash_jipaiqi.Name = "checkBox_flash_jipaiqi";
+            this.checkBox_flash_jipaiqi.Size = new System.Drawing.Size(96, 16);
+            this.checkBox_flash_jipaiqi.TabIndex = 22;
+            this.checkBox_flash_jipaiqi.Text = "Flash 记牌器";
+            this.checkBox_flash_jipaiqi.UseVisualStyleBackColor = true;
             // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(680, 594);
+            this.Controls.Add(this.checkBox_flash_jipaiqi);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.groupBox2);
@@ -420,5 +432,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.CheckBox checkBox_resource_bg_h5;
+        private System.Windows.Forms.CheckBox checkBox_flash_jipaiqi;
     }
 }

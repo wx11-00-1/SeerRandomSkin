@@ -233,5 +233,17 @@ namespace SeerRandomSkin.Properties {
                 this["IsChangeH5LoginBg2024"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsUseSocketHack {
+            get {
+                return ((bool)(this["IsUseSocketHack"]));
+            }
+            set {
+                this["IsUseSocketHack"] = value;
+            }
+        }
     }
 }
