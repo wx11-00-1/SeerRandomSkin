@@ -169,12 +169,10 @@ namespace Seer
         #region 处理发送封包的数据
         public static int ProcessingSendPacket(int socket, byte[] cipher, int length)
         {
-            //_PacketData SendPacketData = new _PacketData();
+            _PacketData SendPacketData = new _PacketData();
 
-            //ParsePacket(cipher, ref SendPacketData);         //解析封包
-            //if (SendPacketData.cmdId > 0 && SendPacketData.cmdId < 1000)
-            int cmd = Misc.GetIntParam(cipher, 5);
-            if(cmd == 105)
+            ParsePacket(cipher, ref SendPacketData);         //解析封包
+            if (SendPacketData.cmdId > 0 && SendPacketData.cmdId < 1000)
             {
                 Init(); // 初始化全局变量
             }
