@@ -112,7 +112,7 @@ namespace SeerRandomSkin
             Controls.Add(chromiumBrowser);
             ResizeChromiumBrowser();
             
-            FlashSocketHack();
+            if(Properties.Settings.Default.IsUseSocketHack) FlashSocketHack();
 
             new Thread(() =>
             {
