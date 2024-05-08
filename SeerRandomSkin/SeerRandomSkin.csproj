@@ -184,9 +184,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="file\dll\speedhack\x86\README.md">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="file\dll\speedhack\README.md" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -221,15 +219,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="favicon.ico" />
-    <Content Include="file\dll\pepflashplayer32_15_0_0_152.dll">
+    <Content Include="file\dll\pepflashplayer.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="file\dll\speedhack\x86\speedhack.txt">
+    <Content Include="file\dll\pepflashplayer32_15_0_0_152.dll" />
+    <Content Include="file\dll\speedhack\x64\speedhack.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="file\dll\speedhack\x86\version.dll">
+    <Content Include="file\dll\speedhack\x64\version.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="file\dll\speedhack\x86\speedhack.txt" />
+    <Content Include="file\dll\speedhack\x86\version.dll" />
     <Content Include="file\png\bg_login_h5.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

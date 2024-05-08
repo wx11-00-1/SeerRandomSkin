@@ -16,7 +16,7 @@ namespace SpeedhackWrapper
 
         public void Run(EasyHook.RemoteHooking.IContext context)
         {
-            LoadLibrary(AppDomain.CurrentDomain.BaseDirectory + @"\file\dll\speedhack\x86\version.dll");
+            LoadLibrary(AppDomain.CurrentDomain.BaseDirectory + @"\file\dll\speedhack\x64\version.dll");
         }
     }
 }
