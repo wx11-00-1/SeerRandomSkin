@@ -17,14 +17,12 @@ namespace SocketHack
     public class MainClass : EasyHook.IEntryPoint
     {
         private static LocalHook lhRecv, lhWSASend;
-        public static int mainWidth, mainHeight, mainX, mainY;
+        public static IntPtr hGameWnd;
         public static FormScreenShot childFormScreenShot;
 
-        public MainClass(EasyHook.RemoteHooking.IContext context, int width, int height, int x, int y)
+        public MainClass(EasyHook.RemoteHooking.IContext context, IntPtr handle)
         {
-            mainWidth = width;
-            mainHeight = height;
-            mainX = x; mainY = y;
+            hGameWnd = handle;
         }
 
         #region WSASend
@@ -104,7 +102,7 @@ namespace SocketHack
         }
         #endregion
 
-        public void Run(RemoteHooking.IContext context, int width, int height, int x, int y)
+        public void Run(RemoteHooking.IContext context, IntPtr handle)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

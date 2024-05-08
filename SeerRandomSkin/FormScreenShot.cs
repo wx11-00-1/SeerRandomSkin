@@ -27,11 +27,6 @@ namespace SeerRandomSkin
 
         public void ScreenShot()
         {
-            /*作者：羽叔知创
-                链接：https://www.zhihu.com/question/592163791/answer/2957995217
-                来源：知乎
-                著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。*/
-
             // 获取屏幕宽度和高度
             Width = MainForm.Size.Width / 2;
             Height = MainForm.Size.Height - titleAndMenuHeight;

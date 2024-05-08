@@ -71,6 +71,8 @@ namespace SeerRandomSkin
             Cef.Initialize(settings);
             // 自动 flash 插件
             var contx = Cef.GetGlobalRequestContext();
+            // js 调用 c# 相关
+            CefSharpSettings.WcfEnabled = true;
             Cef.UIThreadTaskFactory.StartNew(delegate
             {
                 contx.SetPreference("profile.default_content_setting_values.plugins", 1, out string err);
@@ -111,12 +113,11 @@ namespace SeerRandomSkin
             chromiumBrowser = CreateChromium(Properties.Settings.Default.IsH5First ? gameH5Address : gameAddress);
             Controls.Add(chromiumBrowser);
             ResizeChromiumBrowser();
-            
-            if(Properties.Settings.Default.IsUseSocketHack) FlashSocketHack();
 
             new Thread(() =>
             {
-                Thread.Sleep(6000);
+                Thread.Sleep(2000);
+                if (Properties.Settings.Default.IsUseSocketHack) FlashSocketHack();
                 FlashSpeedHack();
             })
             { IsBackground = true }.Start();
@@ -142,11 +143,13 @@ namespace SeerRandomSkin
                 chromium.BrowserSettings.FixedFontFamily =
                 chromium.BrowserSettings.CursiveFontFamily = Properties.Settings.Default.BrowserFont;
             }
-            
-            // 注册 js 类
-            CefSharpSettings.WcfEnabled = true;
-            chromium.JavascriptObjectRepository.Settings.LegacyBindingEnabled = true;
-            chromium.JavascriptObjectRepository.Register("seerRandomSkinObj", new SeerRandomSkinObj(), false, BindingOptions.DefaultBinder);
+
+            if (address == gameH5Address)
+            {
+                // 注册 js 类
+                chromium.JavascriptObjectRepository.Settings.LegacyBindingEnabled = true;
+                chromium.JavascriptObjectRepository.Register("seerRandomSkinObj", new SeerRandomSkinObj(), false, BindingOptions.DefaultBinder);
+            }
             //页面加载完毕后
             chromium.FrameLoadEnd += (sender, args) =>
             {
@@ -378,7 +381,7 @@ namespace SeerRandomSkin
 
         private uint GetCefSubprocessPid(string cmd)
         {
-            string wmiQuery = string.Format("select CommandLine,ProcessId from Win32_Process where Name='{0}'", "CefSharp.BrowserSubprocess.exe");
+            string wmiQuery = string.Format("select CommandLine,ProcessId,ParentProcessId from Win32_Process where (ParentProcessID={0}) and (Name='{1}')", System.Diagnostics.Process.GetCurrentProcess().Id, "CefSharp.BrowserSubprocess.exe");
             using (ManagementObjectSearcher searcher = new ManagementObjectSearcher(wmiQuery))
             using (ManagementObjectCollection retObjectCollection = searcher.Get())
                 foreach (ManagementObject retObject in retObjectCollection.Cast<ManagementObject>())
@@ -609,7 +612,7 @@ namespace SeerRandomSkin
             string libPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "SocketHack.dll");
             int pid = (int)GetCefSubprocessPid("type=network.mojom");
             if (pid == 0) return;
-            RemoteHooking.Inject(pid, libPath, libPath, Width, Height, Location.X, Location.Y);
+            RemoteHooking.Inject(pid, libPath, libPath, Handle);
         }
 
         private void 收发包ToolStripMenuItem_Click(object sender, EventArgs e)
