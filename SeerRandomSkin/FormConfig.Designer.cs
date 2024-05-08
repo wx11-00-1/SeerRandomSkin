@@ -54,7 +54,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.richTextBox_SkinExc = new System.Windows.Forms.RichTextBox();
             this.checkBox_flash_jipaiqi = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_width)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_height)).BeginInit();
@@ -344,13 +344,13 @@
             this.label9.TabIndex = 20;
             this.label9.Text = "以下 ID 不进行随机换肤：";
             // 
-            // richTextBox1
+            // richTextBox_SkinExc
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(53, 416);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(573, 84);
-            this.richTextBox1.TabIndex = 21;
-            this.richTextBox1.Text = "";
+            this.richTextBox_SkinExc.Location = new System.Drawing.Point(53, 416);
+            this.richTextBox_SkinExc.Name = "richTextBox_SkinExc";
+            this.richTextBox_SkinExc.Size = new System.Drawing.Size(573, 84);
+            this.richTextBox_SkinExc.TabIndex = 21;
+            this.richTextBox_SkinExc.Text = "";
             // 
             // checkBox_flash_jipaiqi
             // 
@@ -368,7 +368,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(680, 594);
             this.Controls.Add(this.checkBox_flash_jipaiqi);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.richTextBox_SkinExc);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.button1);
@@ -430,7 +430,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextBox_SkinExc;
         private System.Windows.Forms.CheckBox checkBox_resource_bg_h5;
         private System.Windows.Forms.CheckBox checkBox_flash_jipaiqi;
     }

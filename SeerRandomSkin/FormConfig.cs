@@ -28,6 +28,7 @@ namespace SeerRandomSkin
             numericUpDown_skinCeiling.Value = SettingsDef.SkinRangeCeiling;
             numericUpDown_skinFloor.Value = SettingsDef.SkinRangeFloor;
             richTextBox_SkinBlackList.Text = SettingsDef.SkinBlackList;
+            richTextBox_SkinExc.Text = SettingsDef.RandomSkinExclusion;
             comboBox_font.Text = SettingsDef.BrowserFont;
             numericUpDown_win_width.Value = SettingsDef.WinWidth;
             numericUpDown_win_height.Value = SettingsDef.WinHeight;
@@ -67,6 +68,15 @@ namespace SeerRandomSkin
             else
             {
                 MessageBox.Show("皮肤黑名单格式错误");
+            }
+            m = Regex.Match(richTextBox_SkinExc.Text, pattern);
+            if (m.Success)
+            {
+                SettingsDef.RandomSkinExclusion = richTextBox_SkinExc.Text;
+            }
+            else
+            {
+                MessageBox.Show("换肤排除项格式错误");
             }
             SettingsDef.BrowserFont = comboBox_font.Text;
             SettingsDef.AutoExecuteSoftwarePath1 = textBox1.Text;
