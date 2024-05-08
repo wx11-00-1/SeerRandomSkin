@@ -240,6 +240,9 @@
     <Content Include="file\swf\Assets.swf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="file\swf\DiduoAssistant.swf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="file\swf\NoAd.swf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
