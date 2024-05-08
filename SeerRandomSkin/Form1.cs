@@ -278,6 +278,10 @@ namespace SeerRandomSkin
                     {
                         return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\tip_230831_closeBattery.swf");
                     }
+                    else if (url == @"https://seer.61.com/module/com/robot/module/app/SupermarketPanel.swf?lub1i84w")
+                    {
+                        return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\DiduoAssistant.swf");
+                    }
                     else if(Properties.Settings.Default.IsChangeH5LoginBg2024)
                     {
                         if(url == @"https://seerh5.61.com/resource/assets/ui/login202202/outside/2024nianfeidaiji.png")
