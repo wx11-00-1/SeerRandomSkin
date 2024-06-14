@@ -185,6 +185,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="file\dll\speedhack\README.md" />
+    <None Include="file\swf\Diduo.as" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
