@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("SeerRandomSkin")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("赛尔号辅助程序")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Tencent")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("SeerRandomSkin")]
-[assembly: AssemblyCopyright("Copyright © Tencent 2024")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
