@@ -45,8 +45,8 @@ namespace Seer
 
         public static bool HaveLogin = false;                   //接收到LOGIN_IN包(cmdId为1001)后此项设为true
 
-        public static int RecvPacketNum = 0;                    //接收封包序号
-        public static int SendPacketNum = 0;                    //发送封包序号
+        // public static int RecvPacketNum = 0;                    //接收封包序号
+        // public static int SendPacketNum = 0;                    //发送封包序号
         #endregion 
 
 
@@ -115,10 +115,10 @@ namespace Seer
                         {
                             plain = cipher;
                         }
+                        if (!FormPack.HideRecv) FormPack.ActionShowPack("收", Misc.ByteArray2HexString(plain)); // 显示明文
 
                         ParsePacket(plain, ref RecvPacketData);                 //解析封包
-                        RecvPacketNum++;
-                        //Program.UI.AddList("recv", RecvPacketNum, ref RecvPacketData, plain, cipher);   //更新UI界面的列表
+                        // RecvPacketNum++;
 
 
                         #region 根据封包序列号执行不同的操作
@@ -130,13 +130,7 @@ namespace Seer
                             UserId = RecvPacketData.userId;                     //米米号
                             HaveLogin = true;                                     //是否登录
                         }
-                        else if(RecvPacketData.cmdId == 45144)
-                        {
-                            MainClass.childFormScreenShot.ScreenShot();
-                        }
                         #endregion
-
-                        //Listen.listen(ref RecvPacketData);
 
                         RecvBufIndex += PacketLen;                              //更新接收封包缓冲区的索引
 
@@ -169,19 +163,38 @@ namespace Seer
         #region 处理发送封包的数据
         public static int ProcessingSendPacket(int socket, byte[] cipher, int length)
         {
-            //_PacketData SendPacketData = new _PacketData();
-
-            //ParsePacket(cipher, ref SendPacketData);         //解析封包
-            //if (SendPacketData.cmdId > 0 && SendPacketData.cmdId < 1000)
-            int cmd = Misc.GetIntParam(cipher, 5);
-            if(cmd == 105)
+            _PacketData SendPacketData = new _PacketData();
+            int res = 0;
+            if (cipher.Length < 17 || Misc.ByteArray2HexString(cipher, 2) != "00 00 ")
             {
-                Init(); // 初始化全局变量
+                return 0;
             }
-
-            if (!HaveLogin)
+            else
             {
-                Socket = socket;                                //通信号
+                #region 需要解析的发送封包
+
+                if (!HaveLogin)
+                {
+                    Socket = socket;                                //通信号
+                }
+
+                byte[] plain;
+                if (NeedDecrypt(cipher))
+                {
+                    plain = decrypt(cipher);                        //解密封包
+                }
+                else                                                //无需加密只有一种情况，即处于登录界面
+                {                                                   //这种情况下并不需要修改序列号，只解析封包即可
+                    plain = cipher;
+                    if (Misc.GetIntParam(cipher, 5) == 105)
+                    {
+                        Init(); // 初始化全局变量
+                    }
+                }
+
+                if (!FormPack.HideSend) FormPack.ActionShowPack("发", Misc.ByteArray2HexString(plain)); // 显示明文
+
+                #endregion 
             }
 
             return 0;
@@ -282,8 +295,8 @@ namespace Seer
 
             Packet.HaveLogin = false;
 
-            Packet.RecvPacketNum = 0;
-            Packet.SendPacketNum = 0;
+            // Packet.RecvPacketNum = 0;
+            // Packet.SendPacketNum = 0;
 
             Algorithm.InitKey("!crAckmE4nOthIng:-)");
         }

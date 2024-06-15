@@ -18,7 +18,7 @@ namespace SocketHack
     {
         private static LocalHook lhRecv, lhWSASend;
         public static IntPtr hGameWnd;
-        public static FormScreenShot childFormScreenShot;
+        public static FormPack childFormScreenShot;
 
         public MainClass(EasyHook.RemoteHooking.IContext context, IntPtr handle)
         {
@@ -107,7 +107,7 @@ namespace SocketHack
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            childFormScreenShot = new FormScreenShot();
+            childFormScreenShot = new FormPack();
             Application.Run(childFormScreenShot);
         }
     }

@@ -55,7 +55,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.richTextBox_SkinExc = new System.Windows.Forms.RichTextBox();
-            this.checkBox_flash_jipaiqi = new System.Windows.Forms.CheckBox();
+            this.checkBox_flash_pack = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_width)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_height)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -352,22 +352,22 @@
             this.richTextBox_SkinExc.TabIndex = 21;
             this.richTextBox_SkinExc.Text = "";
             // 
-            // checkBox_flash_jipaiqi
+            // checkBox_flash_pack
             // 
-            this.checkBox_flash_jipaiqi.AutoSize = true;
-            this.checkBox_flash_jipaiqi.Location = new System.Drawing.Point(292, 42);
-            this.checkBox_flash_jipaiqi.Name = "checkBox_flash_jipaiqi";
-            this.checkBox_flash_jipaiqi.Size = new System.Drawing.Size(96, 16);
-            this.checkBox_flash_jipaiqi.TabIndex = 22;
-            this.checkBox_flash_jipaiqi.Text = "Flash 记牌器";
-            this.checkBox_flash_jipaiqi.UseVisualStyleBackColor = true;
+            this.checkBox_flash_pack.AutoSize = true;
+            this.checkBox_flash_pack.Location = new System.Drawing.Point(292, 42);
+            this.checkBox_flash_pack.Name = "checkBox_flash_pack";
+            this.checkBox_flash_pack.Size = new System.Drawing.Size(84, 16);
+            this.checkBox_flash_pack.TabIndex = 22;
+            this.checkBox_flash_pack.Text = "Flash 封包";
+            this.checkBox_flash_pack.UseVisualStyleBackColor = true;
             // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(680, 594);
-            this.Controls.Add(this.checkBox_flash_jipaiqi);
+            this.Controls.Add(this.checkBox_flash_pack);
             this.Controls.Add(this.richTextBox_SkinExc);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.groupBox2);
@@ -432,6 +432,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.RichTextBox richTextBox_SkinExc;
         private System.Windows.Forms.CheckBox checkBox_resource_bg_h5;
-        private System.Windows.Forms.CheckBox checkBox_flash_jipaiqi;
+        private System.Windows.Forms.CheckBox checkBox_flash_pack;
     }
 }

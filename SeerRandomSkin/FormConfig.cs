@@ -36,7 +36,7 @@ namespace SeerRandomSkin
             checkBox_resource_background.Checked = SettingsDef.IsChangeBackground;
             checkBox_resource_vip_icon.Checked = SettingsDef.IsChangeVipIcon;
             checkBox_resource_bg_h5.Checked = SettingsDef.IsChangeH5LoginBg2024;
-            checkBox_flash_jipaiqi.Checked = SettingsDef.IsUseSocketHack;
+            checkBox_flash_pack.Checked = SettingsDef.IsUseSocketHack;
             // 遍历系统字体
             foreach (var f in FontFamily.Families)
             {
@@ -57,7 +57,7 @@ namespace SeerRandomSkin
             SettingsDef.IsChangeBackground = checkBox_resource_background.Checked;
             SettingsDef.IsChangeVipIcon = checkBox_resource_vip_icon.Checked;
             SettingsDef.IsChangeH5LoginBg2024 = checkBox_resource_bg_h5.Checked;
-            SettingsDef.IsUseSocketHack = checkBox_flash_jipaiqi.Checked;
+            SettingsDef.IsUseSocketHack = checkBox_flash_pack.Checked;
             // 检查黑名单字符串格式是否正确
             string pattern = "^[0-9,]*$";
             var m = Regex.Match(richTextBox_SkinBlackList.Text, pattern);
