@@ -458,9 +458,9 @@ namespace SeerRandomSkin
             {
                 skinIds.Add(int.Parse(match.Groups[1].Value));
             }
-            MessageBox.Show("获取皮肤数据完成");
             FilterSkins();
             SaveConfigSkinIds();
+            MessageBox.Show("获取皮肤数据完成");
         }
 
         private static void SaveConfigSkinIds()
@@ -493,15 +493,6 @@ namespace SeerRandomSkin
 
         private static void FilterSkins()
         {
-            string skin404 = File.ReadAllText(@"file\txt\Skin404.txt");
-            string[] skins = skin404.Split(',');
-            HashSet<int> set = new HashSet<int>();
-            foreach (string s in skins)
-            {
-                if (s != "") set.Add(int.Parse(s));
-            }
-            skinIds.RemoveAll(data => set.Contains(data));
-
             string[] blacks = Properties.Settings.Default.SkinBlackList.Split(',');
             HashSet<int> set1 = new HashSet<int>();
             foreach (string s in blacks)
@@ -509,8 +500,6 @@ namespace SeerRandomSkin
                 if (s != "") set1.Add(int.Parse(s));
             }
             skinIds.RemoveAll(data => set1.Contains(data));
-
-            MessageBox.Show("筛选完成");
         }
 
         private void 配置ToolStripMenuItem_Click(object sender, EventArgs e)
