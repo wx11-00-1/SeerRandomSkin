@@ -23,63 +23,6 @@ package
       public function item()
       {
          super();
-         // 巅峰记牌器
-         SocketConnection.WxScreenShot = function() : void
-         {
-            ExternalInterface.call("seerRandomSkinObj.screenShot");
-         };
-         SocketConnection.addCmdListener(45144,SocketConnection.WxScreenShot);
-
-         // 自动治疗
-         SocketConnection.WxIsAutoCure = true;
-         SocketConnection.WxOnFightEnd = function() : void
-         {
-            if (SocketConnection.WxIsAutoCure)
-            {
-               PetManager.cureAllFree();
-            }
-            SocketConnection.removeCmdListener(CommandID.NOTE_USE_SKILL,SocketConnection.WxOnUseSkill);
-         };
-         SocketConnection.addCmdListener(CommandID.FIGHT_OVER,SocketConnection.WxOnFightEnd);
-
-         // 自动出招
-         SocketConnection.WxIsAutoUseSkill = false;
-         SocketConnection.WxNoteReadyToFight = function() : void
-         {
-            if (SocketConnection.WxIsAutoUseSkill)
-            {
-               SocketConnection.addCmdListener(CommandID.NOTE_USE_SKILL,SocketConnection.WxOnUseSkill);
-            }
-         };
-         SocketConnection.addCmdListener(CommandID.NOTE_READY_TO_FIGHT,SocketConnection.WxNoteReadyToFight);
-         SocketConnection.WxOnUseSkill = function(param1:SocketEvent) : void
-         {
-            var _loc2_:UseSkillInfo = param1.data as UseSkillInfo;
-            var mySkillInfo:AttackValue;
-            if (_loc2_.secondAttackInfo.userID != 0)
-            {
-               mySkillInfo = _loc2_.secondAttackInfo;
-               if (_loc2_.firstAttackInfo.remainHP == 0)
-               {
-                  return; // 对手已被击败
-               }
-            }
-            else
-            {
-               mySkillInfo = _loc2_.firstAttackInfo;
-               if (_loc2_.secondAttackInfo.remainHP == 0)
-               {
-                  return; // 对手已被击败
-               }
-            }
-            // 使用技能
-            // 这里不会自动补 pp，因为 奇镰解放 和 深森风响 技能不需要补 pp （其实是懒得写
-            if (mySkillInfo.remainHP != 0)
-            {
-               SocketConnection.send(CommandID.USE_SKILL,mySkillInfo.skillID);
-               TimerManager.wait(); // 官方的代码里有，不知道作用是什么。。。
-            }
-         };
 
          // 蒂朵小助手
          NpcDialog.show(5766,["你好小赛尔，这里是 SeerRandomSkin 小助手，需要什么帮助吗？"],["借绿火","自动治疗","自动出招","光年之外,我会记得我们的约定！"],[function():void

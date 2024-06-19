@@ -144,12 +144,10 @@ namespace SeerRandomSkin
                 chromium.BrowserSettings.CursiveFontFamily = Properties.Settings.Default.BrowserFont;
             }
 
-            if (address == gameH5Address)
-            {
-                // 注册 js 类
-                chromium.JavascriptObjectRepository.Settings.LegacyBindingEnabled = true;
-                chromium.JavascriptObjectRepository.Register("seerRandomSkinObj", new SeerRandomSkinObj(), false, BindingOptions.DefaultBinder);
-            }
+            // 注册 js 类
+            chromium.JavascriptObjectRepository.Settings.LegacyBindingEnabled = true;
+            chromium.JavascriptObjectRepository.Register("seerRandomSkinObj", new SeerRandomSkinObj(), false, BindingOptions.DefaultBinder);
+            
             //页面加载完毕后
             chromium.FrameLoadEnd += (sender, args) =>
             {
@@ -520,17 +518,6 @@ namespace SeerRandomSkin
             }
         }
 
-        private void 记牌器ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (childFormScreenShot != null) return;
-            childFormScreenShot = new FormScreenShot
-            {
-                MainForm = this
-            };
-            childFormScreenShot.Show();
-            childFormScreenShot.ScreenShot();
-        }
-
         private class KeyBoardHandler : IKeyboardHandler
         {
             public Form1 mainForm = null;
@@ -607,6 +594,17 @@ namespace SeerRandomSkin
         private void 收发包ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             childFormPack = new FormPack(); childFormPack.Show();
+        }
+
+        private void 巅峰记牌ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (childFormScreenShot != null) return;
+            childFormScreenShot = new FormScreenShot
+            {
+                MainForm = this
+            };
+            childFormScreenShot.Show();
+            childFormScreenShot.ScreenShot();
         }
     }
 }

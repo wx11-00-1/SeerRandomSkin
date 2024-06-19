@@ -31,7 +31,7 @@
     <MapFileExtensions>false</MapFileExtensions>
     <TargetCulture>en-HK</TargetCulture>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>13</ApplicationRevision>
+    <ApplicationRevision>15</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -224,6 +224,7 @@
     </Compile>
     <None Include="file\dll\speedhack\README.md" />
     <None Include="file\swf\Diduo.as" />
+    <None Include="file\swf\tip.as" />
     <None Include="file\安装包\note.md" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
