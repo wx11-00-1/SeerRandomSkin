@@ -267,7 +267,7 @@ namespace SeerRandomSkin
                     {
                         return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\Assets.swf");
                     }
-                    else if (url == @"https://seer.61.com/resource/uiIcon/yearvip_icon.swf?lqp17ri0" && Properties.Settings.Default.IsChangeVipIcon)
+                    else if (url.Contains("https://seer.61.com/resource/uiIcon/yearvip_icon.swf?") && Properties.Settings.Default.IsChangeVipIcon)
                     {
                         return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\yearvip_icon.swf");
                     }
