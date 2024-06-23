@@ -44,7 +44,7 @@ package
          {
             if (SocketConnection.WxIsAutoCure)
             {
-               PetManager.cureAllFree();
+               PetManager.cureAll(false,false);
             }
             SocketConnection.removeCmdListener(CommandID.NOTE_USE_SKILL,SocketConnection.WxOnUseSkill);
          };
