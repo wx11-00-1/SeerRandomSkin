@@ -39,13 +39,16 @@
             this.rtbMsg = new System.Windows.Forms.RichTextBox();
             this.tbPackStr = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(402, 281);
+            this.button2.Location = new System.Drawing.Point(536, 351);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(100, 29);
             this.button2.TabIndex = 9;
             this.button2.Text = "复制";
             this.button2.UseVisualStyleBackColor = true;
@@ -53,9 +56,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(498, 281);
+            this.button1.Location = new System.Drawing.Point(664, 351);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(100, 29);
             this.button1.TabIndex = 8;
             this.button1.Text = "清空";
             this.button1.UseVisualStyleBackColor = true;
@@ -64,9 +68,10 @@
             // checkBoxHideSend
             // 
             this.checkBoxHideSend.AutoSize = true;
-            this.checkBoxHideSend.Location = new System.Drawing.Point(121, 281);
+            this.checkBoxHideSend.Location = new System.Drawing.Point(161, 351);
+            this.checkBoxHideSend.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkBoxHideSend.Name = "checkBoxHideSend";
-            this.checkBoxHideSend.Size = new System.Drawing.Size(72, 16);
+            this.checkBoxHideSend.Size = new System.Drawing.Size(89, 19);
             this.checkBoxHideSend.TabIndex = 7;
             this.checkBoxHideSend.Text = "屏蔽发包";
             this.checkBoxHideSend.UseVisualStyleBackColor = true;
@@ -75,9 +80,10 @@
             // checkBoxHideRecv
             // 
             this.checkBoxHideRecv.AutoSize = true;
-            this.checkBoxHideRecv.Location = new System.Drawing.Point(43, 281);
+            this.checkBoxHideRecv.Location = new System.Drawing.Point(57, 351);
+            this.checkBoxHideRecv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkBoxHideRecv.Name = "checkBoxHideRecv";
-            this.checkBoxHideRecv.Size = new System.Drawing.Size(72, 16);
+            this.checkBoxHideRecv.Size = new System.Drawing.Size(89, 19);
             this.checkBoxHideRecv.TabIndex = 6;
             this.checkBoxHideRecv.Text = "屏蔽收包";
             this.checkBoxHideRecv.UseVisualStyleBackColor = true;
@@ -90,10 +96,11 @@
             this.columnHeader2});
             this.listViewPack.FullRowSelect = true;
             this.listViewPack.HideSelection = false;
-            this.listViewPack.Location = new System.Drawing.Point(43, 34);
+            this.listViewPack.Location = new System.Drawing.Point(57, 42);
+            this.listViewPack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listViewPack.MultiSelect = false;
             this.listViewPack.Name = "listViewPack";
-            this.listViewPack.Size = new System.Drawing.Size(530, 220);
+            this.listViewPack.Size = new System.Drawing.Size(705, 274);
             this.listViewPack.TabIndex = 5;
             this.listViewPack.UseCompatibleStateImageBehavior = false;
             this.listViewPack.View = System.Windows.Forms.View.Details;
@@ -109,34 +116,55 @@
             // 
             // rtbMsg
             // 
-            this.rtbMsg.Location = new System.Drawing.Point(43, 372);
+            this.rtbMsg.Location = new System.Drawing.Point(57, 465);
+            this.rtbMsg.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rtbMsg.Name = "rtbMsg";
-            this.rtbMsg.Size = new System.Drawing.Size(530, 162);
+            this.rtbMsg.Size = new System.Drawing.Size(705, 202);
             this.rtbMsg.TabIndex = 10;
             this.rtbMsg.Text = "";
             // 
             // tbPackStr
             // 
-            this.tbPackStr.Location = new System.Drawing.Point(43, 317);
+            this.tbPackStr.Location = new System.Drawing.Point(57, 396);
+            this.tbPackStr.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbPackStr.Name = "tbPackStr";
-            this.tbPackStr.Size = new System.Drawing.Size(434, 21);
+            this.tbPackStr.Size = new System.Drawing.Size(453, 25);
             this.tbPackStr.TabIndex = 11;
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(498, 315);
+            this.btnSend.Location = new System.Drawing.Point(664, 394);
+            this.btnSend.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(75, 23);
+            this.btnSend.Size = new System.Drawing.Size(100, 29);
             this.btnSend.TabIndex = 12;
             this.btnSend.Text = "发送";
             this.btnSend.UseVisualStyleBackColor = true;
             this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(536, 396);
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(100, 25);
+            this.numericUpDown1.TabIndex = 13;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // FormPack
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(622, 569);
+            this.ClientSize = new System.Drawing.Size(829, 711);
+            this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.tbPackStr);
             this.Controls.Add(this.rtbMsg);
@@ -146,8 +174,10 @@
             this.Controls.Add(this.checkBoxHideRecv);
             this.Controls.Add(this.listViewPack);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormPack";
             this.Load += new System.EventHandler(this.FormScreenShot_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -165,5 +195,6 @@
         private System.Windows.Forms.RichTextBox rtbMsg;
         private System.Windows.Forms.TextBox tbPackStr;
         private System.Windows.Forms.Button btnSend;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }

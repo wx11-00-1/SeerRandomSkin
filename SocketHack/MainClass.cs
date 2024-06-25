@@ -109,7 +109,7 @@ namespace SocketHack
                 wsBuffer.buf = Misc.BytesToIntptr(tmpPack);
                 Marshal.StructureToPtr(wsBuffer, lpBuffers, false);
                 int result = WSASend(Socket, lpBuffers, dwBufferCount, lpNumberOfBytesSent, dwFlags, lpOverlapped, lpCompletionRoutine);
-                FormPack.ActionShowMsg($"发送断包，长度为 {wsBuffer.len}");
+                //FormPack.ActionShowMsg($"发送断包，长度为 {wsBuffer.len}");
                 // 如有剩余的填充包，就先发完那一部分
                 int remainsLen = sendBufferMock.Length - wsBuffer.len;
                 if (remainsLen > 0)
@@ -125,7 +125,7 @@ namespace SocketHack
                     // 发送原封包
                     SendByteArr(Packet.ProcessingSendPacket(Socket, sendBufferFragment));
                     fragmentLen = NO_FRAGMENT_PACK;
-                    FormPack.ActionShowMsg("封包已补发");
+                    //FormPack.ActionShowMsg("封包已补发");
                 }
                 return result;
             }
@@ -137,7 +137,7 @@ namespace SocketHack
             int len = (packHead[0] << 24) + (packHead[1] << 16) + (packHead[2] << 8) + packHead[3];
             if (len != wsBuffer.len)
             {
-                FormPack.ActionShowMsg($"出现断包【{wsBuffer.len} / {len}】");
+                //FormPack.ActionShowMsg($"出现断包【{wsBuffer.len} / {len}】");
                 // 保存原封包内容
                 sendBufferFragment = new byte[wsBuffer.len];
                 Marshal.Copy(wsBuffer.buf, sendBufferFragment, 0, wsBuffer.len);

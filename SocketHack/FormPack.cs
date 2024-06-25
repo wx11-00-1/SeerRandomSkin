@@ -79,16 +79,21 @@ namespace SocketHack
             //自动滚动
             rtbMsg.SelectionStart = rtbMsg.Text.Length;
             rtbMsg.ScrollToCaret();
+#if DEBUG
             // 文件日志
             using (var sw = new System.IO.StreamWriter("SeerLog.txt", true))
             {
                 sw.WriteLine(msg);
             }
+#endif
         }
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            MainClass.SendByteArr(Packet.ProcessingSendPacket(Packet.Socket, Packet.encrypt(Misc.HexString2ByteArray(tbPackStr.Text))));
+            for(int i = 0; i < numericUpDown1.Value; ++i)
+            {
+                MainClass.SendByteArr(Packet.ProcessingSendPacket(Packet.Socket, Packet.encrypt(Misc.HexString2ByteArray(tbPackStr.Text))));
+            }
         }
     }
 }

@@ -71,10 +71,13 @@ namespace SeerRandomSkin
             for (int i = 0; i < packHex.Length - 17 * 2; i += 8) { pars[i / 8] = Convert.ToInt32(packHex.Substring(17 * 2 + i, 8), 16).ToString(); }
 
             int cmd = Convert.ToInt32(packHex.Substring(10, 8), 16);
-            Form1.chromiumBrowser.GetBrowser().MainFrame.ExecuteJavaScriptAsync(
-                packHex.Length == 17 * 2 ?
+            string js = packHex.Length == 17 * 2 ?
                 $"SocketConnection.send({cmd})" :
-                $"SocketConnection.send({cmd},{string.Join(",", pars)})");
+                $"SocketConnection.send({cmd},{string.Join(",", pars)})";
+            for(int i = 0; i < numericUpDown1.Value; ++i)
+            {
+                Form1.chromiumBrowser.GetBrowser().MainFrame.ExecuteJavaScriptAsync(js);
+            }
         }
     }
 }
