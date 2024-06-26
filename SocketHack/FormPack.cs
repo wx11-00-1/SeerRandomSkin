@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Seer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,6 +17,7 @@ namespace SocketHack
         private const int titleAndMenuHeight = 60;
 
         public static Action<string, string> ActionShowPack;
+        public static Action<string> ActionShowMsg;
 
         public static bool HideRecv = true;
         public static bool HideSend = true;
@@ -30,6 +32,7 @@ namespace SocketHack
             checkBoxHideRecv.Checked = HideRecv;
             checkBoxHideSend.Checked = HideSend;
             ActionShowPack += showPack; // static 修饰的方法不能操作窗口控件，需要借助委托
+            ActionShowMsg += ShowMsgInRtb;
             MainClass.StartHook();
         }
 
@@ -62,6 +65,30 @@ namespace SocketHack
         private void checkBoxHideRecv_Click(object sender, EventArgs e)
         {
             HideRecv = !HideRecv;
+        }
+
+        /// <summary>
+        /// 提示信息
+        /// </summary>
+        /// <param name="msg"></param>
+        public void ShowMsgInRtb(string msg)
+        {
+            msg = $"[{DateTime.Now:HH:mm:ss}] {msg}";
+            if (rtbMsg.Text.Length == 0) { rtbMsg.Text = msg + "\n"; }
+            else { rtbMsg.Text += msg + "\n"; }
+            //自动滚动
+            rtbMsg.SelectionStart = rtbMsg.Text.Length;
+            rtbMsg.ScrollToCaret();
+            // 文件日志
+            using (var sw = new System.IO.StreamWriter("SeerLog.txt", true))
+            {
+                sw.WriteLine(msg);
+            }
+        }
+
+        private void btnSend_Click(object sender, EventArgs e)
+        {
+            MainClass.SendByteArr(Packet.ProcessingSendPacket(Packet.Socket, Packet.encrypt(Misc.HexString2ByteArray(tbPackStr.Text))));
         }
     }
 }

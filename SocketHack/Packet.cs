@@ -129,6 +129,7 @@ namespace Seer
                             Result = RecvPacketData.result;                     //LOGIN_IN的recv包是含有序列号的
                             UserId = RecvPacketData.userId;                     //米米号
                             HaveLogin = true;                                     //是否登录
+                            FormPack.ActionShowMsg("登录成功");
                         }
                         #endregion
 
@@ -161,43 +162,44 @@ namespace Seer
 
 
         #region 处理发送封包的数据
-        public static int ProcessingSendPacket(int socket, byte[] cipher, int length)
+        public static byte[] ProcessingSendPacket(int socket, byte[] cipher)
         {
             _PacketData SendPacketData = new _PacketData();
-            int res = 0;
-            if (cipher.Length < 17 || Misc.ByteArray2HexString(cipher, 2) != "00 00 ")
+            
+            #region 需要解析的发送封包
+
+            byte[] plain;
+            if (HaveLogin)
             {
-                return 0;
+                plain = decrypt(cipher);                        //解密封包
+                ParsePacket(plain, ref SendPacketData);         //解析封包
+                CalculateResult(ref SendPacketData);            //修改序列号
+                SendPacketData.userId = UserId; // 米米号
+                plain = GroupPacket(ref SendPacketData);        //组合封包
+                cipher = encrypt(plain);                        //加密封包
             }
-            else
-            {
-                #region 需要解析的发送封包
-
-                if (!HaveLogin)
+            else                                                //无需加密只有一种情况，即处于登录界面
+            {                                                   //这种情况下并不需要修改序列号，只解析封包即可
+                if (!NeedDecrypt(cipher))
                 {
-                    Socket = socket;                                //通信号
-                }
-
-                byte[] plain;
-                if (NeedDecrypt(cipher))
-                {
-                    plain = decrypt(cipher);                        //解密封包
-                }
-                else                                                //无需加密只有一种情况，即处于登录界面
-                {                                                   //这种情况下并不需要修改序列号，只解析封包即可
                     plain = cipher;
                     if (Misc.GetIntParam(cipher, 5) == 105)
                     {
                         Init(); // 初始化全局变量
                     }
                 }
-
-                if (!FormPack.HideSend) FormPack.ActionShowPack("发", Misc.ByteArray2HexString(plain)); // 显示明文
-
-                #endregion 
+                else
+                {
+                    plain = decrypt(cipher);
+                }
+                Socket = socket;                                //通信号
             }
 
-            return 0;
+            if (!FormPack.HideSend) FormPack.ActionShowPack("发", Misc.ByteArray2HexString(plain)); // 显示明文
+
+            #endregion 
+
+            return cipher;
         }
         #endregion
 
@@ -233,7 +235,6 @@ namespace Seer
         #region 计算发送封包的序列号
         public static void CalculateResult(ref _PacketData PacketData)
         {
-            int result = 0;
             if (PacketData.cmdId > 1000)
             {
                 int v6 = 0, v7 = 0;
@@ -242,13 +243,9 @@ namespace Seer
                     v6 = (v6 ^ PacketData.body[v7]) & 255;
                     v7++;
                 }
-                result = Algorithm.MSerial(Result, PacketData.body.Length, v6, PacketData.cmdId);
+                Result = Algorithm.MSerial(Result, PacketData.body.Length, v6, PacketData.cmdId);
+                PacketData.result = Result;
             }
-            else
-            {
-                result = 0;
-            }
-            PacketData.result = result;
         }
         #endregion
 

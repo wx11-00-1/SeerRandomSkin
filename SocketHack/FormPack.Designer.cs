@@ -36,6 +36,9 @@
             this.listViewPack = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.rtbMsg = new System.Windows.Forms.RichTextBox();
+            this.tbPackStr = new System.Windows.Forms.TextBox();
+            this.btnSend = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button2
@@ -104,11 +107,39 @@
             this.columnHeader2.Text = "内容";
             this.columnHeader2.Width = 1000;
             // 
+            // rtbMsg
+            // 
+            this.rtbMsg.Location = new System.Drawing.Point(43, 372);
+            this.rtbMsg.Name = "rtbMsg";
+            this.rtbMsg.Size = new System.Drawing.Size(530, 162);
+            this.rtbMsg.TabIndex = 10;
+            this.rtbMsg.Text = "";
+            // 
+            // tbPackStr
+            // 
+            this.tbPackStr.Location = new System.Drawing.Point(43, 317);
+            this.tbPackStr.Name = "tbPackStr";
+            this.tbPackStr.Size = new System.Drawing.Size(434, 21);
+            this.tbPackStr.TabIndex = 11;
+            // 
+            // btnSend
+            // 
+            this.btnSend.Location = new System.Drawing.Point(498, 315);
+            this.btnSend.Name = "btnSend";
+            this.btnSend.Size = new System.Drawing.Size(75, 23);
+            this.btnSend.TabIndex = 12;
+            this.btnSend.Text = "发送";
+            this.btnSend.UseVisualStyleBackColor = true;
+            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
+            // 
             // FormPack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(622, 346);
+            this.ClientSize = new System.Drawing.Size(622, 569);
+            this.Controls.Add(this.btnSend);
+            this.Controls.Add(this.tbPackStr);
+            this.Controls.Add(this.rtbMsg);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.checkBoxHideSend);
@@ -131,5 +162,8 @@
         private System.Windows.Forms.ListView listViewPack;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.RichTextBox rtbMsg;
+        private System.Windows.Forms.TextBox tbPackStr;
+        private System.Windows.Forms.Button btnSend;
     }
 }
