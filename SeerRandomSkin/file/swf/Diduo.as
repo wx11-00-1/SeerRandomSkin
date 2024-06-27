@@ -25,7 +25,7 @@ package
          super();
 
          // 蒂朵小助手
-         NpcDialog.show(5766,["你好小赛尔，这里是 SeerRandomSkin 小助手，需要什么帮助吗？"],["借绿火","自动治疗","自动出招","光年之外,我会记得我们的约定！"],[function():void
+         NpcDialog.show(5766,["你好小赛尔，这里是 SeerRandomSkin 小助手，需要什么帮助吗？"],["借绿火","自动治疗","自动出招","恢复20hp","治疗所有精灵","光年之外,我会记得我们的约定！"],[function():void
          {
             SocketConnection.sendWithCallback(CommandID.LIST_MAP_PLAYER,function(param1:SocketEvent):void
             {
@@ -69,6 +69,23 @@ package
          {
             SocketConnection.WxIsAutoUseSkill = !SocketConnection.WxIsAutoUseSkill;
             Alarm.show(SocketConnection.WxIsAutoUseSkill ? "开始自动出招" : "停止自动出招");
+         },function():void
+         {
+            SocketConnection.send(CommandID.ITEM_BUY,300011,6);
+            SocketConnection.send(CommandID.ITEM_BUY,300017,6);
+            var bag:Array = PetManager.getBagMap();
+            for (var i:int = 0; i < bag.length; i++)
+            {
+                SocketConnection.send(CommandID.USE_PET_ITEM_OUT_OF_FIGHT,bag[i].catchTime,300011);
+                SocketConnection.send(CommandID.USE_PET_ITEM_OUT_OF_FIGHT,bag[i].catchTime,300017);
+            }
+         },function():void
+         {
+            var bagBoth:Array = PetManager.getBagMap(true);
+            for (var i:int = 0; i < bagBoth.length; ++i)
+            {
+                SocketConnection.send(CommandID.PET_ONE_CURE,bagBoth[i].catchTime);
+            }
          }
          ],false,null,true);
       }
