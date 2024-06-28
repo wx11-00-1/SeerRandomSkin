@@ -263,7 +263,11 @@ namespace SeerRandomSkin
                 protected override IResourceHandler GetResourceHandler(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request)
                 {
                     string url = request.Url;
-                    if (url == @"https://seer.61.com/dll/Assets.swf?lsx13yv4" && Properties.Settings.Default.IsChangeBackground)
+                    if (url.Contains("https://seer.61.com/resource/xml/battleStrategy.xml?"))
+                    {
+                        return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\xml\battleStrategy.xml");
+                    }
+                    else if (url == @"https://seer.61.com/dll/Assets.swf?lsx13yv4" && Properties.Settings.Default.IsChangeBackground)
                     {
                         return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\Assets.swf");
                     }
