@@ -56,6 +56,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.richTextBox_SkinExc = new System.Windows.Forms.RichTextBox();
             this.checkBox_flash_pack = new System.Windows.Forms.CheckBox();
+            this.richTextBox_skinList = new System.Windows.Forms.RichTextBox();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_width)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_height)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -66,7 +68,7 @@
             // 
             // button_Save
             // 
-            this.button_Save.Location = new System.Drawing.Point(551, 539);
+            this.button_Save.Location = new System.Drawing.Point(551, 704);
             this.button_Save.Name = "button_Save";
             this.button_Save.Size = new System.Drawing.Size(75, 23);
             this.button_Save.TabIndex = 1;
@@ -76,7 +78,7 @@
             // 
             // richTextBox_SkinBlackList
             // 
-            this.richTextBox_SkinBlackList.Location = new System.Drawing.Point(53, 238);
+            this.richTextBox_SkinBlackList.Location = new System.Drawing.Point(53, 403);
             this.richTextBox_SkinBlackList.Name = "richTextBox_SkinBlackList";
             this.richTextBox_SkinBlackList.Size = new System.Drawing.Size(573, 135);
             this.richTextBox_SkinBlackList.TabIndex = 2;
@@ -85,20 +87,20 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(51, 190);
+            this.label1.Location = new System.Drawing.Point(52, 377);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(149, 12);
+            this.label1.Size = new System.Drawing.Size(77, 12);
             this.label1.TabIndex = 3;
-            this.label1.Text = "皮肤黑名单（格式如下）：";
+            this.label1.Text = "皮肤黑名单：";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(51, 214);
+            this.label2.Location = new System.Drawing.Point(52, 190);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 12);
+            this.label2.Size = new System.Drawing.Size(65, 12);
             this.label2.TabIndex = 4;
-            this.label2.Text = "123,124,125,";
+            this.label2.Text = "皮肤列表：";
             // 
             // label3
             // 
@@ -235,7 +237,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(51, 522);
+            this.label6.Location = new System.Drawing.Point(51, 687);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(131, 12);
             this.label6.TabIndex = 16;
@@ -243,14 +245,14 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(53, 542);
+            this.textBox1.Location = new System.Drawing.Point(53, 707);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(340, 21);
             this.textBox1.TabIndex = 17;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(414, 541);
+            this.button1.Location = new System.Drawing.Point(414, 706);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 18;
@@ -338,7 +340,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(52, 391);
+            this.label9.Location = new System.Drawing.Point(52, 556);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(149, 12);
             this.label9.TabIndex = 20;
@@ -346,7 +348,7 @@
             // 
             // richTextBox_SkinExc
             // 
-            this.richTextBox_SkinExc.Location = new System.Drawing.Point(53, 416);
+            this.richTextBox_SkinExc.Location = new System.Drawing.Point(53, 581);
             this.richTextBox_SkinExc.Name = "richTextBox_SkinExc";
             this.richTextBox_SkinExc.Size = new System.Drawing.Size(573, 84);
             this.richTextBox_SkinExc.TabIndex = 21;
@@ -362,11 +364,31 @@
             this.checkBox_flash_pack.Text = "Flash 封包";
             this.checkBox_flash_pack.UseVisualStyleBackColor = true;
             // 
+            // richTextBox_skinList
+            // 
+            this.richTextBox_skinList.Location = new System.Drawing.Point(53, 215);
+            this.richTextBox_skinList.Name = "richTextBox_skinList";
+            this.richTextBox_skinList.Size = new System.Drawing.Size(573, 135);
+            this.richTextBox_skinList.TabIndex = 23;
+            this.richTextBox_skinList.Text = "";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(123, 185);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 24;
+            this.button2.Text = "恢复默认值";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(680, 594);
+            this.ClientSize = new System.Drawing.Size(680, 765);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.richTextBox_skinList);
             this.Controls.Add(this.checkBox_flash_pack);
             this.Controls.Add(this.richTextBox_SkinExc);
             this.Controls.Add(this.label9);
@@ -433,5 +455,7 @@
         private System.Windows.Forms.RichTextBox richTextBox_SkinExc;
         private System.Windows.Forms.CheckBox checkBox_resource_bg_h5;
         private System.Windows.Forms.CheckBox checkBox_flash_pack;
+        private System.Windows.Forms.RichTextBox richTextBox_skinList;
+        private System.Windows.Forms.Button button2;
     }
 }
