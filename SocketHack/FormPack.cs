@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -91,10 +92,22 @@ namespace SocketHack
 
         private async void btnSend_Click(object sender, EventArgs e)
         {
+            var pack = Misc.HexString2ByteArray(tbPackStr.Text);
+            if (pack.Length != Misc.GetIntParam(pack, 0))
+            {
+                MessageBox.Show("封包长度有误");
+                return;
+            }
+            if (pack.Length < 17)
+            {
+                MessageBox.Show("封包长度不能小于17");
+                return;
+            }
             btnSend.Enabled = !btnSend.Enabled;
+            pack = Packet.encrypt(pack);
             for (int i = 0; i < numericUpDown1.Value; ++i)
             {
-                MainClass.SendByteArr(Packet.ProcessingSendPacket(Packet.Socket, Packet.encrypt(Misc.HexString2ByteArray(tbPackStr.Text))));
+                MainClass.SendByteArr(Packet.ProcessingSendPacket(Packet.Socket, pack));
                 await Task.Delay(500);
             }
             btnSend.Enabled = !btnSend.Enabled;
