@@ -62,6 +62,7 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.checkBox_flashZoom = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_width)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_height)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -420,11 +421,22 @@
             this.textBox3.Size = new System.Drawing.Size(340, 21);
             this.textBox3.TabIndex = 27;
             // 
+            // checkBox_flashZoom
+            // 
+            this.checkBox_flashZoom.AutoSize = true;
+            this.checkBox_flashZoom.Location = new System.Drawing.Point(292, 75);
+            this.checkBox_flashZoom.Name = "checkBox_flashZoom";
+            this.checkBox_flashZoom.Size = new System.Drawing.Size(108, 16);
+            this.checkBox_flashZoom.TabIndex = 29;
+            this.checkBox_flashZoom.Text = "Flash 页面放大";
+            this.checkBox_flashZoom.UseVisualStyleBackColor = true;
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(680, 825);
+            this.ClientSize = new System.Drawing.Size(680, 845);
+            this.Controls.Add(this.checkBox_flashZoom);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.button3);
@@ -503,5 +515,6 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.CheckBox checkBox_flashZoom;
     }
 }

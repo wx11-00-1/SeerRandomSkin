@@ -204,6 +204,13 @@ namespace SeerRandomSkin
                             "   set: () => {}" +
                             "});");
                     }
+                    else if (address == gameAddress)
+                    {
+                        if (Properties.Settings.Default.IsFlashZoom)
+                        {
+                            args.Browser.MainFrame.ExecuteJavaScriptAsync("document.body.style.zoom = 1.25;");
+                        }
+                    }
                 }
             };
             return chromium;

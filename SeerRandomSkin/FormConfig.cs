@@ -46,6 +46,7 @@ namespace SeerRandomSkin
             textBox1.Text = SettingsDef.AutoExecuteSoftwarePath1;
             textBox2.Text = SettingsDef.AutoExecuteSoftwarePath2;
             textBox3.Text = SettingsDef.AutoExecuteSoftwarePath3;
+            checkBox_flashZoom.Checked = SettingsDef.IsFlashZoom;
         }
 
         private void button_Save_Click(object sender, EventArgs e)
@@ -97,7 +98,9 @@ namespace SeerRandomSkin
             SettingsDef.AutoExecuteSoftwarePath1 = textBox1.Text;
             SettingsDef.AutoExecuteSoftwarePath2 = textBox2.Text;
             SettingsDef.AutoExecuteSoftwarePath3 = textBox3.Text;
+            SettingsDef.IsFlashZoom = checkBox_flashZoom.Checked;
             SettingsDef.Save();
+            MessageBox.Show("保存成功");
         }
 
         private void button1_Click(object sender, EventArgs e)
