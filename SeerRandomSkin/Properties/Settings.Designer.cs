@@ -331,5 +331,29 @@ namespace SeerRandomSkin.Properties {
                 this["IsUseSocketHack"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string AutoExecuteSoftwarePath2 {
+            get {
+                return ((string)(this["AutoExecuteSoftwarePath2"]));
+            }
+            set {
+                this["AutoExecuteSoftwarePath2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string AutoExecuteSoftwarePath3 {
+            get {
+                return ((string)(this["AutoExecuteSoftwarePath3"]));
+            }
+            set {
+                this["AutoExecuteSoftwarePath3"] = value;
+            }
+        }
     }
 }

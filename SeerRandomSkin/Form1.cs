@@ -39,27 +39,15 @@ namespace SeerRandomSkin
         private static readonly List<int> skinIds = new List<int>();
         private static readonly List<int> skinExclusion = new List<int>();
 
-        System.Diagnostics.Process childProcess;
-
         public Form1()
         {
-            if (Properties.Settings.Default.AutoExecuteSoftwarePath1 != "")
+            try
             {
-                using (childProcess = new System.Diagnostics.Process())
-                {
-                    childProcess.StartInfo.FileName = @"C:\Windows\System32\cmd.exe";
-                    childProcess.StartInfo.UseShellExecute = false; //是否使用操作系统shell启动
-                    childProcess.StartInfo.RedirectStandardInput = true; //接受来自调用程序的输入信息
-                    childProcess.StartInfo.RedirectStandardOutput = true; //由调用程序获取输出信息
-                    childProcess.StartInfo.RedirectStandardError = true; //重定向标准错误输出
-                    childProcess.StartInfo.CreateNoWindow = true; //不显示程序窗口
-                    childProcess.Start();//启动程序
-
-                    //向cmd窗口写入命令
-                    childProcess.StandardInput.WriteLine(Properties.Settings.Default.AutoExecuteSoftwarePath1);
-                    childProcess.StandardInput.AutoFlush = true;
-                }
+                System.Diagnostics.Process.Start(Properties.Settings.Default.AutoExecuteSoftwarePath1);
+                System.Diagnostics.Process.Start(Properties.Settings.Default.AutoExecuteSoftwarePath2);
+                System.Diagnostics.Process.Start(Properties.Settings.Default.AutoExecuteSoftwarePath3);
             }
+            catch { }
 
             //初始化cef
             CefSettings settings = new CefSettings();

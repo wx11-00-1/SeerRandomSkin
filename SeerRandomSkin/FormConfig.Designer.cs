@@ -58,6 +58,10 @@
             this.checkBox_flash_pack = new System.Windows.Forms.CheckBox();
             this.richTextBox_skinList = new System.Windows.Forms.RichTextBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_width)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_height)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -68,7 +72,7 @@
             // 
             // button_Save
             // 
-            this.button_Save.Location = new System.Drawing.Point(551, 704);
+            this.button_Save.Location = new System.Drawing.Point(551, 782);
             this.button_Save.Name = "button_Save";
             this.button_Save.Size = new System.Drawing.Size(75, 23);
             this.button_Save.TabIndex = 1;
@@ -239,9 +243,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(51, 687);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(131, 12);
+            this.label6.Size = new System.Drawing.Size(113, 12);
             this.label6.TabIndex = 16;
-            this.label6.Text = "自动打开 FD 或 YOSO：";
+            this.label6.Text = "自动打开其他程序：";
             // 
             // textBox1
             // 
@@ -382,11 +386,49 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(414, 744);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 26;
+            this.button3.Text = "选择文件";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(53, 745);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(340, 21);
+            this.textBox2.TabIndex = 25;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(414, 782);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 28;
+            this.button4.Text = "选择文件";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(53, 783);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(340, 21);
+            this.textBox3.TabIndex = 27;
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(680, 765);
+            this.ClientSize = new System.Drawing.Size(680, 825);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.richTextBox_skinList);
             this.Controls.Add(this.checkBox_flash_pack);
@@ -457,5 +499,9 @@
         private System.Windows.Forms.CheckBox checkBox_flash_pack;
         private System.Windows.Forms.RichTextBox richTextBox_skinList;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }
