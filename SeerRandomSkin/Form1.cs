@@ -274,11 +274,11 @@ namespace SeerRandomSkin
                     {
                         return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\NoAd.swf");
                     }
-                    else if (url.Contains(@"/resource/forApp/superMarket/tip.swf"))
+                    else if (url.Contains(@"/resource/forApp/superMarket/tip.swf?"))
                     {
                         return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\tip_230831_closeBattery.swf");
                     }
-                    else if (url == @"https://seer.61.com/module/com/robot/module/app/SupermarketPanel.swf?lub1i84w")
+                    else if (url.Contains(@"https://seer.61.com/module/com/robot/module/app/SupermarketPanel.swf?"))
                     {
                         return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\DiduoAssistant.swf");
                     }
