@@ -171,29 +171,29 @@ namespace Seer
             #region 需要解析的发送封包
 
             byte[] plain;
-            if (HaveLogin)
+            if (NeedDecrypt(cipher))
             {
                 plain = decrypt(cipher);                        //解密封包
-                ParsePacket(plain, ref SendPacketData);         //解析封包
-                lock (LockSend) CalculateResult(ref SendPacketData);            //修改序列号
-                SendPacketData.userId = UserId; // 米米号
-                plain = GroupPacket(ref SendPacketData);        //组合封包
-                cipher = encrypt(plain);                        //加密封包
+                if (HaveLogin)
+                {
+                    ParsePacket(plain, ref SendPacketData);         //解析封包
+                    lock (LockSend) CalculateResult(ref SendPacketData);            //修改序列号
+                    SendPacketData.userId = UserId; // 米米号
+                    plain = GroupPacket(ref SendPacketData);        //组合封包
+                    cipher = encrypt(plain);                        //加密封包
+                }
+                else
+                {
+                    Socket = socket;                                //通信号
+                }
             }
             else                                                //无需加密只有一种情况，即处于登录界面
             {                                                   //这种情况下并不需要修改序列号，只解析封包即可
-                if (!NeedDecrypt(cipher))
-                {
-                    plain = cipher;
+                plain = cipher;
                     if (Misc.GetIntParam(cipher, 5) == 105)
                     {
                         Init(); // 初始化全局变量
                     }
-                }
-                else
-                {
-                    plain = decrypt(cipher);
-                }
                 Socket = socket;                                //通信号
             }
 
