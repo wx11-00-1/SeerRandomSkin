@@ -68,7 +68,7 @@ package
          },function():void
          {
             SocketConnection.WxIsAutoUseSkill = !SocketConnection.WxIsAutoUseSkill;
-            Alarm.show(SocketConnection.WxIsAutoUseSkill ? "开始自动出招" : "停止自动出招");
+            Alarm.show(SocketConnection.WxIsAutoUseSkill ? "开始自动出招（需要手动停止）" : "停止自动出招");
          },function():void
          {
             SocketConnection.send(CommandID.ITEM_BUY,300011,6);
