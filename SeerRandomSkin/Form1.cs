@@ -39,6 +39,9 @@ namespace SeerRandomSkin
         private static readonly List<int> skinIds = new List<int>();
         private static readonly List<int> skinExclusion = new List<int>();
 
+        public static string FormTitle; // 窗口标题
+        public static Action<string> ChangeTitleAction;
+
         public Form1()
         {
             try
@@ -71,6 +74,12 @@ namespace SeerRandomSkin
 
         private async void Form1_Load(object sender, EventArgs e)
         {
+            FormTitle = Text;
+            ChangeTitleAction = (title) =>
+            {
+                Text = title;
+            };
+
             Width = (int)Properties.Settings.Default.WinWidth;
             Height = (int)Properties.Settings.Default.WinHeight;
             CenterToScreen();
@@ -276,7 +285,7 @@ namespace SeerRandomSkin
                     }
                     else if (url.Contains(@"/resource/forApp/superMarket/tip.swf?"))
                     {
-                        return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\tip_230831_closeBattery.swf");
+                        return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\tip.swf");
                     }
                     else if (url.Contains(@"https://seer.61.com/module/com/robot/module/app/SupermarketPanel.swf?"))
                     {

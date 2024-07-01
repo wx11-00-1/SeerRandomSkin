@@ -107,10 +107,36 @@ namespace SocketHack
             pack = Packet.encrypt(pack);
             for (int i = 0; i < numericUpDown1.Value; ++i)
             {
-                MainClass.SendByteArr(Packet.ProcessingSendPacket(Packet.Socket, pack));
+                MainClass.SendPack(Packet.ProcessingSendPacket(Packet.Socket, pack));
                 await Task.Delay(500);
             }
             btnSend.Enabled = !btnSend.Enabled;
+        }
+
+        private void button_tigerAM_Click(object sender, EventArgs e)
+        {
+            MainClass.SendPack(41129, new int[] { 8692 });
+        }
+
+        private void button_tigerPM_Click(object sender, EventArgs e)
+        {
+            MainClass.SendPack(41129, new int[] { 8694 });
+        }
+
+        private void button_fightCatch_Click(object sender, EventArgs e)
+        {
+            MainClass.SendPack(2601, new int[] { 300505,1 });
+            MainClass.SendPack(2409, new int[] { 300505 });
+        }
+
+        private void button_fightExit_Click(object sender, EventArgs e)
+        {
+            MainClass.SendPack(2410, new int[] { });
+        }
+
+        private void button_fightSkill0_Click(object sender, EventArgs e)
+        {
+            MainClass.SendPack(2405, new int[] { 0 });
         }
     }
 }

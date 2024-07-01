@@ -70,7 +70,7 @@ namespace SocketHack
         /// 调用 WSASend 发包（只能在登录后使用）
         /// </summary>
         /// <param name="pack">密文包</param>
-        public static unsafe void SendByteArr(byte[] pack)
+        public static unsafe void SendPack(byte[] pack)
         {
             IntPtr pBuffer = Marshal.AllocHGlobal(sizeof(WSABUF));
             WSABUF wsBuffer;
@@ -80,6 +80,17 @@ namespace SocketHack
             WSASend(Packet.Socket, pBuffer, 1, IntPtr.Zero, 0, IntPtr.Zero, IntPtr.Zero);
             Marshal.FreeHGlobal(wsBuffer.buf);
             Marshal.FreeHGlobal(pBuffer);
+        }
+
+        public static void SendPack(int commandID, int[] parameters)
+        {
+            SendPack(
+                Packet.ProcessingSendPacket(Packet.Socket,
+                    Packet.encrypt(
+                        Packet.GroupPacket(commandID, parameters)
+                        )
+                    )
+                );
         }
 
         private static unsafe Int32 WSASend_Hook(Int32 Socket, IntPtr lpBuffers, UInt32 dwBufferCount, IntPtr lpNumberOfBytesSent, UInt32 dwFlags, IntPtr lpOverlapped, IntPtr lpCompletionRoutine)
@@ -116,14 +127,14 @@ namespace SocketHack
                 {
                     tmpPack = new byte[remainsLen];
                     Array.Copy(sendBufferMock, wsBuffer.len, tmpPack, 0, remainsLen);
-                    SendByteArr(tmpPack);
+                    SendPack(tmpPack);
                     // FormPack.ActionShowMsg($"发送剩余占位包，长度为 {remainsLen}");
                 }
                 if (sendBufferFragment.Length == fragmentLen)
                 {
                     // 原封包保存完整了
                     // 发送原封包
-                    SendByteArr(Packet.ProcessingSendPacket(Socket, sendBufferFragment));
+                    SendPack(Packet.ProcessingSendPacket(Socket, sendBufferFragment));
                     fragmentLen = NO_FRAGMENT_PACK;
                     //FormPack.ActionShowMsg("封包已补发");
                 }
@@ -166,7 +177,7 @@ namespace SocketHack
                 {
                     var remainsPack = new byte[remainsLen];
                     Array.Copy(sendBufferMock, wsBuffer.len, remainsPack, 0, remainsLen);
-                    SendByteArr(remainsPack);// 00 00 00 45 31 00 00 08 35 37 A0 10 94 00 00 02 60 00 00 00 00 00 00 02 88 00 00 01 A6 00 00 00 24 09 05 01 0A 23 01 03 78 03 79 05 40 89 A9 99 99 99 99 9A 05 40 77 B2 66 66 66 66 66 0A 01 04 85 00 04 83 24 
+                    SendPack(remainsPack);// 00 00 00 45 31 00 00 08 35 37 A0 10 94 00 00 02 60 00 00 00 00 00 00 02 88 00 00 01 A6 00 00 00 24 09 05 01 0A 23 01 03 78 03 79 05 40 89 A9 99 99 99 99 9A 05 40 77 B2 66 66 66 66 66 0A 01 04 85 00 04 83 24 
                 }
                 return result;
             }

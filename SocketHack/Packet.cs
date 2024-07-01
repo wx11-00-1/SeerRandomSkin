@@ -89,6 +89,26 @@ namespace Seer
         #endregion
 
 
+        #region 根据 命令号 和 参数 组包
+        public static byte[] GroupPacket(int commandID, int[] parameters)
+        {
+            _PacketData data = new _PacketData
+            {
+                length = 17 + 4 * parameters.Length,
+                cmdId = commandID,
+                userId = 0,
+                result = 0,
+                body = new byte[0]
+            };
+            foreach (var parameter in parameters)
+            {
+                data.body = Misc.ArrayMerge(data.body, Misc.Int2ByteArray(parameter));
+            }
+            return GroupPacket(ref data);
+        }
+        #endregion
+
+
         #region 处理接收封包的数据
         public static void ProcessingRecvPacket(int socket, byte[] buffer, int length)
         {

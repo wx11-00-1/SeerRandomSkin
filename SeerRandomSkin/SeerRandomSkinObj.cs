@@ -32,5 +32,10 @@ namespace SeerRandomSkin
         {
             Form1.childFormPack.ShowRecvSend(pack);
         }
+
+        public void ShowFightInfo(int round, int hpPercent)
+        {
+            Form1.ChangeTitleAction(String.Format("{0} ({1}) [{2}%]", Form1.FormTitle, round, hpPercent));
+        }
     }
 }

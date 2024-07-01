@@ -40,15 +40,23 @@
             this.tbPackStr = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button_tigerAM = new System.Windows.Forms.Button();
+            this.button_tigerPM = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button_fightExit = new System.Windows.Forms.Button();
+            this.button_fightCatch = new System.Windows.Forms.Button();
+            this.button_fightSkill0 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(536, 351);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Location = new System.Drawing.Point(402, 281);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 29);
+            this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 9;
             this.button2.Text = "复制";
             this.button2.UseVisualStyleBackColor = true;
@@ -56,10 +64,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(664, 351);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Location = new System.Drawing.Point(498, 281);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 29);
+            this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 8;
             this.button1.Text = "清空";
             this.button1.UseVisualStyleBackColor = true;
@@ -68,10 +75,9 @@
             // checkBoxHideSend
             // 
             this.checkBoxHideSend.AutoSize = true;
-            this.checkBoxHideSend.Location = new System.Drawing.Point(161, 351);
-            this.checkBoxHideSend.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxHideSend.Location = new System.Drawing.Point(121, 281);
             this.checkBoxHideSend.Name = "checkBoxHideSend";
-            this.checkBoxHideSend.Size = new System.Drawing.Size(89, 19);
+            this.checkBoxHideSend.Size = new System.Drawing.Size(72, 16);
             this.checkBoxHideSend.TabIndex = 7;
             this.checkBoxHideSend.Text = "屏蔽发包";
             this.checkBoxHideSend.UseVisualStyleBackColor = true;
@@ -80,10 +86,9 @@
             // checkBoxHideRecv
             // 
             this.checkBoxHideRecv.AutoSize = true;
-            this.checkBoxHideRecv.Location = new System.Drawing.Point(57, 351);
-            this.checkBoxHideRecv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxHideRecv.Location = new System.Drawing.Point(43, 281);
             this.checkBoxHideRecv.Name = "checkBoxHideRecv";
-            this.checkBoxHideRecv.Size = new System.Drawing.Size(89, 19);
+            this.checkBoxHideRecv.Size = new System.Drawing.Size(72, 16);
             this.checkBoxHideRecv.TabIndex = 6;
             this.checkBoxHideRecv.Text = "屏蔽收包";
             this.checkBoxHideRecv.UseVisualStyleBackColor = true;
@@ -96,11 +101,10 @@
             this.columnHeader2});
             this.listViewPack.FullRowSelect = true;
             this.listViewPack.HideSelection = false;
-            this.listViewPack.Location = new System.Drawing.Point(57, 42);
-            this.listViewPack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listViewPack.Location = new System.Drawing.Point(43, 34);
             this.listViewPack.MultiSelect = false;
             this.listViewPack.Name = "listViewPack";
-            this.listViewPack.Size = new System.Drawing.Size(705, 274);
+            this.listViewPack.Size = new System.Drawing.Size(530, 220);
             this.listViewPack.TabIndex = 5;
             this.listViewPack.UseCompatibleStateImageBehavior = false;
             this.listViewPack.View = System.Windows.Forms.View.Details;
@@ -116,27 +120,24 @@
             // 
             // rtbMsg
             // 
-            this.rtbMsg.Location = new System.Drawing.Point(57, 465);
-            this.rtbMsg.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rtbMsg.Location = new System.Drawing.Point(43, 372);
             this.rtbMsg.Name = "rtbMsg";
-            this.rtbMsg.Size = new System.Drawing.Size(705, 202);
+            this.rtbMsg.Size = new System.Drawing.Size(530, 162);
             this.rtbMsg.TabIndex = 10;
             this.rtbMsg.Text = "";
             // 
             // tbPackStr
             // 
-            this.tbPackStr.Location = new System.Drawing.Point(57, 396);
-            this.tbPackStr.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPackStr.Location = new System.Drawing.Point(43, 317);
             this.tbPackStr.Name = "tbPackStr";
-            this.tbPackStr.Size = new System.Drawing.Size(453, 25);
+            this.tbPackStr.Size = new System.Drawing.Size(341, 21);
             this.tbPackStr.TabIndex = 11;
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(664, 394);
-            this.btnSend.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSend.Location = new System.Drawing.Point(498, 315);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(100, 29);
+            this.btnSend.Size = new System.Drawing.Size(75, 23);
             this.btnSend.TabIndex = 12;
             this.btnSend.Text = "发送";
             this.btnSend.UseVisualStyleBackColor = true;
@@ -144,14 +145,15 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(536, 396);
+            this.numericUpDown1.Location = new System.Drawing.Point(402, 317);
+            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.numericUpDown1.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(100, 25);
+            this.numericUpDown1.Size = new System.Drawing.Size(75, 21);
             this.numericUpDown1.TabIndex = 13;
             this.numericUpDown1.Value = new decimal(new int[] {
             1,
@@ -159,11 +161,86 @@
             0,
             0});
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button_tigerPM);
+            this.groupBox1.Controls.Add(this.button_tigerAM);
+            this.groupBox1.Location = new System.Drawing.Point(43, 550);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(203, 55);
+            this.groupBox1.TabIndex = 14;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "挑战白虎";
+            // 
+            // button_tigerAM
+            // 
+            this.button_tigerAM.Location = new System.Drawing.Point(20, 20);
+            this.button_tigerAM.Name = "button_tigerAM";
+            this.button_tigerAM.Size = new System.Drawing.Size(75, 23);
+            this.button_tigerAM.TabIndex = 13;
+            this.button_tigerAM.Text = "昼";
+            this.button_tigerAM.UseVisualStyleBackColor = true;
+            this.button_tigerAM.Click += new System.EventHandler(this.button_tigerAM_Click);
+            // 
+            // button_tigerPM
+            // 
+            this.button_tigerPM.Location = new System.Drawing.Point(112, 20);
+            this.button_tigerPM.Name = "button_tigerPM";
+            this.button_tigerPM.Size = new System.Drawing.Size(75, 23);
+            this.button_tigerPM.TabIndex = 14;
+            this.button_tigerPM.Text = "夜";
+            this.button_tigerPM.UseVisualStyleBackColor = true;
+            this.button_tigerPM.Click += new System.EventHandler(this.button_tigerPM_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.button_fightSkill0);
+            this.groupBox2.Controls.Add(this.button_fightExit);
+            this.groupBox2.Controls.Add(this.button_fightCatch);
+            this.groupBox2.Location = new System.Drawing.Point(264, 550);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(309, 55);
+            this.groupBox2.TabIndex = 15;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "对战";
+            // 
+            // button_fightExit
+            // 
+            this.button_fightExit.Location = new System.Drawing.Point(118, 20);
+            this.button_fightExit.Name = "button_fightExit";
+            this.button_fightExit.Size = new System.Drawing.Size(75, 23);
+            this.button_fightExit.TabIndex = 14;
+            this.button_fightExit.Text = "撤退";
+            this.button_fightExit.UseVisualStyleBackColor = true;
+            this.button_fightExit.Click += new System.EventHandler(this.button_fightExit_Click);
+            // 
+            // button_fightCatch
+            // 
+            this.button_fightCatch.Location = new System.Drawing.Point(20, 20);
+            this.button_fightCatch.Name = "button_fightCatch";
+            this.button_fightCatch.Size = new System.Drawing.Size(75, 23);
+            this.button_fightCatch.TabIndex = 13;
+            this.button_fightCatch.Text = "捕捉";
+            this.button_fightCatch.UseVisualStyleBackColor = true;
+            this.button_fightCatch.Click += new System.EventHandler(this.button_fightCatch_Click);
+            // 
+            // button_fightSkill0
+            // 
+            this.button_fightSkill0.Location = new System.Drawing.Point(216, 20);
+            this.button_fightSkill0.Name = "button_fightSkill0";
+            this.button_fightSkill0.Size = new System.Drawing.Size(75, 23);
+            this.button_fightSkill0.TabIndex = 15;
+            this.button_fightSkill0.Text = "弃权";
+            this.button_fightSkill0.UseVisualStyleBackColor = true;
+            this.button_fightSkill0.Click += new System.EventHandler(this.button_fightSkill0_Click);
+            // 
             // FormPack
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(829, 711);
+            this.ClientSize = new System.Drawing.Size(622, 629);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.tbPackStr);
@@ -174,10 +251,11 @@
             this.Controls.Add(this.checkBoxHideRecv);
             this.Controls.Add(this.listViewPack);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormPack";
             this.Load += new System.EventHandler(this.FormScreenShot_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -196,5 +274,12 @@
         private System.Windows.Forms.TextBox tbPackStr;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button button_tigerPM;
+        private System.Windows.Forms.Button button_tigerAM;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button button_fightSkill0;
+        private System.Windows.Forms.Button button_fightExit;
+        private System.Windows.Forms.Button button_fightCatch;
     }
 }
