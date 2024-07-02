@@ -18,7 +18,7 @@ namespace SocketHack
     {
         private const int titleAndMenuHeight = 60;
 
-        public static Action<string, string> ActionShowPack;
+        public static Action<string, string, string> ActionShowPack;
         public static Action<string> ActionShowMsg;
 
         public static bool HideRecv = true;
@@ -47,14 +47,15 @@ namespace SocketHack
         {
             if (listViewPack.SelectedItems.Count > 0)
             {
-                Clipboard.SetDataObject(listViewPack.SelectedItems[0].SubItems[1].Text);
+                Clipboard.SetDataObject(listViewPack.SelectedItems[0].SubItems[2].Text);
             }
         }
 
-        private void showPack(string type,string pack)
+        private void showPack(string type, string commandID, string pack)
         {
             var item = new ListViewItem();
             item.Text = type;
+            item.SubItems.Add(commandID);
             item.SubItems.Add(pack);
             listViewPack.Items.Add(item);
         }
@@ -111,16 +112,6 @@ namespace SocketHack
                 await Task.Delay(500);
             }
             btnSend.Enabled = !btnSend.Enabled;
-        }
-
-        private void button_tigerAM_Click(object sender, EventArgs e)
-        {
-            MainClass.SendPack(41129, new int[] { 8692 });
-        }
-
-        private void button_tigerPM_Click(object sender, EventArgs e)
-        {
-            MainClass.SendPack(41129, new int[] { 8694 });
         }
 
         private void button_fightCatch_Click(object sender, EventArgs e)

@@ -42,7 +42,6 @@
             this.checkBox_RandomSkin = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.checkBox_resource_bg_h5 = new System.Windows.Forms.CheckBox();
-            this.checkBox_resource_vip_icon = new System.Windows.Forms.CheckBox();
             this.checkBox_resource_ad_panel = new System.Windows.Forms.CheckBox();
             this.checkBox_resource_background = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -64,6 +63,7 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.comboBoxZoom = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.checkBox_resource_vip_icon = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_width)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_height)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -189,8 +189,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.checkBox_resource_bg_h5);
             this.groupBox1.Controls.Add(this.checkBox_resource_vip_icon);
+            this.groupBox1.Controls.Add(this.checkBox_resource_bg_h5);
             this.groupBox1.Controls.Add(this.checkBox_resource_ad_panel);
             this.groupBox1.Controls.Add(this.checkBox_resource_background);
             this.groupBox1.Location = new System.Drawing.Point(292, 114);
@@ -203,22 +203,12 @@
             // checkBox_resource_bg_h5
             // 
             this.checkBox_resource_bg_h5.AutoSize = true;
-            this.checkBox_resource_bg_h5.Location = new System.Drawing.Point(109, 57);
+            this.checkBox_resource_bg_h5.Location = new System.Drawing.Point(22, 56);
             this.checkBox_resource_bg_h5.Name = "checkBox_resource_bg_h5";
             this.checkBox_resource_bg_h5.Size = new System.Drawing.Size(84, 16);
             this.checkBox_resource_bg_h5.TabIndex = 18;
             this.checkBox_resource_bg_h5.Text = "H5登录背景";
             this.checkBox_resource_bg_h5.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_resource_vip_icon
-            // 
-            this.checkBox_resource_vip_icon.AutoSize = true;
-            this.checkBox_resource_vip_icon.Location = new System.Drawing.Point(22, 57);
-            this.checkBox_resource_vip_icon.Name = "checkBox_resource_vip_icon";
-            this.checkBox_resource_vip_icon.Size = new System.Drawing.Size(72, 16);
-            this.checkBox_resource_vip_icon.TabIndex = 17;
-            this.checkBox_resource_vip_icon.Text = "年费图标";
-            this.checkBox_resource_vip_icon.UseVisualStyleBackColor = true;
             // 
             // checkBox_resource_ad_panel
             // 
@@ -439,6 +429,16 @@
             this.label10.TabIndex = 29;
             this.label10.Text = "缩放：";
             // 
+            // checkBox_resource_vip_icon
+            // 
+            this.checkBox_resource_vip_icon.AutoSize = true;
+            this.checkBox_resource_vip_icon.Location = new System.Drawing.Point(210, 22);
+            this.checkBox_resource_vip_icon.Name = "checkBox_resource_vip_icon";
+            this.checkBox_resource_vip_icon.Size = new System.Drawing.Size(72, 16);
+            this.checkBox_resource_vip_icon.TabIndex = 19;
+            this.checkBox_resource_vip_icon.Text = "年费图标";
+            this.checkBox_resource_vip_icon.UseVisualStyleBackColor = true;
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -503,7 +503,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDown_win_height;
         private System.Windows.Forms.CheckBox checkBox_RandomSkin;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox checkBox_resource_vip_icon;
         private System.Windows.Forms.CheckBox checkBox_resource_ad_panel;
         private System.Windows.Forms.CheckBox checkBox_resource_background;
         private System.Windows.Forms.Label label6;
@@ -526,5 +525,6 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.ComboBox comboBoxZoom;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.CheckBox checkBox_resource_vip_icon;
     }
 }

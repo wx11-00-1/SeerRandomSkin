@@ -250,18 +250,6 @@ namespace SeerRandomSkin.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool IsChangeVipIcon {
-            get {
-                return ((bool)(this["IsChangeVipIcon"]));
-            }
-            set {
-                this["IsChangeVipIcon"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string AutoExecuteSoftwarePath1 {
             get {
@@ -365,6 +353,18 @@ namespace SeerRandomSkin.Properties {
             }
             set {
                 this["FlashZoom"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsChangeVipIcon {
+            get {
+                return ((bool)(this["IsChangeVipIcon"]));
+            }
+            set {
+                this["IsChangeVipIcon"] = value;
             }
         }
     }

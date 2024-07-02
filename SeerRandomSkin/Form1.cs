@@ -42,6 +42,8 @@ namespace SeerRandomSkin
         public static string FormTitle; // 窗口标题
         public static Action<string> ChangeTitleAction;
 
+        public static bool IsHideFlashFightPanel { get; set; } = false;
+
         public Form1()
         {
             try
@@ -264,21 +266,37 @@ namespace SeerRandomSkin
                 protected override IResourceHandler GetResourceHandler(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request)
                 {
                     string url = request.Url;
-                    if (url.Contains("https://seer.61.com/resource/xml/battleStrategy.xml?"))
+                    if (url.Contains("https://seer.61.com/dll/PetFightDLL_201308.swf?"))
+                    {
+                        if (IsHideFlashFightPanel)
+                        {
+                            return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\PetFightDLL.swf");
+                        }
+                    }
+                    else if (url.Contains("https://seer.61.com/resource/xml/battleStrategy.xml?"))
                     {
                         return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\xml\battleStrategy.xml");
                     }
-                    else if (url == @"https://seer.61.com/dll/Assets.swf?lsx13yv4" && Properties.Settings.Default.IsChangeBackground)
+                    else if (url == @"https://seer.61.com/dll/Assets.swf?lsx13yv4")
                     {
-                        return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\Assets.swf");
+                        if (Properties.Settings.Default.IsChangeBackground)
+                        {
+                            return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\Assets.swf");
+                        }
                     }
-                    else if (url.Contains("https://seer.61.com/resource/uiIcon/yearvip_icon.swf?") && Properties.Settings.Default.IsChangeVipIcon)
+                    else if (url.Contains("https://seer.61.com/resource/uiIcon/yearvip_icon.swf?"))
                     {
-                        return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\yearvip_icon.swf");
+                        if (Properties.Settings.Default.IsChangeVipIcon)
+                        {
+                            return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\yearvip_icon.swf");
+                        }
                     }
-                    else if (url.Contains(@"login/ServerAdPanel1.swf") && Properties.Settings.Default.IsChangeAdPanel)
+                    else if (url.Contains(@"login/ServerAdPanel1.swf"))
                     {
-                        return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\NoAd.swf");
+                        if (Properties.Settings.Default.IsChangeAdPanel)
+                        {
+                            return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\NoAd.swf");
+                        }
                     }
                     else if (url.Contains(@"/resource/forApp/superMarket/tip.swf?"))
                     {
@@ -575,11 +593,6 @@ namespace SeerRandomSkin
             chromiumBrowser.Height = tmpH - 25;
         }
 
-        private void flash变速ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FlashSpeedHack();
-        }
-
         private void FlashSpeedHack()
         {
             string libPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "SpeedhackWrapper.dll");
@@ -610,6 +623,43 @@ namespace SeerRandomSkin
             };
             childFormScreenShot.Show();
             childFormScreenShot.ScreenShot();
+        }
+
+        private void SetFlashAutoFight(bool flag)
+        {
+            Form1.chromiumBrowser.ExecuteScriptAsync(flag ? "document.Client.WxAutoUseSkillStart();" : "document.Client.WxAutoUseSkillEnd();");
+        }
+
+        private void 变速ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FlashSpeedHack();
+        }
+
+        private void 开始自动出招ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetFlashAutoFight(true);
+        }
+
+        private void 结束自动出招ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetFlashAutoFight(false);
+        }
+
+        private void 隐藏战斗界面ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IsHideFlashFightPanel = !IsHideFlashFightPanel;
+            MessageBox.Show(IsHideFlashFightPanel ? "战斗界面已隐藏" : "战斗界面正常显示");
+        }
+
+        private void 压血ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IsHideFlashFightPanel = true;
+            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxLowHP();");
+        }
+
+        private void 自动治疗ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxAutoCureSwitch();");
         }
     }
 }

@@ -35,20 +35,17 @@
             this.checkBoxHideRecv = new System.Windows.Forms.CheckBox();
             this.listViewPack = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.rtbMsg = new System.Windows.Forms.RichTextBox();
             this.tbPackStr = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button_tigerAM = new System.Windows.Forms.Button();
-            this.button_tigerPM = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button_fightSkill0 = new System.Windows.Forms.Button();
             this.button_fightExit = new System.Windows.Forms.Button();
             this.button_fightCatch = new System.Windows.Forms.Button();
-            this.button_fightSkill0 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -98,6 +95,7 @@
             // 
             this.listViewPack.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
+            this.columnHeader3,
             this.columnHeader2});
             this.listViewPack.FullRowSelect = true;
             this.listViewPack.HideSelection = false;
@@ -112,6 +110,10 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "类型";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "命令号";
             // 
             // columnHeader2
             // 
@@ -146,7 +148,7 @@
             // numericUpDown1
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(402, 317);
-            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDown1.Minimum = new decimal(new int[] {
             1,
             0,
@@ -161,48 +163,27 @@
             0,
             0});
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.button_tigerPM);
-            this.groupBox1.Controls.Add(this.button_tigerAM);
-            this.groupBox1.Location = new System.Drawing.Point(43, 550);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(203, 55);
-            this.groupBox1.TabIndex = 14;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "挑战白虎";
-            // 
-            // button_tigerAM
-            // 
-            this.button_tigerAM.Location = new System.Drawing.Point(20, 20);
-            this.button_tigerAM.Name = "button_tigerAM";
-            this.button_tigerAM.Size = new System.Drawing.Size(75, 23);
-            this.button_tigerAM.TabIndex = 13;
-            this.button_tigerAM.Text = "昼";
-            this.button_tigerAM.UseVisualStyleBackColor = true;
-            this.button_tigerAM.Click += new System.EventHandler(this.button_tigerAM_Click);
-            // 
-            // button_tigerPM
-            // 
-            this.button_tigerPM.Location = new System.Drawing.Point(112, 20);
-            this.button_tigerPM.Name = "button_tigerPM";
-            this.button_tigerPM.Size = new System.Drawing.Size(75, 23);
-            this.button_tigerPM.TabIndex = 14;
-            this.button_tigerPM.Text = "夜";
-            this.button_tigerPM.UseVisualStyleBackColor = true;
-            this.button_tigerPM.Click += new System.EventHandler(this.button_tigerPM_Click);
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.button_fightSkill0);
             this.groupBox2.Controls.Add(this.button_fightExit);
             this.groupBox2.Controls.Add(this.button_fightCatch);
-            this.groupBox2.Location = new System.Drawing.Point(264, 550);
+            this.groupBox2.Location = new System.Drawing.Point(158, 551);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(309, 55);
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "对战";
+            // 
+            // button_fightSkill0
+            // 
+            this.button_fightSkill0.Location = new System.Drawing.Point(216, 20);
+            this.button_fightSkill0.Name = "button_fightSkill0";
+            this.button_fightSkill0.Size = new System.Drawing.Size(75, 23);
+            this.button_fightSkill0.TabIndex = 15;
+            this.button_fightSkill0.Text = "弃权";
+            this.button_fightSkill0.UseVisualStyleBackColor = true;
+            this.button_fightSkill0.Click += new System.EventHandler(this.button_fightSkill0_Click);
             // 
             // button_fightExit
             // 
@@ -224,23 +205,12 @@
             this.button_fightCatch.UseVisualStyleBackColor = true;
             this.button_fightCatch.Click += new System.EventHandler(this.button_fightCatch_Click);
             // 
-            // button_fightSkill0
-            // 
-            this.button_fightSkill0.Location = new System.Drawing.Point(216, 20);
-            this.button_fightSkill0.Name = "button_fightSkill0";
-            this.button_fightSkill0.Size = new System.Drawing.Size(75, 23);
-            this.button_fightSkill0.TabIndex = 15;
-            this.button_fightSkill0.Text = "弃权";
-            this.button_fightSkill0.UseVisualStyleBackColor = true;
-            this.button_fightSkill0.Click += new System.EventHandler(this.button_fightSkill0_Click);
-            // 
             // FormPack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(622, 629);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.tbPackStr);
@@ -254,7 +224,6 @@
             this.Name = "FormPack";
             this.Load += new System.EventHandler(this.FormScreenShot_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -274,12 +243,10 @@
         private System.Windows.Forms.TextBox tbPackStr;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button_tigerPM;
-        private System.Windows.Forms.Button button_tigerAM;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button_fightSkill0;
         private System.Windows.Forms.Button button_fightExit;
         private System.Windows.Forms.Button button_fightCatch;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }

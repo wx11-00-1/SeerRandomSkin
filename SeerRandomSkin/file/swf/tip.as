@@ -16,6 +16,7 @@ package
    import com.robot.core.info.fightInfo.attack.AttackValue;
    import com.robot.petFightModule_201308.view.TimerManager;
    import com.robot.core.info.fightInfo.ChangePetInfo;
+   import com.robot.core.manager.SystemTimerManager;
    
    [Embed(source="/_assets/assets.swf", symbol="item")]
    public dynamic class item extends MovieClip
@@ -42,6 +43,12 @@ package
 
          // 自动治疗
          SocketConnection.WxIsAutoCure = true;
+         SocketConnection.WxAutoCureSwitch = function():void
+         {
+            SocketConnection.WxIsAutoCure = !SocketConnection.WxIsAutoCure;
+            Alarm.show(SocketConnection.WxIsAutoCure ? "开启自动治疗" : "关闭自动治疗");
+         };
+         ExternalInterface.addCallback("WxAutoCureSwitch",SocketConnection.WxAutoCureSwitch);
          SocketConnection.WxOnFightEnd = function() : void
          {
             if (SocketConnection.WxIsAutoCure)
@@ -53,6 +60,16 @@ package
 
          // 自动出招
          SocketConnection.WxIsAutoUseSkill = false;
+         SocketConnection.WxAutoUseSkillStart = function():void
+         {
+            SocketConnection.WxIsAutoUseSkill = true;
+         };
+         SocketConnection.WxAutoUseSkillEnd = function():void
+         {
+            SocketConnection.WxIsAutoUseSkill = false;
+         };
+         ExternalInterface.addCallback("WxAutoUseSkillStart",SocketConnection.WxAutoUseSkillStart);
+         ExternalInterface.addCallback("WxAutoUseSkillEnd",SocketConnection.WxAutoUseSkillEnd);
          // 进入战斗
          SocketConnection.WxOnReadyToFight = function():void
          {
@@ -117,6 +134,43 @@ package
             }
         };
          SocketConnection.addCmdListener(CommandID.CHANGE_PET,SocketConnection.WxOnChangePet);
+
+         // 压血后恢复精灵体力
+         SocketConnection.WxCurePet20HP = function():void
+         {
+            SocketConnection.send(CommandID.ITEM_BUY,300011,6);
+            SocketConnection.send(CommandID.ITEM_BUY,300017,6);
+            var bag:Array = PetManager.getBagMap();
+            for (var i:int = 0; i < bag.length; i++)
+            {
+                SocketConnection.send(CommandID.USE_PET_ITEM_OUT_OF_FIGHT,bag[i].catchTime,300011);
+                SocketConnection.send(CommandID.USE_PET_ITEM_OUT_OF_FIGHT,bag[i].catchTime,300017);
+            }
+         };
+         // 压血
+         SocketConnection.WxLowHPFightOver = function():void
+         {
+            SocketConnection.removeCmdListener(CommandID.FIGHT_OVER,SocketConnection.WxLowHPFightOver);
+            SocketConnection.WxCurePet20HP();
+            SocketConnection.WxIsAutoUseSkill = false;
+            SocketConnection.WxIsAutoCure = true;
+         };
+         SocketConnection.WxLowHP = function():void
+         {
+            SocketConnection.addCmdListener(CommandID.FIGHT_OVER,SocketConnection.WxLowHPFightOver);
+            SocketConnection.WxIsAutoUseSkill = true;
+            SocketConnection.WxIsAutoCure = false;
+            SocketConnection.send(41129, (SystemTimerManager.sysBJDate.hours < 12 || SystemTimerManager.sysBJDate.hours >= 15) ? 8692 : 8694);
+            setTimeout(function():void
+            {
+               SocketConnection.send(CommandID.READY_TO_FIGHT);
+               setTimeout(function():void
+                {
+                    SocketConnection.send(CommandID.USE_SKILL,0);
+                },500);
+            },500);
+         };
+         ExternalInterface.addCallback("WxLowHP",SocketConnection.WxLowHP);
       }
    }
 }
