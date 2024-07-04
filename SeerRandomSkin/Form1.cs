@@ -42,7 +42,19 @@ namespace SeerRandomSkin
         public static string FormTitle; // 窗口标题
         public static Action<string> ChangeTitleAction;
 
-        public static bool IsHideFlashFightPanel { get; set; } = false;
+        private static bool isHideFlashFightPanel = false;
+        public static bool IsHideFlashFightPanel
+        {
+            get
+            {
+                return isHideFlashFightPanel;
+            }
+            set
+            {
+                isHideFlashFightPanel = value;
+                chromiumBrowser.ExecuteScriptAsync(value ? "document.Client.WxHiddenFightPanelStart();" : "document.Client.WxHiddenFightPanelStop();");
+            }
+        }
 
         public Form1()
         {
@@ -218,6 +230,7 @@ namespace SeerRandomSkin
                     else if (address == gameAddress)
                     {
                         args.Browser.MainFrame.ExecuteJavaScriptAsync(String.Format("document.body.style.zoom = {0};", Properties.Settings.Default.FlashZoom));
+                        args.Browser.MainFrame.ExecuteJavaScriptAsync(FormFlashFightHandler.JS_FIGHT_ENVIRONMENT);
                     }
                 }
             };
@@ -627,7 +640,7 @@ namespace SeerRandomSkin
 
         private void SetFlashAutoFight(bool flag)
         {
-            Form1.chromiumBrowser.ExecuteScriptAsync(flag ? "document.Client.WxAutoUseSkillStart();" : "document.Client.WxAutoUseSkillEnd();");
+            chromiumBrowser.ExecuteScriptAsync(flag ? "document.Client.WxAutoUseSkillStart();" : "document.Client.WxAutoUseSkillEnd();");
         }
 
         private void 变速ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -653,13 +666,20 @@ namespace SeerRandomSkin
 
         private void 压血ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            FormFlashFightHandler.SetFightTemplate("压血");
             IsHideFlashFightPanel = true;
-            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxLowHP();");
+            chromiumBrowser.ExecuteScriptAsync("document.Client.WxLowHP();");
         }
 
         private void 自动治疗ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxAutoCureSwitch();");
+            chromiumBrowser.ExecuteScriptAsync("document.Client.WxAutoCureSwitch();");
+        }
+
+        private void 对战助手ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormFlashFightHandler();
+            form.Show();
         }
     }
 }

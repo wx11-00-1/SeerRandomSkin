@@ -129,5 +129,15 @@ namespace SocketHack
         {
             MainClass.SendPack(2405, new int[] { 0 });
         }
+
+        private void btnReadyToFight_Click(object sender, EventArgs e)
+        {
+            MainClass.SendPack(2404, new int[] { });
+        }
+
+        private void btnCleanPackSpace_Click(object sender, EventArgs e)
+        {
+            tbPackStr.Text = tbPackStr.Text.Replace(" ", "");
+        }
     }
 }

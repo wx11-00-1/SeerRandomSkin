@@ -54,6 +54,7 @@
             this.隐藏战斗界面ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.压血ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.自动治疗ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.对战助手ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -133,14 +134,14 @@
             // 开启ToolStripMenuItem
             // 
             this.开启ToolStripMenuItem.Name = "开启ToolStripMenuItem";
-            this.开启ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.开启ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.开启ToolStripMenuItem.Text = "开启";
             this.开启ToolStripMenuItem.Click += new System.EventHandler(this.开启ToolStripMenuItem_Click);
             // 
             // 静音ToolStripMenuItem
             // 
             this.静音ToolStripMenuItem.Name = "静音ToolStripMenuItem";
-            this.静音ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.静音ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.静音ToolStripMenuItem.Text = "静音";
             this.静音ToolStripMenuItem.Click += new System.EventHandler(this.静音ToolStripMenuItem_Click);
             // 
@@ -213,7 +214,8 @@
             this.结束自动出招ToolStripMenuItem,
             this.隐藏战斗界面ToolStripMenuItem,
             this.压血ToolStripMenuItem,
-            this.自动治疗ToolStripMenuItem});
+            this.自动治疗ToolStripMenuItem,
+            this.对战助手ToolStripMenuItem});
             this.flashToolStripMenuItem1.Name = "flashToolStripMenuItem1";
             this.flashToolStripMenuItem1.Size = new System.Drawing.Size(49, 21);
             this.flashToolStripMenuItem1.Text = "Flash";
@@ -259,6 +261,13 @@
             this.自动治疗ToolStripMenuItem.Size = new System.Drawing.Size(280, 22);
             this.自动治疗ToolStripMenuItem.Text = "自动治疗";
             this.自动治疗ToolStripMenuItem.Click += new System.EventHandler(this.自动治疗ToolStripMenuItem_Click);
+            // 
+            // 对战助手ToolStripMenuItem
+            // 
+            this.对战助手ToolStripMenuItem.Name = "对战助手ToolStripMenuItem";
+            this.对战助手ToolStripMenuItem.Size = new System.Drawing.Size(280, 22);
+            this.对战助手ToolStripMenuItem.Text = "对战助手";
+            this.对战助手ToolStripMenuItem.Click += new System.EventHandler(this.对战助手ToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -306,6 +315,7 @@
         private System.Windows.Forms.ToolStripMenuItem 隐藏战斗界面ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 压血ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 自动治疗ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 对战助手ToolStripMenuItem;
     }
 }
 

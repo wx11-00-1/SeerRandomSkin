@@ -173,6 +173,12 @@
     <Compile Include="FormConfig.Designer.cs">
       <DependentUpon>FormConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormFlashFightHandler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFlashFightHandler.Designer.cs">
+      <DependentUpon>FormFlashFightHandler.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPack.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormConfig.resx">
       <DependentUpon>FormConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFlashFightHandler.resx">
+      <DependentUpon>FormFlashFightHandler.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPack.resx">
       <DependentUpon>FormPack.cs</DependentUpon>

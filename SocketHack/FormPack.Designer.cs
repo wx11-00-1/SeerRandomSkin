@@ -45,6 +45,8 @@
             this.button_fightSkill0 = new System.Windows.Forms.Button();
             this.button_fightExit = new System.Windows.Forms.Button();
             this.button_fightCatch = new System.Windows.Forms.Button();
+            this.btnReadyToFight = new System.Windows.Forms.Button();
+            this.btnCleanPackSpace = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -165,12 +167,13 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnReadyToFight);
             this.groupBox2.Controls.Add(this.button_fightSkill0);
             this.groupBox2.Controls.Add(this.button_fightExit);
             this.groupBox2.Controls.Add(this.button_fightCatch);
-            this.groupBox2.Location = new System.Drawing.Point(158, 551);
+            this.groupBox2.Location = new System.Drawing.Point(43, 552);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(309, 55);
+            this.groupBox2.Size = new System.Drawing.Size(530, 55);
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "对战";
@@ -205,11 +208,32 @@
             this.button_fightCatch.UseVisualStyleBackColor = true;
             this.button_fightCatch.Click += new System.EventHandler(this.button_fightCatch_Click);
             // 
+            // btnReadyToFight
+            // 
+            this.btnReadyToFight.Location = new System.Drawing.Point(402, 20);
+            this.btnReadyToFight.Name = "btnReadyToFight";
+            this.btnReadyToFight.Size = new System.Drawing.Size(107, 23);
+            this.btnReadyToFight.TabIndex = 16;
+            this.btnReadyToFight.Text = "READY_TO_FIGHT";
+            this.btnReadyToFight.UseVisualStyleBackColor = true;
+            this.btnReadyToFight.Click += new System.EventHandler(this.btnReadyToFight_Click);
+            // 
+            // btnCleanPackSpace
+            // 
+            this.btnCleanPackSpace.Location = new System.Drawing.Point(309, 281);
+            this.btnCleanPackSpace.Name = "btnCleanPackSpace";
+            this.btnCleanPackSpace.Size = new System.Drawing.Size(75, 23);
+            this.btnCleanPackSpace.TabIndex = 16;
+            this.btnCleanPackSpace.Text = "去掉空格";
+            this.btnCleanPackSpace.UseVisualStyleBackColor = true;
+            this.btnCleanPackSpace.Click += new System.EventHandler(this.btnCleanPackSpace_Click);
+            // 
             // FormPack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(622, 629);
+            this.Controls.Add(this.btnCleanPackSpace);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.btnSend);
@@ -248,5 +272,7 @@
         private System.Windows.Forms.Button button_fightExit;
         private System.Windows.Forms.Button button_fightCatch;
         private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.Button btnReadyToFight;
+        private System.Windows.Forms.Button btnCleanPackSpace;
     }
 }

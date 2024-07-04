@@ -17,6 +17,7 @@ package
    import com.robot.petFightModule_201308.view.TimerManager;
    import com.robot.core.info.fightInfo.ChangePetInfo;
    import com.robot.core.manager.SystemTimerManager;
+   import com.robot.core.info.fightInfo.FightStartInfo;
    
    [Embed(source="/_assets/assets.swf", symbol="item")]
    public dynamic class item extends MovieClip
@@ -48,34 +49,101 @@ package
             SocketConnection.WxIsAutoCure = !SocketConnection.WxIsAutoCure;
             Alarm.show(SocketConnection.WxIsAutoCure ? "开启自动治疗" : "关闭自动治疗");
          };
+         SocketConnection.WxAutoCureStart = function():void
+         {
+            SocketConnection.WxIsAutoCure = true;
+         };
+         SocketConnection.WxAutoCureStop = function():void
+         {
+            SocketConnection.WxIsAutoCure = false;
+         };
          ExternalInterface.addCallback("WxAutoCureSwitch",SocketConnection.WxAutoCureSwitch);
+         ExternalInterface.addCallback("WxAutoCureStart",SocketConnection.WxAutoCureStart);
+         ExternalInterface.addCallback("WxAutoCureStop",SocketConnection.WxAutoCureStop);
          SocketConnection.WxOnFightEnd = function() : void
          {
             if (SocketConnection.WxIsAutoCure)
             {
                PetManager.cureAll(false,false);
             }
+            ExternalInterface.call("WxFightHandler.OnFightOver");
          };
          SocketConnection.addCmdListener(CommandID.FIGHT_OVER,SocketConnection.WxOnFightEnd);
 
+         // 使用技能
+         SocketConnection.WxUseSkill = function(skillID:uint):void
+         {
+            SocketConnection.send(CommandID.USE_SKILL,skillID);
+         };
+         ExternalInterface.addCallback("WxUseSkill",SocketConnection.WxUseSkill);
+         // 切换精灵
+         SocketConnection.WxChangePet = function(petCatchTime:uint):void
+         {
+            SocketConnection.send(CommandID.CHANGE_PET,petCatchTime);
+         };
+         ExternalInterface.addCallback("WxChangePet",SocketConnection.WxChangePet);
+         // 标记主动切换
+         ExternalInterface.addCallback("WxSetIsPositiveChangePet", function():void
+         {
+            SocketConnection.WxIsPositiveChangePet = true;
+         });
+         // 使用药剂
+         ExternalInterface.addCallback("WxUsePetItem", function(itemID:uint):void
+         {
+            SocketConnection.send(CommandID.USE_PET_ITEM,SocketConnection.WxFightingPetCatchTime,itemID,0);
+         });
+         ExternalInterface.addCallback("WxItemBuy", function(itemID:uint):void
+         {
+            SocketConnection.send(CommandID.ITEM_BUY,itemID,1);
+         });
+
+         // 获取战斗时在场精灵 ID
+         ExternalInterface.addCallback("WxGetFightingPetID", function():uint
+         {
+            return SocketConnection.WxFightingPetID;
+         });
+         // 根据 catchTime 获取背包中的精灵 ID
+         SocketConnection.WxGetBagPetIDByCatchTime = function(catchTime:uint):uint
+         {
+            return PetManager.getPetInfo(catchTime).id;
+         };
+         ExternalInterface.addCallback("WxGetBagPetIDByCatchTime",SocketConnection.WxGetBagPetIDByCatchTime);
+
+         // 隐藏对战界面
+         SocketConnection.WxIsHiddenFightPanel = false;
+         ExternalInterface.addCallback("WxHiddenFightPanelStart", function():void
+         {
+            SocketConnection.WxIsHiddenFightPanel = true;
+         });
+         ExternalInterface.addCallback("WxHiddenFightPanelStop", function():void
+         {
+            SocketConnection.WxIsHiddenFightPanel = false;
+         });
+
          // 自动出招
-         SocketConnection.WxIsAutoUseSkill = false;
-         SocketConnection.WxAutoUseSkillStart = function():void
-         {
-            SocketConnection.WxIsAutoUseSkill = true;
-         };
-         SocketConnection.WxAutoUseSkillEnd = function():void
-         {
-            SocketConnection.WxIsAutoUseSkill = false;
-         };
-         ExternalInterface.addCallback("WxAutoUseSkillStart",SocketConnection.WxAutoUseSkillStart);
-         ExternalInterface.addCallback("WxAutoUseSkillEnd",SocketConnection.WxAutoUseSkillEnd);
          // 进入战斗
          SocketConnection.WxOnReadyToFight = function():void
          {
-            SocketConnection.WxFightRound = 0;
+            ExternalInterface.call("WxFightHandler.Utils.RoundReset");
+            SocketConnection.WxIsPositiveChangePet = false;
+            if (SocketConnection.WxIsHiddenFightPanel)
+            {
+                setTimeout(function():void
+                {
+                   SocketConnection.send(CommandID.READY_TO_FIGHT);
+                },1000);
+            }
          };
          SocketConnection.addCmdListener(CommandID.NOTE_READY_TO_FIGHT,SocketConnection.WxOnReadyToFight);
+         // 首发精灵信息
+         SocketConnection.WxOnStartFight = function():void
+         {
+            SocketConnection.WxFightingPetID = PetManager.getBagMap()[0].id;
+            SocketConnection.WxFightingPetCatchTime = PetManager.getBagMap()[0].catchTime;
+            // var _loc2_:FightStartInfo = param1.data as FightStartInfo;
+            ExternalInterface.call("WxFightHandler.OnFirstRound");
+         };
+         SocketConnection.addCmdListener(CommandID.NOTE_START_FIGHT,SocketConnection.WxOnStartFight);
          // 使用技能
          SocketConnection.WxOnUseSkill = function(param1:SocketEvent) : void
          {
@@ -92,45 +160,33 @@ package
                mySkillInfo = _loc2_.secondAttackInfo;
                enemySkillInfo = _loc2_.firstAttackInfo;
             }
-            ExternalInterface.call("seerRandomSkinObj.showFightInfo",++SocketConnection.WxFightRound,enemySkillInfo.remainHP * 100 / enemySkillInfo.maxHp);
-            if (enemySkillInfo.remainHP == 0 || !SocketConnection.WxIsAutoUseSkill)
+            var hpPercent:uint = enemySkillInfo.remainHP * 100 / enemySkillInfo.maxHp;
+            ExternalInterface.call("WxFightHandler.Utils.ShowRound",hpPercent);
+            if (enemySkillInfo.remainHP == 0)
             {
                 return; // 对手已被击败
             }
-            // 使用技能
-            // 这里不会自动补 pp，因为 奇镰解放 和 深森风响 技能不需要补 pp （其实是懒得写
-            if (mySkillInfo.remainHP != 0)
-            {
-               SocketConnection.send(CommandID.USE_SKILL,mySkillInfo.skillID);
-               TimerManager.wait(); // 官方的代码里有，不知道作用是什么。。。
-            }
-            else
-            {
-                // 切换精灵
-                // changehps 包含除了当前在场精灵外的，所有出战精灵
-                for (var i:int = 0; i < mySkillInfo.changehps.length; i++)
-                {
-                    if (mySkillInfo.changehps[i].hp > 0)
-                    {
-                        SocketConnection.send(CommandID.CHANGE_PET,mySkillInfo.changehps[i].id);
-                        return;
-                    }
-                }
-            }
+
+            ExternalInterface.call("WxFightHandler.OnUseSkill",mySkillInfo,enemySkillInfo);
          };
          SocketConnection.addCmdListener(CommandID.NOTE_USE_SKILL,SocketConnection.WxOnUseSkill);
          // 切换精灵
          SocketConnection.WxOnChangePet = function(param1:SocketEvent):void
         {
-            if (!SocketConnection.WxIsAutoUseSkill)
-            {
-                return;
-            }
             var _loc2_:ChangePetInfo = param1.data as ChangePetInfo;
-            // 目前只考虑全是死亡切换的情况，己方切换精灵就使用0技能
-            if (_loc2_.userID == MainManager.actorInfo.userID)
-            {
-                SocketConnection.send(CommandID.USE_SKILL,0);
+            // 己方切换
+            if (_loc2_.userID == MainManager.actorInfo.userID) {
+                SocketConnection.WxFightingPetID = _loc2_.petID;
+                SocketConnection.WxFightingPetCatchTime = _loc2_.catchTime;
+                if (SocketConnection.WxIsPositiveChangePet)
+                {
+                    SocketConnection.WxIsPositiveChangePet = false;
+                }
+                else
+                {
+                    // 死亡切换后才能出招
+                    ExternalInterface.call("WxFightHandler.OnChangePet",_loc2_);
+                }
             }
         };
          SocketConnection.addCmdListener(CommandID.CHANGE_PET,SocketConnection.WxOnChangePet);
@@ -147,30 +203,24 @@ package
                 SocketConnection.send(CommandID.USE_PET_ITEM_OUT_OF_FIGHT,bag[i].catchTime,300017);
             }
          };
+         ExternalInterface.addCallback("WxCurePet20HP",SocketConnection.WxCurePet20HP);
          // 压血
          SocketConnection.WxLowHPFightOver = function():void
          {
             SocketConnection.removeCmdListener(CommandID.FIGHT_OVER,SocketConnection.WxLowHPFightOver);
+            SocketConnection.WxAutoCureStart();
             SocketConnection.WxCurePet20HP();
-            SocketConnection.WxIsAutoUseSkill = false;
-            SocketConnection.WxIsAutoCure = true;
          };
          SocketConnection.WxLowHP = function():void
          {
-            SocketConnection.addCmdListener(CommandID.FIGHT_OVER,SocketConnection.WxLowHPFightOver);
-            SocketConnection.WxIsAutoUseSkill = true;
-            SocketConnection.WxIsAutoCure = false;
+            SocketConnection.WxAutoCureStop();
             SocketConnection.send(41129, (SystemTimerManager.sysBJDate.hours < 12 || SystemTimerManager.sysBJDate.hours >= 15) ? 8692 : 8694);
-            setTimeout(function():void
-            {
-               SocketConnection.send(CommandID.READY_TO_FIGHT);
-               setTimeout(function():void
-                {
-                    SocketConnection.send(CommandID.USE_SKILL,0);
-                },500);
-            },500);
+            SocketConnection.addCmdListener(CommandID.FIGHT_OVER,SocketConnection.WxLowHPFightOver);
          };
          ExternalInterface.addCallback("WxLowHP",SocketConnection.WxLowHP);
+
+         // 发包函数
+         ExternalInterface.addCallback("WxSend",SocketConnection.send);
       }
    }
 }
