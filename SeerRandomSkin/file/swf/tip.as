@@ -221,6 +221,23 @@ package
 
          // ·¢°üº¯Êý
          ExternalInterface.addCallback("WxSend",SocketConnection.send);
+         //ExternalInterface.addCallback("WxSendWithCallback2",SocketConnection.sendWithCallback2);
+         ExternalInterface.addCallback("WxSendWithCallback2", function(commandID:int, parameterArray:Array = null):void
+         {
+            SocketConnection.sendWithCallback2(commandID,
+            function(event:SocketEvent):void
+            {
+                var data:ByteArray = event.data as ByteArray;
+                var packet:Array = new Array();
+                for (var i:int = 0; i < data.length; i++)
+                {
+                    packet.push(data.readUnsignedByte());
+                }
+                ExternalInterface.call("WxFightHandler.Utils._as3Callback",packet);
+            }
+            ,parameterArray);
+         }
+         );
       }
    }
 }

@@ -60,40 +60,55 @@ namespace SeerRandomSkin
             // 2、在场精灵仍然存活，切换上另一只精灵（fightInfo 的类型为 AttackValue）
             "   if ('petID' in fightInfo || fightInfo.remainHP > 0) { document.Client.WxSetIsPositiveChangePet(); }" +
             "   let petArray = fightInfo.changehps;" +
-            "   for (let i in petArray) {" +
-            "       if (petArray[i].hp > 0 && -1 !== idArray.indexOf(WxFightHandler.Utils.GetBagPetIDByCatchTime(petArray[i].id))) {" +
-            "           WxFightHandler.Utils.ChangePet(petArray[i].id); return;" +
+            "   for (let pet of petArray) {" +
+            "       if (pet.hp > 0 && -1 !== idArray.indexOf(WxFightHandler.Utils.GetBagPetIDByCatchTime(pet.id))) {" +
+            "           WxFightHandler.Utils.ChangePet(pet.id); return;" +
             "       }" +
             "   }" +
             // 没有这些 ID 的精灵，随便上一个
-            "   for (let i in petArray) {" +
-            "       if (petArray[i].hp > 0) {" +
-            "           WxFightHandler.Utils.ChangePet(petArray[i].id); return;" +
+            "   for (let pet of petArray) {" +
+            "       if (pet.hp > 0) {" +
+            "           WxFightHandler.Utils.ChangePet(pet.id); return;" +
             "       }" +
             "   }" +
+            "};" +
+
+            // 发包 并接收返回值
+            "WxFightHandler.Utils.Send = (commandID, ...args) => {" +
+            "   document.Client.WxSend(commandID, ...args);" +
+            "};" +
+            "WxFightHandler.Utils.SendAsync = async (commandID,parameterArray) => {" +
+            "   let packet;" +
+            "   await new Promise((resolve) => {" +
+            "       WxFightHandler.Utils._as3Callback = resolve;" +
+            "       document.Client.WxSendWithCallback2(commandID,parameterArray);" +
+            "   }).then((p) => {" +
+            "       packet = p;" +
+            "   });" +
+            "   return packet;" +
             "};"
             ;
 
         public const string JS_FIGHT_DEFAULT =
             "WxFightHandler.OnFirstRound = () => {\r\n" +
-            "   \r\n" +
+            "  \r\n" +
             "};\r\n\r\n" +
 
             "WxFightHandler.OnUseSkill = (mySkillInfo,enemySkillInfo) => {\r\n" +
-            "   if (mySkillInfo.remainHP !== 0) {\r\n" +
-            "       \r\n" +
-            "   }\r\n" +
-            "   else {\r\n" +
-            "       \r\n" +
-            "   }\r\n" +
+            "  if (mySkillInfo.remainHP !== 0) {\r\n" +
+            "    \r\n" +
+            "  }\r\n" +
+            "  else {\r\n" +
+            "    \r\n" +
+            "  }\r\n" +
             "};\r\n\r\n" +
 
             "WxFightHandler.OnChangePet = (petInfo) => {\r\n" +
-            "   \r\n" +
+            "  \r\n" +
             "};\r\n\r\n" +
 
             "WxFightHandler.OnFightOver = () => {\r\n" +
-            "   \r\n" +
+            "  \r\n" +
             "};"
             ;
 
