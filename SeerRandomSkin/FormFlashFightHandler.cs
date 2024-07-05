@@ -86,6 +86,20 @@ namespace SeerRandomSkin
             "       packet = p;" +
             "   });" +
             "   return packet;" +
+            "};" +
+
+            // xml
+            "WxFightHandler.Utils.GetItemNameByID = (itemID) => {" +
+            "   return document.Client.WxGetItemNameByID(itemID);" +
+            "};" +
+            "WxFightHandler.Utils.GetAllCloth = () => {" +
+            "   return document.Client.WxGetAllCloth();" +
+            "};" +
+            "WxFightHandler.Utils.GetPetNameByID = (petID) => {" +
+            "   return document.Client.WxGetPetNameByID(petID);" +
+            "};" +
+            "WxFightHandler.Utils.GetSkillNameByID = (skillID) => {" +
+            "   return document.Client.WxGetSkillNameByID(skillID);" +
             "};"
             ;
 

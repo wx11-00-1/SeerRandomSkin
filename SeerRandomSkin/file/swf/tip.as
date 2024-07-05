@@ -18,6 +18,9 @@ package
    import com.robot.core.info.fightInfo.ChangePetInfo;
    import com.robot.core.manager.SystemTimerManager;
    import com.robot.core.info.fightInfo.FightStartInfo;
+   import com.robot.core.config.xml.ItemXMLInfo;
+   import com.robot.core.config.xml.PetXMLInfo;
+   import com.robot.core.config.xml.SkillXMLInfo;
    
    [Embed(source="/_assets/assets.swf", symbol="item")]
    public dynamic class item extends MovieClip
@@ -221,7 +224,6 @@ package
 
          // ·¢°üº¯Êý
          ExternalInterface.addCallback("WxSend",SocketConnection.send);
-         //ExternalInterface.addCallback("WxSendWithCallback2",SocketConnection.sendWithCallback2);
          ExternalInterface.addCallback("WxSendWithCallback2", function(commandID:int, parameterArray:Array = null):void
          {
             SocketConnection.sendWithCallback2(commandID,
@@ -236,6 +238,28 @@ package
                 ExternalInterface.call("WxFightHandler.Utils._as3Callback",packet);
             }
             ,parameterArray);
+         }
+         );
+
+         // xml
+         ExternalInterface.addCallback("WxGetItemNameByID", function(itemID:uint):String
+         {
+            return ItemXMLInfo.getName(itemID);
+         }
+         );
+         ExternalInterface.addCallback("WxGetAllCloth", function():Array
+         {
+            return ItemXMLInfo.getAllCloth();
+         }
+         );
+         ExternalInterface.addCallback("WxGetPetNameByID", function(petID:uint):String
+         {
+            return PetXMLInfo.getName(petID);
+         }
+         );
+         ExternalInterface.addCallback("WxGetSkillNameByID", function(skillID:uint):String
+         {
+            return SkillXMLInfo.getName(skillID);
          }
          );
       }
