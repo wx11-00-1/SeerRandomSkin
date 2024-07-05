@@ -33,7 +33,8 @@
   - 变速
   - 更换加载背景
   - 自动出招
-  - 封包收发
+  - 读取封包
+  - 用 js 制作日常脚本
 
 - H5 端
   - 保存当前套装、称号、精灵背包，一键更换
@@ -53,3 +54,150 @@
 - 劣势：
   - 多进程架构，部分功能的开发难度增加
   - 变速效果与以往的 IE 内核登录器有所不同
+
+## API
+WxFightHandler 对象提供的属性和方法，通过 js 代码调用，用于编写日常脚本（登录器自带了一些脚本例子，参照着文档看，更容易理解）
+### 1 对战相关
+#### 1.1 WxFightHandler.Private.Round
+记录对战回合
+#### 1.2 WxFightHandler.Utils.UseSkill
+##### 说明
+使用技能
+##### 参数
+###### skillID
+技能 ID
+##### 示例
+```js
+WxFightHandler.Utils.UseSkill(19940); // 使用技能：违·永恒之寂
+```
+#### 1.3 WxFightHandler.Utils.ChangePet
+##### 说明
+切换精灵
+##### 参数
+###### petCatchTime
+精灵获取时间，常用于标识精灵
+##### 示例
+```js
+// 在一般出招回合触发
+WxFightHandler.OnUseSkill = (mySkillInfo,enemySkillInfo) => {
+  if (mySkillInfo.remainHP !== 0) {
+    WxFightHandler.Utils.UseSkill(0); // 我方精灵存活，使用技能（0技能表示此回合弃权，不出招）
+  }
+  else {
+    for(var pet of mySkillInfo.changehps) { // 遍历我方除在场精灵外的其他精灵，若存活则切换上场
+      if(pet.hp>0) { WxFightHandler.Utils.ChangePet(pet.id); break; } // 注意此处的 pet.id，它的数值实际上就是精灵的获取时间，只是在这里混用了，大多数情况下 id 并不等于 catchTime
+    }
+  }
+};
+```
+#### 1.4 WxFightHandler.Utils.UsePetItem
+##### 说明
+在战斗中使用道具（药剂、胶囊等）
+##### 参数
+###### itemID
+道具 ID
+##### 示例
+```js
+WxFightHandler.Utils.UsePetItem(300011); // 使用回 20 血的药剂
+```
+#### 1.5 WxFightHandler.Utils.UsePetItem10PP
+##### 说明
+无参数
+使用回 10 pp 的药剂
+#### 1.6 WxFightHandler.Utils.ItemBuy
+##### 说明
+购买道具
+##### 参数
+###### itemID
+道具 ID
+##### 示例
+```js
+WxFightHandler.Utils.ItemBuy(300017); // 购买 10 pp 药剂，可以在战斗中使用
+```
+#### 1.7 WxFightHandler.Utils.StopAutoFight
+##### 说明
+无参数
+停止对战接管，调用后立即生效
+#### 1.8 WxFightHandler.Utils.GetFightingPetID
+##### 说明
+无参数
+在战斗中，获取当前在场精灵的 ID
+##### 示例
+```js
+WxFightHandler.OnUseSkill = (mySkillInfo,enemySkillInfo) => {
+  let petID = WxFightHandler.Utils.GetFightingPetID();
+  // 当 3322 精灵（茉蕊儿）阵亡，4377 精灵跟着上场（获得500护盾）
+  if (mySkillInfo.remainHP === 0) {
+    if (3322 === petID) { WxFightHandler.Utils.ChangePetByID(mySkillInfo,[4377]); }
+  }
+};
+```
+#### 1.9 WxFightHandler.Utils.ChangePetByID
+##### 说明
+换上指定 ID 数组中的的精灵
+##### 参数
+###### fightInfo
+对战信息对象，必须包含 changehps 属性（mySkillInfo 或 petInfo）
+###### idArray
+精灵 ID **数组**
+##### 示例
+```js
+// 首回合触发
+WxFightHandler.OnFirstRound = () => {
+  WxFightHandler.KELUO = 2977;
+  WxFightHandler.DIDUO = 4377;
+  WxFightHandler.IsDIDUOFirstUp = true;
+  WxFightHandler.Utils.UseSkill(0);
+};
+// 发生死亡切换时触发
+WxFightHandler.OnChangePet = (petInfo) => {
+  let petID = petInfo.petID;
+  // 这一段的目的是：首发1级草王送死，给蒂朵500护盾；蒂朵第一次上场时立刻切换上1级神寂·克罗诺斯送死，锁伤250保护蒂朵第二次上场，顺利自爆
+  // 完整的代码当然不止这点，这里主要演示 ChangePetByID 方法的使用
+  if (WxFightHandler.DIDUO === petID) {
+    if (WxFightHandler.IsDIDUOFirstUp) {
+      WxFightHandler.Utils.ChangePetByID(petInfo,[WxFightHandler.KELUO]);
+      WxFightHandler.IsDIDUOFirstUp = false;
+    } else {
+      WxFightHandler.Utils.UseSkill(35914);
+    }
+  }
+};
+```
+### 2 发包函数
+#### 2.1 WxFightHandler.Utils.Send
+##### 说明
+发送封包
+##### 参数
+###### commandID
+命令号
+###### ...args
+任意数量的整数参数
+#### 2.2 WxFightHandler.Utils.SendAsync
+##### 说明
+发包 并接收返回值
+##### 参数
+###### commandID
+命令号
+###### parameterArray
+整数参数**数组**
+### 3 xml
+#### 3.1 WxFightHandler.Utils.GetItemNameByID
+##### 说明
+根据 ID 获取道具名称
+##### 参数
+###### ID
+#### 3.2 WxFightHandler.Utils.GetPetNameByID
+##### 说明
+根据 ID 获取精灵名称
+##### 参数
+###### ID
+#### 3.3 WxFightHandler.Utils.GetSkillNameByID
+##### 说明
+根据 ID 获取技能名称
+##### 参数
+###### ID
+#### 3.4 WxFightHandler.Utils.GetAllCloth
+##### 说明
+无参数
+获取游戏内所有套装部件的信息

@@ -44,17 +44,17 @@
             // 
             this.richTextBox_script.Location = new System.Drawing.Point(204, 37);
             this.richTextBox_script.Name = "richTextBox_script";
-            this.richTextBox_script.Size = new System.Drawing.Size(544, 343);
+            this.richTextBox_script.Size = new System.Drawing.Size(707, 451);
             this.richTextBox_script.TabIndex = 0;
             this.richTextBox_script.Text = "";
             // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(673, 408);
+            this.btnTest.Location = new System.Drawing.Point(836, 511);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(75, 23);
             this.btnTest.TabIndex = 1;
-            this.btnTest.Text = "使用方案";
+            this.btnTest.Text = "执行";
             this.btnTest.UseVisualStyleBackColor = true;
             this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
             // 
@@ -67,7 +67,7 @@
             this.lvTemplate.HideSelection = false;
             this.lvTemplate.Location = new System.Drawing.Point(31, 37);
             this.lvTemplate.Name = "lvTemplate";
-            this.lvTemplate.Size = new System.Drawing.Size(141, 343);
+            this.lvTemplate.Size = new System.Drawing.Size(141, 451);
             this.lvTemplate.TabIndex = 2;
             this.lvTemplate.UseCompatibleStateImageBehavior = false;
             this.lvTemplate.View = System.Windows.Forms.View.Details;
@@ -85,14 +85,14 @@
             // 
             // tbTemplateName
             // 
-            this.tbTemplateName.Location = new System.Drawing.Point(31, 408);
+            this.tbTemplateName.Location = new System.Drawing.Point(31, 511);
             this.tbTemplateName.Name = "tbTemplateName";
             this.tbTemplateName.Size = new System.Drawing.Size(141, 21);
             this.tbTemplateName.TabIndex = 3;
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(204, 408);
+            this.btnAdd.Location = new System.Drawing.Point(204, 511);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 4;
@@ -102,7 +102,7 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(328, 408);
+            this.btnRemove.Location = new System.Drawing.Point(328, 511);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(75, 23);
             this.btnRemove.TabIndex = 5;
@@ -112,7 +112,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(548, 408);
+            this.button1.Location = new System.Drawing.Point(714, 511);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 6;
@@ -124,7 +124,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 463);
+            this.ClientSize = new System.Drawing.Size(944, 560);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnAdd);
