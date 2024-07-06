@@ -164,6 +164,20 @@ WxFightHandler.OnChangePet = (petInfo) => {
   }
 };
 ```
+#### 1.10 WxFightHandler.Utils.Delay
+##### 说明
+等待一段时间。有些日常关卡出招太快会掉线；调试时增加，也方便观察脚本运行情况
+##### 参数
+###### millisecond
+毫秒（一毫秒 = 一千分之一秒）
+##### 示例
+```js
+WxFightHandler.OnFirstRound = async () => { // 函数要加 async 标识
+  WxFightHandler.Utils.Delay(1000);
+  console.log('开始对战');
+  WxFightHandler.Utils.UseSkill(0);
+};
+```
 ### 2 发包函数
 #### 2.1 WxFightHandler.Utils.Send
 ##### 说明

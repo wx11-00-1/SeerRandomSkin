@@ -21,6 +21,7 @@ package
    import com.robot.core.config.xml.ItemXMLInfo;
    import com.robot.core.config.xml.PetXMLInfo;
    import com.robot.core.config.xml.SkillXMLInfo;
+   import com.robot.app.task.petstory.util.KTool;
    
    [Embed(source="/_assets/assets.swf", symbol="item")]
    public dynamic class item extends MovieClip
@@ -35,6 +36,9 @@ package
          {
             return;
          }
+
+         // 隐藏其他用户
+         KTool.hideMapAllPlayerAndMonster();
 
          // 关电池
          SocketConnection.send(41162,0);

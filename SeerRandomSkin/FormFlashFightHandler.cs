@@ -73,6 +73,11 @@ namespace SeerRandomSkin
             "   }" +
             "};" +
 
+            // 延迟函数
+            "WxFightHandler.Utils.Delay = async (millisecond) => {" +
+            "   return new Promise((resolve) => { setTimeout(() => { resolve(); },millisecond); });" +
+            "};" +
+
             // 发包 并接收返回值
             "WxFightHandler.Utils.Send = (commandID, ...args) => {" +
             "   document.Client.WxSend(commandID, ...args);" +
