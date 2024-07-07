@@ -38,7 +38,7 @@ package
          }
 
          // 隐藏其他用户
-         KTool.hideMapAllPlayerAndMonster();
+         KTool.hideMapPlayerAndMonster();
 
          // 关电池
          SocketConnection.send(41162,0);
@@ -108,6 +108,10 @@ package
          ExternalInterface.addCallback("WxGetFightingPetID", function():uint
          {
             return SocketConnection.WxFightingPetID;
+         });
+         ExternalInterface.addCallback("WxGetFightingPetCatchTime", function():uint
+         {
+            return SocketConnection.WxFightingPetCatchTime;
          });
          // 根据 catchTime 获取背包中的精灵 ID
          SocketConnection.WxGetBagPetIDByCatchTime = function(catchTime:uint):uint

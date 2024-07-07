@@ -36,7 +36,7 @@ namespace SeerRandomSkin
             "   document.Client.WxUsePetItem(itemID);" +
             "};" +
 
-            "WxFightHandler.Utils.UsePetItem10PP = (itemID) => {" +
+            "WxFightHandler.Utils.UsePetItem10PP = () => {" +
             "   WxFightHandler.Utils.UsePetItem(300017);" +
             "};" +
 
@@ -52,6 +52,7 @@ namespace SeerRandomSkin
             "};" +
 
             "WxFightHandler.Utils.GetFightingPetID = () => { return document.Client.WxGetFightingPetID(); };" +
+            "WxFightHandler.Utils.GetFightingPetCatchTime = () => { return document.Client.WxGetFightingPetCatchTime(); };" +
             "WxFightHandler.Utils.GetBagPetIDByCatchTime = (ct) => { return document.Client.WxGetBagPetIDByCatchTime(ct); };" +
 
             "WxFightHandler.Utils.ChangePetByID = (fightInfo,idArray) => {" +
@@ -61,13 +62,13 @@ namespace SeerRandomSkin
             "   if ('petID' in fightInfo || fightInfo.remainHP > 0) { document.Client.WxSetIsPositiveChangePet(); }" +
             "   let petArray = fightInfo.changehps;" +
             "   for (let pet of petArray) {" +
-            "       if (pet.hp > 0 && -1 !== idArray.indexOf(WxFightHandler.Utils.GetBagPetIDByCatchTime(pet.id))) {" +
+            "       if (pet.hp > 0 && -1 !== idArray.indexOf(WxFightHandler.Utils.GetBagPetIDByCatchTime(pet.id)) && pet.id !== WxFightHandler.Utils.GetFightingPetCatchTime()) {" +
             "           WxFightHandler.Utils.ChangePet(pet.id); return;" +
             "       }" +
             "   }" +
             // 没有这些 ID 的精灵，随便上一个
             "   for (let pet of petArray) {" +
-            "       if (pet.hp > 0) {" +
+            "       if (pet.hp > 0 && pet.id !== WxFightHandler.Utils.GetFightingPetCatchTime()) {" +
             "           WxFightHandler.Utils.ChangePet(pet.id); return;" +
             "       }" +
             "   }" +
