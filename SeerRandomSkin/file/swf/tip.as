@@ -175,7 +175,18 @@ package
             ExternalInterface.call("WxFightHandler.Utils.ShowRound",hpPercent);
             if (enemySkillInfo.remainHP == 0)
             {
-                return; // 对手已被击败
+                var isEnemyAllDead:Boolean = true;
+                for (var i:int = 0; i < enemySkillInfo.changehps.length; ++i)
+                {
+                    if (enemySkillInfo.changehps[i].hp > 0)
+                    {
+                        isEnemyAllDead = false; break;
+                    }
+                }
+                if (isEnemyAllDead)
+                {
+                    return;
+                }
             }
 
             ExternalInterface.call("WxFightHandler.OnUseSkill",mySkillInfo,enemySkillInfo);
