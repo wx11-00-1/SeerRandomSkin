@@ -110,7 +110,7 @@ namespace SeerRandomSkin
             ;
 
         public const string JS_FIGHT_DEFAULT =
-            "WxFightHandler.OnFirstRound = () => {\r\n" +
+            "WxFightHandler.OnFirstRound = (fightStartInfo) => {\r\n" +
             "  \r\n" +
             "};\r\n\r\n" +
 
@@ -127,7 +127,7 @@ namespace SeerRandomSkin
             "  \r\n" +
             "};\r\n\r\n" +
 
-            "WxFightHandler.OnFightOver = () => {\r\n" +
+            "WxFightHandler.OnFightOver = (fightOverInfo) => {\r\n" +
             "  \r\n" +
             "};"
             ;

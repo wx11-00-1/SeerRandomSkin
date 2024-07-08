@@ -22,6 +22,9 @@ package
    import com.robot.core.config.xml.PetXMLInfo;
    import com.robot.core.config.xml.SkillXMLInfo;
    import com.robot.app.task.petstory.util.KTool;
+   import com.robot.core.info.fightInfo.NoteReadyToFightInfo;
+   import com.robot.core.info.fightInfo.FightStartInfo;
+   import com.robot.core.info.fightInfo.attack.FightOverInfo;
    
    [Embed(source="/_assets/assets.swf", symbol="item")]
    public dynamic class item extends MovieClip
@@ -67,13 +70,14 @@ package
          ExternalInterface.addCallback("WxAutoCureSwitch",SocketConnection.WxAutoCureSwitch);
          ExternalInterface.addCallback("WxAutoCureStart",SocketConnection.WxAutoCureStart);
          ExternalInterface.addCallback("WxAutoCureStop",SocketConnection.WxAutoCureStop);
-         SocketConnection.WxOnFightEnd = function() : void
+         SocketConnection.WxOnFightEnd = function(event:SocketEvent) : void
          {
             if (SocketConnection.WxIsAutoCure)
             {
                PetManager.cureAll(false,false);
             }
-            ExternalInterface.call("WxFightHandler.OnFightOver");
+            var fightOverInfo:FightOverInfo = event.data as FightOverInfo;
+            ExternalInterface.call("WxFightHandler.OnFightOver",fightOverInfo);
          };
          SocketConnection.addCmdListener(CommandID.FIGHT_OVER,SocketConnection.WxOnFightEnd);
 
@@ -133,8 +137,10 @@ package
 
          // 自动出招
          // 进入战斗
-         SocketConnection.WxOnReadyToFight = function():void
+         SocketConnection.WxOnReadyToFight = function(event:NoteReadyToFightInfo):void
          {
+            //var readyData:NoteReadyToFightInfo = event.data as NoteReadyToFightInfo;
+            ExternalInterface.call("WxFightHandler.OnNoteReadyToFight",event);
             ExternalInterface.call("WxFightHandler.Utils.RoundReset");
             SocketConnection.WxIsPositiveChangePet = false;
             if (SocketConnection.WxIsHiddenFightPanel)
@@ -147,12 +153,12 @@ package
          };
          SocketConnection.addCmdListener(CommandID.NOTE_READY_TO_FIGHT,SocketConnection.WxOnReadyToFight);
          // 首发精灵信息
-         SocketConnection.WxOnStartFight = function():void
+         SocketConnection.WxOnStartFight = function(event:SocketEvent):void
          {
             SocketConnection.WxFightingPetID = PetManager.getBagMap()[0].id;
             SocketConnection.WxFightingPetCatchTime = PetManager.getBagMap()[0].catchTime;
-            // var _loc2_:FightStartInfo = param1.data as FightStartInfo;
-            ExternalInterface.call("WxFightHandler.OnFirstRound");
+            var _loc2_:FightStartInfo = event.data as FightStartInfo;
+            ExternalInterface.call("WxFightHandler.OnFirstRound",_loc2_);
          };
          SocketConnection.addCmdListener(CommandID.NOTE_START_FIGHT,SocketConnection.WxOnStartFight);
          // 使用技能
