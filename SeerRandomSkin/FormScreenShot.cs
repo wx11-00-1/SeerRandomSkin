@@ -40,7 +40,7 @@ namespace SeerRandomSkin
                     graphics.CopyFromScreen(MainForm.Location.X + screenWidth, MainForm.Location.Y + titleAndMenuHeight + 60, 0, 0, new System.Drawing.Size(screenWidth, screenHeight));
 
                     // 缩小图片
-                    using (var smallPic = new Bitmap(bitmap, bitmap.Width / 2, bitmap.Height / 2))
+                    using (var smallPic = new Bitmap(bitmap, bitmap.Width / 5 * 2, bitmap.Height / 5 * 2))
                     {
                         // 在本窗口中显示
                         pictureBox1.Dock = DockStyle.Fill;
