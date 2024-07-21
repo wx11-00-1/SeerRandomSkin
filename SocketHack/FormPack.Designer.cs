@@ -42,10 +42,10 @@
             this.btnSend = new System.Windows.Forms.Button();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnReadyToFight = new System.Windows.Forms.Button();
             this.button_fightSkill0 = new System.Windows.Forms.Button();
             this.button_fightExit = new System.Windows.Forms.Button();
             this.button_fightCatch = new System.Windows.Forms.Button();
-            this.btnReadyToFight = new System.Windows.Forms.Button();
             this.btnCleanPackSpace = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -178,6 +178,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "对战";
             // 
+            // btnReadyToFight
+            // 
+            this.btnReadyToFight.Location = new System.Drawing.Point(402, 20);
+            this.btnReadyToFight.Name = "btnReadyToFight";
+            this.btnReadyToFight.Size = new System.Drawing.Size(107, 23);
+            this.btnReadyToFight.TabIndex = 16;
+            this.btnReadyToFight.Text = "READY_TO_FIGHT";
+            this.btnReadyToFight.UseVisualStyleBackColor = true;
+            this.btnReadyToFight.Click += new System.EventHandler(this.btnReadyToFight_Click);
+            // 
             // button_fightSkill0
             // 
             this.button_fightSkill0.Location = new System.Drawing.Point(216, 20);
@@ -208,23 +218,13 @@
             this.button_fightCatch.UseVisualStyleBackColor = true;
             this.button_fightCatch.Click += new System.EventHandler(this.button_fightCatch_Click);
             // 
-            // btnReadyToFight
-            // 
-            this.btnReadyToFight.Location = new System.Drawing.Point(402, 20);
-            this.btnReadyToFight.Name = "btnReadyToFight";
-            this.btnReadyToFight.Size = new System.Drawing.Size(107, 23);
-            this.btnReadyToFight.TabIndex = 16;
-            this.btnReadyToFight.Text = "READY_TO_FIGHT";
-            this.btnReadyToFight.UseVisualStyleBackColor = true;
-            this.btnReadyToFight.Click += new System.EventHandler(this.btnReadyToFight_Click);
-            // 
             // btnCleanPackSpace
             // 
-            this.btnCleanPackSpace.Location = new System.Drawing.Point(309, 281);
+            this.btnCleanPackSpace.Location = new System.Drawing.Point(282, 281);
             this.btnCleanPackSpace.Name = "btnCleanPackSpace";
-            this.btnCleanPackSpace.Size = new System.Drawing.Size(75, 23);
+            this.btnCleanPackSpace.Size = new System.Drawing.Size(102, 23);
             this.btnCleanPackSpace.TabIndex = 16;
-            this.btnCleanPackSpace.Text = "去掉空格";
+            this.btnCleanPackSpace.Text = "复制（无空格）";
             this.btnCleanPackSpace.UseVisualStyleBackColor = true;
             this.btnCleanPackSpace.Click += new System.EventHandler(this.btnCleanPackSpace_Click);
             // 

@@ -51,6 +51,14 @@ namespace SocketHack
             }
         }
 
+        private void btnCleanPackSpace_Click(object sender, EventArgs e)
+        {
+            if (listViewPack.SelectedItems.Count > 0)
+            {
+                Clipboard.SetDataObject(listViewPack.SelectedItems[0].SubItems[2].Text.Replace(" ", ""));
+            }
+        }
+
         private void showPack(string type, string commandID, string pack)
         {
             var item = new ListViewItem();
@@ -133,11 +141,6 @@ namespace SocketHack
         private void btnReadyToFight_Click(object sender, EventArgs e)
         {
             MainClass.SendPack(2404, new int[] { });
-        }
-
-        private void btnCleanPackSpace_Click(object sender, EventArgs e)
-        {
-            tbPackStr.Text = tbPackStr.Text.Replace(" ", "");
         }
     }
 }

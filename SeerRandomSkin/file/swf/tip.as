@@ -137,10 +137,8 @@ package
 
          // 自动出招
          // 进入战斗
-         SocketConnection.WxOnReadyToFight = function(event:NoteReadyToFightInfo):void
+         SocketConnection.WxOnReadyToFight = function():void
          {
-            //var readyData:NoteReadyToFightInfo = event.data as NoteReadyToFightInfo;
-            ExternalInterface.call("WxFightHandler.OnNoteReadyToFight",event);
             ExternalInterface.call("WxFightHandler.Utils.RoundReset");
             SocketConnection.WxIsPositiveChangePet = false;
             if (SocketConnection.WxIsHiddenFightPanel)
