@@ -45,8 +45,6 @@ namespace Seer
 
         public static bool HaveLogin = false;                   //接收到LOGIN_IN包(cmdId为1001)后此项设为true
 
-        private static readonly object LockSend = new object(); // 计算序列号，可能需要锁
-
         // public static int RecvPacketNum = 0;                    //接收封包序号
         // public static int SendPacketNum = 0;                    //发送封包序号
         #endregion 
@@ -197,7 +195,7 @@ namespace Seer
                 if (HaveLogin)
                 {
                     ParsePacket(plain, ref SendPacketData);         //解析封包
-                    lock (LockSend) CalculateResult(ref SendPacketData);            //修改序列号
+                    CalculateResult(ref SendPacketData);            //修改序列号
                     SendPacketData.userId = UserId; // 米米号
                     plain = GroupPacket(ref SendPacketData);        //组合封包
                     cipher = encrypt(plain);                        //加密封包
