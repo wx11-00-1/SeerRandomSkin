@@ -430,28 +430,33 @@ namespace SeerRandomSkin.Properties {
             "ndler.LIUJIESW ===petID) { WxFightHandler.Utils.UseSkill(19314); }\\n  else if (W" +
             "xFightHandler.SHENGPU === petID) { WxFightHandler.Utils.UseSkill(31143); }\\n  el" +
             "se { WxFightHandler.Utils.UseSkill(0); }\\n};\\n\\nWxFightHandler.OnFightOver = (fi" +
-            "ghtOverInfo) =&gt; {};\",\r\n  \"借金火\": \"// 20240705 正常运行\\n// 在未来，所有的数据结构都可能会发生变动，所以不" +
-            "保证永远有效\\n\\n(async () =&gt;\\n{\\n  let FIRE_GOLD_SMALL = 4;\\n  let FIRE_GREEN_SMALL" +
-            " = 5;\\n  let FIRE_GREEN_BIG = 6;\\n  let FIRE_GOLD_BIG = 9;\\n\\n  function ReadInt" +
-            "(data)\\n  {\\n    return (data.byteArray[data.position++] &lt;&lt; 24) + (data.by" +
-            "teArray[data.position++] &lt;&lt; 16) + (data.byteArray[data.position++] &lt;&lt" +
-            "; 8) + data.byteArray[data.position++];\\n  }\\n\\n  function ReadByte(data)\\n  {\\n" +
-            "    return data.byteArray[data.position++];\\n  }\\n\\n  class UserInfo\\n  {\\n    c" +
-            "onstructor(data)\\n    {\\n      data.position += 4; // 不需要的数据就跳过\\n      this.user" +
-            "ID = ReadInt(data);\\n      data.position += 16;\\n      this.curTitle = ReadInt(d" +
-            "ata); // 称号\\n      data.position += 137;\\n      let loopTimes = ReadInt(data); /" +
-            "/ 这里有一段循环\\n      for (let i = 0; i &lt; loopTimes; ++i)\\n      {\\n        ReadIn" +
-            "t(data);\\n      }\\n      data.position += 60;\\n      // 套装\\n      loopTimes = Re" +
-            "adInt(data);\\n      this.clothes = [];\\n      for (let i = 0; i &lt; loopTimes; " +
-            "++i)\\n      {\\n        this.clothes[i] = ReadInt(data);\\n        ReadInt(data);\\" +
-            "n      }\\n      data.position += 4;\\n      this.fireBuff = ReadByte(data);\\n    " +
-            "  data.position += 28;\\n    }\\n  }\\n\\n  // 获取\\n  let data = {};\\n  data.byteArra" +
-            "y = await WxFightHandler.Utils.SendAsync(2003,[]);\\n  data.position = 0;\\n  \\n  " +
-            "// 解析\\n  let playerCount = ReadInt(data);\\n  for (let i = 0; i &lt; playerCount;" +
-            " ++i)\\n  {\\n    let player = new UserInfo(data);\\n    if (player.fireBuff == FIR" +
-            "E_GOLD_BIG || player.fireBuff == FIRE_GOLD_SMALL) \\n    {\\n      WxFightHandler." +
-            "Utils.Send(4292,player.userID); console.log(\'借火成功\'); return;\\n    }\\n  }\\n  cons" +
-            "ole.log(\'借火失败\');\\n})();\"\r\n}")]
+            "ghtOverInfo) =&gt; {};\",\r\n  \"借金火\": \"// 2024 7月 正常运行\\n// 在未来，所有的数据结构都可能会发生变动，所以不保" +
+            "证永远有效\\n\\n(async () =&gt;\\n    {\\n      let FIRE_BLUE_SMALL = 2;\\n      let FIRE_" +
+            "PURPLE_SMALL = 3;\\n      let FIRE_GOLD_SMALL = 4;\\n      let FIRE_GREEN_SMALL = " +
+            "5;\\n      let FIRE_GREEN_BIG = 6;\\n      let FIRE_BLUE_BIG = 7;\\n      let FIRE_" +
+            "PURPLE_BIG = 8;\\n      let FIRE_GOLD_BIG = 9;\\n    \\n      function ReadInt(data" +
+            ")\\n      {\\n        return (data.byteArray[data.position++] &lt;&lt; 24) + (data" +
+            ".byteArray[data.position++] &lt;&lt; 16) + (data.byteArray[data.position++] &lt;" +
+            "&lt; 8) + data.byteArray[data.position++];\\n      }\\n    \\n      function ReadBy" +
+            "te(data)\\n      {\\n        return data.byteArray[data.position++];\\n      }\\n   " +
+            " \\n      class UserInfo\\n      {\\n        constructor(data)\\n        {\\n        " +
+            "  data.position += 4; // 不需要的数据就跳过\\n          this.userID = ReadInt(data);\\n    " +
+            "      data.position += 16;\\n          this.curTitle = ReadInt(data); // 称号\\n    " +
+            "      data.position += 137;\\n          let loopTimes = ReadInt(data); // 这里有一段循环" +
+            "\\n          for (let i = 0; i &lt; loopTimes; ++i)\\n          {\\n            Rea" +
+            "dInt(data);\\n          }\\n          data.position += 60;\\n          // 套装\\n     " +
+            "     loopTimes = ReadInt(data);\\n          this.clothes = [];\\n          for (le" +
+            "t i = 0; i &lt; loopTimes; ++i)\\n          {\\n            this.clothes[i] = Read" +
+            "Int(data);\\n            ReadInt(data);\\n          }\\n          data.position += " +
+            "4;\\n          this.fireBuff = ReadByte(data);\\n          data.position += 28;\\n " +
+            "       }\\n      }\\n    \\n      // 获取\\n      let data = {};\\n      data.byteArray" +
+            " = await WxFightHandler.Utils.SendAsync(2003,[]);\\n      data.position = 0;\\n   " +
+            "   \\n      // 解析\\n      let playerCount = ReadInt(data);\\n      for (let i = 0; " +
+            "i &lt; playerCount; ++i)\\n      {\\n        let player = new UserInfo(data);\\n   " +
+            "     if (player.fireBuff == FIRE_GOLD_BIG || player.fireBuff == FIRE_GOLD_SMALL)" +
+            " \\n        {\\n          WxFightHandler.Utils.Send(4292,player.userID); console.l" +
+            "og(\'借火成功\'); return;\\n        }\\n      }\\n      console.log(\'借火失败\');\\n    })();\"\r" +
+            "\n}")]
         public string FlashFightTemplate {
             get {
                 return ((string)(this["FlashFightTemplate"]));
