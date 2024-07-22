@@ -41,6 +41,7 @@
             this.numericUpDown_win_height = new System.Windows.Forms.NumericUpDown();
             this.checkBox_RandomSkin = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBox_resource_vip_icon = new System.Windows.Forms.CheckBox();
             this.checkBox_resource_bg_h5 = new System.Windows.Forms.CheckBox();
             this.checkBox_resource_ad_panel = new System.Windows.Forms.CheckBox();
             this.checkBox_resource_background = new System.Windows.Forms.CheckBox();
@@ -63,7 +64,8 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.comboBoxZoom = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.checkBox_resource_vip_icon = new System.Windows.Forms.CheckBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBox_speedUp = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_width)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_height)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -199,6 +201,16 @@
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "资源替换";
+            // 
+            // checkBox_resource_vip_icon
+            // 
+            this.checkBox_resource_vip_icon.AutoSize = true;
+            this.checkBox_resource_vip_icon.Location = new System.Drawing.Point(210, 22);
+            this.checkBox_resource_vip_icon.Name = "checkBox_resource_vip_icon";
+            this.checkBox_resource_vip_icon.Size = new System.Drawing.Size(72, 16);
+            this.checkBox_resource_vip_icon.TabIndex = 19;
+            this.checkBox_resource_vip_icon.Text = "年费图标";
+            this.checkBox_resource_vip_icon.UseVisualStyleBackColor = true;
             // 
             // checkBox_resource_bg_h5
             // 
@@ -429,21 +441,29 @@
             this.label10.TabIndex = 29;
             this.label10.Text = "缩放：";
             // 
-            // checkBox_resource_vip_icon
+            // label11
             // 
-            this.checkBox_resource_vip_icon.AutoSize = true;
-            this.checkBox_resource_vip_icon.Location = new System.Drawing.Point(210, 22);
-            this.checkBox_resource_vip_icon.Name = "checkBox_resource_vip_icon";
-            this.checkBox_resource_vip_icon.Size = new System.Drawing.Size(72, 16);
-            this.checkBox_resource_vip_icon.TabIndex = 19;
-            this.checkBox_resource_vip_icon.Text = "年费图标";
-            this.checkBox_resource_vip_icon.UseVisualStyleBackColor = true;
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(293, 79);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(77, 12);
+            this.label11.TabIndex = 31;
+            this.label11.Text = "Flash 倍速：";
+            // 
+            // textBox_speedUp
+            // 
+            this.textBox_speedUp.Location = new System.Drawing.Point(368, 75);
+            this.textBox_speedUp.Name = "textBox_speedUp";
+            this.textBox_speedUp.Size = new System.Drawing.Size(64, 21);
+            this.textBox_speedUp.TabIndex = 32;
             // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(680, 845);
+            this.Controls.Add(this.textBox_speedUp);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.comboBoxZoom);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.button4);
@@ -526,5 +546,7 @@
         private System.Windows.Forms.ComboBox comboBoxZoom;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.CheckBox checkBox_resource_vip_icon;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox textBox_speedUp;
     }
 }

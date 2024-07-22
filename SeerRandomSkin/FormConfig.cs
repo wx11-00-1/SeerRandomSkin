@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -51,6 +52,7 @@ namespace SeerRandomSkin
             comboBoxZoom.Items.Add("1.25");
             comboBoxZoom.Items.Add("1.5");
             comboBoxZoom.Items.Add("2");
+            textBox_speedUp.Text = File.ReadAllText(@"file\dll\speedhack\x64\speedhack.txt");
         }
 
         private void button_Save_Click(object sender, EventArgs e)
@@ -105,6 +107,11 @@ namespace SeerRandomSkin
             SettingsDef.FlashZoom = comboBoxZoom.Text;
             SettingsDef.Save();
             MessageBox.Show("保存成功");
+
+            if (double.TryParse(textBox_speedUp.Text, out var speed) && speed > 1)
+            {
+                File.WriteAllText(@"file\dll\speedhack\x64\speedhack.txt", textBox_speedUp.Text);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
