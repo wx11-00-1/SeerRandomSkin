@@ -196,7 +196,7 @@ namespace SeerRandomSkin
         private void btnRemove_Click(object sender, EventArgs e)
         {
             jFightTemplate.Remove(tbTemplateName.Text);
-            ResetLvTemplate();
+            SaveConfigTemplate();
         }
 
         public static void StopAutoFight()
