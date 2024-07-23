@@ -106,12 +106,13 @@ namespace SeerRandomSkin
             SettingsDef.AutoExecuteSoftwarePath3 = textBox3.Text;
             SettingsDef.FlashZoom = comboBoxZoom.Text;
             SettingsDef.Save();
-            MessageBox.Show("保存成功");
 
             if (double.TryParse(textBox_speedUp.Text, out var speed) && speed > 1)
             {
                 File.WriteAllText(@"file\dll\speedhack\x64\speedhack.txt", textBox_speedUp.Text);
             }
+
+            MessageBox.Show("保存成功");
         }
 
         private void button1_Click(object sender, EventArgs e)
