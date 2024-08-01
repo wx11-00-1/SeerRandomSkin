@@ -48,6 +48,8 @@ namespace SeerRandomSkin
             textBox2.Text = SettingsDef.AutoExecuteSoftwarePath2;
             textBox3.Text = SettingsDef.AutoExecuteSoftwarePath3;
             comboBoxZoom.Text = SettingsDef.FlashZoom;
+            comboBoxZoom.Items.Add("0.5");
+            comboBoxZoom.Items.Add("0.75");
             comboBoxZoom.Items.Add("1");
             comboBoxZoom.Items.Add("1.25");
             comboBoxZoom.Items.Add("1.5");

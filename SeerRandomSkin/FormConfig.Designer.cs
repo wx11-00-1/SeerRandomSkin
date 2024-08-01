@@ -76,7 +76,7 @@
             // 
             // button_Save
             // 
-            this.button_Save.Location = new System.Drawing.Point(551, 782);
+            this.button_Save.Location = new System.Drawing.Point(551, 569);
             this.button_Save.Name = "button_Save";
             this.button_Save.Size = new System.Drawing.Size(75, 23);
             this.button_Save.TabIndex = 1;
@@ -86,16 +86,16 @@
             // 
             // richTextBox_SkinBlackList
             // 
-            this.richTextBox_SkinBlackList.Location = new System.Drawing.Point(53, 403);
+            this.richTextBox_SkinBlackList.Location = new System.Drawing.Point(53, 310);
             this.richTextBox_SkinBlackList.Name = "richTextBox_SkinBlackList";
-            this.richTextBox_SkinBlackList.Size = new System.Drawing.Size(573, 135);
+            this.richTextBox_SkinBlackList.Size = new System.Drawing.Size(573, 54);
             this.richTextBox_SkinBlackList.TabIndex = 2;
             this.richTextBox_SkinBlackList.Text = "";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(52, 377);
+            this.label1.Location = new System.Drawing.Point(52, 284);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 12);
             this.label1.TabIndex = 3;
@@ -245,22 +245,22 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(51, 687);
+            this.label6.Location = new System.Drawing.Point(51, 474);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(113, 12);
+            this.label6.Size = new System.Drawing.Size(149, 12);
             this.label6.TabIndex = 16;
-            this.label6.Text = "自动打开其他程序：";
+            this.label6.Text = "启动时自动打开其他程序：";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(53, 707);
+            this.textBox1.Location = new System.Drawing.Point(53, 494);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(340, 21);
             this.textBox1.TabIndex = 17;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(414, 706);
+            this.button1.Location = new System.Drawing.Point(414, 493);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 18;
@@ -348,7 +348,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(52, 556);
+            this.label9.Location = new System.Drawing.Point(52, 382);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(149, 12);
             this.label9.TabIndex = 20;
@@ -356,9 +356,9 @@
             // 
             // richTextBox_SkinExc
             // 
-            this.richTextBox_SkinExc.Location = new System.Drawing.Point(53, 581);
+            this.richTextBox_SkinExc.Location = new System.Drawing.Point(53, 407);
             this.richTextBox_SkinExc.Name = "richTextBox_SkinExc";
-            this.richTextBox_SkinExc.Size = new System.Drawing.Size(573, 84);
+            this.richTextBox_SkinExc.Size = new System.Drawing.Size(573, 54);
             this.richTextBox_SkinExc.TabIndex = 21;
             this.richTextBox_SkinExc.Text = "";
             // 
@@ -376,7 +376,7 @@
             // 
             this.richTextBox_skinList.Location = new System.Drawing.Point(53, 215);
             this.richTextBox_skinList.Name = "richTextBox_skinList";
-            this.richTextBox_skinList.Size = new System.Drawing.Size(573, 135);
+            this.richTextBox_skinList.Size = new System.Drawing.Size(573, 54);
             this.richTextBox_skinList.TabIndex = 23;
             this.richTextBox_skinList.Text = "";
             // 
@@ -392,7 +392,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(414, 744);
+            this.button3.Location = new System.Drawing.Point(414, 531);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 26;
@@ -402,14 +402,14 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(53, 745);
+            this.textBox2.Location = new System.Drawing.Point(53, 532);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(340, 21);
             this.textBox2.TabIndex = 25;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(414, 782);
+            this.button4.Location = new System.Drawing.Point(414, 569);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 28;
@@ -419,7 +419,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(53, 783);
+            this.textBox3.Location = new System.Drawing.Point(53, 570);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(340, 21);
             this.textBox3.TabIndex = 27;
@@ -461,7 +461,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(680, 845);
+            this.ClientSize = new System.Drawing.Size(680, 639);
             this.Controls.Add(this.textBox_speedUp);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.comboBoxZoom);
