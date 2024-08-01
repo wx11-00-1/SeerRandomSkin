@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace SeerRandomSkin
 {
     public partial class FormPack : Form
     {
+        private static HashSet<string> HideCmds = new HashSet<string>();
+
         public FormPack()
         {
             InitializeComponent();
@@ -33,19 +36,29 @@ namespace SeerRandomSkin
             Form1.chromiumBrowser.GetBrowser().MainFrame.ExecuteJavaScriptAsync("WxSeerUtil.HideSend = !WxSeerUtil.HideSend;");
         }
 
-        public void ShowRecvPack(string pack)
+        public void ShowRecvPack(string cmd, string pack)
         {
+            if (HideCmds.Contains(cmd))
+            {
+                return;
+            }
             var item = new ListViewItem();
             item.Text = "收";
             item.SubItems.Add(pack);
+            item.SubItems.Add(cmd);
             listViewPack.Items.Add(item);
         }
 
-        public void ShowRecvSend(string pack)
+        public void ShowSendPack(string cmd, string pack)
         {
+            if (HideCmds.Contains(cmd))
+            {
+                return;
+            }
             var item = new ListViewItem();
             item.Text = "发";
             item.SubItems.Add(pack);
+            item.SubItems.Add(cmd);
             listViewPack.Items.Add(item);
         }
 
@@ -78,6 +91,11 @@ namespace SeerRandomSkin
             {
                 Form1.chromiumBrowser.GetBrowser().MainFrame.ExecuteJavaScriptAsync(js);
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            HideCmds = new HashSet<string>(richTextBox_filter.Text.Split(','));
         }
     }
 }

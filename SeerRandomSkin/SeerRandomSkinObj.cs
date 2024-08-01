@@ -23,14 +23,14 @@ namespace SeerRandomSkin
             Form1.childFormScreenShot.ScreenShot();
         }
 
-        public void GetRecvPackArray(string pack)
+        public void GetRecvPackArray(string cmd, string pack)
         {
-            Form1.childFormPack.ShowRecvPack(pack);
+            Form1.childFormPack.ShowRecvPack(cmd, pack);
         }
 
-        public void GetSendPackArray(string pack)
+        public void GetSendPackArray(string cmd, string pack)
         {
-            Form1.childFormPack.ShowRecvSend(pack);
+            Form1.childFormPack.ShowSendPack(cmd, pack);
         }
 
         public void ShowFightInfo(int round, int hpPercent)

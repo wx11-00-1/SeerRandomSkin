@@ -187,7 +187,7 @@ namespace SeerRandomSkin
                             "           let abLen = view.buffer.byteLength;" +
                             "           let packStr=\"\";" +
                             "           for(var i=0; i<abLen; ++i) { packStr += (view.getUint8(i)).toString(16).padStart(2, '0').toUpperCase(); }" +
-                            "           seerRandomSkinObj.getRecvPackArray(packStr);" +
+                            "           seerRandomSkinObj.getRecvPackArray((view.getUint32(5)).toString(), packStr);" +
                             "       }" +
                             "       var res = orig.apply(this, arguments);" +
                             "       return res;" +
@@ -202,7 +202,7 @@ namespace SeerRandomSkin
                             "           let abLen = view.buffer.byteLength;" +
                             "           let packStr = '';" +
                             "           for (var i = 0; i < abLen; ++i) { packStr += (view.getUint8(i)).toString(16).padStart(2, '0').toUpperCase(); }" +
-                            "           seerRandomSkinObj.getSendPackArray(packStr);" +
+                            "           seerRandomSkinObj.getSendPackArray((view.getUint32(5)).toString(), packStr);" +
                             "       }" +
                             "       return res;" +
                             "   }" +

@@ -47,6 +47,8 @@
             this.button_fightExit = new System.Windows.Forms.Button();
             this.button_fightCatch = new System.Windows.Forms.Button();
             this.btnCleanPackSpace = new System.Windows.Forms.Button();
+            this.richTextBox_filter = new System.Windows.Forms.RichTextBox();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -124,9 +126,9 @@
             // 
             // rtbMsg
             // 
-            this.rtbMsg.Location = new System.Drawing.Point(43, 372);
+            this.rtbMsg.Location = new System.Drawing.Point(43, 444);
             this.rtbMsg.Name = "rtbMsg";
-            this.rtbMsg.Size = new System.Drawing.Size(530, 162);
+            this.rtbMsg.Size = new System.Drawing.Size(530, 90);
             this.rtbMsg.TabIndex = 10;
             this.rtbMsg.Text = "";
             // 
@@ -228,11 +230,31 @@
             this.btnCleanPackSpace.UseVisualStyleBackColor = true;
             this.btnCleanPackSpace.Click += new System.EventHandler(this.btnCleanPackSpace_Click);
             // 
+            // richTextBox_filter
+            // 
+            this.richTextBox_filter.Location = new System.Drawing.Point(43, 366);
+            this.richTextBox_filter.Name = "richTextBox_filter";
+            this.richTextBox_filter.Size = new System.Drawing.Size(434, 52);
+            this.richTextBox_filter.TabIndex = 17;
+            this.richTextBox_filter.Text = "1,2,";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(498, 366);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 52);
+            this.button3.TabIndex = 18;
+            this.button3.Text = "屏蔽指定命令号";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // FormPack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(622, 629);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.richTextBox_filter);
             this.Controls.Add(this.btnCleanPackSpace);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.numericUpDown1);
@@ -274,5 +296,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.Button btnReadyToFight;
         private System.Windows.Forms.Button btnCleanPackSpace;
+        private System.Windows.Forms.RichTextBox richTextBox_filter;
+        private System.Windows.Forms.Button button3;
     }
 }

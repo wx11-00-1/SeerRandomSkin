@@ -24,6 +24,8 @@ namespace SocketHack
         public static bool HideRecv = true;
         public static bool HideSend = true;
 
+        private static HashSet<string> HideCmds = new HashSet<string>();
+
         public FormPack()
         {
             InitializeComponent();
@@ -61,6 +63,10 @@ namespace SocketHack
 
         private void showPack(string type, string commandID, string pack)
         {
+            if (HideCmds.Contains(commandID))
+            {
+                return;
+            }
             var item = new ListViewItem();
             item.Text = type;
             item.SubItems.Add(commandID);
@@ -141,6 +147,11 @@ namespace SocketHack
         private void btnReadyToFight_Click(object sender, EventArgs e)
         {
             MainClass.SendPack(2404, new int[] { });
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            HideCmds = new HashSet<string>(richTextBox_filter.Text.Split(','));
         }
     }
 }
