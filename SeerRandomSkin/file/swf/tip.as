@@ -25,6 +25,7 @@ package
    import com.robot.core.info.fightInfo.NoteReadyToFightInfo;
    import com.robot.core.info.fightInfo.FightStartInfo;
    import com.robot.core.info.fightInfo.attack.FightOverInfo;
+   import com.robot.app.toolBar.ToolBarController;
    
    [Embed(source="/_assets/assets.swf", symbol="item")]
    public dynamic class item extends MovieClip
@@ -40,8 +41,9 @@ package
             return;
          }
 
-         // 隐藏其他用户
-         KTool.hideMapPlayerAndMonster();
+         // 隐藏其他用户 和 NoNo
+         ToolBarController.showOrHideAllUser(false);
+         MainManager.actorModel.hideNono();
 
          // 关电池
          SocketConnection.send(41162,0);
