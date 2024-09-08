@@ -1,13 +1,6 @@
 ﻿using CefSharp;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SeerRandomSkin
@@ -19,7 +12,6 @@ namespace SeerRandomSkin
         public FormActivityCollection()
         {
             InitializeComponent();
-            ReloadListView();
         }
 
         private void ReloadListView()
@@ -72,6 +64,11 @@ namespace SeerRandomSkin
                 tbName.Text = listView1.Items[idxs[0]].SubItems[0].Text;
                 tbCode.Text = listView1.Items[idxs[0]].SubItems[1].Text;
             }
+        }
+
+        private void FormActivityCollection_Load(object sender, EventArgs e)
+        {
+            ReloadListView();
         }
     }
 }

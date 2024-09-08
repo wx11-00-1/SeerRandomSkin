@@ -34,7 +34,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_Name = new System.Windows.Forms.TextBox();
             this.button_add = new System.Windows.Forms.Button();
-            this.button_refresh = new System.Windows.Forms.Button();
             this.button_confirm = new System.Windows.Forms.Button();
             this.button_remove = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -91,16 +90,6 @@
             this.button_add.UseVisualStyleBackColor = true;
             this.button_add.Click += new System.EventHandler(this.button_add_Click);
             // 
-            // button_refresh
-            // 
-            this.button_refresh.Location = new System.Drawing.Point(366, 268);
-            this.button_refresh.Name = "button_refresh";
-            this.button_refresh.Size = new System.Drawing.Size(75, 23);
-            this.button_refresh.TabIndex = 5;
-            this.button_refresh.Text = "刷新";
-            this.button_refresh.UseVisualStyleBackColor = true;
-            this.button_refresh.Click += new System.EventHandler(this.button_refresh_Click);
-            // 
             // button_confirm
             // 
             this.button_confirm.Location = new System.Drawing.Point(366, 224);
@@ -137,7 +126,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button_remove);
             this.Controls.Add(this.button_confirm);
-            this.Controls.Add(this.button_refresh);
             this.Controls.Add(this.button_add);
             this.Controls.Add(this.textBox_Name);
             this.Controls.Add(this.label1);
@@ -158,7 +146,6 @@
         private System.Windows.Forms.TextBox textBox_Name;
         private System.Windows.Forms.Button button_add;
         private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.Button button_refresh;
         private System.Windows.Forms.Button button_confirm;
         private System.Windows.Forms.Button button_remove;
         private System.Windows.Forms.Label label2;

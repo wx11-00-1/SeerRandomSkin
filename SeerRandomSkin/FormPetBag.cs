@@ -1,14 +1,7 @@
 ﻿using CefSharp;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Windows.Forms;
 
 namespace SeerRandomSkin
 {
@@ -17,6 +10,7 @@ namespace SeerRandomSkin
         private static string ClothName = "";
 
         public static string seer_cloth = "";
+        private static Action ReloadListViewAction;
         public static string SeerCloth
         {
             get { return seer_cloth; }
@@ -27,8 +21,7 @@ namespace SeerRandomSkin
                 jObj_clothes[ClothName] = value;
                 Properties.Settings.Default.SeerCloth = jObj_clothes.ToString();
                 Properties.Settings.Default.Save();
-                MessageBox.Show("【" + ClothName + "】添加成功");
-                //MessageBox.Show(Properties.Settings.Default.SeerCloth);
+                ReloadListViewAction();
             }
         }
 
@@ -65,7 +58,8 @@ namespace SeerRandomSkin
 
         private void FormPetBag_Load(object sender, EventArgs e)
         {
-            InitListView();
+            ReloadListViewAction += InitListView;
+            ReloadListViewAction();
         }
 
         private void InitListView()
@@ -85,11 +79,6 @@ namespace SeerRandomSkin
             }
         }
 
-        private void button_refresh_Click(object sender, EventArgs e)
-        {
-            InitListView();
-        }
-
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             var idxs = listView1.SelectedIndices;
@@ -104,6 +93,7 @@ namespace SeerRandomSkin
             jObj_clothes.Remove(textBox_Name.Text);
             Properties.Settings.Default.SeerCloth = jObj_clothes.ToString();
             Properties.Settings.Default.Save();
+            InitListView();
         }
 
         private void button_confirm_Click(object sender, EventArgs e)

@@ -75,6 +75,7 @@
             this.Controls.Add(this.numericUpDown1);
             this.Name = "FormStrollMap";
             this.ShowIcon = false;
+            this.Load += new System.EventHandler(this.FormStrollMap_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 

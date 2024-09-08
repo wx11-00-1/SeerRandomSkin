@@ -1,15 +1,7 @@
 ﻿using EasyHook;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using Seer;
-using System.Drawing;
-using System.Net.Sockets;
+using System;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace SocketHack

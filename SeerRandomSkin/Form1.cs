@@ -1,12 +1,10 @@
 ﻿using CefSharp;
 using CefSharp.Callback;
 using CefSharp.Handler;
-using CefSharp.Lagacy;
 using CefSharp.WinForms;
 using EasyHook;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
