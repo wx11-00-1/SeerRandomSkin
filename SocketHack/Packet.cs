@@ -192,9 +192,9 @@ namespace Seer
             if (NeedDecrypt(cipher))
             {
                 plain = decrypt(cipher);                        //解密封包
+                ParsePacket(plain, ref SendPacketData);         //解析封包
                 if (HaveLogin)
                 {
-                    ParsePacket(plain, ref SendPacketData);         //解析封包
                     CalculateResult(ref SendPacketData);            //修改序列号
                     SendPacketData.userId = UserId; // 米米号
                     plain = GroupPacket(ref SendPacketData);        //组合封包
