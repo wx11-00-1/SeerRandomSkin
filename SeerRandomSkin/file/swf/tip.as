@@ -26,6 +26,8 @@ package
    import com.robot.core.info.fightInfo.FightStartInfo;
    import com.robot.core.info.fightInfo.attack.FightOverInfo;
    import com.robot.app.toolBar.ToolBarController;
+   import com.robot.core.manager.MapManager;
+   import com.robot.core.manager.ModuleManager;
    
    [Embed(source="/_assets/assets.swf", symbol="item")]
    public dynamic class item extends MovieClip
@@ -40,6 +42,10 @@ package
          {
             return;
          }
+
+         // 地图 和 活动
+         ExternalInterface.addCallback("WxChangeMap",MapManager.changeMap);
+         ExternalInterface.addCallback("WxShowAppModule",ModuleManager.showAppModule);
 
          // 隐藏其他用户 和 NoNo
          ToolBarController.showOrHideAllUser(false);

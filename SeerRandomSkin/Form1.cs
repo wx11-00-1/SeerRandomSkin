@@ -680,5 +680,17 @@ namespace SeerRandomSkin
             var form = new FormFlashFightHandler();
             form.Show();
         }
+
+        private void 活动收藏夹ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var f = new FormActivityCollection();
+            f.Show();
+        }
+
+        private void 逛地图ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var f = new FormStrollMap();
+            f.Show();
+        }
     }
 }
