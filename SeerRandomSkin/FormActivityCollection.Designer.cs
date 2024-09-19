@@ -38,6 +38,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnConfirm = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listView1
@@ -127,11 +128,21 @@
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(336, 283);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(193, 166);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "例如 nono 换色的面板链接为：https://seer.61.com/module/com/robot/module/app/NonoColorChangeP" +
+    "anel.swf，则“代号”编辑框应该填入 NonoColorChangePanel";
+            // 
             // FormActivityCollection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(553, 531);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnSave);
@@ -160,5 +171,6 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnConfirm;
+        private System.Windows.Forms.Label label3;
     }
 }
