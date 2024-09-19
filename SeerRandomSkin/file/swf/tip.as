@@ -47,9 +47,8 @@ package
          ExternalInterface.addCallback("WxChangeMap",MapManager.changeMap);
          ExternalInterface.addCallback("WxShowAppModule",ModuleManager.showAppModule);
 
-         // 隐藏其他用户 和 NoNo
+         // 隐藏其他用户
          ToolBarController.showOrHideAllUser(false);
-         MainManager.actorModel.hideNono();
 
          // 关电池
          SocketConnection.send(41162,0);
@@ -293,6 +292,12 @@ package
             return SkillXMLInfo.getName(skillID);
          }
          );
+
+         // 将 nono 丢回仓库
+         setTimeout(function():void
+         {
+             SocketConnection.send(CommandID.NONO_FOLLOW_OR_HOOM,0);
+         }, 1000);
       }
    }
 }
