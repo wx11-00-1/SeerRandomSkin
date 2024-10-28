@@ -49,6 +49,12 @@ namespace SeerRandomSkin
             comboBoxZoom.Items.Add("1.5");
             comboBoxZoom.Items.Add("2");
             textBox_speedUp.Text = File.ReadAllText(@"file\dll\speedhack\x64\speedhack.txt");
+            // 加载窗口
+            checkBox_flash_activities.Checked = SettingsDef.AutoLoadActivities;
+            checkBox_flash_fight.Checked = SettingsDef.AutoLoadFightHandler;
+            checkBox_h5_pack.Checked = SettingsDef.AutoLoadH5Pack;
+            checkBox_h5_pet_bag.Checked = SettingsDef.AutoLoadPetBag;
+            checkBox_screen_shot.Checked = SettingsDef.AutoLoadScreenShot;
         }
 
         private void button_Save_Click(object sender, EventArgs e)
@@ -101,13 +107,20 @@ namespace SeerRandomSkin
             SettingsDef.AutoExecuteSoftwarePath2 = textBox2.Text;
             SettingsDef.AutoExecuteSoftwarePath3 = textBox3.Text;
             SettingsDef.FlashZoom = comboBoxZoom.Text;
-            SettingsDef.Save();
 
             if (double.TryParse(textBox_speedUp.Text, out var speed) && speed > 1)
             {
                 File.WriteAllText(@"file\dll\speedhack\x64\speedhack.txt", textBox_speedUp.Text);
             }
 
+            // 窗口
+            SettingsDef.AutoLoadActivities = checkBox_flash_activities.Checked;
+            SettingsDef.AutoLoadFightHandler = checkBox_flash_fight.Checked;
+            SettingsDef.AutoLoadH5Pack = checkBox_h5_pack.Checked;
+            SettingsDef.AutoLoadPetBag = checkBox_h5_pet_bag.Checked;
+            SettingsDef.AutoLoadScreenShot = checkBox_screen_shot.Checked;
+
+            SettingsDef.Save();
             MessageBox.Show("保存成功");
         }
 

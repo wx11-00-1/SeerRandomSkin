@@ -12,7 +12,7 @@ namespace SeerRandomSkin.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.10.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.12.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -473,6 +473,66 @@ namespace SeerRandomSkin.Properties {
             }
             set {
                 this["ActivityCollection"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoLoadActivities {
+            get {
+                return ((bool)(this["AutoLoadActivities"]));
+            }
+            set {
+                this["AutoLoadActivities"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoLoadFightHandler {
+            get {
+                return ((bool)(this["AutoLoadFightHandler"]));
+            }
+            set {
+                this["AutoLoadFightHandler"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoLoadPetBag {
+            get {
+                return ((bool)(this["AutoLoadPetBag"]));
+            }
+            set {
+                this["AutoLoadPetBag"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoLoadScreenShot {
+            get {
+                return ((bool)(this["AutoLoadScreenShot"]));
+            }
+            set {
+                this["AutoLoadScreenShot"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoLoadH5Pack {
+            get {
+                return ((bool)(this["AutoLoadH5Pack"]));
+            }
+            set {
+                this["AutoLoadH5Pack"] = value;
             }
         }
     }

@@ -75,5 +75,20 @@
     <Setting Name="ActivityCollection" Type="System.String" Scope="User">
       <Value Profile="(Default)">{"换色": "NonoColorChangePanel"}</Value>
     </Setting>
+    <Setting Name="AutoLoadActivities" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="AutoLoadFightHandler" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="AutoLoadPetBag" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="AutoLoadScreenShot" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="AutoLoadH5Pack" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

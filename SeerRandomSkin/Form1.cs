@@ -86,50 +86,79 @@ namespace SeerRandomSkin
 
         private async void Form1_Load(object sender, EventArgs e)
         {
+            var proSet = Properties.Settings.Default;
+
             FormTitle = Text;
             ChangeTitleAction = (title) =>
             {
                 Text = title;
             };
 
-            Width = (int)Properties.Settings.Default.WinWidth;
-            Height = (int)Properties.Settings.Default.WinHeight;
+            Width = (int)proSet.WinWidth;
+            Height = (int)proSet.WinHeight;
             CenterToScreen();
 
             // 初始化皮肤列表
-            if (Properties.Settings.Default.SkinIds == "")
+            if (proSet.SkinIds == "")
             {
                 await GetSkinData();
             }
             else
             {
-                string[] strings = Properties.Settings.Default.SkinIds.Split(',');
+                string[] strings = proSet.SkinIds.Split(',');
                 foreach (string s in strings)
                 {
                     if (s == "") continue;
                     int id = int.Parse(s);
-                    if (id < Properties.Settings.Default.SkinRangeFloor || id > Properties.Settings.Default.SkinRangeCeiling) continue;
+                    if (id < proSet.SkinRangeFloor || id > proSet.SkinRangeCeiling) continue;
                     skinIds.Add(id);
                 }
             }
             // 初始化随机皮肤的排除项
-            string[] exc = Properties.Settings.Default.RandomSkinExclusion.Split(',');
+            string[] exc = proSet.RandomSkinExclusion.Split(',');
             foreach (string ex in exc)
             {
                 if (ex == "") continue; int id = int.Parse(ex); skinExclusion.Add(id);
             }
 
-            chromiumBrowser = CreateChromium(Properties.Settings.Default.IsH5First ? gameH5Address : gameAddress);
+            chromiumBrowser = CreateChromium(proSet.IsH5First ? gameH5Address : gameAddress);
             Controls.Add(chromiumBrowser);
             ResizeChromiumBrowser();
 
             new Thread(() =>
             {
                 Thread.Sleep(2000);
-                if (Properties.Settings.Default.IsUseSocketHack) FlashSocketHack();
+                if (proSet.IsUseSocketHack) FlashSocketHack();
                 FlashSpeedHack();
             })
             { IsBackground = true }.Start();
+
+            // 加载窗口
+            if (proSet.AutoLoadActivities)
+            {
+                var f = new FormActivityCollection(); f.Show();
+            }
+            if (proSet.AutoLoadFightHandler)
+            {
+                var f = new FormFlashFightHandler(); f.Show();
+            }
+            if (proSet.AutoLoadH5Pack)
+            {
+                childFormPack = new FormPack(); childFormPack.Show();
+            }
+            if (proSet.AutoLoadPetBag)
+            {
+                var f = new FormPetBag(); f.Show();
+            }
+            if (proSet.AutoLoadScreenShot)
+            {
+                childFormScreenShot = new FormScreenShot
+                {
+                    MainForm = this
+                };
+                childFormScreenShot.Show();
+                childFormScreenShot.ScreenShot();
+            }
         }
 
         private ChromiumWebBrowser CreateChromium(string address)
