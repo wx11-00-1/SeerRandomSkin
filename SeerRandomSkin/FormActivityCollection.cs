@@ -70,5 +70,15 @@ namespace SeerRandomSkin
         {
             ReloadListView();
         }
+
+        private void btnPeakJihadWild_Click(object sender, EventArgs e)
+        {
+            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxPeakJihadWildMode()");
+        }
+
+        private void btnPeakJihadSports_Click(object sender, EventArgs e)
+        {
+            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxPeakJihadSportsMode()");
+        }
     }
 }

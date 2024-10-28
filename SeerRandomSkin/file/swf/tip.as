@@ -29,6 +29,7 @@ package
    import com.robot.core.manager.MapManager;
    import com.robot.core.manager.ModuleManager;
    import com.robot.app2.control.PeakJihad2023Controller;
+   import com.robot.core.config.ClientConfig;
    
    [Embed(source="/_assets/assets.swf", symbol="item")]
    public dynamic class item extends MovieClip
