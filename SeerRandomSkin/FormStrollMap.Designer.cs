@@ -30,6 +30,7 @@
         {
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnRandom = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,12 +66,23 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // btnRandom
+            // 
+            this.btnRandom.Location = new System.Drawing.Point(286, 52);
+            this.btnRandom.Name = "btnRandom";
+            this.btnRandom.Size = new System.Drawing.Size(75, 23);
+            this.btnRandom.TabIndex = 2;
+            this.btnRandom.Text = "随机";
+            this.btnRandom.UseVisualStyleBackColor = true;
+            this.btnRandom.Click += new System.EventHandler(this.btnRandom_Click);
+            // 
             // FormStrollMap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(340, 132);
+            this.ClientSize = new System.Drawing.Size(412, 134);
+            this.Controls.Add(this.btnRandom);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.numericUpDown1);
             this.Name = "FormStrollMap";
@@ -85,5 +97,6 @@
 
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnRandom;
     }
 }

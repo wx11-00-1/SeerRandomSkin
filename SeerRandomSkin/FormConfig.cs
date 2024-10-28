@@ -55,6 +55,7 @@ namespace SeerRandomSkin
             checkBox_h5_pack.Checked = SettingsDef.AutoLoadH5Pack;
             checkBox_h5_pet_bag.Checked = SettingsDef.AutoLoadPetBag;
             checkBox_screen_shot.Checked = SettingsDef.AutoLoadScreenShot;
+            checkBox_flash_map.Checked = SettingsDef.AutoLoadFlashMap;
         }
 
         private void button_Save_Click(object sender, EventArgs e)
@@ -119,6 +120,7 @@ namespace SeerRandomSkin
             SettingsDef.AutoLoadH5Pack = checkBox_h5_pack.Checked;
             SettingsDef.AutoLoadPetBag = checkBox_h5_pet_bag.Checked;
             SettingsDef.AutoLoadScreenShot = checkBox_screen_shot.Checked;
+            SettingsDef.AutoLoadFlashMap = checkBox_flash_map.Checked;
 
             SettingsDef.Save();
             MessageBox.Show("保存成功");

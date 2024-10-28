@@ -66,12 +66,13 @@
             this.label11 = new System.Windows.Forms.Label();
             this.textBox_speedUp = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.checkBox_flash_pack = new System.Windows.Forms.CheckBox();
-            this.checkBox_flash_fight = new System.Windows.Forms.CheckBox();
-            this.checkBox_flash_activities = new System.Windows.Forms.CheckBox();
-            this.checkBox_h5_pack = new System.Windows.Forms.CheckBox();
-            this.checkBox_h5_pet_bag = new System.Windows.Forms.CheckBox();
             this.checkBox_screen_shot = new System.Windows.Forms.CheckBox();
+            this.checkBox_h5_pet_bag = new System.Windows.Forms.CheckBox();
+            this.checkBox_h5_pack = new System.Windows.Forms.CheckBox();
+            this.checkBox_flash_activities = new System.Windows.Forms.CheckBox();
+            this.checkBox_flash_fight = new System.Windows.Forms.CheckBox();
+            this.checkBox_flash_pack = new System.Windows.Forms.CheckBox();
+            this.checkBox_flash_map = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_width)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_height)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -456,6 +457,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.checkBox_flash_map);
             this.groupBox3.Controls.Add(this.checkBox_screen_shot);
             this.groupBox3.Controls.Add(this.checkBox_h5_pet_bag);
             this.groupBox3.Controls.Add(this.checkBox_h5_pack);
@@ -469,35 +471,25 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "自动打开窗口";
             // 
-            // checkBox_flash_pack
+            // checkBox_screen_shot
             // 
-            this.checkBox_flash_pack.AutoSize = true;
-            this.checkBox_flash_pack.Location = new System.Drawing.Point(27, 28);
-            this.checkBox_flash_pack.Name = "checkBox_flash_pack";
-            this.checkBox_flash_pack.Size = new System.Drawing.Size(84, 16);
-            this.checkBox_flash_pack.TabIndex = 23;
-            this.checkBox_flash_pack.Text = "Flash 封包";
-            this.checkBox_flash_pack.UseVisualStyleBackColor = true;
+            this.checkBox_screen_shot.AutoSize = true;
+            this.checkBox_screen_shot.Location = new System.Drawing.Point(149, 68);
+            this.checkBox_screen_shot.Name = "checkBox_screen_shot";
+            this.checkBox_screen_shot.Size = new System.Drawing.Size(60, 16);
+            this.checkBox_screen_shot.TabIndex = 28;
+            this.checkBox_screen_shot.Text = "记牌器";
+            this.checkBox_screen_shot.UseVisualStyleBackColor = true;
             // 
-            // checkBox_flash_fight
+            // checkBox_h5_pet_bag
             // 
-            this.checkBox_flash_fight.AutoSize = true;
-            this.checkBox_flash_fight.Location = new System.Drawing.Point(27, 54);
-            this.checkBox_flash_fight.Name = "checkBox_flash_fight";
-            this.checkBox_flash_fight.Size = new System.Drawing.Size(84, 16);
-            this.checkBox_flash_fight.TabIndex = 24;
-            this.checkBox_flash_fight.Text = "Flash 对战";
-            this.checkBox_flash_fight.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_flash_activities
-            // 
-            this.checkBox_flash_activities.AutoSize = true;
-            this.checkBox_flash_activities.Location = new System.Drawing.Point(27, 80);
-            this.checkBox_flash_activities.Name = "checkBox_flash_activities";
-            this.checkBox_flash_activities.Size = new System.Drawing.Size(84, 16);
-            this.checkBox_flash_activities.TabIndex = 25;
-            this.checkBox_flash_activities.Text = "Flash 活动";
-            this.checkBox_flash_activities.UseVisualStyleBackColor = true;
+            this.checkBox_h5_pet_bag.AutoSize = true;
+            this.checkBox_h5_pet_bag.Location = new System.Drawing.Point(149, 48);
+            this.checkBox_h5_pet_bag.Name = "checkBox_h5_pet_bag";
+            this.checkBox_h5_pet_bag.Size = new System.Drawing.Size(66, 16);
+            this.checkBox_h5_pet_bag.TabIndex = 27;
+            this.checkBox_h5_pet_bag.Text = "H5 换装";
+            this.checkBox_h5_pet_bag.UseVisualStyleBackColor = true;
             // 
             // checkBox_h5_pack
             // 
@@ -509,25 +501,45 @@
             this.checkBox_h5_pack.Text = "H5 封包";
             this.checkBox_h5_pack.UseVisualStyleBackColor = true;
             // 
-            // checkBox_h5_pet_bag
+            // checkBox_flash_activities
             // 
-            this.checkBox_h5_pet_bag.AutoSize = true;
-            this.checkBox_h5_pet_bag.Location = new System.Drawing.Point(149, 54);
-            this.checkBox_h5_pet_bag.Name = "checkBox_h5_pet_bag";
-            this.checkBox_h5_pet_bag.Size = new System.Drawing.Size(66, 16);
-            this.checkBox_h5_pet_bag.TabIndex = 27;
-            this.checkBox_h5_pet_bag.Text = "H5 换装";
-            this.checkBox_h5_pet_bag.UseVisualStyleBackColor = true;
+            this.checkBox_flash_activities.AutoSize = true;
+            this.checkBox_flash_activities.Location = new System.Drawing.Point(27, 68);
+            this.checkBox_flash_activities.Name = "checkBox_flash_activities";
+            this.checkBox_flash_activities.Size = new System.Drawing.Size(84, 16);
+            this.checkBox_flash_activities.TabIndex = 25;
+            this.checkBox_flash_activities.Text = "Flash 活动";
+            this.checkBox_flash_activities.UseVisualStyleBackColor = true;
             // 
-            // checkBox_screen_shot
+            // checkBox_flash_fight
             // 
-            this.checkBox_screen_shot.AutoSize = true;
-            this.checkBox_screen_shot.Location = new System.Drawing.Point(149, 80);
-            this.checkBox_screen_shot.Name = "checkBox_screen_shot";
-            this.checkBox_screen_shot.Size = new System.Drawing.Size(60, 16);
-            this.checkBox_screen_shot.TabIndex = 28;
-            this.checkBox_screen_shot.Text = "记牌器";
-            this.checkBox_screen_shot.UseVisualStyleBackColor = true;
+            this.checkBox_flash_fight.AutoSize = true;
+            this.checkBox_flash_fight.Location = new System.Drawing.Point(27, 48);
+            this.checkBox_flash_fight.Name = "checkBox_flash_fight";
+            this.checkBox_flash_fight.Size = new System.Drawing.Size(84, 16);
+            this.checkBox_flash_fight.TabIndex = 24;
+            this.checkBox_flash_fight.Text = "Flash 对战";
+            this.checkBox_flash_fight.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_flash_pack
+            // 
+            this.checkBox_flash_pack.AutoSize = true;
+            this.checkBox_flash_pack.Location = new System.Drawing.Point(27, 28);
+            this.checkBox_flash_pack.Name = "checkBox_flash_pack";
+            this.checkBox_flash_pack.Size = new System.Drawing.Size(84, 16);
+            this.checkBox_flash_pack.TabIndex = 23;
+            this.checkBox_flash_pack.Text = "Flash 封包";
+            this.checkBox_flash_pack.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_flash_map
+            // 
+            this.checkBox_flash_map.AutoSize = true;
+            this.checkBox_flash_map.Location = new System.Drawing.Point(27, 88);
+            this.checkBox_flash_map.Name = "checkBox_flash_map";
+            this.checkBox_flash_map.Size = new System.Drawing.Size(84, 16);
+            this.checkBox_flash_map.TabIndex = 29;
+            this.checkBox_flash_map.Text = "Flash 地图";
+            this.checkBox_flash_map.UseVisualStyleBackColor = true;
             // 
             // FormConfig
             // 
@@ -628,5 +640,6 @@
         private System.Windows.Forms.CheckBox checkBox_flash_fight;
         private System.Windows.Forms.CheckBox checkBox_h5_pet_bag;
         private System.Windows.Forms.CheckBox checkBox_screen_shot;
+        private System.Windows.Forms.CheckBox checkBox_flash_map;
     }
 }

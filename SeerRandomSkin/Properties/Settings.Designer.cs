@@ -535,5 +535,17 @@ namespace SeerRandomSkin.Properties {
                 this["AutoLoadH5Pack"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoLoadFlashMap {
+            get {
+                return ((bool)(this["AutoLoadFlashMap"]));
+            }
+            set {
+                this["AutoLoadFlashMap"] = value;
+            }
+        }
     }
 }

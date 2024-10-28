@@ -159,6 +159,10 @@ namespace SeerRandomSkin
                 childFormScreenShot.Show();
                 childFormScreenShot.ScreenShot();
             }
+            if (proSet.AutoLoadFlashMap)
+            {
+                var f = new FormStrollMap(); f.Show();
+            }
         }
 
         private ChromiumWebBrowser CreateChromium(string address)

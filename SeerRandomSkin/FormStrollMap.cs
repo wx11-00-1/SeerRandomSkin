@@ -20,5 +20,10 @@ namespace SeerRandomSkin
         {
 
         }
+
+        private void btnRandom_Click(object sender, EventArgs e)
+        {
+            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxChangeMapRandom()");
+        }
     }
 }

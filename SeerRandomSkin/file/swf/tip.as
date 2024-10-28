@@ -30,6 +30,7 @@ package
    import com.robot.core.manager.ModuleManager;
    import com.robot.app2.control.PeakJihad2023Controller;
    import com.robot.core.config.ClientConfig;
+   import com.robot.core.config.xml.MapXMLInfo;
    
    [Embed(source="/_assets/assets.swf", symbol="item")]
    public dynamic class item extends MovieClip
@@ -47,6 +48,11 @@ package
 
          // 地图 和 活动
          ExternalInterface.addCallback("WxChangeMap",MapManager.changeMap);
+         ExternalInterface.addCallback("WxChangeMapRandom",function():void
+         {
+            var mapList:Array = MapXMLInfo.getIDList();
+            MapManager.changeMap(mapList[Math.round(Math.random() * mapList.length)]);
+         });
          ExternalInterface.addCallback("WxShowAppModule",ModuleManager.showAppModule);
 
          // 隐藏其他用户
