@@ -201,13 +201,13 @@ namespace Seer
             }
             else                                                //无需加密只有一种情况，即处于登录界面
             {                                                   //这种情况下并不需要修改序列号，只解析封包即可
+                Socket = socket;                                //通信号
                 plain = cipher;
                 ParsePacket(plain, ref SendPacketData);         //解析封包
                 if (SendPacketData.cmdId == 105)
                 {
                     Init(); // 初始化全局变量
                 }
-                Socket = socket;                                //通信号
             }
 
             if (!FormPack.HideSend) FormPack.ActionShowPack("发", SendPacketData.cmdId.ToString(), Misc.ByteArray2HexString(plain)); // 显示明文
