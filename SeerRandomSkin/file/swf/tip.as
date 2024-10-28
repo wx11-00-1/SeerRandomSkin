@@ -83,7 +83,11 @@ package
          {
             if (SocketConnection.WxIsAutoCure)
             {
-               PetManager.cureAll(false,false);
+                var bagBoth:Array = PetManager.getBagMap(true);
+                for (var i:int = 0; i < bagBoth.length; ++i)
+                {
+                    SocketConnection.send(CommandID.PET_ONE_CURE,bagBoth[i].catchTime);
+                }
             }
             var fightOverInfo:FightOverInfo = event.data as FightOverInfo;
             ExternalInterface.call("WxFightHandler.OnFightOver",fightOverInfo);
