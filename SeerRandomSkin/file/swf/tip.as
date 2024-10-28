@@ -28,6 +28,7 @@ package
    import com.robot.app.toolBar.ToolBarController;
    import com.robot.core.manager.MapManager;
    import com.robot.core.manager.ModuleManager;
+   import com.robot.app2.control.PeakJihad2023Controller;
    
    [Embed(source="/_assets/assets.swf", symbol="item")]
    public dynamic class item extends MovieClip
@@ -251,6 +252,52 @@ package
             SocketConnection.addCmdListener(CommandID.FIGHT_OVER,SocketConnection.WxLowHPFightOver);
          };
          ExternalInterface.addCallback("WxLowHP",SocketConnection.WxLowHP);
+
+         // 巅峰
+         ExternalInterface.addCallback("WxPeakJihadSportsMode", function():void
+         {
+            if(!PeakJihad2023Controller.isInAcTime(true))
+            {
+                Alarm.show("还没到巅峰时间段");
+               return;
+            }
+            if(PeakJihad2023Controller.getBagALLPetLvIsFullAndNotSame())
+            {
+                SocketConnection.addCmdListener(45137,function(e:SocketEvent):void
+                {
+                   SocketConnection.removeCmdListener(45137,arguments.callee);
+                   ModuleManager.showModule(ClientConfig.getAppModule("PeakJihad2023MatchWaitPanel"),"正在打开....",3);
+                });
+                SocketConnection.send(45137,1,3);
+            }
+            else
+            {
+                Alarm.show("背包阵容不满足要求");
+            }
+         }
+         );
+         ExternalInterface.addCallback("WxPeakJihadWildMode", function():void
+         {
+            if(!PeakJihad2023Controller.isInWildAcTime(true))
+            {
+                Alarm.show("还没到巅峰时间段");
+               return;
+            }
+            if(PeakJihad2023Controller.getAllBagALLPetLvIsFull())
+            {
+                SocketConnection.addCmdListener(45137,function(e:SocketEvent):void
+                {
+                   SocketConnection.removeCmdListener(45137,arguments.callee);
+                   ModuleManager.showModule(ClientConfig.getAppModule("PeakJihad2023MatchWaitPanel"),"正在打开....",2);
+                });
+                SocketConnection.send(45137,1,2);
+            }
+            else
+            {
+                Alarm.show("背包阵容不满足要求");
+            }
+         }
+         );
 
          // 发包函数
          ExternalInterface.addCallback("WxSend",SocketConnection.send);
