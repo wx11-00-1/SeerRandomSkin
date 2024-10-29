@@ -490,7 +490,26 @@ namespace SeerRandomSkin.Properties {
             "yerCount; ++i)\\n      {\\n        let player = new UserInfo(data);\\n        if (p" +
             "layer.fireBuff == FIRE_GOLD_BIG || player.fireBuff == FIRE_GOLD_SMALL) \\n       " +
             " {\\n          WxFightHandler.Utils.Send(4292,player.userID); console.log(\'借火成功\')" +
-            "; return;\\n        }\\n      }\\n      console.log(\'借火失败\');\\n    })();\"\r\n}")]
+            "; return;\\n        }\\n      }\\n      console.log(\'借火失败\');\\n    })();\",\r\n  \"一直第五\"" +
+            ": \"// 适用于 pve\\nWxFightHandler.OnFirstRound = (fightStartInfo) => {\\n  let skillA" +
+            "rray = WxFightHandler.Utils.GetPetInfos()[0].skillArray;\\n  WxFightHandler.Utils" +
+            ".UseSkill(skillArray.length < 5 ? 0 : 4); // 若无第五，则用一技能\\n};\\n\\nWxFightHandler.On" +
+            "UseSkill = (mySkillInfo,enemySkillInfo) => {\\n  let petID = WxFightHandler.Utils" +
+            ".GetFightingPetID(); console.log(\'onUseSkill\',mySkillInfo)\\n  if (mySkillInfo.re" +
+            "mainHP !== 0) {\\n    let skillList = mySkillInfo.skillList;\\n    let useSkillInd" +
+            "ex = skillList.length < 5 ? 0 : 4;\\n    if (skillList[useSkillIndex][1] > 0) {\\n" +
+            "      WxFightHandler.Utils.UseSkill(skillList[useSkillIndex][0]);\\n    }\\n    el" +
+            "se {\\n      WxFightHandler.Utils.UsePetItem(300017); WxFightHandler.Utils.WxItem" +
+            "Buy(300017);\\n    }\\n  }\\n  else {\\n    WxFightHandler.Utils.ChangePetByID(mySki" +
+            "llInfo,[]);\\n  }\\n};\\n\\nWxFightHandler.OnChangePet = (petInfo) => {\\n  let skill" +
+            "List = petInfo.skillList;\\n  WxFightHandler.Utils.UseSkill(skillList[skillList.l" +
+            "ength < 5 ? 0 : 4][0]);\\n};\\n\\nWxFightHandler.OnFightOver = (fightOverInfo) => {" +
+            "};\",\r\n  \"奇镰解放_延时\": \"WxFightHandler.OnFirstRound = (fightStartInfo) => {\\n  WxFig" +
+            "htHandler.Utils.UseSkill(36481);\\n};\\nWxFightHandler.OnUseSkill = (mySkillInfo,e" +
+            "nemySkillInfo) => {\\n  if (mySkillInfo.remainHP !== 0) {\\n    setTimeout(() => {" +
+            " WxFightHandler.Utils.UseSkill(36481); }, 200);\\n  }\\n  else {\\n    console.log(" +
+            "\'Pet dead!\')\\n  }\\n};\\nWxFightHandler.OnChangePet = (petInfo) => {\\n};\\nWxFightH" +
+            "andler.OnFightOver = (fightOverInfo) => {\\n};\"\r\n}")]
         public string FlashFightTemplate {
             get {
                 return ((string)(this["FlashFightTemplate"]));

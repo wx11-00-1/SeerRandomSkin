@@ -46,6 +46,14 @@ package
             return;
          }
 
+         // 获取背包精灵信息
+        ExternalInterface.addCallback("WxGetPetInfos",
+            function():Array
+            {
+                return PetManager.infos;
+            }
+        );
+
          // 地图 和 活动
          ExternalInterface.addCallback("WxChangeMap",MapManager.changeMap);
          ExternalInterface.addCallback("WxChangeMapRandom",function():void
