@@ -511,6 +511,7 @@ namespace SeerRandomSkin
 
         private static async Task GetSkinData()
         {
+            skinIds.Clear();
             string version_str = await GetJsonStringAsync("https://seerh5.61.com/version/version.json");
             Match m = Regex.Match(version_str, "\"monsters\\.json\":\"(.*?\\.json)\"");
             if(!m.Success)
