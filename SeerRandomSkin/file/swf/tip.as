@@ -202,7 +202,7 @@ package
                mySkillInfo = _loc2_.secondAttackInfo;
                enemySkillInfo = _loc2_.firstAttackInfo;
             }
-            var hpPercent:uint = enemySkillInfo.remainHP * 100 / enemySkillInfo.maxHp;
+            var hpPercent:Number = enemySkillInfo.maxHp == 0 ? 0 : enemySkillInfo.remainHP * 100 / enemySkillInfo.maxHp;
             ExternalInterface.call("WxFightHandler.Utils.ShowRound",hpPercent);
             if (enemySkillInfo.remainHP == 0)
             {
