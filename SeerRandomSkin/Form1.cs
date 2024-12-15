@@ -300,6 +300,7 @@ namespace SeerRandomSkin
                         {
                             int rid = GetRandomSkinId();
                             request.Url = @"https://seer.61.com/resource/fightResource/pet/swf/" + rid + @".swf";
+                            chromiumBrowser.ExecuteScriptAsync($"console.log({rid}, document.Client.WxGetPetNameByID({rid}))");
                         }
                     }
 
