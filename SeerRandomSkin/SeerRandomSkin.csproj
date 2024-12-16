@@ -206,6 +206,12 @@
     <Compile Include="FormScreenShot.Designer.cs">
       <DependentUpon>FormScreenShot.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSpecifyPetSkin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSpecifyPetSkin.Designer.cs">
+      <DependentUpon>FormSpecifyPetSkin.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormStrollMap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -238,6 +244,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormScreenShot.resx">
       <DependentUpon>FormScreenShot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSpecifyPetSkin.resx">
+      <DependentUpon>FormSpecifyPetSkin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStrollMap.resx">
       <DependentUpon>FormStrollMap.cs</DependentUpon>
@@ -357,72 +366,72 @@
   <ItemGroup>
     <PublishFile Include="EasyHook32.dll">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="EasyHook32Svc.exe">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="EasyLoad32.dll">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="file\dll\pepflashplayer32_15_0_0_152.dll">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="file\dll\speedhack\x86\speedhack.txt">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="file\dll\speedhack\x86\version.dll">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="file\安装包\01.png">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>

@@ -602,5 +602,17 @@ namespace SeerRandomSkin.Properties {
                 this["AutoLoadFlashMap"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{}")]
+        public string SpecificPetSkins {
+            get {
+                return ((string)(this["SpecificPetSkins"]));
+            }
+            set {
+                this["SpecificPetSkins"] = value;
+            }
+        }
     }
 }

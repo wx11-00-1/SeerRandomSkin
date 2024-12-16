@@ -3,6 +3,7 @@ using CefSharp.Callback;
 using CefSharp.Handler;
 using CefSharp.WinForms;
 using EasyHook;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -54,6 +55,8 @@ namespace SeerRandomSkin
             }
         }
 
+        public static Dictionary<int, int> SpecificPetSkins;
+
         public Form1()
         {
             try
@@ -80,6 +83,8 @@ namespace SeerRandomSkin
             {
                 contx.SetPreference("profile.default_content_setting_values.plugins", 1, out string err);
             });
+
+            SpecificPetSkins = JsonConvert.DeserializeObject<Dictionary<int, int>>(Properties.Settings.Default.SpecificPetSkins);
 
             InitializeComponent();
         }
@@ -289,19 +294,26 @@ namespace SeerRandomSkin
 
                 protected override CefReturnValue OnBeforeResourceLoad(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, IRequestCallback callback)
                 {
-                    if(!Properties.Settings.Default.IsRandomSkin) return CefReturnValue.Continue;
-
                     // 随机替换 1000 以后的精灵皮肤
                     var ms = Regex.Matches(request.Url, pattern, RegexOptions.None);
                     if (ms.Count > 0)
                     {
                         int skin_id = int.Parse(ms[0].Groups[1].Value);
-                        if (!skinExclusion.Contains(skin_id))
+                        int rid;
+                        if (SpecificPetSkins.ContainsKey(skin_id))
                         {
-                            int rid = GetRandomSkinId();
-                            request.Url = @"https://seer.61.com/resource/fightResource/pet/swf/" + rid + @".swf";
-                            chromiumBrowser.ExecuteScriptAsync($"console.log({rid}, document.Client.WxGetPetNameByID({rid}))");
+                            SpecificPetSkins.TryGetValue(skin_id, out rid);
                         }
+                        else if (!Properties.Settings.Default.IsRandomSkin || skinExclusion.Contains(skin_id))
+                        {
+                            return CefReturnValue.Continue;
+                        }
+                        else
+                        {
+                            rid = GetRandomSkinId();
+                        }
+                        request.Url = @"https://seer.61.com/resource/fightResource/pet/swf/" + rid + @".swf";
+                        chromiumBrowser.ExecuteScriptAsync($"console.log({rid}, document.Client.WxGetPetNameByID({rid}))");
                     }
 
                     return CefReturnValue.Continue;
@@ -723,6 +735,12 @@ namespace SeerRandomSkin
         private void 逛地图ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var f = new FormStrollMap();
+            f.Show();
+        }
+
+        private void 指定皮肤ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var f = new FormSpecifyPetSkin();
             f.Show();
         }
     }

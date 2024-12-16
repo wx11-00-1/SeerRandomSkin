@@ -57,6 +57,7 @@
             this.对战助手ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.活动收藏夹ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.逛地图ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.指定皮肤ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -219,7 +220,8 @@
             this.自动治疗ToolStripMenuItem,
             this.对战助手ToolStripMenuItem,
             this.活动收藏夹ToolStripMenuItem,
-            this.逛地图ToolStripMenuItem});
+            this.逛地图ToolStripMenuItem,
+            this.指定皮肤ToolStripMenuItem});
             this.flashToolStripMenuItem1.Name = "flashToolStripMenuItem1";
             this.flashToolStripMenuItem1.Size = new System.Drawing.Size(49, 21);
             this.flashToolStripMenuItem1.Text = "Flash";
@@ -287,6 +289,13 @@
             this.逛地图ToolStripMenuItem.Text = "逛地图";
             this.逛地图ToolStripMenuItem.Click += new System.EventHandler(this.逛地图ToolStripMenuItem_Click);
             // 
+            // 指定皮肤ToolStripMenuItem
+            // 
+            this.指定皮肤ToolStripMenuItem.Name = "指定皮肤ToolStripMenuItem";
+            this.指定皮肤ToolStripMenuItem.Size = new System.Drawing.Size(280, 22);
+            this.指定皮肤ToolStripMenuItem.Text = "指定皮肤";
+            this.指定皮肤ToolStripMenuItem.Click += new System.EventHandler(this.指定皮肤ToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -336,6 +345,7 @@
         private System.Windows.Forms.ToolStripMenuItem 对战助手ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 活动收藏夹ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 逛地图ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 指定皮肤ToolStripMenuItem;
     }
 }
 
