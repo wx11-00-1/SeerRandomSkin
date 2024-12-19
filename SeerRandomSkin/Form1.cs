@@ -13,7 +13,6 @@ using System.Linq;
 using System.Management;
 using System.Net.Http;
 using System.Reflection;
-using System.Security.Policy;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -193,6 +192,10 @@ namespace SeerRandomSkin
             if (proSet.AutoLoadFlashMap)
             {
                 var f = new FormStrollMap(); f.Show();
+            }
+            if (proSet.AutoLoadFD)
+            {
+                var f = new FormFiddler(); f.Show();
             }
         }
 

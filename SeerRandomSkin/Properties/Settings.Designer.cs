@@ -614,5 +614,17 @@ namespace SeerRandomSkin.Properties {
                 this["FiddleObjects"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoLoadFD {
+            get {
+                return ((bool)(this["AutoLoadFD"]));
+            }
+            set {
+                this["AutoLoadFD"] = value;
+            }
+        }
     }
 }

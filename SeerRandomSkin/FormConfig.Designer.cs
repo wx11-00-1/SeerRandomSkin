@@ -72,6 +72,7 @@
             this.checkBox_flash_activities = new System.Windows.Forms.CheckBox();
             this.checkBox_flash_fight = new System.Windows.Forms.CheckBox();
             this.checkBox_flash_pack = new System.Windows.Forms.CheckBox();
+            this.checkBox_fd = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_width)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_height)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -445,6 +446,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.checkBox_fd);
             this.groupBox3.Controls.Add(this.checkBox_flash_map);
             this.groupBox3.Controls.Add(this.checkBox_screen_shot);
             this.groupBox3.Controls.Add(this.checkBox_h5_pet_bag);
@@ -472,7 +474,7 @@
             // checkBox_screen_shot
             // 
             this.checkBox_screen_shot.AutoSize = true;
-            this.checkBox_screen_shot.Location = new System.Drawing.Point(149, 68);
+            this.checkBox_screen_shot.Location = new System.Drawing.Point(149, 67);
             this.checkBox_screen_shot.Name = "checkBox_screen_shot";
             this.checkBox_screen_shot.Size = new System.Drawing.Size(60, 16);
             this.checkBox_screen_shot.TabIndex = 28;
@@ -482,7 +484,7 @@
             // checkBox_h5_pet_bag
             // 
             this.checkBox_h5_pet_bag.AutoSize = true;
-            this.checkBox_h5_pet_bag.Location = new System.Drawing.Point(149, 48);
+            this.checkBox_h5_pet_bag.Location = new System.Drawing.Point(149, 46);
             this.checkBox_h5_pet_bag.Name = "checkBox_h5_pet_bag";
             this.checkBox_h5_pet_bag.Size = new System.Drawing.Size(66, 16);
             this.checkBox_h5_pet_bag.TabIndex = 27;
@@ -492,7 +494,7 @@
             // checkBox_h5_pack
             // 
             this.checkBox_h5_pack.AutoSize = true;
-            this.checkBox_h5_pack.Location = new System.Drawing.Point(149, 28);
+            this.checkBox_h5_pack.Location = new System.Drawing.Point(149, 25);
             this.checkBox_h5_pack.Name = "checkBox_h5_pack";
             this.checkBox_h5_pack.Size = new System.Drawing.Size(66, 16);
             this.checkBox_h5_pack.TabIndex = 26;
@@ -502,7 +504,7 @@
             // checkBox_flash_activities
             // 
             this.checkBox_flash_activities.AutoSize = true;
-            this.checkBox_flash_activities.Location = new System.Drawing.Point(27, 68);
+            this.checkBox_flash_activities.Location = new System.Drawing.Point(27, 67);
             this.checkBox_flash_activities.Name = "checkBox_flash_activities";
             this.checkBox_flash_activities.Size = new System.Drawing.Size(84, 16);
             this.checkBox_flash_activities.TabIndex = 25;
@@ -512,7 +514,7 @@
             // checkBox_flash_fight
             // 
             this.checkBox_flash_fight.AutoSize = true;
-            this.checkBox_flash_fight.Location = new System.Drawing.Point(27, 48);
+            this.checkBox_flash_fight.Location = new System.Drawing.Point(27, 46);
             this.checkBox_flash_fight.Name = "checkBox_flash_fight";
             this.checkBox_flash_fight.Size = new System.Drawing.Size(84, 16);
             this.checkBox_flash_fight.TabIndex = 24;
@@ -522,12 +524,22 @@
             // checkBox_flash_pack
             // 
             this.checkBox_flash_pack.AutoSize = true;
-            this.checkBox_flash_pack.Location = new System.Drawing.Point(27, 28);
+            this.checkBox_flash_pack.Location = new System.Drawing.Point(27, 25);
             this.checkBox_flash_pack.Name = "checkBox_flash_pack";
             this.checkBox_flash_pack.Size = new System.Drawing.Size(84, 16);
             this.checkBox_flash_pack.TabIndex = 23;
             this.checkBox_flash_pack.Text = "Flash 封包";
             this.checkBox_flash_pack.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_fd
+            // 
+            this.checkBox_fd.AutoSize = true;
+            this.checkBox_fd.Location = new System.Drawing.Point(149, 88);
+            this.checkBox_fd.Name = "checkBox_fd";
+            this.checkBox_fd.Size = new System.Drawing.Size(36, 16);
+            this.checkBox_fd.TabIndex = 30;
+            this.checkBox_fd.Text = "FD";
+            this.checkBox_fd.UseVisualStyleBackColor = true;
             // 
             // FormConfig
             // 
@@ -628,5 +640,6 @@
         private System.Windows.Forms.CheckBox checkBox_h5_pet_bag;
         private System.Windows.Forms.CheckBox checkBox_screen_shot;
         private System.Windows.Forms.CheckBox checkBox_flash_map;
+        private System.Windows.Forms.CheckBox checkBox_fd;
     }
 }

@@ -32,6 +32,7 @@ namespace SeerRandomSkin
             checkBox_resource_background.Checked = SettingsDef.IsChangeBackground;
             checkBox_resource_vip_icon.Checked = SettingsDef.IsChangeVipIcon;
             checkBox_flash_pack.Checked = SettingsDef.IsUseSocketHack;
+            checkBox_fd.Checked = SettingsDef.AutoLoadFD;
             // 遍历系统字体
             foreach (var f in FontFamily.Families)
             {
@@ -119,6 +120,7 @@ namespace SeerRandomSkin
             SettingsDef.AutoLoadPetBag = checkBox_h5_pet_bag.Checked;
             SettingsDef.AutoLoadScreenShot = checkBox_screen_shot.Checked;
             SettingsDef.AutoLoadFlashMap = checkBox_flash_map.Checked;
+            SettingsDef.AutoLoadFD = checkBox_fd.Checked;
 
             SettingsDef.Save();
             MessageBox.Show("保存成功");
