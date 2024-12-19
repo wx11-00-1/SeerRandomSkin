@@ -13,6 +13,7 @@ using System.Linq;
 using System.Management;
 using System.Net.Http;
 using System.Reflection;
+using System.Security.Policy;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -57,6 +58,11 @@ namespace SeerRandomSkin
 
         public static Dictionary<int, int> SpecificPetSkins;
 
+        public static List<FiddleObject> FiddleObjects;
+        public const string FiddleFilePath = @"file/fd";
+        private static readonly List<FiddleObject> FiddleUrl = new List<FiddleObject>();
+        private static readonly List<FiddleObject> FiddleFile = new List<FiddleObject>();
+
         public Form1()
         {
             try
@@ -85,6 +91,26 @@ namespace SeerRandomSkin
             });
 
             SpecificPetSkins = JsonConvert.DeserializeObject<Dictionary<int, int>>(Properties.Settings.Default.SpecificPetSkins);
+            try
+            {
+                FiddleObjects = JsonConvert.DeserializeObject<List<FiddleObject>>(Properties.Settings.Default.FiddleObjects);
+                foreach (var fiddleObject in FiddleObjects)
+                {
+                    fiddleObject.FromReg = new Regex(fiddleObject.From);
+                    if (fiddleObject.IsUrl)
+                    {
+                        FiddleUrl.Add(fiddleObject);
+                    }
+                    else
+                    {
+                        FiddleFile.Add(fiddleObject);
+                    }
+                }
+            }
+            catch
+            {
+                FiddleObjects = new List<FiddleObject>();
+            }
 
             InitializeComponent();
         }
@@ -294,6 +320,14 @@ namespace SeerRandomSkin
 
                 protected override CefReturnValue OnBeforeResourceLoad(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, IRequestCallback callback)
                 {
+                    foreach (var fiddleObject in FiddleUrl)
+                    {
+                        if (fiddleObject.IsUrl && fiddleObject.FromReg.IsMatch(request.Url))
+                        {
+                            request.Url = fiddleObject.To;
+                            return CefReturnValue.Continue;
+                        }
+                    }
                     // 随机替换 1000 以后的精灵皮肤
                     var ms = Regex.Matches(request.Url, pattern, RegexOptions.None);
                     if (ms.Count > 0)
@@ -322,6 +356,13 @@ namespace SeerRandomSkin
                 protected override IResourceHandler GetResourceHandler(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request)
                 {
                     string url = request.Url;
+                    foreach (var fiddleObject in FiddleFile)
+                    {
+                        if (!fiddleObject.IsUrl && fiddleObject.FromReg.IsMatch(url))
+                        {
+                            return new MyResourceHandler(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FiddleFilePath, fiddleObject.To));
+                        }
+                    }
                     if (url.Contains("https://seer.61.com/dll/PetFightDLL_201308.swf?"))
                     {
                         if (IsHideFlashFightPanel)
@@ -741,6 +782,12 @@ namespace SeerRandomSkin
         private void 指定皮肤ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var f = new FormSpecifyPetSkin();
+            f.Show();
+        }
+
+        private void fDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var f = new FormFiddler();
             f.Show();
         }
     }

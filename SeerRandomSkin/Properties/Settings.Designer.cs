@@ -614,5 +614,17 @@ namespace SeerRandomSkin.Properties {
                 this["SpecificPetSkins"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FiddleObjects {
+            get {
+                return ((string)(this["FiddleObjects"]));
+            }
+            set {
+                this["FiddleObjects"] = value;
+            }
+        }
     }
 }
