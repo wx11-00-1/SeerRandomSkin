@@ -42,7 +42,6 @@
             this.checkBox_RandomSkin = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.checkBox_resource_vip_icon = new System.Windows.Forms.CheckBox();
-            this.checkBox_resource_bg_h5 = new System.Windows.Forms.CheckBox();
             this.checkBox_resource_ad_panel = new System.Windows.Forms.CheckBox();
             this.checkBox_resource_background = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -66,13 +65,13 @@
             this.label11 = new System.Windows.Forms.Label();
             this.textBox_speedUp = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.checkBox_flash_map = new System.Windows.Forms.CheckBox();
             this.checkBox_screen_shot = new System.Windows.Forms.CheckBox();
             this.checkBox_h5_pet_bag = new System.Windows.Forms.CheckBox();
             this.checkBox_h5_pack = new System.Windows.Forms.CheckBox();
             this.checkBox_flash_activities = new System.Windows.Forms.CheckBox();
             this.checkBox_flash_fight = new System.Windows.Forms.CheckBox();
             this.checkBox_flash_pack = new System.Windows.Forms.CheckBox();
-            this.checkBox_flash_map = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_width)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_height)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -200,12 +199,11 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.checkBox_resource_vip_icon);
-            this.groupBox1.Controls.Add(this.checkBox_resource_bg_h5);
             this.groupBox1.Controls.Add(this.checkBox_resource_ad_panel);
             this.groupBox1.Controls.Add(this.checkBox_resource_background);
             this.groupBox1.Location = new System.Drawing.Point(292, 114);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(334, 88);
+            this.groupBox1.Size = new System.Drawing.Size(334, 55);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "资源替换";
@@ -219,16 +217,6 @@
             this.checkBox_resource_vip_icon.TabIndex = 19;
             this.checkBox_resource_vip_icon.Text = "年费图标";
             this.checkBox_resource_vip_icon.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_resource_bg_h5
-            // 
-            this.checkBox_resource_bg_h5.AutoSize = true;
-            this.checkBox_resource_bg_h5.Location = new System.Drawing.Point(22, 56);
-            this.checkBox_resource_bg_h5.Name = "checkBox_resource_bg_h5";
-            this.checkBox_resource_bg_h5.Size = new System.Drawing.Size(84, 16);
-            this.checkBox_resource_bg_h5.TabIndex = 18;
-            this.checkBox_resource_bg_h5.Text = "H5登录背景";
-            this.checkBox_resource_bg_h5.UseVisualStyleBackColor = true;
             // 
             // checkBox_resource_ad_panel
             // 
@@ -471,6 +459,16 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "自动打开窗口";
             // 
+            // checkBox_flash_map
+            // 
+            this.checkBox_flash_map.AutoSize = true;
+            this.checkBox_flash_map.Location = new System.Drawing.Point(27, 88);
+            this.checkBox_flash_map.Name = "checkBox_flash_map";
+            this.checkBox_flash_map.Size = new System.Drawing.Size(84, 16);
+            this.checkBox_flash_map.TabIndex = 29;
+            this.checkBox_flash_map.Text = "Flash 地图";
+            this.checkBox_flash_map.UseVisualStyleBackColor = true;
+            // 
             // checkBox_screen_shot
             // 
             this.checkBox_screen_shot.AutoSize = true;
@@ -530,16 +528,6 @@
             this.checkBox_flash_pack.TabIndex = 23;
             this.checkBox_flash_pack.Text = "Flash 封包";
             this.checkBox_flash_pack.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_flash_map
-            // 
-            this.checkBox_flash_map.AutoSize = true;
-            this.checkBox_flash_map.Location = new System.Drawing.Point(27, 88);
-            this.checkBox_flash_map.Name = "checkBox_flash_map";
-            this.checkBox_flash_map.Size = new System.Drawing.Size(84, 16);
-            this.checkBox_flash_map.TabIndex = 29;
-            this.checkBox_flash_map.Text = "Flash 地图";
-            this.checkBox_flash_map.UseVisualStyleBackColor = true;
             // 
             // FormConfig
             // 
@@ -621,7 +609,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.RichTextBox richTextBox_SkinExc;
-        private System.Windows.Forms.CheckBox checkBox_resource_bg_h5;
         private System.Windows.Forms.RichTextBox richTextBox_skinList;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;

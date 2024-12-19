@@ -311,7 +311,7 @@ namespace SeerRandomSkin
             {
                 static readonly Random random_obj = new Random();
                 // https://seer.61.com/resource/fightResource/pet/swf/3788.swf
-                readonly string pattern = "https:\\/\\/seer\\.61\\.com\\/resource\\/fightResource\\/pet\\/swf\\/(\\d{4,})\\.swf\\?";
+                static readonly Regex rgxPetSkin = new Regex("https:\\/\\/seer\\.61\\.com\\/resource\\/fightResource\\/pet\\/swf\\/(\\d{4,})\\.swf\\?");
 
                 private int GetRandomSkinId()
                 {
@@ -329,7 +329,7 @@ namespace SeerRandomSkin
                         }
                     }
                     // 随机替换 1000 以后的精灵皮肤
-                    var ms = Regex.Matches(request.Url, pattern, RegexOptions.None);
+                    var ms = rgxPetSkin.Matches(request.Url);
                     if (ms.Count > 0)
                     {
                         int skin_id = int.Parse(ms[0].Groups[1].Value);
@@ -363,56 +363,45 @@ namespace SeerRandomSkin
                             return new MyResourceHandler(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FiddleFilePath, fiddleObject.To));
                         }
                     }
-                    if (url.Contains("https://seer.61.com/dll/PetFightDLL_201308.swf?"))
+                    if (url.StartsWith("https://seer.61.com/dll/PetFightDLL_201308.swf?"))
                     {
                         if (IsHideFlashFightPanel)
                         {
                             return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\PetFightDLL.swf");
                         }
                     }
-                    else if (url.Contains("https://seer.61.com/resource/xml/battleStrategy.xml?"))
+                    else if (url.StartsWith("https://seer.61.com/resource/xml/battleStrategy.xml?"))
                     {
                         return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\xml\battleStrategy.xml");
                     }
-                    else if (url == @"https://seer.61.com/dll/Assets.swf?lsx13yv4")
+                    else if (url.StartsWith("https://seer.61.com/dll/Assets.swf?"))
                     {
                         if (Properties.Settings.Default.IsChangeBackground)
                         {
                             return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\Assets.swf");
                         }
                     }
-                    else if (url.Contains("https://seer.61.com/resource/uiIcon/yearvip_icon.swf?"))
+                    else if (url.StartsWith("https://seer.61.com/resource/uiIcon/yearvip_icon.swf?"))
                     {
                         if (Properties.Settings.Default.IsChangeVipIcon)
                         {
                             return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\yearvip_icon.swf");
                         }
                     }
-                    else if (url.Contains(@"login/ServerAdPanel1.swf"))
+                    else if (url.StartsWith(@"https://seer.61.com/resource/login/ServerAdPanel1.swf?"))
                     {
                         if (Properties.Settings.Default.IsChangeAdPanel)
                         {
                             return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\NoAd.swf");
                         }
                     }
-                    else if (url.Contains(@"/resource/forApp/superMarket/tip.swf?"))
+                    else if (url.StartsWith(@"https://seer.61.com/resource/forApp/superMarket/tip.swf?"))
                     {
                         return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\tip.swf");
                     }
-                    else if (url.Contains(@"https://seer.61.com/module/com/robot/module/app/SupermarketPanel.swf?"))
+                    else if (url.StartsWith(@"https://seer.61.com/module/com/robot/module/app/SupermarketPanel.swf?"))
                     {
                         return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\DiduoAssistant.swf");
-                    }
-                    else if(Properties.Settings.Default.IsChangeH5LoginBg2024)
-                    {
-                        if(url == @"https://seerh5.61.com/resource/assets/ui/login202202/outside/2024nianfeidaiji.png")
-                        {
-                            return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\png\pixel.png");
-                        }
-                        else if (url == @"https://seerh5.61.com/resource/assets/ui/login202202/outside/2024nianfeidaijiBg.png")
-                        {
-                            return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\png\bg_login_h5.png");
-                        }
                     }
 
                     return base.GetResourceHandler(chromiumWebBrowser, browser, frame, request);

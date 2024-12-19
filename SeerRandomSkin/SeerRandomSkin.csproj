@@ -322,12 +322,6 @@
     </Content>
     <Content Include="file\dll\speedhack\x86\speedhack.txt" />
     <Content Include="file\dll\speedhack\x86\version.dll" />
-    <Content Include="file\png\bg_login_h5.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="file\png\pixel.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="file\swf\Assets.swf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
