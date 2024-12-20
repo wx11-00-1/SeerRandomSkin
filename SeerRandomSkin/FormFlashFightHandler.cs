@@ -129,7 +129,7 @@ namespace SeerRandomSkin
             "};"
             ;
 
-        private static JObject jFightTemplate = JObject.Parse(Properties.Settings.Default.FlashFightTemplate);
+        private static JObject jFightTemplate;
 
         public FormFlashFightHandler()
         {
@@ -138,6 +138,7 @@ namespace SeerRandomSkin
 
         private void FormFlashFightHandler_Load(object sender, EventArgs e)
         {
+            jFightTemplate = Utils.TryGetJObject(Properties.Settings.Default.FlashFightTemplate);
             richTextBox_script.Text = JS_FIGHT_DEFAULT;
             ResetLvTemplate();
         }

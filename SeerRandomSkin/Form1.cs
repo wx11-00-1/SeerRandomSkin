@@ -3,7 +3,6 @@ using CefSharp.Callback;
 using CefSharp.Handler;
 using CefSharp.WinForms;
 using EasyHook;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -26,6 +25,8 @@ namespace SeerRandomSkin
         //游戏网址
         public const string gameAddress = "https://seer.61.com/play.shtml";
         public const string gameH5Address = "https://seerh5.61.com";
+
+        static readonly Properties.Settings Configs = Properties.Settings.Default;
 
         public static ChromiumWebBrowser chromiumBrowser;
         private Form2 childForm2 = null;
@@ -66,9 +67,9 @@ namespace SeerRandomSkin
         {
             try
             {
-                System.Diagnostics.Process.Start(Properties.Settings.Default.AutoExecuteSoftwarePath1);
-                System.Diagnostics.Process.Start(Properties.Settings.Default.AutoExecuteSoftwarePath2);
-                System.Diagnostics.Process.Start(Properties.Settings.Default.AutoExecuteSoftwarePath3);
+                System.Diagnostics.Process.Start(Configs.AutoExecuteSoftwarePath1);
+                System.Diagnostics.Process.Start(Configs.AutoExecuteSoftwarePath2);
+                System.Diagnostics.Process.Start(Configs.AutoExecuteSoftwarePath3);
             }
             catch { }
 
@@ -89,98 +90,72 @@ namespace SeerRandomSkin
                 contx.SetPreference("profile.default_content_setting_values.plugins", 1, out string err);
             });
 
-            SpecificPetSkins = JsonConvert.DeserializeObject<Dictionary<int, int>>(Properties.Settings.Default.SpecificPetSkins);
-            try
-            {
-                FiddleObjects = JsonConvert.DeserializeObject<List<FiddleObject>>(Properties.Settings.Default.FiddleObjects);
-                foreach (var fiddleObject in FiddleObjects)
-                {
-                    fiddleObject.FromReg = new Regex(fiddleObject.From);
-                    if (fiddleObject.IsUrl)
-                    {
-                        FiddleUrl.Add(fiddleObject);
-                    }
-                    else
-                    {
-                        FiddleFile.Add(fiddleObject);
-                    }
-                }
-            }
-            catch
-            {
-                FiddleObjects = new List<FiddleObject>();
-            }
-
             InitializeComponent();
         }
 
         private async void Form1_Load(object sender, EventArgs e)
         {
-            var proSet = Properties.Settings.Default;
-
             FormTitle = Text;
             ChangeTitleAction = (title) =>
             {
                 Text = title;
             };
 
-            Width = (int)proSet.WinWidth;
-            Height = (int)proSet.WinHeight;
+            Width = (int)Configs.WinWidth;
+            Height = (int)Configs.WinHeight;
             CenterToScreen();
 
             // 初始化皮肤列表
-            if (proSet.SkinIds == "")
+            if (Configs.SkinIds == "")
             {
                 await GetSkinData();
             }
             else
             {
-                string[] strings = proSet.SkinIds.Split(',');
+                string[] strings = Configs.SkinIds.Replace(" ", "").Split(',');
                 foreach (string s in strings)
                 {
-                    if (s == "") continue;
-                    int id = int.Parse(s);
-                    if (id < proSet.SkinRangeFloor || id > proSet.SkinRangeCeiling) continue;
+                    if (s == "" || !int.TryParse(s,out int id) || id < Configs.SkinRangeFloor || id > Configs.SkinRangeCeiling) continue;
                     skinIds.Add(id);
                 }
             }
             // 初始化随机皮肤的排除项
-            string[] exc = proSet.RandomSkinExclusion.Split(',');
+            string[] exc = Configs.RandomSkinExclusion.Replace(" ", "").Split(',');
             foreach (string ex in exc)
             {
-                if (ex == "") continue; int id = int.Parse(ex); skinExclusion.Add(id);
+                if (ex == "" || !int.TryParse(ex, out int id)) continue; skinExclusion.Add(id);
             }
 
-            chromiumBrowser = CreateChromium(proSet.IsH5First ? gameH5Address : gameAddress);
+            chromiumBrowser = CreateChromium(Configs.IsH5First ? gameH5Address : gameAddress);
             Controls.Add(chromiumBrowser);
             ResizeChromiumBrowser();
 
             new Thread(() =>
             {
                 Thread.Sleep(2000);
-                if (proSet.IsUseSocketHack) FlashSocketHack();
+                if (Configs.IsUseSocketHack) FlashSocketHack();
                 FlashSpeedHack();
             })
             { IsBackground = true }.Start();
 
             // 加载窗口
-            if (proSet.AutoLoadActivities)
+            if (Configs.AutoLoadActivities)
             {
                 var f = new FormActivityCollection(); f.Show();
             }
-            if (proSet.AutoLoadFightHandler)
+            if (Configs.AutoLoadFightHandler)
             {
                 var f = new FormFlashFightHandler(); f.Show();
             }
-            if (proSet.AutoLoadH5Pack)
+            if (Configs.AutoLoadH5Pack)
             {
                 childFormPack = new FormPack(); childFormPack.Show();
             }
-            if (proSet.AutoLoadPetBag)
+            if (Configs.AutoLoadPetBag)
             {
                 var f = new FormPetBag(); f.Show();
             }
-            if (proSet.AutoLoadScreenShot)
+            if (Configs.AutoLoadScreenShot)
             {
                 childFormScreenShot = new FormScreenShot
                 {
@@ -189,13 +164,28 @@ namespace SeerRandomSkin
                 childFormScreenShot.Show();
                 childFormScreenShot.ScreenShot();
             }
-            if (proSet.AutoLoadFlashMap)
+            if (Configs.AutoLoadFlashMap)
             {
                 var f = new FormStrollMap(); f.Show();
             }
-            if (proSet.AutoLoadFD)
+            if (Configs.AutoLoadFD)
             {
                 var f = new FormFiddler(); f.Show();
+            }
+
+            SpecificPetSkins = Utils.TryJsonConvert<Dictionary<int, int>>(Configs.SpecificPetSkins);
+            FiddleObjects = Utils.TryJsonConvert<List<FiddleObject>>(Configs.FiddleObjects);
+            foreach (var fiddleObject in FiddleObjects)
+            {
+                fiddleObject.FromReg = new Regex(fiddleObject.From);
+                if (fiddleObject.IsUrl)
+                {
+                    FiddleUrl.Add(fiddleObject);
+                }
+                else
+                {
+                    FiddleFile.Add(fiddleObject);
+                }
             }
         }
 
@@ -210,15 +200,12 @@ namespace SeerRandomSkin
                 BrowserSettings = new BrowserSettings(),
                 KeyboardHandler = new KeyBoardHandler() { mainForm = this }
             };
-            if (Properties.Settings.Default.BrowserFont != "")
-            {
-                chromium.BrowserSettings.StandardFontFamily =
-                chromium.BrowserSettings.SansSerifFontFamily =
-                chromium.BrowserSettings.SerifFontFamily =
-                chromium.BrowserSettings.FantasyFontFamily =
-                chromium.BrowserSettings.FixedFontFamily =
-                chromium.BrowserSettings.CursiveFontFamily = Properties.Settings.Default.BrowserFont;
-            }
+            chromium.BrowserSettings.StandardFontFamily =
+            chromium.BrowserSettings.SansSerifFontFamily =
+            chromium.BrowserSettings.SerifFontFamily =
+            chromium.BrowserSettings.FantasyFontFamily =
+            chromium.BrowserSettings.FixedFontFamily =
+            chromium.BrowserSettings.CursiveFontFamily = Configs.BrowserFont;
 
             // 注册 js 类
             chromium.JavascriptObjectRepository.Settings.LegacyBindingEnabled = true;
@@ -294,7 +281,7 @@ namespace SeerRandomSkin
                     }
                     else if (address == gameAddress)
                     {
-                        args.Browser.MainFrame.ExecuteJavaScriptAsync(String.Format("document.body.style.zoom = {0};", Properties.Settings.Default.FlashZoom));
+                        args.Browser.MainFrame.ExecuteJavaScriptAsync(String.Format("document.body.style.zoom = {0};", Configs.FlashZoom));
                         args.Browser.MainFrame.ExecuteJavaScriptAsync(FormFlashFightHandler.JS_FIGHT_ENVIRONMENT);
                     }
                 }
@@ -341,7 +328,7 @@ namespace SeerRandomSkin
                         {
                             SpecificPetSkins.TryGetValue(skin_id, out rid);
                         }
-                        else if (!Properties.Settings.Default.IsRandomSkin || skinExclusion.Contains(skin_id))
+                        else if (!Configs.IsRandomSkin || skinExclusion.Contains(skin_id))
                         {
                             return CefReturnValue.Continue;
                         }
@@ -379,21 +366,21 @@ namespace SeerRandomSkin
                     }
                     else if (url.StartsWith("https://seer.61.com/dll/Assets.swf?"))
                     {
-                        if (Properties.Settings.Default.IsChangeBackground)
+                        if (Configs.IsChangeBackground)
                         {
                             return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\Assets.swf");
                         }
                     }
                     else if (url.StartsWith("https://seer.61.com/resource/uiIcon/yearvip_icon.swf?"))
                     {
-                        if (Properties.Settings.Default.IsChangeVipIcon)
+                        if (Configs.IsChangeVipIcon)
                         {
                             return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\yearvip_icon.swf");
                         }
                     }
                     else if (url.StartsWith(@"https://seer.61.com/resource/login/ServerAdPanel1.swf?"))
                     {
-                        if (Properties.Settings.Default.IsChangeAdPanel)
+                        if (Configs.IsChangeAdPanel)
                         {
                             return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\NoAd.swf");
                         }
@@ -581,8 +568,8 @@ namespace SeerRandomSkin
             {
                 s = s + skinId + ",";
             }
-            Properties.Settings.Default.SkinIds = s;
-            Properties.Settings.Default.Save();
+            Configs.SkinIds = s;
+            Configs.Save();
         }
 
         private static async Task<string> GetJsonStringAsync(string url)//从url获取文件内容
@@ -604,11 +591,11 @@ namespace SeerRandomSkin
 
         private static void FilterSkins()
         {
-            string[] blacks = Properties.Settings.Default.SkinBlackList.Split(',');
+            string[] blacks = Configs.SkinBlackList.Replace(" ", "").Split(',');
             HashSet<int> set1 = new HashSet<int>();
             foreach (string s in blacks)
             {
-                if (s != "") set1.Add(int.Parse(s));
+                if (s != "" && int.TryParse(s, out int id)) set1.Add(id);
             }
             skinIds.RemoveAll(data => set1.Contains(data));
         }

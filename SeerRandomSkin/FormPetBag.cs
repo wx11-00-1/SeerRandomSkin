@@ -65,7 +65,7 @@ namespace SeerRandomSkin
         private void InitListView()
         {
             listView1.Items.Clear();
-            jObj_clothes = JObject.Parse(Properties.Settings.Default.SeerCloth);
+            jObj_clothes = Utils.TryGetJObject(Properties.Settings.Default.SeerCloth);
             var properties = jObj_clothes.Properties();
             foreach (var property in properties)
             {

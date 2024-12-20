@@ -17,7 +17,7 @@ namespace SeerRandomSkin
         private void ReloadListView()
         {
             listView1.Items.Clear();
-            jObj_ac = JObject.Parse(Properties.Settings.Default.ActivityCollection);
+            jObj_ac = Utils.TryGetJObject(Properties.Settings.Default.ActivityCollection);
             var properties = jObj_ac.Properties();
             foreach (var property in properties)
             {
