@@ -34,7 +34,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox_font = new System.Windows.Forms.ComboBox();
-            this.checkBox_h5_first = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.numericUpDown_win_width = new System.Windows.Forms.NumericUpDown();
@@ -65,6 +64,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.textBox_speedUp = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.checkBox_fd = new System.Windows.Forms.CheckBox();
             this.checkBox_flash_map = new System.Windows.Forms.CheckBox();
             this.checkBox_screen_shot = new System.Windows.Forms.CheckBox();
             this.checkBox_h5_pet_bag = new System.Windows.Forms.CheckBox();
@@ -72,7 +72,8 @@
             this.checkBox_flash_activities = new System.Windows.Forms.CheckBox();
             this.checkBox_flash_fight = new System.Windows.Forms.CheckBox();
             this.checkBox_flash_pack = new System.Windows.Forms.CheckBox();
-            this.checkBox_fd = new System.Windows.Forms.CheckBox();
+            this.textBox_defaultURL = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_width)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_height)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -134,16 +135,6 @@
             this.comboBox_font.Name = "comboBox_font";
             this.comboBox_font.Size = new System.Drawing.Size(75, 20);
             this.comboBox_font.TabIndex = 6;
-            // 
-            // checkBox_h5_first
-            // 
-            this.checkBox_h5_first.AutoSize = true;
-            this.checkBox_h5_first.Location = new System.Drawing.Point(173, 41);
-            this.checkBox_h5_first.Name = "checkBox_h5_first";
-            this.checkBox_h5_first.Size = new System.Drawing.Size(96, 16);
-            this.checkBox_h5_first.TabIndex = 7;
-            this.checkBox_h5_first.Text = "优先进入h5端";
-            this.checkBox_h5_first.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -461,6 +452,16 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "自动打开窗口";
             // 
+            // checkBox_fd
+            // 
+            this.checkBox_fd.AutoSize = true;
+            this.checkBox_fd.Location = new System.Drawing.Point(149, 88);
+            this.checkBox_fd.Name = "checkBox_fd";
+            this.checkBox_fd.Size = new System.Drawing.Size(36, 16);
+            this.checkBox_fd.TabIndex = 30;
+            this.checkBox_fd.Text = "FD";
+            this.checkBox_fd.UseVisualStyleBackColor = true;
+            // 
             // checkBox_flash_map
             // 
             this.checkBox_flash_map.AutoSize = true;
@@ -531,21 +532,29 @@
             this.checkBox_flash_pack.Text = "Flash 封包";
             this.checkBox_flash_pack.UseVisualStyleBackColor = true;
             // 
-            // checkBox_fd
+            // textBox_defaultURL
             // 
-            this.checkBox_fd.AutoSize = true;
-            this.checkBox_fd.Location = new System.Drawing.Point(149, 88);
-            this.checkBox_fd.Name = "checkBox_fd";
-            this.checkBox_fd.Size = new System.Drawing.Size(36, 16);
-            this.checkBox_fd.TabIndex = 30;
-            this.checkBox_fd.Text = "FD";
-            this.checkBox_fd.UseVisualStyleBackColor = true;
+            this.textBox_defaultURL.Location = new System.Drawing.Point(123, 621);
+            this.textBox_defaultURL.Name = "textBox_defaultURL";
+            this.textBox_defaultURL.Size = new System.Drawing.Size(205, 21);
+            this.textBox_defaultURL.TabIndex = 34;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(55, 626);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(65, 12);
+            this.label12.TabIndex = 35;
+            this.label12.Text = "主页网址：";
             // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(680, 673);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.textBox_defaultURL);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.textBox_speedUp);
             this.Controls.Add(this.label11);
@@ -568,7 +577,6 @@
             this.Controls.Add(this.numericUpDown_win_width);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.checkBox_h5_first);
             this.Controls.Add(this.comboBox_font);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -579,6 +587,7 @@
             this.Name = "FormConfig";
             this.ShowIcon = false;
             this.Text = "配置";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormConfig_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_width)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_height)).EndInit();
@@ -602,7 +611,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBox_font;
-        private System.Windows.Forms.CheckBox checkBox_h5_first;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.NumericUpDown numericUpDown_win_width;
@@ -641,5 +649,7 @@
         private System.Windows.Forms.CheckBox checkBox_screen_shot;
         private System.Windows.Forms.CheckBox checkBox_flash_map;
         private System.Windows.Forms.CheckBox checkBox_fd;
+        private System.Windows.Forms.TextBox textBox_defaultURL;
+        private System.Windows.Forms.Label label12;
     }
 }

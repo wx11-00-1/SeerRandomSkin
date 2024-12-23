@@ -126,7 +126,7 @@ namespace SeerRandomSkin
                 if (ex == "" || !int.TryParse(ex, out int id)) continue; skinExclusion.Add(id);
             }
 
-            chromiumBrowser = CreateChromium(Configs.IsH5First ? gameH5Address : gameAddress);
+            chromiumBrowser = CreateChromium(Configs.DefaultURL);
             Controls.Add(chromiumBrowser);
             ResizeChromiumBrowser();
 

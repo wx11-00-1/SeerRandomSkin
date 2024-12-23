@@ -19,7 +19,6 @@ namespace SeerRandomSkin
         {
             // 初始化配置项
             checkBox_RandomSkin.Checked = SettingsDef.IsRandomSkin;
-            checkBox_h5_first.Checked = SettingsDef.IsH5First;
             numericUpDown_skinCeiling.Value = SettingsDef.SkinRangeCeiling;
             numericUpDown_skinFloor.Value = SettingsDef.SkinRangeFloor;
             richTextBox_skinList.Text = SettingsDef.SkinIds;
@@ -41,6 +40,7 @@ namespace SeerRandomSkin
             textBox1.Text = SettingsDef.AutoExecuteSoftwarePath1;
             textBox2.Text = SettingsDef.AutoExecuteSoftwarePath2;
             textBox3.Text = SettingsDef.AutoExecuteSoftwarePath3;
+            textBox_defaultURL.Text = SettingsDef.DefaultURL;
             comboBoxZoom.Text = SettingsDef.FlashZoom;
             comboBoxZoom.Items.Add("0.5");
             comboBoxZoom.Items.Add("0.75");
@@ -94,7 +94,6 @@ namespace SeerRandomSkin
                 return;
             }
             SettingsDef.IsRandomSkin = checkBox_RandomSkin.Checked;
-            SettingsDef.IsH5First = checkBox_h5_first.Checked;
             SettingsDef.WinWidth = numericUpDown_win_width.Value;
             SettingsDef.WinHeight = numericUpDown_win_height.Value;
             SettingsDef.SkinRangeCeiling = (int)numericUpDown_skinCeiling.Value;
@@ -107,6 +106,7 @@ namespace SeerRandomSkin
             SettingsDef.AutoExecuteSoftwarePath1 = textBox1.Text;
             SettingsDef.AutoExecuteSoftwarePath2 = textBox2.Text;
             SettingsDef.AutoExecuteSoftwarePath3 = textBox3.Text;
+            SettingsDef.DefaultURL = textBox_defaultURL.Text;
             SettingsDef.FlashZoom = comboBoxZoom.Text;
 
             if (double.TryParse(textBox_speedUp.Text, out var speed) && speed >= 1)

@@ -243,18 +243,6 @@ namespace SeerRandomSkin.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool IsH5First {
-            get {
-                return ((bool)(this["IsH5First"]));
-            }
-            set {
-                this["IsH5First"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("976")]
         public decimal WinWidth {
             get {
@@ -641,6 +629,18 @@ namespace SeerRandomSkin.Properties {
             }
             set {
                 this["AutoLoadFD"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://seer.61.com/play.shtml")]
+        public string DefaultURL {
+            get {
+                return ((string)(this["DefaultURL"]));
+            }
+            set {
+                this["DefaultURL"] = value;
             }
         }
     }

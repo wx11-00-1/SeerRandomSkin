@@ -17,9 +17,6 @@
     <Setting Name="BrowserFont" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="IsH5First" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="WinWidth" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">976</Value>
     </Setting>
@@ -100,6 +97,9 @@
     </Setting>
     <Setting Name="AutoLoadFD" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DefaultURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://seer.61.com/play.shtml</Value>
     </Setting>
   </Settings>
 </SettingsFile>
