@@ -30,6 +30,7 @@ namespace SeerRandomSkin
         private void btnLike_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.FavouriteMap = (int)numericUpDown1.Value;
+            Properties.Settings.Default.Save();
         }
     }
 }
