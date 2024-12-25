@@ -56,10 +56,12 @@ package
 
          // 地图 和 活动
          ExternalInterface.addCallback("WxChangeMap",MapManager.changeMap);
-         ExternalInterface.addCallback("WxChangeMapRandom",function():void
+         ExternalInterface.addCallback("WxChangeMapRandom",function():uint
          {
             var mapList:Array = MapXMLInfo.getIDList();
-            MapManager.changeMap(mapList[Math.round(Math.random() * mapList.length)]);
+            var id:uint = mapList[Math.round(Math.random() * mapList.length)];
+            MapManager.changeMap(id);
+            return id;
          });
          ExternalInterface.addCallback("WxShowAppModule",ModuleManager.showAppModule);
 

@@ -643,5 +643,17 @@ namespace SeerRandomSkin.Properties {
                 this["DefaultURL"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int FavouriteMap {
+            get {
+                return ((int)(this["FavouriteMap"]));
+            }
+            set {
+                this["FavouriteMap"] = value;
+            }
+        }
     }
 }

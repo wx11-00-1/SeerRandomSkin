@@ -31,6 +31,7 @@
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.button1 = new System.Windows.Forms.Button();
             this.btnRandom = new System.Windows.Forms.Button();
+            this.btnLike = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -38,7 +39,7 @@
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(47, 54);
             this.numericUpDown1.Maximum = new decimal(new int[] {
-            65535,
+            2147483647,
             0,
             0,
             0});
@@ -76,12 +77,23 @@
             this.btnRandom.UseVisualStyleBackColor = true;
             this.btnRandom.Click += new System.EventHandler(this.btnRandom_Click);
             // 
+            // btnLike
+            // 
+            this.btnLike.Location = new System.Drawing.Point(205, 92);
+            this.btnLike.Name = "btnLike";
+            this.btnLike.Size = new System.Drawing.Size(75, 23);
+            this.btnLike.TabIndex = 3;
+            this.btnLike.Text = "收藏";
+            this.btnLike.UseVisualStyleBackColor = true;
+            this.btnLike.Click += new System.EventHandler(this.btnLike_Click);
+            // 
             // FormStrollMap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(412, 134);
+            this.ClientSize = new System.Drawing.Size(412, 164);
+            this.Controls.Add(this.btnLike);
             this.Controls.Add(this.btnRandom);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.numericUpDown1);
@@ -98,5 +110,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnRandom;
+        private System.Windows.Forms.Button btnLike;
     }
 }
