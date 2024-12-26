@@ -69,7 +69,10 @@
 }</Value>
     </Setting>
     <Setting Name="ActivityCollection" Type="System.String" Scope="User">
-      <Value Profile="(Default)">{"换色": "NonoColorChangePanel"}</Value>
+      <Value Profile="(Default)">{
+  "换色": "NonoColorChangePanel",
+  "巅峰奖励": "PeakJihad2023WarOrdePanel"
+}</Value>
     </Setting>
     <Setting Name="AutoLoadActivities" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

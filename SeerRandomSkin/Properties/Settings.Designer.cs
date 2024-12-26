@@ -514,7 +514,7 @@ namespace SeerRandomSkin.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{\"换色\": \"NonoColorChangePanel\"}")]
+        [global::System.Configuration.DefaultSettingValueAttribute("{\r\n  \"换色\": \"NonoColorChangePanel\",\r\n  \"巅峰奖励\": \"PeakJihad2023WarOrdePanel\"\r\n}")]
         public string ActivityCollection {
             get {
                 return ((string)(this["ActivityCollection"]));

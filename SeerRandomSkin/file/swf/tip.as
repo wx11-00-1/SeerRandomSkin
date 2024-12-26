@@ -319,6 +319,40 @@ package
             }
          }
          );
+         ExternalInterface.addCallback("WxPeakJihad6v6", function():void
+         {
+            if(PeakJihad2023Controller.getAllBagALLPetLvIsFull())
+            {
+                SocketConnection.addCmdListener(45137,function(e:SocketEvent):void
+                {
+                   SocketConnection.removeCmdListener(45137,arguments.callee);
+                   ModuleManager.showModule(ClientConfig.getAppModule("PeakJihad2023MatchWaitPanel"),"正在打开....",4);
+                });
+                SocketConnection.send(45137,1,11);
+            }
+            else
+            {
+                Alarm.show("背包阵容不满足要求");
+            }
+         }
+         );
+         ExternalInterface.addCallback("WxPeakJihad3v3", function():void
+         {
+            if(PeakJihad2023Controller.getFristBagALLPetLvIsFull2())
+            {
+                SocketConnection.addCmdListener(45137,function(e:SocketEvent):void
+                {
+                   SocketConnection.removeCmdListener(45137,arguments.callee);
+                   ModuleManager.showModule(ClientConfig.getAppModule("PeakJihad2023MatchWaitPanel"),"正在打开....",1);
+                });
+                SocketConnection.send(45137,1,1);
+            }
+            else
+            {
+                Alarm.show("背包阵容不满足要求");
+            }
+         }
+         );
 
          // 发包函数
          ExternalInterface.addCallback("WxSend",SocketConnection.send);

@@ -145,5 +145,10 @@ namespace SocketHack
         {
             HideCmds = new HashSet<string>(richTextBox_filter.Text.Split(','));
         }
+
+        private void btnSurrender_Click(object sender, EventArgs e)
+        {
+            MainClass.SendPack(2593, new int[] { });
+        }
     }
 }

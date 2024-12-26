@@ -40,8 +40,10 @@
             this.btnConfirm = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnPeakJihadWild = new System.Windows.Forms.Button();
             this.btnPeakJihadSports = new System.Windows.Forms.Button();
+            this.btnPeakJihadWild = new System.Windows.Forms.Button();
+            this.btn3v3 = new System.Windows.Forms.Button();
+            this.btn6v6 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -143,14 +145,26 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btn6v6);
+            this.groupBox1.Controls.Add(this.btn3v3);
             this.groupBox1.Controls.Add(this.btnPeakJihadSports);
             this.groupBox1.Controls.Add(this.btnPeakJihadWild);
             this.groupBox1.Location = new System.Drawing.Point(341, 282);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(188, 79);
+            this.groupBox1.Size = new System.Drawing.Size(188, 117);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "巅峰";
+            // 
+            // btnPeakJihadSports
+            // 
+            this.btnPeakJihadSports.Location = new System.Drawing.Point(104, 33);
+            this.btnPeakJihadSports.Name = "btnPeakJihadSports";
+            this.btnPeakJihadSports.Size = new System.Drawing.Size(69, 23);
+            this.btnPeakJihadSports.TabIndex = 7;
+            this.btnPeakJihadSports.Text = "竞技";
+            this.btnPeakJihadSports.UseVisualStyleBackColor = true;
+            this.btnPeakJihadSports.Click += new System.EventHandler(this.btnPeakJihadSports_Click);
             // 
             // btnPeakJihadWild
             // 
@@ -162,15 +176,25 @@
             this.btnPeakJihadWild.UseVisualStyleBackColor = true;
             this.btnPeakJihadWild.Click += new System.EventHandler(this.btnPeakJihadWild_Click);
             // 
-            // btnPeakJihadSports
+            // btn3v3
             // 
-            this.btnPeakJihadSports.Location = new System.Drawing.Point(104, 33);
-            this.btnPeakJihadSports.Name = "btnPeakJihadSports";
-            this.btnPeakJihadSports.Size = new System.Drawing.Size(69, 23);
-            this.btnPeakJihadSports.TabIndex = 7;
-            this.btnPeakJihadSports.Text = "竞技";
-            this.btnPeakJihadSports.UseVisualStyleBackColor = true;
-            this.btnPeakJihadSports.Click += new System.EventHandler(this.btnPeakJihadSports_Click);
+            this.btn3v3.Location = new System.Drawing.Point(104, 71);
+            this.btn3v3.Name = "btn3v3";
+            this.btn3v3.Size = new System.Drawing.Size(69, 23);
+            this.btn3v3.TabIndex = 8;
+            this.btn3v3.Text = "3v3";
+            this.btn3v3.UseVisualStyleBackColor = true;
+            this.btn3v3.Click += new System.EventHandler(this.btn3v3_Click);
+            // 
+            // btn6v6
+            // 
+            this.btn6v6.Location = new System.Drawing.Point(19, 71);
+            this.btn6v6.Name = "btn6v6";
+            this.btn6v6.Size = new System.Drawing.Size(69, 23);
+            this.btn6v6.TabIndex = 9;
+            this.btn6v6.Text = "6v6";
+            this.btn6v6.UseVisualStyleBackColor = true;
+            this.btn6v6.Click += new System.EventHandler(this.btn6v6_Click);
             // 
             // FormActivityCollection
             // 
@@ -212,5 +236,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnPeakJihadSports;
         private System.Windows.Forms.Button btnPeakJihadWild;
+        private System.Windows.Forms.Button btn3v3;
+        private System.Windows.Forms.Button btn6v6;
     }
 }

@@ -49,6 +49,7 @@
             this.btnCleanPackSpace = new System.Windows.Forms.Button();
             this.richTextBox_filter = new System.Windows.Forms.RichTextBox();
             this.button3 = new System.Windows.Forms.Button();
+            this.btnSurrender = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -169,6 +170,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnSurrender);
             this.groupBox2.Controls.Add(this.btnReadyToFight);
             this.groupBox2.Controls.Add(this.button_fightSkill0);
             this.groupBox2.Controls.Add(this.button_fightExit);
@@ -192,7 +194,7 @@
             // 
             // button_fightSkill0
             // 
-            this.button_fightSkill0.Location = new System.Drawing.Point(216, 20);
+            this.button_fightSkill0.Location = new System.Drawing.Point(196, 20);
             this.button_fightSkill0.Name = "button_fightSkill0";
             this.button_fightSkill0.Size = new System.Drawing.Size(75, 23);
             this.button_fightSkill0.TabIndex = 15;
@@ -202,7 +204,7 @@
             // 
             // button_fightExit
             // 
-            this.button_fightExit.Location = new System.Drawing.Point(118, 20);
+            this.button_fightExit.Location = new System.Drawing.Point(108, 20);
             this.button_fightExit.Name = "button_fightExit";
             this.button_fightExit.Size = new System.Drawing.Size(75, 23);
             this.button_fightExit.TabIndex = 14;
@@ -247,6 +249,16 @@
             this.button3.Text = "屏蔽指定命令号";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // btnSurrender
+            // 
+            this.btnSurrender.Location = new System.Drawing.Point(284, 20);
+            this.btnSurrender.Name = "btnSurrender";
+            this.btnSurrender.Size = new System.Drawing.Size(75, 23);
+            this.btnSurrender.TabIndex = 17;
+            this.btnSurrender.Text = "认输";
+            this.btnSurrender.UseVisualStyleBackColor = true;
+            this.btnSurrender.Click += new System.EventHandler(this.btnSurrender_Click);
             // 
             // FormPack
             // 
@@ -298,5 +310,6 @@
         private System.Windows.Forms.Button btnCleanPackSpace;
         private System.Windows.Forms.RichTextBox richTextBox_filter;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnSurrender;
     }
 }
