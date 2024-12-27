@@ -100,6 +100,11 @@ namespace SocketHack
         private async void btnSend_Click(object sender, EventArgs e)
         {
             var pack = Misc.HexString2ByteArray(tbPackStr.Text);
+            if (pack.Length == 0)
+            {
+                MessageBox.Show("请输入要发送的内容");
+                return;
+            }
             if (pack.Length != Misc.GetIntParam(pack, 0))
             {
                 MessageBox.Show("封包长度有误");

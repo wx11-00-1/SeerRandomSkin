@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace Seer
 {
@@ -38,10 +39,13 @@ namespace Seer
         public static byte[] HexString2ByteArray(string hex)
         {
             hex = hex.Replace(" ", "");
+            if (hex.Length == 0)
+            {
+                return new byte[0];
+            }
             if (hex.Length % 2 != 0)
             {
-                Console.WriteLine("十六进制字符串的长度必须为偶数");
-                return null;
+                return new byte[0];
             }
             else
             {
