@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSpecifyPetSkin));
             this.lvMap = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -140,6 +141,7 @@
             this.Controls.Add(this.numericUpDown_from);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lvMap);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormSpecifyPetSkin";
             this.Load += new System.EventHandler(this.FormSpecifyPetSkin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_from)).EndInit();

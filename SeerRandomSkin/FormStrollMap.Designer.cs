@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormStrollMap));
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.button1 = new System.Windows.Forms.Button();
             this.btnRandom = new System.Windows.Forms.Button();
@@ -97,8 +98,8 @@
             this.Controls.Add(this.btnRandom);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.numericUpDown1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormStrollMap";
-            this.ShowIcon = false;
             this.Load += new System.EventHandler(this.FormStrollMap_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
