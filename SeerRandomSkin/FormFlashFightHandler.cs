@@ -1,6 +1,8 @@
 ﻿using CefSharp;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SeerRandomSkin
@@ -161,7 +163,7 @@ namespace SeerRandomSkin
 
         private void ResetLvTemplate()
         {
-            lvTemplate.Items.Clear();
+            var items = new LinkedList<ListViewItem>();
             var properties = jFightTemplate.Properties();
             foreach (var property in properties)
             {
@@ -170,8 +172,10 @@ namespace SeerRandomSkin
                     Text = property.Name,
                 };
                 item.SubItems.Add(property.Value.ToString());
-                lvTemplate.Items.Add(item);
+                items.AddLast(item);
             }
+            lvTemplate.Items.Clear();
+            lvTemplate.Items.AddRange(items.ToArray());
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

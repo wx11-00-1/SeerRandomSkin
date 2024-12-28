@@ -44,6 +44,7 @@
             this.btn3v3 = new System.Windows.Forms.Button();
             this.btnPeakJihadSports = new System.Windows.Forms.Button();
             this.btnPeakJihadWild = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -106,7 +107,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(338, 187);
+            this.btnSave.Location = new System.Drawing.Point(414, 147);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(69, 23);
             this.btnSave.TabIndex = 5;
@@ -116,7 +117,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(414, 187);
+            this.btnDelete.Location = new System.Drawing.Point(506, 147);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(69, 23);
             this.btnDelete.TabIndex = 6;
@@ -126,9 +127,9 @@
             // 
             // btnConfirm
             // 
-            this.btnConfirm.Location = new System.Drawing.Point(338, 145);
+            this.btnConfirm.Location = new System.Drawing.Point(338, 147);
             this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(75, 23);
+            this.btnConfirm.Size = new System.Drawing.Size(69, 23);
             this.btnConfirm.TabIndex = 7;
             this.btnConfirm.Text = "确定";
             this.btnConfirm.UseVisualStyleBackColor = true;
@@ -138,7 +139,7 @@
             // 
             this.label3.Location = new System.Drawing.Point(336, 412);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(193, 150);
+            this.label3.Size = new System.Drawing.Size(193, 118);
             this.label3.TabIndex = 8;
             this.label3.Text = "例如 nono 换色的面板链接为：https://seer.61.com/module/com/robot/module/app/NonoColorChangeP" +
     "anel.swf，则“代号”编辑框应该填入 NonoColorChangePanel";
@@ -149,7 +150,7 @@
             this.groupBox1.Controls.Add(this.btn3v3);
             this.groupBox1.Controls.Add(this.btnPeakJihadSports);
             this.groupBox1.Controls.Add(this.btnPeakJihadWild);
-            this.groupBox1.Location = new System.Drawing.Point(341, 243);
+            this.groupBox1.Location = new System.Drawing.Point(341, 267);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(188, 117);
             this.groupBox1.TabIndex = 9;
@@ -196,11 +197,22 @@
             this.btnPeakJihadWild.UseVisualStyleBackColor = true;
             this.btnPeakJihadWild.Click += new System.EventHandler(this.btnPeakJihadWild_Click);
             // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(508, 48);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(52, 23);
+            this.btnSearch.TabIndex = 10;
+            this.btnSearch.Text = "查询";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
             // FormActivityCollection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(553, 531);
+            this.ClientSize = new System.Drawing.Size(593, 531);
+            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnConfirm);
@@ -238,5 +250,6 @@
         private System.Windows.Forms.Button btnPeakJihadWild;
         private System.Windows.Forms.Button btn3v3;
         private System.Windows.Forms.Button btn6v6;
+        private System.Windows.Forms.Button btnSearch;
     }
 }

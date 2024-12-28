@@ -50,7 +50,7 @@
             this.lvMap.Location = new System.Drawing.Point(36, 37);
             this.lvMap.MultiSelect = false;
             this.lvMap.Name = "lvMap";
-            this.lvMap.Size = new System.Drawing.Size(181, 195);
+            this.lvMap.Size = new System.Drawing.Size(160, 522);
             this.lvMap.TabIndex = 0;
             this.lvMap.UseCompatibleStateImageBehavior = false;
             this.lvMap.View = System.Windows.Forms.View.Details;
@@ -69,7 +69,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(376, 60);
+            this.label1.Location = new System.Drawing.Point(329, 60);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(17, 12);
             this.label1.TabIndex = 3;
@@ -77,7 +77,7 @@
             // 
             // numericUpDown_from
             // 
-            this.numericUpDown_from.Location = new System.Drawing.Point(268, 55);
+            this.numericUpDown_from.Location = new System.Drawing.Point(221, 55);
             this.numericUpDown_from.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -99,7 +99,7 @@
             // 
             // numericUpDown_to
             // 
-            this.numericUpDown_to.Location = new System.Drawing.Point(408, 55);
+            this.numericUpDown_to.Location = new System.Drawing.Point(361, 55);
             this.numericUpDown_to.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -111,7 +111,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(285, 120);
+            this.btnAdd.Location = new System.Drawing.Point(238, 120);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 15;
@@ -121,7 +121,7 @@
             // 
             // btnDel
             // 
-            this.btnDel.Location = new System.Drawing.Point(408, 120);
+            this.btnDel.Location = new System.Drawing.Point(361, 120);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(75, 23);
             this.btnDel.TabIndex = 18;
@@ -133,7 +133,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(555, 272);
+            this.ClientSize = new System.Drawing.Size(515, 598);
             this.Controls.Add(this.btnDel);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.numericUpDown_to);

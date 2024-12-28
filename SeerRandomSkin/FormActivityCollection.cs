@@ -1,6 +1,8 @@
 ﻿using CefSharp;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SeerRandomSkin
@@ -14,9 +16,9 @@ namespace SeerRandomSkin
             InitializeComponent();
         }
 
-        private void ReloadListView()
+        private LinkedList<ListViewItem> GetAllListViewItems()
         {
-            listView1.Items.Clear();
+            var items = new LinkedList<ListViewItem>();
             jObj_ac = Utils.TryGetJObject(Properties.Settings.Default.ActivityCollection);
             var properties = jObj_ac.Properties();
             foreach (var property in properties)
@@ -27,8 +29,15 @@ namespace SeerRandomSkin
                 };
                 item.SubItems.Add(property.Value.ToString());
 
-                listView1.Items.Add(item);
+                items.AddLast(item);
             }
+            return items;
+        }
+
+        private void ReloadListView()
+        {
+            listView1.Items.Clear();
+            listView1.Items.AddRange(GetAllListViewItems().ToArray());
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
@@ -89,6 +98,12 @@ namespace SeerRandomSkin
         private void btn6v6_Click(object sender, EventArgs e)
         {
             Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxPeakJihad6v6()");
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+            listView1.Items.AddRange(GetAllListViewItems().Where(item => item.Text.Contains(tbName.Text)).ToArray());
         }
     }
 }

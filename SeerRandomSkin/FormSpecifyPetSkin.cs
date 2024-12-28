@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SeerRandomSkin
@@ -37,7 +39,7 @@ namespace SeerRandomSkin
 
         private void RefreshLv()
         {
-            lvMap.Items.Clear();
+            var items = new LinkedList<ListViewItem>();
             foreach (var v in Form1.SpecificPetSkins)
             {
                 ListViewItem listViewItem = new ListViewItem()
@@ -45,8 +47,10 @@ namespace SeerRandomSkin
                     Text = v.Key.ToString(),
                 };
                 listViewItem.SubItems.Add(v.Value.ToString());
-                lvMap.Items.Add(listViewItem);
+                items.AddLast(listViewItem);
             }
+            lvMap.Items.Clear();
+            lvMap.Items.AddRange(items.OrderBy(item => { int.TryParse(item.Text, out int id); return id; }).ToArray());
         }
 
         private void lvMap_SelectedIndexChanged(object sender, EventArgs e)
