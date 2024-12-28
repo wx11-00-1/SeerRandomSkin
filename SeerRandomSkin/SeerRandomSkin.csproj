@@ -323,22 +323,13 @@
     </Content>
     <Content Include="file\dll\speedhack\x86\speedhack.txt" />
     <Content Include="file\dll\speedhack\x86\version.dll" />
-    <Content Include="file\swf\Assets.swf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="file\swf\DiduoAssistant.swf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="file\swf\NoAd.swf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="file\swf\PetFightDLL.swf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="file\swf\tip.swf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="file\swf\yearvip_icon.swf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="file\xml\battleStrategy.xml">

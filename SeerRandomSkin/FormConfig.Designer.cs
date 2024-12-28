@@ -39,10 +39,6 @@
             this.numericUpDown_win_width = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_win_height = new System.Windows.Forms.NumericUpDown();
             this.checkBox_RandomSkin = new System.Windows.Forms.CheckBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBox_resource_vip_icon = new System.Windows.Forms.CheckBox();
-            this.checkBox_resource_ad_panel = new System.Windows.Forms.CheckBox();
-            this.checkBox_resource_background = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -76,7 +72,6 @@
             this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_width)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_height)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_skinFloor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_skinCeiling)).BeginInit();
@@ -122,7 +117,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(512, 43);
+            this.label3.Location = new System.Drawing.Point(507, 80);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 12);
             this.label3.TabIndex = 5;
@@ -131,7 +126,7 @@
             // comboBox_font
             // 
             this.comboBox_font.FormattingEnabled = true;
-            this.comboBox_font.Location = new System.Drawing.Point(551, 39);
+            this.comboBox_font.Location = new System.Drawing.Point(546, 76);
             this.comboBox_font.Name = "comboBox_font";
             this.comboBox_font.Size = new System.Drawing.Size(75, 20);
             this.comboBox_font.TabIndex = 6;
@@ -139,7 +134,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(452, 79);
+            this.label4.Location = new System.Drawing.Point(447, 116);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 12);
             this.label4.TabIndex = 8;
@@ -148,7 +143,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(566, 79);
+            this.label5.Location = new System.Drawing.Point(561, 116);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(11, 12);
             this.label5.TabIndex = 10;
@@ -156,7 +151,7 @@
             // 
             // numericUpDown_win_width
             // 
-            this.numericUpDown_win_width.Location = new System.Drawing.Point(517, 76);
+            this.numericUpDown_win_width.Location = new System.Drawing.Point(512, 113);
             this.numericUpDown_win_width.Maximum = new decimal(new int[] {
             40000,
             0,
@@ -168,7 +163,7 @@
             // 
             // numericUpDown_win_height
             // 
-            this.numericUpDown_win_height.Location = new System.Drawing.Point(581, 76);
+            this.numericUpDown_win_height.Location = new System.Drawing.Point(576, 113);
             this.numericUpDown_win_height.Maximum = new decimal(new int[] {
             40000,
             0,
@@ -187,48 +182,6 @@
             this.checkBox_RandomSkin.TabIndex = 0;
             this.checkBox_RandomSkin.Text = "启用随机皮肤";
             this.checkBox_RandomSkin.UseVisualStyleBackColor = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.checkBox_resource_vip_icon);
-            this.groupBox1.Controls.Add(this.checkBox_resource_ad_panel);
-            this.groupBox1.Controls.Add(this.checkBox_resource_background);
-            this.groupBox1.Location = new System.Drawing.Point(292, 114);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(334, 55);
-            this.groupBox1.TabIndex = 15;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "资源替换";
-            // 
-            // checkBox_resource_vip_icon
-            // 
-            this.checkBox_resource_vip_icon.AutoSize = true;
-            this.checkBox_resource_vip_icon.Location = new System.Drawing.Point(210, 22);
-            this.checkBox_resource_vip_icon.Name = "checkBox_resource_vip_icon";
-            this.checkBox_resource_vip_icon.Size = new System.Drawing.Size(72, 16);
-            this.checkBox_resource_vip_icon.TabIndex = 19;
-            this.checkBox_resource_vip_icon.Text = "年费图标";
-            this.checkBox_resource_vip_icon.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_resource_ad_panel
-            // 
-            this.checkBox_resource_ad_panel.AutoSize = true;
-            this.checkBox_resource_ad_panel.Location = new System.Drawing.Point(109, 22);
-            this.checkBox_resource_ad_panel.Name = "checkBox_resource_ad_panel";
-            this.checkBox_resource_ad_panel.Size = new System.Drawing.Size(72, 16);
-            this.checkBox_resource_ad_panel.TabIndex = 16;
-            this.checkBox_resource_ad_panel.Text = "选服广告";
-            this.checkBox_resource_ad_panel.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_resource_background
-            // 
-            this.checkBox_resource_background.AutoSize = true;
-            this.checkBox_resource_background.Location = new System.Drawing.Point(22, 22);
-            this.checkBox_resource_background.Name = "checkBox_resource_background";
-            this.checkBox_resource_background.Size = new System.Drawing.Size(48, 16);
-            this.checkBox_resource_background.TabIndex = 15;
-            this.checkBox_resource_background.Text = "背景";
-            this.checkBox_resource_background.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -405,7 +358,7 @@
             // comboBoxZoom
             // 
             this.comboBoxZoom.FormattingEnabled = true;
-            this.comboBoxZoom.Location = new System.Drawing.Point(430, 39);
+            this.comboBoxZoom.Location = new System.Drawing.Point(425, 76);
             this.comboBoxZoom.Name = "comboBoxZoom";
             this.comboBoxZoom.Size = new System.Drawing.Size(75, 20);
             this.comboBoxZoom.TabIndex = 30;
@@ -413,7 +366,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(391, 43);
+            this.label10.Location = new System.Drawing.Point(386, 80);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(41, 12);
             this.label10.TabIndex = 29;
@@ -422,7 +375,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(293, 79);
+            this.label11.Location = new System.Drawing.Point(485, 151);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(77, 12);
             this.label11.TabIndex = 31;
@@ -430,9 +383,9 @@
             // 
             // textBox_speedUp
             // 
-            this.textBox_speedUp.Location = new System.Drawing.Point(368, 75);
+            this.textBox_speedUp.Location = new System.Drawing.Point(560, 147);
             this.textBox_speedUp.Name = "textBox_speedUp";
-            this.textBox_speedUp.Size = new System.Drawing.Size(64, 21);
+            this.textBox_speedUp.Size = new System.Drawing.Size(61, 21);
             this.textBox_speedUp.TabIndex = 32;
             // 
             // groupBox3
@@ -534,15 +487,15 @@
             // 
             // textBox_defaultURL
             // 
-            this.textBox_defaultURL.Location = new System.Drawing.Point(123, 621);
+            this.textBox_defaultURL.Location = new System.Drawing.Point(425, 36);
             this.textBox_defaultURL.Name = "textBox_defaultURL";
-            this.textBox_defaultURL.Size = new System.Drawing.Size(205, 21);
+            this.textBox_defaultURL.Size = new System.Drawing.Size(196, 21);
             this.textBox_defaultURL.TabIndex = 34;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(55, 626);
+            this.label12.Location = new System.Drawing.Point(362, 41);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(65, 12);
             this.label12.TabIndex = 35;
@@ -572,7 +525,6 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.numericUpDown_win_height);
             this.Controls.Add(this.numericUpDown_win_width);
             this.Controls.Add(this.label5);
@@ -591,8 +543,6 @@
             this.Load += new System.EventHandler(this.FormConfig_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_width)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_height)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_skinFloor)).EndInit();
@@ -616,9 +566,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDown_win_width;
         private System.Windows.Forms.NumericUpDown numericUpDown_win_height;
         private System.Windows.Forms.CheckBox checkBox_RandomSkin;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox checkBox_resource_ad_panel;
-        private System.Windows.Forms.CheckBox checkBox_resource_background;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
@@ -637,7 +584,6 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.ComboBox comboBoxZoom;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.CheckBox checkBox_resource_vip_icon;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBox_speedUp;
         private System.Windows.Forms.GroupBox groupBox3;

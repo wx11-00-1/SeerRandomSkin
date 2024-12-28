@@ -27,9 +27,6 @@ namespace SeerRandomSkin
             comboBox_font.Text = SettingsDef.BrowserFont;
             numericUpDown_win_width.Value = SettingsDef.WinWidth;
             numericUpDown_win_height.Value = SettingsDef.WinHeight;
-            checkBox_resource_ad_panel.Checked = SettingsDef.IsChangeAdPanel;
-            checkBox_resource_background.Checked = SettingsDef.IsChangeBackground;
-            checkBox_resource_vip_icon.Checked = SettingsDef.IsChangeVipIcon;
             checkBox_flash_pack.Checked = SettingsDef.IsUseSocketHack;
             checkBox_fd.Checked = SettingsDef.AutoLoadFD;
             // 遍历系统字体
@@ -98,9 +95,6 @@ namespace SeerRandomSkin
             SettingsDef.WinHeight = numericUpDown_win_height.Value;
             SettingsDef.SkinRangeCeiling = (int)numericUpDown_skinCeiling.Value;
             SettingsDef.SkinRangeFloor = (int)numericUpDown_skinFloor.Value;
-            SettingsDef.IsChangeAdPanel = checkBox_resource_ad_panel.Checked;
-            SettingsDef.IsChangeBackground = checkBox_resource_background.Checked;
-            SettingsDef.IsChangeVipIcon = checkBox_resource_vip_icon.Checked;
             SettingsDef.IsUseSocketHack = checkBox_flash_pack.Checked;
             SettingsDef.BrowserFont = comboBox_font.Text;
             SettingsDef.AutoExecuteSoftwarePath1 = textBox1.Text;

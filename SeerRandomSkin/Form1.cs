@@ -364,27 +364,6 @@ namespace SeerRandomSkin
                     {
                         return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\xml\battleStrategy.xml");
                     }
-                    else if (url.StartsWith("https://seer.61.com/dll/Assets.swf?"))
-                    {
-                        if (Configs.IsChangeBackground)
-                        {
-                            return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\Assets.swf");
-                        }
-                    }
-                    else if (url.StartsWith("https://seer.61.com/resource/uiIcon/yearvip_icon.swf?"))
-                    {
-                        if (Configs.IsChangeVipIcon)
-                        {
-                            return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\yearvip_icon.swf");
-                        }
-                    }
-                    else if (url.StartsWith(@"https://seer.61.com/resource/login/ServerAdPanel1.swf?"))
-                    {
-                        if (Configs.IsChangeAdPanel)
-                        {
-                            return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\NoAd.swf");
-                        }
-                    }
                     else if (url.StartsWith(@"https://seer.61.com/resource/forApp/superMarket/tip.swf?"))
                     {
                         return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\tip.swf");

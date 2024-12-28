@@ -267,30 +267,6 @@ namespace SeerRandomSkin.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool IsChangeBackground {
-            get {
-                return ((bool)(this["IsChangeBackground"]));
-            }
-            set {
-                this["IsChangeBackground"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool IsChangeAdPanel {
-            get {
-                return ((bool)(this["IsChangeAdPanel"]));
-            }
-            set {
-                this["IsChangeAdPanel"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string AutoExecuteSoftwarePath1 {
             get {
@@ -382,18 +358,6 @@ namespace SeerRandomSkin.Properties {
             }
             set {
                 this["FlashZoom"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool IsChangeVipIcon {
-            get {
-                return ((bool)(this["IsChangeVipIcon"]));
-            }
-            set {
-                this["IsChangeVipIcon"] = value;
             }
         }
         

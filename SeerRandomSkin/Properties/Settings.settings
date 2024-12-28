@@ -23,12 +23,6 @@
     <Setting Name="WinHeight" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">624</Value>
     </Setting>
-    <Setting Name="IsChangeBackground" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="IsChangeAdPanel" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
     <Setting Name="AutoExecuteSoftwarePath1" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
@@ -52,9 +46,6 @@
     </Setting>
     <Setting Name="FlashZoom" Type="System.String" Scope="User">
       <Value Profile="(Default)">1</Value>
-    </Setting>
-    <Setting Name="IsChangeVipIcon" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="FlashFightTemplate" Type="System.String" Scope="User">
       <Value Profile="(Default)">{
