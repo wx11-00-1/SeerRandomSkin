@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace SeerRandomSkin
 {
@@ -161,7 +162,7 @@ namespace SeerRandomSkin
             }
         }
 
-        private void ResetLvTemplate()
+        private LinkedList<ListViewItem> GetAllListViewItems()
         {
             var items = new LinkedList<ListViewItem>();
             var properties = jFightTemplate.Properties();
@@ -174,8 +175,13 @@ namespace SeerRandomSkin
                 item.SubItems.Add(property.Value.ToString());
                 items.AddLast(item);
             }
+            return items;
+        }
+
+        private void ResetLvTemplate()
+        {
             lvTemplate.Items.Clear();
-            lvTemplate.Items.AddRange(items.ToArray());
+            lvTemplate.Items.AddRange(GetAllListViewItems().ToArray());
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -214,6 +220,43 @@ namespace SeerRandomSkin
         private void button1_Click(object sender, EventArgs e)
         {
             StopAutoFight();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            lvTemplate.Items.Clear();
+            lvTemplate.Items.AddRange(GetAllListViewItems().Where(item => item.Text.Contains(tbTemplateName.Text)).ToArray());
+        }
+
+        private void btnCure20_Click(object sender, EventArgs e)
+        {
+            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxCurePet20HP();");
+        }
+
+        private void btnCureAll_Click(object sender, EventArgs e)
+        {
+            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxCurePetAll();");
+        }
+
+        private void btnItem170_Click(object sender, EventArgs e)
+        {
+            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxUsePetItem(300749);");
+        }
+
+        private void btnItem150_Click(object sender, EventArgs e)
+        {
+            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxUsePetItem(300701);");
+        }
+
+        private void btnItem10pp_Click(object sender, EventArgs e)
+        {
+            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxItemBuy(300017);");
+            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxUsePetItem(300017);");
+        }
+
+        private void btn20pp_Click(object sender, EventArgs e)
+        {
+            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxUsePetItem(300018);");
         }
     }
 }

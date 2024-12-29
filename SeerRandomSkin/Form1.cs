@@ -362,15 +362,14 @@ namespace SeerRandomSkin
                     }
                     else if (url.StartsWith("https://seer.61.com/resource/xml/battleStrategy.xml?"))
                     {
-                        return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\xml\battleStrategy.xml");
+                        if (Configs.IsHideBattleStrategy)
+                        {
+                            return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\xml\battleStrategy.xml");
+                        }
                     }
                     else if (url.StartsWith(@"https://seer.61.com/resource/forApp/superMarket/tip.swf?"))
                     {
                         return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\tip.swf");
-                    }
-                    else if (url.StartsWith(@"https://seer.61.com/module/com/robot/module/app/SupermarketPanel.swf?"))
-                    {
-                        return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\DiduoAssistant.swf");
                     }
 
                     return base.GetResourceHandler(chromiumWebBrowser, browser, frame, request);

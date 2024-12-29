@@ -19,6 +19,7 @@ namespace SeerRandomSkin
         {
             // 初始化配置项
             checkBox_RandomSkin.Checked = SettingsDef.IsRandomSkin;
+            checkBox_HideBattleStrategy.Checked = SettingsDef.IsHideBattleStrategy;
             numericUpDown_skinCeiling.Value = SettingsDef.SkinRangeCeiling;
             numericUpDown_skinFloor.Value = SettingsDef.SkinRangeFloor;
             richTextBox_skinList.Text = SettingsDef.SkinIds;
@@ -91,6 +92,7 @@ namespace SeerRandomSkin
                 return;
             }
             SettingsDef.IsRandomSkin = checkBox_RandomSkin.Checked;
+            SettingsDef.IsHideBattleStrategy = checkBox_HideBattleStrategy.Checked;
             SettingsDef.WinWidth = numericUpDown_win_width.Value;
             SettingsDef.WinHeight = numericUpDown_win_height.Value;
             SettingsDef.SkinRangeCeiling = (int)numericUpDown_skinCeiling.Value;

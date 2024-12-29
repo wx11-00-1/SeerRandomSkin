@@ -95,15 +95,20 @@ package
          ExternalInterface.addCallback("WxAutoCureSwitch",SocketConnection.WxAutoCureSwitch);
          ExternalInterface.addCallback("WxAutoCureStart",SocketConnection.WxAutoCureStart);
          ExternalInterface.addCallback("WxAutoCureStop",SocketConnection.WxAutoCureStop);
+         SocketConnection.WxCurePetAll = function():void
+         {
+            var bagBoth:Array = PetManager.getBagMap(true);
+            for (var i:int = 0; i < bagBoth.length; ++i)
+            {
+                SocketConnection.send(CommandID.PET_ONE_CURE,bagBoth[i].catchTime);
+            }
+         };
+         ExternalInterface.addCallback("WxCurePetAll",SocketConnection.WxCurePetAll);
          SocketConnection.WxOnFightEnd = function(event:SocketEvent) : void
          {
             if (SocketConnection.WxIsAutoCure)
             {
-                var bagBoth:Array = PetManager.getBagMap(true);
-                for (var i:int = 0; i < bagBoth.length; ++i)
-                {
-                    SocketConnection.send(CommandID.PET_ONE_CURE,bagBoth[i].catchTime);
-                }
+                SocketConnection.WxCurePetAll();
             }
             var fightOverInfo:FightOverInfo = event.data as FightOverInfo;
             ExternalInterface.call("WxFightHandler.OnFightOver",fightOverInfo);

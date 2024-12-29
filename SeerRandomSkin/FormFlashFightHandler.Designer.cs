@@ -38,6 +38,15 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnCure20 = new System.Windows.Forms.Button();
+            this.btnCureAll = new System.Windows.Forms.Button();
+            this.btnItem170 = new System.Windows.Forms.Button();
+            this.btnItem10pp = new System.Windows.Forms.Button();
+            this.btnItem150 = new System.Windows.Forms.Button();
+            this.btn20pp = new System.Windows.Forms.Button();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // richTextBox_script
@@ -50,9 +59,9 @@
             // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(836, 511);
+            this.btnTest.Location = new System.Drawing.Point(31, 588);
             this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(75, 23);
+            this.btnTest.Size = new System.Drawing.Size(66, 23);
             this.btnTest.TabIndex = 1;
             this.btnTest.Text = "执行";
             this.btnTest.UseVisualStyleBackColor = true;
@@ -92,9 +101,9 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(204, 511);
+            this.btnAdd.Location = new System.Drawing.Point(31, 559);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.Size = new System.Drawing.Size(66, 23);
             this.btnAdd.TabIndex = 4;
             this.btnAdd.Text = "保存";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -102,9 +111,9 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(328, 511);
+            this.btnRemove.Location = new System.Drawing.Point(106, 588);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(75, 23);
+            this.btnRemove.Size = new System.Drawing.Size(66, 23);
             this.btnRemove.TabIndex = 5;
             this.btnRemove.Text = "删除";
             this.btnRemove.UseVisualStyleBackColor = true;
@@ -112,19 +121,106 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(714, 511);
+            this.button1.Location = new System.Drawing.Point(31, 627);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(96, 23);
             this.button1.TabIndex = 6;
-            this.button1.Text = "停止接管";
+            this.button1.Text = "停止自动出招";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(106, 559);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(66, 23);
+            this.btnSearch.TabIndex = 7;
+            this.btnSearch.Text = "搜索";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btn20pp);
+            this.groupBox1.Controls.Add(this.btnItem150);
+            this.groupBox1.Controls.Add(this.btnItem10pp);
+            this.groupBox1.Controls.Add(this.btnItem170);
+            this.groupBox1.Controls.Add(this.btnCureAll);
+            this.groupBox1.Controls.Add(this.btnCure20);
+            this.groupBox1.Location = new System.Drawing.Point(204, 511);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(356, 139);
+            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "对战相关";
+            // 
+            // btnCure20
+            // 
+            this.btnCure20.Location = new System.Drawing.Point(23, 36);
+            this.btnCure20.Name = "btnCure20";
+            this.btnCure20.Size = new System.Drawing.Size(149, 23);
+            this.btnCure20.TabIndex = 5;
+            this.btnCure20.Text = "全体恢复 20hp + 10pp";
+            this.btnCure20.UseVisualStyleBackColor = true;
+            this.btnCure20.Click += new System.EventHandler(this.btnCure20_Click);
+            // 
+            // btnCureAll
+            // 
+            this.btnCureAll.Location = new System.Drawing.Point(23, 77);
+            this.btnCureAll.Name = "btnCureAll";
+            this.btnCureAll.Size = new System.Drawing.Size(87, 23);
+            this.btnCureAll.TabIndex = 6;
+            this.btnCureAll.Text = "恢复所有";
+            this.btnCureAll.UseVisualStyleBackColor = true;
+            this.btnCureAll.Click += new System.EventHandler(this.btnCureAll_Click);
+            // 
+            // btnItem170
+            // 
+            this.btnItem170.Location = new System.Drawing.Point(193, 36);
+            this.btnItem170.Name = "btnItem170";
+            this.btnItem170.Size = new System.Drawing.Size(66, 23);
+            this.btnItem170.TabIndex = 7;
+            this.btnItem170.Text = "170";
+            this.btnItem170.UseVisualStyleBackColor = true;
+            this.btnItem170.Click += new System.EventHandler(this.btnItem170_Click);
+            // 
+            // btnItem10pp
+            // 
+            this.btnItem10pp.Location = new System.Drawing.Point(193, 77);
+            this.btnItem10pp.Name = "btnItem10pp";
+            this.btnItem10pp.Size = new System.Drawing.Size(66, 23);
+            this.btnItem10pp.TabIndex = 8;
+            this.btnItem10pp.Text = "10pp";
+            this.btnItem10pp.UseVisualStyleBackColor = true;
+            this.btnItem10pp.Click += new System.EventHandler(this.btnItem10pp_Click);
+            // 
+            // btnItem150
+            // 
+            this.btnItem150.Location = new System.Drawing.Point(271, 36);
+            this.btnItem150.Name = "btnItem150";
+            this.btnItem150.Size = new System.Drawing.Size(66, 23);
+            this.btnItem150.TabIndex = 9;
+            this.btnItem150.Text = "150+3";
+            this.btnItem150.UseVisualStyleBackColor = true;
+            this.btnItem150.Click += new System.EventHandler(this.btnItem150_Click);
+            // 
+            // btn20pp
+            // 
+            this.btn20pp.Location = new System.Drawing.Point(271, 77);
+            this.btn20pp.Name = "btn20pp";
+            this.btn20pp.Size = new System.Drawing.Size(66, 23);
+            this.btn20pp.TabIndex = 10;
+            this.btn20pp.Text = "20pp";
+            this.btn20pp.UseVisualStyleBackColor = true;
+            this.btn20pp.Click += new System.EventHandler(this.btn20pp_Click);
             // 
             // FormFlashFightHandler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(944, 560);
+            this.ClientSize = new System.Drawing.Size(944, 682);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnAdd);
@@ -135,6 +231,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormFlashFightHandler";
             this.Load += new System.EventHandler(this.FormFlashFightHandler_Load);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -151,5 +248,13 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnCure20;
+        private System.Windows.Forms.Button btnCureAll;
+        private System.Windows.Forms.Button btnItem150;
+        private System.Windows.Forms.Button btnItem10pp;
+        private System.Windows.Forms.Button btnItem170;
+        private System.Windows.Forms.Button btn20pp;
     }
 }

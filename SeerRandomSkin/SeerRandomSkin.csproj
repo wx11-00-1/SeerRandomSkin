@@ -274,7 +274,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="file\dll\speedhack\README.md" />
-    <None Include="file\swf\Diduo.as" />
     <None Include="file\swf\PetFightDll.as" />
     <None Include="file\swf\tip.as" />
     <None Include="file\安装包\note.md" />
@@ -323,9 +322,6 @@
     </Content>
     <Content Include="file\dll\speedhack\x86\speedhack.txt" />
     <Content Include="file\dll\speedhack\x86\version.dll" />
-    <Content Include="file\swf\DiduoAssistant.swf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="file\swf\PetFightDLL.swf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

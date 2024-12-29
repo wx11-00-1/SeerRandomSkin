@@ -619,5 +619,17 @@ namespace SeerRandomSkin.Properties {
                 this["FavouriteMap"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsHideBattleStrategy {
+            get {
+                return ((bool)(this["IsHideBattleStrategy"]));
+            }
+            set {
+                this["IsHideBattleStrategy"] = value;
+            }
+        }
     }
 }
