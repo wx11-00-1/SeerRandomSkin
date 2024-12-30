@@ -71,6 +71,7 @@
             this.textBox_defaultURL = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.checkBox_HideBattleStrategy = new System.Windows.Forms.CheckBox();
+            this.cbAutoMute = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_width)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_height)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -505,18 +506,29 @@
             // checkBox_HideBattleStrategy
             // 
             this.checkBox_HideBattleStrategy.AutoSize = true;
-            this.checkBox_HideBattleStrategy.Location = new System.Drawing.Point(166, 41);
+            this.checkBox_HideBattleStrategy.Location = new System.Drawing.Point(155, 40);
             this.checkBox_HideBattleStrategy.Name = "checkBox_HideBattleStrategy";
             this.checkBox_HideBattleStrategy.Size = new System.Drawing.Size(108, 16);
             this.checkBox_HideBattleStrategy.TabIndex = 36;
             this.checkBox_HideBattleStrategy.Text = "隐藏对战小攻略";
             this.checkBox_HideBattleStrategy.UseVisualStyleBackColor = true;
             // 
+            // cbAutoMute
+            // 
+            this.cbAutoMute.AutoSize = true;
+            this.cbAutoMute.Location = new System.Drawing.Point(269, 41);
+            this.cbAutoMute.Name = "cbAutoMute";
+            this.cbAutoMute.Size = new System.Drawing.Size(72, 16);
+            this.cbAutoMute.TabIndex = 37;
+            this.cbAutoMute.Text = "自动静音";
+            this.cbAutoMute.UseVisualStyleBackColor = true;
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(680, 673);
+            this.Controls.Add(this.cbAutoMute);
             this.Controls.Add(this.checkBox_HideBattleStrategy);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.textBox_defaultURL);
@@ -610,5 +622,6 @@
         private System.Windows.Forms.TextBox textBox_defaultURL;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.CheckBox checkBox_HideBattleStrategy;
+        private System.Windows.Forms.CheckBox cbAutoMute;
     }
 }

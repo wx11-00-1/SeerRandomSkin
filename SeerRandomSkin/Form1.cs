@@ -217,7 +217,7 @@ namespace SeerRandomSkin
                 if (args.Frame.IsMain)
                 {
                     // 自动静音
-                    args.Browser.GetHost().SetAudioMuted(true);
+                    args.Browser.GetHost().SetAudioMuted(Configs.AutoMute);
                     // 隐藏滚动条
                     args.Browser.MainFrame.ExecuteJavaScriptAsync("document.body.style.overflow = 'hidden'");
                     if (address == gameH5Address)

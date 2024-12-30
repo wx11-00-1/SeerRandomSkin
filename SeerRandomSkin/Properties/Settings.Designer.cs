@@ -631,5 +631,17 @@ namespace SeerRandomSkin.Properties {
                 this["IsHideBattleStrategy"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool AutoMute {
+            get {
+                return ((bool)(this["AutoMute"]));
+            }
+            set {
+                this["AutoMute"] = value;
+            }
+        }
     }
 }

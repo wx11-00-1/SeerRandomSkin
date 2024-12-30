@@ -30,6 +30,7 @@ namespace SeerRandomSkin
             numericUpDown_win_height.Value = SettingsDef.WinHeight;
             checkBox_flash_pack.Checked = SettingsDef.IsUseSocketHack;
             checkBox_fd.Checked = SettingsDef.AutoLoadFD;
+            cbAutoMute.Checked = SettingsDef.AutoMute;
             // 遍历系统字体
             foreach (var f in FontFamily.Families)
             {
@@ -104,6 +105,7 @@ namespace SeerRandomSkin
             SettingsDef.AutoExecuteSoftwarePath3 = textBox3.Text;
             SettingsDef.DefaultURL = textBox_defaultURL.Text;
             SettingsDef.FlashZoom = comboBoxZoom.Text;
+            SettingsDef.AutoMute = cbAutoMute.Checked;
 
             if (double.TryParse(textBox_speedUp.Text, out var speed) && speed >= 1)
             {
