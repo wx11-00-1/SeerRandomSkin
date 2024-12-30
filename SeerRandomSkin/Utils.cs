@@ -1,6 +1,9 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Configuration;
+using System.IO;
+using System.Windows.Forms;
 
 namespace SeerRandomSkin
 {

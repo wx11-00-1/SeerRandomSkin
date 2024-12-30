@@ -50,7 +50,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.richTextBox_SkinExc = new System.Windows.Forms.RichTextBox();
             this.richTextBox_skinList = new System.Windows.Forms.RichTextBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
@@ -72,6 +71,9 @@
             this.label12 = new System.Windows.Forms.Label();
             this.checkBox_HideBattleStrategy = new System.Windows.Forms.CheckBox();
             this.cbAutoMute = new System.Windows.Forms.CheckBox();
+            this.btnRemoveSettings = new System.Windows.Forms.Button();
+            this.btnBackup = new System.Windows.Forms.Button();
+            this.btnLoadConfig = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_width)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_height)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -313,16 +315,6 @@
             this.richTextBox_skinList.TabIndex = 23;
             this.richTextBox_skinList.Text = "";
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(123, 185);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 24;
-            this.button2.Text = "恢复默认值";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(253, 530);
@@ -523,11 +515,44 @@
             this.cbAutoMute.Text = "自动静音";
             this.cbAutoMute.UseVisualStyleBackColor = true;
             // 
+            // btnRemoveSettings
+            // 
+            this.btnRemoveSettings.Location = new System.Drawing.Point(54, 621);
+            this.btnRemoveSettings.Name = "btnRemoveSettings";
+            this.btnRemoveSettings.Size = new System.Drawing.Size(131, 23);
+            this.btnRemoveSettings.TabIndex = 38;
+            this.btnRemoveSettings.Text = "恢复默认配置";
+            this.btnRemoveSettings.UseVisualStyleBackColor = true;
+            this.btnRemoveSettings.Click += new System.EventHandler(this.btnRemoveSettings_Click);
+            // 
+            // btnBackup
+            // 
+            this.btnBackup.Location = new System.Drawing.Point(191, 621);
+            this.btnBackup.Name = "btnBackup";
+            this.btnBackup.Size = new System.Drawing.Size(75, 23);
+            this.btnBackup.TabIndex = 39;
+            this.btnBackup.Text = "备份配置";
+            this.btnBackup.UseVisualStyleBackColor = true;
+            this.btnBackup.Click += new System.EventHandler(this.btnBackup_Click);
+            // 
+            // btnLoadConfig
+            // 
+            this.btnLoadConfig.Location = new System.Drawing.Point(272, 621);
+            this.btnLoadConfig.Name = "btnLoadConfig";
+            this.btnLoadConfig.Size = new System.Drawing.Size(75, 23);
+            this.btnLoadConfig.TabIndex = 40;
+            this.btnLoadConfig.Text = "读取配置";
+            this.btnLoadConfig.UseVisualStyleBackColor = true;
+            this.btnLoadConfig.Click += new System.EventHandler(this.btnLoadConfig_Click);
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(680, 673);
+            this.Controls.Add(this.btnLoadConfig);
+            this.Controls.Add(this.btnBackup);
+            this.Controls.Add(this.btnRemoveSettings);
             this.Controls.Add(this.cbAutoMute);
             this.Controls.Add(this.checkBox_HideBattleStrategy);
             this.Controls.Add(this.label12);
@@ -541,7 +566,6 @@
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.richTextBox_skinList);
             this.Controls.Add(this.richTextBox_SkinExc);
             this.Controls.Add(this.label9);
@@ -601,7 +625,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.RichTextBox richTextBox_SkinExc;
         private System.Windows.Forms.RichTextBox richTextBox_skinList;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button4;
@@ -623,5 +646,8 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.CheckBox checkBox_HideBattleStrategy;
         private System.Windows.Forms.CheckBox cbAutoMute;
+        private System.Windows.Forms.Button btnRemoveSettings;
+        private System.Windows.Forms.Button btnBackup;
+        private System.Windows.Forms.Button btnLoadConfig;
     }
 }

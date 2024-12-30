@@ -175,6 +175,10 @@ namespace SeerRandomSkin
 
             SpecificPetSkins = Utils.TryJsonConvert<Dictionary<int, int>>(Configs.SpecificPetSkins);
             FiddleObjects = Utils.TryJsonConvert<List<FiddleObject>>(Configs.FiddleObjects);
+            if (FiddleObjects == null)
+            {
+                FiddleObjects = new List<FiddleObject>(); // 有可能创建失败
+            }
             foreach (var fiddleObject in FiddleObjects)
             {
                 fiddleObject.FromReg = new Regex(fiddleObject.From);
