@@ -59,6 +59,7 @@
             this.活动收藏夹ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.逛地图ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.指定皮肤ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panelBrowser = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -305,18 +306,26 @@
             this.指定皮肤ToolStripMenuItem.Text = "指定皮肤";
             this.指定皮肤ToolStripMenuItem.Click += new System.EventHandler(this.指定皮肤ToolStripMenuItem_Click);
             // 
+            // panelBrowser
+            // 
+            this.panelBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelBrowser.Location = new System.Drawing.Point(0, 25);
+            this.panelBrowser.Name = "panelBrowser";
+            this.panelBrowser.Size = new System.Drawing.Size(960, 560);
+            this.panelBrowser.TabIndex = 1;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(960, 585);
+            this.Controls.Add(this.panelBrowser);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "✧๑(..✪◡✪..)๑✧";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.Resize += new System.EventHandler(this.Form1_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -356,6 +365,7 @@
         private System.Windows.Forms.ToolStripMenuItem 逛地图ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 指定皮肤ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fDToolStripMenuItem;
+        private System.Windows.Forms.Panel panelBrowser;
     }
 }
 

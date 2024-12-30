@@ -6,7 +6,6 @@ using EasyHook;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Management;
@@ -127,8 +126,7 @@ namespace SeerRandomSkin
             }
 
             chromiumBrowser = CreateChromium(Configs.DefaultURL);
-            Controls.Add(chromiumBrowser);
-            ResizeChromiumBrowser();
+            panelBrowser.Controls.Add(chromiumBrowser);
 
             new Thread(() =>
             {
@@ -197,9 +195,10 @@ namespace SeerRandomSkin
         {
             ChromiumWebBrowser chromium = new ChromiumWebBrowser(address)
             {
-                Dock = DockStyle.None,
-                Location = new Point(0, 25),
-                Size = new Size(960, 560),
+                //Dock = DockStyle.None,
+                //Location = new Point(0, 25),
+                //Size = new Size(960, 560),
+                Dock = DockStyle.Fill,
                 RequestHandler = new MyRequestHandler(),
                 BrowserSettings = new BrowserSettings(),
                 KeyboardHandler = new KeyBoardHandler() { mainForm = this }
@@ -476,22 +475,20 @@ namespace SeerRandomSkin
 
         private void flashToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Controls.Remove(chromiumBrowser);
+            panelBrowser.Controls.Remove(chromiumBrowser);
             chromiumBrowser.Dispose();
             chromiumBrowser = null;
             chromiumBrowser = CreateChromium(gameAddress);
-            Controls.Add(chromiumBrowser);
-            ResizeChromiumBrowser();
+            panelBrowser.Controls.Add(chromiumBrowser);
         }
 
         private void h5ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Controls.Remove(chromiumBrowser);
+            panelBrowser.Controls.Remove(chromiumBrowser);
             chromiumBrowser.Dispose();
             chromiumBrowser = null;
             chromiumBrowser = CreateChromium(gameH5Address);
-            Controls.Add(chromiumBrowser);
-            ResizeChromiumBrowser();
+            panelBrowser.Controls.Add(chromiumBrowser);
 
         }
 
@@ -614,14 +611,14 @@ namespace SeerRandomSkin
                 if (type != KeyType.KeyUp) return false;
                 switch(windowsKeyCode)
                 {
-                    case 0x7A:
+                    case (int)Keys.F11:
                         // F11 全屏切换
                         mainForm.isFullScreen = !mainForm.isFullScreen;
                         if (!mainForm.isFullScreen)
                         {
                             mainForm.menuStrip1.Visible = true;
-                            mainForm.FormBorderStyle = FormBorderStyle.Sizable;
                             mainForm.WindowState = FormWindowState.Normal;
+                            mainForm.FormBorderStyle = FormBorderStyle.Sizable;
                         }
                         else
                         {
@@ -630,26 +627,12 @@ namespace SeerRandomSkin
                             mainForm.WindowState = FormWindowState.Maximized;
                         }
                         break;
+                    case (int)Keys.F5:
+                        chromiumBrowser.Reload();
+                        break;
                 }
                 return false;
             }
-        }
-
-        private void Form1_Resize(object sender, EventArgs e)
-        {
-            ResizeChromiumBrowser();
-        }
-
-        private void ResizeChromiumBrowser()
-        {
-            if (chromiumBrowser == null) return;
-            chromiumBrowser.Dock = DockStyle.Fill;
-            if (isFullScreen) return;
-            int tmpW = chromiumBrowser.Width;
-            int tmpH = chromiumBrowser.Height;
-            chromiumBrowser.Dock = DockStyle.None;
-            chromiumBrowser.Width = tmpW;
-            chromiumBrowser.Height = tmpH - 25;
         }
 
         private void FlashSpeedHack()
