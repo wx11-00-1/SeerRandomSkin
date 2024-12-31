@@ -35,8 +35,8 @@ namespace SeerRandomSkin
         public static FormPack childFormPack = null;
 
         public bool isFullScreen = false;
-        private static readonly List<int> skinIds = new List<int>();
-        private static readonly List<int> skinExclusion = new List<int>();
+        private static int[] skinIds;
+        private static HashSet<int> skinExclusion;
 
         public static string FormTitle; // 窗口标题
         public static Action<string> ChangeTitleAction;
@@ -106,22 +106,26 @@ namespace SeerRandomSkin
             if (Configs.SkinIds == "")
             {
                 await GetSkinData();
+                if (skinIds == null || skinIds.Length == 0)
+                {
+                    // 获取所有皮肤失败，不换了
+                    Configs.IsRandomSkin = false;
+                }
             }
             else
             {
-                string[] strings = Configs.SkinIds.Replace(" ", "").Split(',');
-                foreach (string s in strings)
+                skinIds = Configs.SkinIds.Replace(" ", "").Split(',').Select(s =>
                 {
-                    if (s == "" || !int.TryParse(s,out int id) || id < Configs.SkinRangeFloor || id > Configs.SkinRangeCeiling) continue;
-                    skinIds.Add(id);
-                }
+                    int.TryParse(s, out int id);
+                    return id;
+                }).Distinct().Where(id => id != 0 && id >= Configs.SkinRangeFloor && id <= Configs.SkinRangeCeiling).ToArray();
             }
             // 初始化随机皮肤的排除项
-            string[] exc = Configs.RandomSkinExclusion.Replace(" ", "").Split(',');
-            foreach (string ex in exc)
+            skinExclusion = Configs.RandomSkinExclusion.Replace(" ", "").Split(',').Select(s =>
             {
-                if (ex == "" || !int.TryParse(ex, out int id)) continue; skinExclusion.Add(id);
-            }
+                int.TryParse(s, out int id);
+                return id;
+            }).Where(id => id != 0).ToHashSet();
 
             chromiumBrowser = CreateChromium(Configs.DefaultURL);
             panelBrowser.Controls.Add(chromiumBrowser);
@@ -295,7 +299,7 @@ namespace SeerRandomSkin
 
                 private int GetRandomSkinId()
                 {
-                    return skinIds[random_obj.Next(skinIds.Count)];
+                    return skinIds[random_obj.Next(skinIds.Length)];
                 }
 
                 protected override IResourceHandler GetResourceHandler(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request)
@@ -333,8 +337,8 @@ namespace SeerRandomSkin
                         {
                             rid = GetRandomSkinId();
                         }
-                        request.Url = String.Format("https://seer.61.com/resource/fightResource/pet/swf/{0}.swf", rid);
                         chromiumBrowser.ExecuteScriptAsync($"console.log({rid}, document.Client.WxGetPetNameByID({rid}))");
+                        return new WxUrlResourceHandler(String.Format("https://seer.61.com/resource/fightResource/pet/swf/{0}.swf", rid));
                     }
                     if (url.StartsWith("https://seer.61.com/dll/PetFightDLL_201308.swf?"))
                     {
@@ -550,31 +554,30 @@ namespace SeerRandomSkin
 
         private static async Task GetSkinData()
         {
-            skinIds.Clear();
             string version_str = await GetJsonStringAsync("https://seerh5.61.com/version/version.json");
             Match m = Regex.Match(version_str, "\"monsters\\.json\":\"(.*?\\.json)\"");
             if(!m.Success)
             {
                 return;
             }
-            string monsters_str = await GetJsonStringAsync("http://seerh5.61.com/resource/config/xml/" + m.Groups[1].Value);
-            foreach (Match match in Regex.Matches(monsters_str, "\"ID\":(\\d+),\"DefName", RegexOptions.None))
+            var blackList = Configs.SkinBlackList.Replace(" ", "").Split(',').Select(s =>
             {
-                skinIds.Add(int.Parse(match.Groups[1].Value));
-            }
-            FilterSkins();
+                int.TryParse(s, out int id);
+                return id;
+            }).ToHashSet();
+            string monsters_str = await GetJsonStringAsync("http://seerh5.61.com/resource/config/xml/" + m.Groups[1].Value);
+            skinIds = Regex.Matches(monsters_str, "\"ID\":(\\d+),\"DefName", RegexOptions.None).Cast<Match>().Select(match =>
+            {
+                int.TryParse(match.Groups[1].Value, out int id);
+                return id;
+            }).Where(id => !blackList.Contains(id)).ToArray();
             SaveConfigSkinIds();
             MessageBox.Show("获取皮肤数据完成");
         }
 
         private static void SaveConfigSkinIds()
         {
-            string s = "";
-            foreach(var skinId in skinIds)
-            {
-                s = s + skinId + ",";
-            }
-            Configs.SkinIds = s;
+            Configs.SkinIds = string.Join(",", skinIds);
             Configs.Save();
         }
 
@@ -593,17 +596,6 @@ namespace SeerRandomSkin
         private void 静音ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             chromiumBrowser.GetBrowser().GetHost().SetAudioMuted(true);
-        }
-
-        private static void FilterSkins()
-        {
-            string[] blacks = Configs.SkinBlackList.Replace(" ", "").Split(',');
-            HashSet<int> set1 = new HashSet<int>();
-            foreach (string s in blacks)
-            {
-                if (s != "" && int.TryParse(s, out int id)) set1.Add(id);
-            }
-            skinIds.RemoveAll(data => set1.Contains(data));
         }
 
         private void 配置ToolStripMenuItem_Click(object sender, EventArgs e)
