@@ -21,19 +21,20 @@ namespace SeerRandomSkin
             RefreshListView(Form1.FiddleObjects);
         }
 
-        private void RefreshListView(List<FiddleObject> fiddleObjects)
+        private void RefreshListView(IEnumerable<FiddleObject> fiddleObjects)
         {
             listView1.Items.Clear();
-            for (int i = 0; i < fiddleObjects.Count; ++i) {
-                ListViewItem listItem = new ListViewItem()
+            listView1.Items.AddRange(fiddleObjects.Select((o, index) =>
+            {
+                var item = new ListViewItem()
                 {
-                    Text = i.ToString(),
+                    Text = index.ToString()
                 };
-                listItem.SubItems.Add(fiddleObjects[i].From);
-                listItem.SubItems.Add(fiddleObjects[i].To);
-                listItem.SubItems.Add(fiddleObjects[i].Description);
-                listView1.Items.Add(listItem);
-            }
+                item.SubItems.Add(o.From);
+                item.SubItems.Add(o.To);
+                item.SubItems.Add(o.Description);
+                return item;
+            }).ToArray());
         }
 
         private void SaveFiddleObjectsAndRefresh()
@@ -59,6 +60,7 @@ namespace SeerRandomSkin
             Form1.FiddleObjects.Add(new FiddleObject
             {
                 From = tbFrom.Text,
+                FromReg = new System.Text.RegularExpressions.Regex(tbFrom.Text),
                 To = tbTo.Text,
                 Description = tbDesc.Text,
                 IsUrl = isUrl
@@ -78,12 +80,15 @@ namespace SeerRandomSkin
 
         private void btnDel_Click(object sender, EventArgs e)
         {
-            var dels = listView1.SelectedItems.Cast<ListViewItem>().Select(item => int.Parse(item.Text)).ToList();
-            foreach (var del in dels)
+            var dels = listView1.SelectedItems.Cast<ListViewItem>().Select(item =>
             {
-                if (Form1.FiddleObjects[del].IsUrl) continue;
-                File.Delete(Path.Combine(Form1.FiddleFilePath, Form1.FiddleObjects[del].To));
-            }
+                int.TryParse(item.Text, out int index);
+                if (!Form1.FiddleObjects[index].IsUrl)
+                {
+                    File.Delete(Path.Combine(Form1.FiddleFilePath, Form1.FiddleObjects[index].To));
+                }
+                return index;
+            }).ToHashSet();
             Form1.FiddleObjects = Form1.FiddleObjects.Where((value, index) => !dels.Contains(index)).ToList();
             SaveFiddleObjectsAndRefresh();
         }
