@@ -58,9 +58,7 @@ namespace SeerRandomSkin
         public static Dictionary<int, int> SpecificPetSkins;
 
         public static List<FiddleObject> FiddleObjects;
-        public const string FiddleFilePath = @"file/fd";
-        private static readonly List<FiddleObject> FiddleUrl = new List<FiddleObject>();
-        private static readonly List<FiddleObject> FiddleFile = new List<FiddleObject>();
+        public static readonly string FiddleFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"file/fd");
 
         public Form1()
         {
@@ -175,19 +173,11 @@ namespace SeerRandomSkin
             FiddleObjects = Utils.TryJsonConvert<List<FiddleObject>>(Configs.FiddleObjects);
             if (FiddleObjects == null)
             {
-                FiddleObjects = new List<FiddleObject>(); // 有可能创建失败
+                FiddleObjects = new List<FiddleObject>(); // 有可能解析失败
             }
             foreach (var fiddleObject in FiddleObjects)
             {
                 fiddleObject.FromReg = new Regex(fiddleObject.From);
-                if (fiddleObject.IsUrl)
-                {
-                    FiddleUrl.Add(fiddleObject);
-                }
-                else
-                {
-                    FiddleFile.Add(fiddleObject);
-                }
             }
         }
 
@@ -195,9 +185,6 @@ namespace SeerRandomSkin
         {
             ChromiumWebBrowser chromium = new ChromiumWebBrowser(address)
             {
-                //Dock = DockStyle.None,
-                //Location = new Point(0, 25),
-                //Size = new Size(960, 560),
                 Dock = DockStyle.Fill,
                 RequestHandler = new MyRequestHandler(),
                 BrowserSettings = new BrowserSettings(),
@@ -297,10 +284,10 @@ namespace SeerRandomSkin
             protected override IResourceRequestHandler GetResourceRequestHandler(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame,
             IRequest request, bool isNavigation, bool isDownload, string requestInitiator, ref bool disableDefaultHandling)
             {
-                return new MyResourceRequestHandler();
+                return new WxResourceRequestHandler();
             }
 
-            public class MyResourceRequestHandler : ResourceRequestHandler
+            public class WxResourceRequestHandler : ResourceRequestHandler
             {
                 static readonly Random random_obj = new Random();
                 // https://seer.61.com/resource/fightResource/pet/swf/3788.swf
@@ -311,14 +298,21 @@ namespace SeerRandomSkin
                     return skinIds[random_obj.Next(skinIds.Count)];
                 }
 
-                protected override CefReturnValue OnBeforeResourceLoad(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, IRequestCallback callback)
+                protected override IResourceHandler GetResourceHandler(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request)
                 {
-                    foreach (var fiddleObject in FiddleUrl)
+                    string url = request.Url;
+                    foreach (var fiddleObject in FiddleObjects)
                     {
-                        if (fiddleObject.IsUrl && fiddleObject.FromReg.IsMatch(request.Url))
+                        if (fiddleObject.FromReg.IsMatch(url))
                         {
-                            request.Url = fiddleObject.To;
-                            return CefReturnValue.Continue;
+                            if (fiddleObject.IsUrl)
+                            {
+                                return new WxUrlResourceHandler(fiddleObject.To);
+                            }
+                            else
+                            {
+                                return new WxFileResourceHandler(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FiddleFilePath, fiddleObject.To));
+                            }
                         }
                     }
                     // 随机替换 1000 以后的精灵皮肤
@@ -333,58 +327,91 @@ namespace SeerRandomSkin
                         }
                         else if (!Configs.IsRandomSkin || skinExclusion.Contains(skin_id))
                         {
-                            return CefReturnValue.Continue;
+                            return base.GetResourceHandler(chromiumWebBrowser, browser, frame, request);
                         }
                         else
                         {
                             rid = GetRandomSkinId();
                         }
-                        request.Url = @"https://seer.61.com/resource/fightResource/pet/swf/" + rid + @".swf";
+                        request.Url = String.Format("https://seer.61.com/resource/fightResource/pet/swf/{0}.swf", rid);
                         chromiumBrowser.ExecuteScriptAsync($"console.log({rid}, document.Client.WxGetPetNameByID({rid}))");
-                    }
-
-                    return CefReturnValue.Continue;
-                }
-
-                protected override IResourceHandler GetResourceHandler(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request)
-                {
-                    string url = request.Url;
-                    foreach (var fiddleObject in FiddleFile)
-                    {
-                        if (!fiddleObject.IsUrl && fiddleObject.FromReg.IsMatch(url))
-                        {
-                            return new MyResourceHandler(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FiddleFilePath, fiddleObject.To));
-                        }
                     }
                     if (url.StartsWith("https://seer.61.com/dll/PetFightDLL_201308.swf?"))
                     {
                         if (IsHideFlashFightPanel)
                         {
-                            return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\PetFightDLL.swf");
+                            return new WxFileResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\PetFightDLL.swf");
                         }
                     }
                     else if (url.StartsWith("https://seer.61.com/resource/xml/battleStrategy.xml?"))
                     {
                         if (Configs.IsHideBattleStrategy)
                         {
-                            return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\xml\battleStrategy.xml");
+                            return new WxFileResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\xml\battleStrategy.xml");
                         }
                     }
                     else if (url.StartsWith(@"https://seer.61.com/resource/forApp/superMarket/tip.swf?"))
                     {
-                        return new MyResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\tip.swf");
+                        return new WxFileResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\tip.swf");
                     }
 
                     return base.GetResourceHandler(chromiumWebBrowser, browser, frame, request);
                 }
 
-                public class MyResourceHandler : IResourceHandler
+                public class WxUrlResourceHandler : IResourceHandler
+                {
+                    private readonly string url;
+
+                    public WxUrlResourceHandler(string url) { this.url = url; }
+
+                    public void Cancel()
+                    {
+                    }
+
+                    public void Dispose()
+                    {
+                    }
+
+                    public void GetResponseHeaders(IResponse response, out long responseLength, out string redirectUrl)
+                    {
+                        responseLength = 0;
+                        redirectUrl = url;
+                    }
+
+                    public bool Open(IRequest request, out bool handleRequest, ICallback callback)
+                    {
+                        handleRequest = true;
+                        return true;
+                    }
+
+                    public bool ProcessRequest(IRequest request, ICallback callback)
+                    {
+                        throw new NotImplementedException();
+                    }
+
+                    public bool Read(Stream dataOut, out int bytesRead, IResourceReadCallback callback)
+                    {
+                        throw new NotImplementedException();
+                    }
+
+                    public bool ReadResponse(Stream dataOut, out int bytesRead, ICallback callback)
+                    {
+                        throw new NotImplementedException();
+                    }
+
+                    public bool Skip(long bytesToSkip, out long bytesSkipped, IResourceSkipCallback callback)
+                    {
+                        throw new NotImplementedException();
+                    }
+                }
+
+                public class WxFileResourceHandler : IResourceHandler
                 {
                     private readonly string _localResourceFileName;
                     private byte[] _localResourceData;
                     private int _dataReadCount;
 
-                    public MyResourceHandler(string localResourceFileName)
+                    public WxFileResourceHandler(string localResourceFileName)
                     {
                         this._localResourceFileName = localResourceFileName;
                         this._dataReadCount = 0;
