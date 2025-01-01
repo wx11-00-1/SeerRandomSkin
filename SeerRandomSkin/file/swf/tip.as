@@ -9,6 +9,7 @@ package
    import flash.display.MovieClip;
    import flash.utils.ByteArray;
    import flash.utils.setTimeout;
+   import flash.utils.JSON;
    import org.taomee.events.SocketEvent;
    import flash.external.ExternalInterface;
    import com.robot.core.manager.MainManager;
@@ -79,11 +80,6 @@ package
 
          // 自动治疗
          SocketConnection.WxIsAutoCure = true;
-         SocketConnection.WxAutoCureSwitch = function():void
-         {
-            SocketConnection.WxIsAutoCure = !SocketConnection.WxIsAutoCure;
-            Alarm.show(SocketConnection.WxIsAutoCure ? "开启自动治疗" : "关闭自动治疗");
-         };
          SocketConnection.WxAutoCureStart = function():void
          {
             SocketConnection.WxIsAutoCure = true;
@@ -92,7 +88,6 @@ package
          {
             SocketConnection.WxIsAutoCure = false;
          };
-         ExternalInterface.addCallback("WxAutoCureSwitch",SocketConnection.WxAutoCureSwitch);
          ExternalInterface.addCallback("WxAutoCureStart",SocketConnection.WxAutoCureStart);
          ExternalInterface.addCallback("WxAutoCureStop",SocketConnection.WxAutoCureStop);
          SocketConnection.WxCurePetAll = function():void
@@ -158,30 +153,12 @@ package
          };
          ExternalInterface.addCallback("WxGetBagPetIDByCatchTime",SocketConnection.WxGetBagPetIDByCatchTime);
 
-         // 隐藏对战界面
-         SocketConnection.WxIsHiddenFightPanel = false;
-         ExternalInterface.addCallback("WxHiddenFightPanelStart", function():void
-         {
-            SocketConnection.WxIsHiddenFightPanel = true;
-         });
-         ExternalInterface.addCallback("WxHiddenFightPanelStop", function():void
-         {
-            SocketConnection.WxIsHiddenFightPanel = false;
-         });
-
          // 自动出招
          // 进入战斗
          SocketConnection.WxOnReadyToFight = function():void
          {
             ExternalInterface.call("WxFightHandler.Utils.RoundReset");
             SocketConnection.WxIsPositiveChangePet = false;
-            if (SocketConnection.WxIsHiddenFightPanel)
-            {
-                setTimeout(function():void
-                {
-                   SocketConnection.send(CommandID.READY_TO_FIGHT);
-                },1000);
-            }
          };
          SocketConnection.addCmdListener(CommandID.NOTE_READY_TO_FIGHT,SocketConnection.WxOnReadyToFight);
          // 首发精灵信息

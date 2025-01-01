@@ -1,31 +1,27 @@
 package
 {
    import flash.display.Sprite;
-   import flash.utils.getDefinitionByName;
+   import com.robot.core.net.SocketConnection;
    import com.robot.core.CommandID;
-   import com.robot.core.info.BroadcastInfo;
+   import com.robot.core.dispatcher.FightDispatcher;
+   import com.robot.core.event.PetFightEvent;
+   import com.robot.core.info.fightInfo.attack.FightOverInfo;
+   import org.taomee.events.SocketEvent;
    
    public class EveryDay extends Sprite
    {
-       
-      
-      private var SocketConnection:Object;
-      
       public function EveryDay()
       {
          super();
-         this.SocketConnection = getDefinitionByName("com.robot.core.net.SocketConnection");
-         this.SocketConnection.addCmdListener(CommandID.FIGHT_OVER,
-            function() : void
+         SocketConnection.addCmdListener(CommandID.FIGHT_OVER,
+            function(event:SocketEvent) : void
             {
-                var cls:* = getDefinitionByName("com.robot.app.control.BroadcastController");
-                var broadcastInfo:BroadcastInfo = new BroadcastInfo();
-                broadcastInfo.isLocal = true;
-                broadcastInfo.type = 9999;
-                broadcastInfo.txt = "<font color=\'#ff99cc\'>Õ½¶·½áÊø</font>";
-                cls.addBroadcast(broadcastInfo);
+                var overData:FightOverInfo = event.data as FightOverInfo;
+                SocketConnection.removeCmdListener(CommandID.FIGHT_OVER,arguments.callee);
+                FightDispatcher.dispatchEvent(new PetFightEvent(PetFightEvent.ALARM_CLICK,overData));
             }
          );
+         SocketConnection.send(CommandID.READY_TO_FIGHT);
       }
    }
 }

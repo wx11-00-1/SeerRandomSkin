@@ -132,7 +132,7 @@ namespace SeerRandomSkin
             "};"
             ;
 
-        private static JObject jFightTemplate;
+        private static JObject jFightTemplate = Utils.TryGetJObject(Properties.Settings.Default.FlashFightTemplate);
 
         public FormFlashFightHandler()
         {
@@ -141,7 +141,6 @@ namespace SeerRandomSkin
 
         private void FormFlashFightHandler_Load(object sender, EventArgs e)
         {
-            jFightTemplate = Utils.TryGetJObject(Properties.Settings.Default.FlashFightTemplate);
             richTextBox_script.Text = JS_FIGHT_DEFAULT;
             ResetLvTemplate();
         }
@@ -212,9 +211,14 @@ namespace SeerRandomSkin
             Form1.chromiumBrowser.ExecuteScriptAsync(JS_FIGHT_DEFAULT);
         }
 
-        public static void SetFightTemplate(string name)
+        public static bool SetFightTemplate(string name)
         {
+            if (!jFightTemplate.ContainsKey(name))
+            {
+                return false;
+            }
             Form1.chromiumBrowser.ExecuteScriptAsync(jFightTemplate[name].ToString());
+            return true;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -257,6 +261,36 @@ namespace SeerRandomSkin
         private void btn20pp_Click(object sender, EventArgs e)
         {
             Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxUsePetItem(300018);");
+        }
+
+        private void btnItem250hp_Click(object sender, EventArgs e)
+        {
+            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxUsePetItem(300079);");
+        }
+
+        private void btnItem200hp_Click(object sender, EventArgs e)
+        {
+            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxUsePetItem(300157);");
+        }
+
+        private void btnFightPanelHide_Click(object sender, EventArgs e)
+        {
+            Form1.IsHideFlashFightPanel = true;
+        }
+
+        private void btnFightPanelShow_Click(object sender, EventArgs e)
+        {
+            Form1.IsHideFlashFightPanel = false;
+        }
+
+        private void btnAutoCureOpen_Click(object sender, EventArgs e)
+        {
+            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxAutoCureStart();");
+        }
+
+        private void btnAutoCureStop_Click(object sender, EventArgs e)
+        {
+            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxAutoCureStop();");
         }
     }
 }

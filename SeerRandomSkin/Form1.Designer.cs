@@ -50,11 +50,7 @@
             this.收发包ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flashToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.变速ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.开始自动出招ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.结束自动出招ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.隐藏战斗界面ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.压血ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.自动治疗ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.对战助手ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.活动收藏夹ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.逛地图ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -96,35 +92,35 @@
             // flashToolStripMenuItem
             // 
             this.flashToolStripMenuItem.Name = "flashToolStripMenuItem";
-            this.flashToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.flashToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.flashToolStripMenuItem.Text = "Flash";
             this.flashToolStripMenuItem.Click += new System.EventHandler(this.flashToolStripMenuItem_Click);
             // 
             // h5ToolStripMenuItem
             // 
             this.h5ToolStripMenuItem.Name = "h5ToolStripMenuItem";
-            this.h5ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.h5ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.h5ToolStripMenuItem.Text = "H5";
             this.h5ToolStripMenuItem.Click += new System.EventHandler(this.h5ToolStripMenuItem_Click);
             // 
             // 开发者工具ToolStripMenuItem
             // 
             this.开发者工具ToolStripMenuItem.Name = "开发者工具ToolStripMenuItem";
-            this.开发者工具ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.开发者工具ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.开发者工具ToolStripMenuItem.Text = "开发者工具";
             this.开发者工具ToolStripMenuItem.Click += new System.EventHandler(this.开发者工具ToolStripMenuItem_Click);
             // 
             // 关于ToolStripMenuItem
             // 
             this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
-            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.关于ToolStripMenuItem.Text = "关于";
             this.关于ToolStripMenuItem.Click += new System.EventHandler(this.关于ToolStripMenuItem_Click);
             // 
             // 获取皮肤数据ToolStripMenuItem
             // 
             this.获取皮肤数据ToolStripMenuItem.Name = "获取皮肤数据ToolStripMenuItem";
-            this.获取皮肤数据ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.获取皮肤数据ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.获取皮肤数据ToolStripMenuItem.Text = "更新皮肤数据";
             this.获取皮肤数据ToolStripMenuItem.Click += new System.EventHandler(this.获取皮肤数据ToolStripMenuItem_Click);
             // 
@@ -134,7 +130,7 @@
             this.开启ToolStripMenuItem,
             this.静音ToolStripMenuItem});
             this.音量ToolStripMenuItem.Name = "音量ToolStripMenuItem";
-            this.音量ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.音量ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.音量ToolStripMenuItem.Text = "音量";
             // 
             // 开启ToolStripMenuItem
@@ -154,21 +150,21 @@
             // 配置ToolStripMenuItem
             // 
             this.配置ToolStripMenuItem.Name = "配置ToolStripMenuItem";
-            this.配置ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.配置ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.配置ToolStripMenuItem.Text = "配置";
             this.配置ToolStripMenuItem.Click += new System.EventHandler(this.配置ToolStripMenuItem_Click);
             // 
             // 巅峰记牌ToolStripMenuItem
             // 
             this.巅峰记牌ToolStripMenuItem.Name = "巅峰记牌ToolStripMenuItem";
-            this.巅峰记牌ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.巅峰记牌ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.巅峰记牌ToolStripMenuItem.Text = "巅峰记牌";
             this.巅峰记牌ToolStripMenuItem.Click += new System.EventHandler(this.巅峰记牌ToolStripMenuItem_Click);
             // 
             // fDToolStripMenuItem
             // 
             this.fDToolStripMenuItem.Name = "fDToolStripMenuItem";
-            this.fDToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.fDToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.fDToolStripMenuItem.Text = "FD";
             this.fDToolStripMenuItem.Click += new System.EventHandler(this.fDToolStripMenuItem_Click);
             // 
@@ -188,7 +184,7 @@
             this.toolStripMenuItem_CureOpen,
             this.toolStripMenuItem_AutoCureClose});
             this.自动ToolStripMenuItem.Name = "自动ToolStripMenuItem";
-            this.自动ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.自动ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.自动ToolStripMenuItem.Text = "自动回血";
             // 
             // toolStripMenuItem_CureOpen
@@ -208,14 +204,14 @@
             // 换装ToolStripMenuItem
             // 
             this.换装ToolStripMenuItem.Name = "换装ToolStripMenuItem";
-            this.换装ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.换装ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.换装ToolStripMenuItem.Text = "换装";
             this.换装ToolStripMenuItem.Click += new System.EventHandler(this.换装ToolStripMenuItem_Click);
             // 
             // 收发包ToolStripMenuItem
             // 
             this.收发包ToolStripMenuItem.Name = "收发包ToolStripMenuItem";
-            this.收发包ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.收发包ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.收发包ToolStripMenuItem.Text = "收发包";
             this.收发包ToolStripMenuItem.Click += new System.EventHandler(this.收发包ToolStripMenuItem_Click);
             // 
@@ -223,11 +219,7 @@
             // 
             this.flashToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.变速ToolStripMenuItem,
-            this.开始自动出招ToolStripMenuItem,
-            this.结束自动出招ToolStripMenuItem,
-            this.隐藏战斗界面ToolStripMenuItem,
             this.压血ToolStripMenuItem,
-            this.自动治疗ToolStripMenuItem,
             this.对战助手ToolStripMenuItem,
             this.活动收藏夹ToolStripMenuItem,
             this.逛地图ToolStripMenuItem,
@@ -239,70 +231,42 @@
             // 变速ToolStripMenuItem
             // 
             this.变速ToolStripMenuItem.Name = "变速ToolStripMenuItem";
-            this.变速ToolStripMenuItem.Size = new System.Drawing.Size(280, 22);
+            this.变速ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.变速ToolStripMenuItem.Text = "变速";
             this.变速ToolStripMenuItem.Click += new System.EventHandler(this.变速ToolStripMenuItem_Click);
-            // 
-            // 开始自动出招ToolStripMenuItem
-            // 
-            this.开始自动出招ToolStripMenuItem.Name = "开始自动出招ToolStripMenuItem";
-            this.开始自动出招ToolStripMenuItem.Size = new System.Drawing.Size(280, 22);
-            this.开始自动出招ToolStripMenuItem.Text = "开始自动出招";
-            this.开始自动出招ToolStripMenuItem.Click += new System.EventHandler(this.开始自动出招ToolStripMenuItem_Click);
-            // 
-            // 结束自动出招ToolStripMenuItem
-            // 
-            this.结束自动出招ToolStripMenuItem.Name = "结束自动出招ToolStripMenuItem";
-            this.结束自动出招ToolStripMenuItem.Size = new System.Drawing.Size(280, 22);
-            this.结束自动出招ToolStripMenuItem.Text = "结束自动出招";
-            this.结束自动出招ToolStripMenuItem.Click += new System.EventHandler(this.结束自动出招ToolStripMenuItem_Click);
-            // 
-            // 隐藏战斗界面ToolStripMenuItem
-            // 
-            this.隐藏战斗界面ToolStripMenuItem.Name = "隐藏战斗界面ToolStripMenuItem";
-            this.隐藏战斗界面ToolStripMenuItem.Size = new System.Drawing.Size(280, 22);
-            this.隐藏战斗界面ToolStripMenuItem.Text = "隐藏战斗界面";
-            this.隐藏战斗界面ToolStripMenuItem.Click += new System.EventHandler(this.隐藏战斗界面ToolStripMenuItem_Click);
             // 
             // 压血ToolStripMenuItem
             // 
             this.压血ToolStripMenuItem.Name = "压血ToolStripMenuItem";
-            this.压血ToolStripMenuItem.Size = new System.Drawing.Size(280, 22);
-            this.压血ToolStripMenuItem.Text = "压血（结束后记得取消隐藏对战界面）";
+            this.压血ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.压血ToolStripMenuItem.Text = "压血";
             this.压血ToolStripMenuItem.Click += new System.EventHandler(this.压血ToolStripMenuItem_Click);
-            // 
-            // 自动治疗ToolStripMenuItem
-            // 
-            this.自动治疗ToolStripMenuItem.Name = "自动治疗ToolStripMenuItem";
-            this.自动治疗ToolStripMenuItem.Size = new System.Drawing.Size(280, 22);
-            this.自动治疗ToolStripMenuItem.Text = "自动治疗";
-            this.自动治疗ToolStripMenuItem.Click += new System.EventHandler(this.自动治疗ToolStripMenuItem_Click);
             // 
             // 对战助手ToolStripMenuItem
             // 
             this.对战助手ToolStripMenuItem.Name = "对战助手ToolStripMenuItem";
-            this.对战助手ToolStripMenuItem.Size = new System.Drawing.Size(280, 22);
+            this.对战助手ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.对战助手ToolStripMenuItem.Text = "对战助手";
             this.对战助手ToolStripMenuItem.Click += new System.EventHandler(this.对战助手ToolStripMenuItem_Click);
             // 
             // 活动收藏夹ToolStripMenuItem
             // 
             this.活动收藏夹ToolStripMenuItem.Name = "活动收藏夹ToolStripMenuItem";
-            this.活动收藏夹ToolStripMenuItem.Size = new System.Drawing.Size(280, 22);
+            this.活动收藏夹ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.活动收藏夹ToolStripMenuItem.Text = "活动收藏夹";
             this.活动收藏夹ToolStripMenuItem.Click += new System.EventHandler(this.活动收藏夹ToolStripMenuItem_Click);
             // 
             // 逛地图ToolStripMenuItem
             // 
             this.逛地图ToolStripMenuItem.Name = "逛地图ToolStripMenuItem";
-            this.逛地图ToolStripMenuItem.Size = new System.Drawing.Size(280, 22);
+            this.逛地图ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.逛地图ToolStripMenuItem.Text = "逛地图";
             this.逛地图ToolStripMenuItem.Click += new System.EventHandler(this.逛地图ToolStripMenuItem_Click);
             // 
             // 指定皮肤ToolStripMenuItem
             // 
             this.指定皮肤ToolStripMenuItem.Name = "指定皮肤ToolStripMenuItem";
-            this.指定皮肤ToolStripMenuItem.Size = new System.Drawing.Size(280, 22);
+            this.指定皮肤ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.指定皮肤ToolStripMenuItem.Text = "指定皮肤";
             this.指定皮肤ToolStripMenuItem.Click += new System.EventHandler(this.指定皮肤ToolStripMenuItem_Click);
             // 
@@ -355,11 +319,7 @@
         private System.Windows.Forms.ToolStripMenuItem 巅峰记牌ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem flashToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 变速ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 开始自动出招ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 结束自动出招ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 隐藏战斗界面ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 压血ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 自动治疗ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 对战助手ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 活动收藏夹ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 逛地图ToolStripMenuItem;

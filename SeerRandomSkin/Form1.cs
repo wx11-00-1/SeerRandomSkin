@@ -40,20 +40,7 @@ namespace SeerRandomSkin
 
         public static string FormTitle; // 窗口标题
         public static Action<string> ChangeTitleAction;
-
-        private static bool isHideFlashFightPanel = false;
-        public static bool IsHideFlashFightPanel
-        {
-            get
-            {
-                return isHideFlashFightPanel;
-            }
-            set
-            {
-                isHideFlashFightPanel = value;
-                chromiumBrowser.ExecuteScriptAsync(value ? "document.Client.WxHiddenFightPanelStart();" : "document.Client.WxHiddenFightPanelStop();");
-            }
-        }
+        public static bool IsHideFlashFightPanel { get; set; }
 
         public static Dictionary<int, int> SpecificPetSkins;
 
@@ -277,6 +264,7 @@ namespace SeerRandomSkin
                     {
                         args.Browser.MainFrame.ExecuteJavaScriptAsync(String.Format("document.body.style.zoom = {0};", Configs.FlashZoom));
                         args.Browser.MainFrame.ExecuteJavaScriptAsync(FormFlashFightHandler.JS_FIGHT_ENVIRONMENT);
+                        IsHideFlashFightPanel = false;
                     }
                 }
             };
@@ -686,24 +674,9 @@ namespace SeerRandomSkin
             childFormScreenShot.ScreenShot();
         }
 
-        private void SetFlashAutoFight(bool flag)
-        {
-            chromiumBrowser.ExecuteScriptAsync(flag ? "document.Client.WxAutoUseSkillStart();" : "document.Client.WxAutoUseSkillEnd();");
-        }
-
         private void 变速ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FlashSpeedHack();
-        }
-
-        private void 开始自动出招ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SetFlashAutoFight(true);
-        }
-
-        private void 结束自动出招ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SetFlashAutoFight(false);
         }
 
         private void 隐藏战斗界面ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -714,14 +687,12 @@ namespace SeerRandomSkin
 
         private void 压血ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormFlashFightHandler.SetFightTemplate("压血");
-            IsHideFlashFightPanel = true;
+            if (!FormFlashFightHandler.SetFightTemplate("压血出招"))
+            {
+                MessageBox.Show("没有找到压血的出招方案，请先恢复默认配置");
+                return;
+            }
             chromiumBrowser.ExecuteScriptAsync("document.Client.WxLowHP();");
-        }
-
-        private void 自动治疗ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            chromiumBrowser.ExecuteScriptAsync("document.Client.WxAutoCureSwitch();");
         }
 
         private void 对战助手ToolStripMenuItem_Click(object sender, EventArgs e)
