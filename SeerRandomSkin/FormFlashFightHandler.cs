@@ -17,8 +17,8 @@ namespace SeerRandomSkin
 
             "WxFightHandler.Private = {};" +
 
-            "WxFightHandler.Utils.GetPetInfos = () => {" +
-            "   return document.Client.WxGetPetInfos();" +
+            "WxFightHandler.Utils.GetBagPetInfos = () => {" +
+            "   return document.Client.WxGetBagPetInfos();" +
             "};" +
 
             "WxFightHandler.Utils.RoundReset = () => { WxFightHandler.Private.Round = 0; };" +

@@ -127,11 +127,7 @@ WxFightHandler.Utils.UsePetItem(300011); // 使用回 20 血的药剂
 ```js
 WxFightHandler.Utils.ItemBuy(300017); // 购买 10 pp 药剂，可以在战斗中使用
 ```
-#### 1.7 WxFightHandler.Utils.StopAutoFight
-##### 说明
-无参数
-停止对战接管，调用后立即生效
-#### 1.8 WxFightHandler.Utils.GetFightingPetID
+#### 1.7 WxFightHandler.Utils.GetFightingPetID
 ##### 说明
 无参数
 在战斗中，获取当前在场精灵的 ID
@@ -145,7 +141,7 @@ WxFightHandler.OnUseSkill = (mySkillInfo,enemySkillInfo) => {
   }
 };
 ```
-#### 1.9 WxFightHandler.Utils.ChangePetByID
+#### 1.8 WxFightHandler.Utils.ChangePetByID
 ##### 说明
 换上指定 ID 数组中的的精灵
 ##### 参数
@@ -177,7 +173,7 @@ WxFightHandler.OnChangePet = (petInfo) => {
   }
 };
 ```
-#### 1.10 WxFightHandler.Utils.Delay
+#### 1.9 WxFightHandler.Utils.Delay
 ##### 说明
 等待一段时间。有些日常关卡出招太快会掉线；调试时增加，也方便观察脚本运行情况
 ##### 参数
@@ -191,7 +187,18 @@ WxFightHandler.OnFirstRound = async () => { // 函数要加 async 标识
   WxFightHandler.Utils.UseSkill(0);
 };
 ```
+#### 1.10 WxFightHandler.Utils.GetBagPetsInfos
+
+##### 说明
+
+获取背包中的精灵信息
+
+##### 参数
+
+无
+
 ### 2 发包函数
+
 #### 2.1 WxFightHandler.Utils.Send
 ##### 说明
 发送封包

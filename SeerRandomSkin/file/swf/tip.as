@@ -24,6 +24,7 @@ package
    import com.robot.core.config.xml.SkillXMLInfo;
    import com.robot.app.task.petstory.util.KTool;
    import com.robot.core.info.fightInfo.NoteReadyToFightInfo;
+   import com.robot.core.info.fightInfo.FighterUserInfos;
    import com.robot.core.info.fightInfo.FightStartInfo;
    import com.robot.core.info.fightInfo.attack.FightOverInfo;
    import com.robot.app.toolBar.ToolBarController;
@@ -48,10 +49,10 @@ package
          }
 
          // 获取背包精灵信息
-        ExternalInterface.addCallback("WxGetPetInfos",
+        ExternalInterface.addCallback("WxGetBagPetInfos",
             function():Array
             {
-                return PetManager.infos;
+                return PetManager.allInfos;
             }
         );
 
@@ -165,8 +166,8 @@ package
          SocketConnection.WxOnStartFight = function(event:SocketEvent):void
          {
             SocketConnection.WxFightingPetID = PetManager.getBagMap()[0].id;
-            SocketConnection.WxFightingPetCatchTime = PetManager.getBagMap()[0].catchTime;
             var _loc2_:FightStartInfo = event.data as FightStartInfo;
+            SocketConnection.WxFightingPetCatchTime = _loc2_.myInfo.catchTime;
             ExternalInterface.call("WxFightHandler.OnFirstRound",_loc2_);
          };
          SocketConnection.addCmdListener(CommandID.NOTE_START_FIGHT,SocketConnection.WxOnStartFight);
