@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Drawing;
 using System.IO;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -175,10 +176,15 @@ namespace SeerRandomSkin
             var path = GetUserConfigFilePath();
             if (Path.GetFileName(path) != "user.config")
             {
-                MessageBox.Show("删除配置文件失败");
+                MessageBox.Show("删除配置文件失败，请尝试读取正常的配置文件（不是正常的文件名）");
                 return;
             }
-            Directory.Delete(Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(path))), true);
+            path = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(path)));
+            if (!path.EndsWith(Assembly.GetExecutingAssembly().GetName().Name))
+            {
+                MessageBox.Show("删除配置文件失败，请尝试读取正常的配置文件（找不到文件夹）");
+            }
+            Directory.Delete(path, true);
         }
 
         private void btnRemoveSettings_Click(object sender, EventArgs e)
