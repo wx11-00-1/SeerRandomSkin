@@ -1,7 +1,11 @@
-﻿using System;
+﻿using EasyHook;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -225,8 +229,14 @@ namespace SeerRandomSkin
                 try
                 {
                     SettingsDef.Reload();
-                    Init();
-                    MessageBox.Show("读取成功");
+                    // 过滤掉 FD 的文件替换部分
+                    var fdObjs = Utils.TryJsonConvert<List<FiddleObject>>(SettingsDef.FiddleObjects);
+                    if (fdObjs != null)
+                    {
+                        SettingsDef.FiddleObjects = JsonConvert.SerializeObject(fdObjs.Where(obj => obj.IsUrl).ToList());
+                    }
+                    SettingsDef.Save();
+                    MessageBox.Show("读取成功，重新启动后生效");
                 }
                 catch (Exception)
                 {
