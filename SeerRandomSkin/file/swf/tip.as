@@ -165,9 +165,9 @@ package
          // 首发精灵信息
          SocketConnection.WxOnStartFight = function(event:SocketEvent):void
          {
-            SocketConnection.WxFightingPetID = PetManager.getBagMap()[0].id;
             var _loc2_:FightStartInfo = event.data as FightStartInfo;
             SocketConnection.WxFightingPetCatchTime = _loc2_.myInfo.catchTime;
+            SocketConnection.WxFightingPetID = _loc2_.myInfo.petID;
             ExternalInterface.call("WxFightHandler.OnFirstRound",_loc2_);
          };
          SocketConnection.addCmdListener(CommandID.NOTE_START_FIGHT,SocketConnection.WxOnStartFight);
