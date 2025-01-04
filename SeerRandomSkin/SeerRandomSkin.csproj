@@ -10,7 +10,7 @@
     <ProjectGuid>{E4837760-22ED-4BB9-8698-5C23EB29FDE4}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>SeerRandomSkin</RootNamespace>
-    <AssemblyName>SeerRandomSkin</AssemblyName>
+    <AssemblyName>蓝白Seer</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

@@ -184,9 +184,10 @@ namespace SeerRandomSkin
                 return;
             }
             path = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(path)));
-            if (!path.EndsWith(Assembly.GetExecutingAssembly().GetName().Name))
+            if (!path.EndsWith(new System.Diagnostics.StackTrace(true).GetFrame(1).GetMethod().DeclaringType.Namespace))
             {
                 MessageBox.Show("删除配置文件失败，请尝试读取正常的配置文件（找不到文件夹）");
+                return;
             }
             Directory.Delete(path, true);
         }
