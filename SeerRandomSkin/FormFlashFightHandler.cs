@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace SeerRandomSkin
 {
@@ -19,6 +18,35 @@ namespace SeerRandomSkin
 
             "WxFightHandler.Utils.GetBagPetInfos = () => {" +
             "   return document.Client.WxGetBagPetInfos();" +
+            "};" +
+            "WxFightHandler.Utils.GetBag1 = () => {" +
+            "   return document.Client.WxGetBag1();" +
+            "};" +
+            "WxFightHandler.Utils.GetBag2 = () => {" +
+            "   return document.Client.WxGetBag2();" +
+            "};" +
+            "WxFightHandler.Utils.GetSetPetBag = (bag1,bag2=[]) => new Promise((resolve) => {" +
+            "   WxFightHandler.Utils._as3Callback = resolve;" +
+            "   document.Client.WxSetPetBag(bag1,bag2);" +
+            "});" +
+
+            "WxFightHandler.Utils.GetStoragePets = async () => await new Promise((resolve) => {" +
+            "   WxFightHandler.Utils._as3Callback = resolve;" +
+            "   document.Client.WxGetStoragePets();" +
+            "});" +
+
+            "WxFightHandler.Utils.GetClothes = () => {" +
+            "   return document.Client.WxGetClothes();" +
+            "};" +
+            "WxFightHandler.Utils.ChangeCloth = (clothes) => {" +
+            "   return document.Client.WxChangeCloth(clothes);" +
+            "};" +
+
+            "WxFightHandler.Utils.GetTitle = () => {" +
+            "   return document.Client.WxGetTitle();" +
+            "};" +
+            "WxFightHandler.Utils.SetTitle = (title) => {" +
+            "   return document.Client.WxSetTitle(title);" +
             "};" +
 
             "WxFightHandler.Utils.RoundReset = () => { WxFightHandler.Private.Round = 0; };" +
@@ -84,14 +112,10 @@ namespace SeerRandomSkin
             "   document.Client.WxSend(commandID, ...args);" +
             "};" +
             "WxFightHandler.Utils.SendAsync = async (commandID,parameterArray) => {" +
-            "   let packet;" +
-            "   await new Promise((resolve) => {" +
+            "   return await new Promise((resolve) => {" +
             "       WxFightHandler.Utils._as3Callback = resolve;" +
             "       document.Client.WxSendWithCallback2(commandID,parameterArray);" +
-            "   }).then((p) => {" +
-            "       packet = p;" +
             "   });" +
-            "   return packet;" +
             "};" +
 
             // xml

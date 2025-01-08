@@ -33,6 +33,11 @@ package
    import com.robot.app2.control.PeakJihad2023Controller;
    import com.robot.core.config.ClientConfig;
    import com.robot.core.config.xml.MapXMLInfo;
+   import com.robot.core.info.pet.PetStorage2015PetInfo;
+   import com.codecatalyst.promise.Promise;
+   import com.robot.core.behavior.ChangeClothBehavior;
+   import com.robot.core.manager.UserManager;
+   import com.robot.core.info.clothInfo.PeopleItemInfo;
    
    [Embed(source="/_assets/assets.swf", symbol="item")]
    public dynamic class item extends MovieClip
@@ -334,6 +339,119 @@ package
             {
                 Alarm.show("背包阵容不满足要求");
             }
+         }
+         );
+
+         // 获取仓库精灵
+         SocketConnection.WxGetStoragePets = function(allInfo:Array,startID:int = 1):void
+         {
+            SocketConnection.sendWithPromise(45543,[startID - 1,startID + 998]).then(function(e:SocketEvent):void
+            {
+                var b:ByteArray = e.data as ByteArray;
+                var len:int = int(b.readUnsignedInt());
+                for(var i:int = 0; i < len; i++)
+                {
+                   allInfo.push(new PetStorage2015PetInfo(b));
+                }
+                if(len == 1000)
+                {
+                   SocketConnection.WxGetStoragePets(allInfo,startID + 1000);
+                }
+                else
+                {
+                   ExternalInterface.call("WxFightHandler.Utils._as3Callback",allInfo);
+                }
+            });
+         };
+         ExternalInterface.addCallback("WxGetStoragePets", function():void
+         {
+            SocketConnection.WxGetStoragePets([]);
+         }
+         );
+         // 背包
+        ExternalInterface.addCallback("WxGetBag1",
+            function():Array
+            {
+                return PetManager.getBagMap();
+            }
+        );
+        ExternalInterface.addCallback("WxGetBag2",
+            function():Array
+            {
+                return PetManager.getSecondBagMap();
+            }
+        );
+         ExternalInterface.addCallback("WxSetPetBag", function(bag1:Array, bag2:Array):void
+         {
+            // 清空背包
+            var promises:Array = new Array();
+            var bagBoth:Array = PetManager.getBagMap(true);
+            for (var i:int = 0; i < bagBoth.length; ++i)
+            {
+                promises.push(PetManager.bagToInStorage(bagBoth[i].catchTime));
+            }
+            Promise.all(promises).then(function():void {
+                promises = [];
+                // 放入精灵
+                for (var i:int = 0; i < bag1.length; ++i)
+                {
+                    promises.push(PetManager.storageToInBag(bag1[i]));
+                }
+                for (var i:int = 0; i < bag2.length; ++i)
+                {
+                    promises.push(PetManager.storageToSecondBag(bag2[i]));
+                }
+                Promise.all(promises).then(function():void
+                {
+                    PetManager.upDateByOnce();
+                    ExternalInterface.call("WxFightHandler.Utils._as3Callback");
+                });
+            });
+         }
+         );
+         ExternalInterface.addCallback("WxGetClothes", function():Array
+         {
+            var clothes:Array = MainManager.actorInfo.clothes;
+            var result:Array = [];
+            for (var i:int = 0; i < clothes.length; i++)
+            {
+                result.push(clothes[i].id);
+                result.push(clothes[i].level);
+            }
+            return result;
+         }
+         );
+         ExternalInterface.addCallback("WxChangeCloth", function(clothes:Array):void
+         {
+            var clothArray:Array = [];
+            for (var i:int = 0; i < clothes.length; i+=2)
+            {
+                clothArray.push(new PeopleItemInfo(clothes[i],clothes[i+1]));
+            }
+            MainManager.actorModel.execBehavior(new ChangeClothBehavior(clothArray));
+         }
+         );
+         ExternalInterface.addCallback("WxGetTitle", function():uint
+         {
+            return MainManager.actorInfo.curTitle;
+         }
+         );
+         ExternalInterface.addCallback("WxSetTitle", function(title:uint):void
+         {
+            SocketConnection.sendWithCallback(CommandID.SETTITLE,function(param1:SocketEvent):void
+            {
+                var _loc2_:ByteArray = null;
+                if(param1.data)
+                {
+                    _loc2_ = param1.data as ByteArray;
+                    MainManager.actorInfo.curTitle = _loc2_.readUnsignedInt();
+                }
+                else
+                {
+                    MainManager.actorInfo.curTitle = 0;
+                }
+                MainManager.actorModel.refreshTitle(MainManager.actorInfo.curTitle);
+            },title);
          }
          );
 

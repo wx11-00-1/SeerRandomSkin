@@ -69,7 +69,7 @@
   - 变速效果与以往的 IE 内核登录器有所不同
 
 ## API
-WxFightHandler 对象提供的属性和方法，通过 js 代码调用，用于编写日常脚本（登录器自带了一些脚本例子，参照着文档看，更容易理解）
+WxFightHandler 对象提供的属性和方法，通过 js 代码调用，用于编写日常脚本（登录器自带了一些脚本例子，参照着文档看，更容易理解；可以直接在开发者工具的控制台测试）
 ### 1 对战相关
 #### 1.1 WxFightHandler.Private.Round
 记录对战回合
@@ -115,8 +115,7 @@ WxFightHandler.Utils.UsePetItem(300011); // 使用回 20 血的药剂
 ```
 #### 1.5 WxFightHandler.Utils.UsePetItem10PP
 ##### 说明
-无参数
-使用回 10 pp 的药剂
+无参数。使用回 10 pp 的药剂
 #### 1.6 WxFightHandler.Utils.ItemBuy
 ##### 说明
 购买道具
@@ -129,8 +128,7 @@ WxFightHandler.Utils.ItemBuy(300017); // 购买 10 pp 药剂，可以在战斗�
 ```
 #### 1.7 WxFightHandler.Utils.GetFightingPetID
 ##### 说明
-无参数
-在战斗中，获取当前在场精灵的 ID
+无参数。在战斗中，获取当前在场精灵的 ID
 ##### 示例
 ```js
 WxFightHandler.OnUseSkill = (mySkillInfo,enemySkillInfo) => {
@@ -175,7 +173,7 @@ WxFightHandler.OnChangePet = (petInfo) => {
 ```
 #### 1.9 WxFightHandler.Utils.Delay
 ##### 说明
-等待一段时间。有些日常关卡出招太快会掉线；调试时增加，也方便观察脚本运行情况
+等待一段时间。有些日常关卡出招太快会掉线；调试时可以使用，方便观察脚本运行情况
 ##### 参数
 ###### millisecond
 毫秒（一毫秒 = 一千分之一秒）
@@ -191,11 +189,95 @@ WxFightHandler.OnFirstRound = async () => { // 函数要加 async 标识
 
 ##### 说明
 
-获取背包中的精灵信息
+无参数。获取背包中的精灵信息
+
+#### 1.11 WxFightHandler.Utils.GetBag1
+
+##### 说明
+
+无参数。获取出招背包的精灵信息（GetBag2 是备战背包，即下面那一行）
+
+#### 1.12 WxFightHandler.Utils.GetStoragePets
+
+##### 说明
+
+无参数。获取仓库中所有精灵
+
+##### 示例
+
+```js
+let GetPetCatchtimeByID = async (id) => {
+    let pets = await WxFightHandler.Utils.GetStoragePets();
+    //pets = pets.filter(pet => pet.id===id).sort((a,b) => a.level-b.level); // 按精灵等级升序排列
+    pets = pets.filter(pet => pet.id===id).sort((a,b) => b.level-a.level); // 降序
+    return pets.length===0 ? 0 : pets[0].catchTime; // 找不到就返回 0；否则返回排在最前面的
+};
+```
+
+#### 1.13 WxFightHandler.Utils.GetSetPetBag
+
+##### 说明
+
+更换背包中的精灵
 
 ##### 参数
 
-无
+###### bag1
+
+出战背包精灵的 catchTime 数组
+
+###### bag2
+
+备注背包（默认值为空数组）
+
+##### 示例
+
+```js
+await WxFightHandler.Utils.GetSetPetBag([1587000619],[1587000621]);
+// 发起对战
+```
+
+#### 1.14 WxFightHandler.Utils.GetClothes
+
+##### 说明
+
+无参数。获取套装 id 数组
+
+#### 1.15 WxFightHandler.Utils.ChangeCloth
+
+##### 说明
+
+更换套装
+
+##### 参数
+
+###### clothes
+
+套装数组
+
+##### 示例
+
+```js
+WxFightHandler.Utils.ChangeCloth([1300670, 0, 1300671, 0, 1300672, 0, 1300673, 0]); // 银翼骑士套装
+```
+
+#### 1.16 WxFightHandler.Utils.GetTitle
+
+##### 说明
+
+无参数。获取当前称号 id
+
+#### 1.17 WxFightHandler.Utils.SetTitle
+
+##### 说明
+
+更换称号
+
+##### 参数
+
+###### title
+
+称号 id
 
 ### 2 发包函数
 
@@ -233,5 +315,4 @@ WxFightHandler.OnFirstRound = async () => { // 函数要加 async 标识
 ###### ID
 #### 3.4 WxFightHandler.Utils.GetAllCloth
 ##### 说明
-无参数
-获取游戏内所有套装部件的信息
+无参数。获取游戏内所有套装部件的信息
