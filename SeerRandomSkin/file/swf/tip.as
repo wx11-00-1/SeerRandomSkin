@@ -38,6 +38,8 @@ package
    import com.robot.core.behavior.ChangeClothBehavior;
    import com.robot.core.manager.UserManager;
    import com.robot.core.info.clothInfo.PeopleItemInfo;
+   import com.robot.core.info.UserInfo;
+   import com.robot.core.ui.alert.SimpleAlarm;
    
    [Embed(source="/_assets/assets.swf", symbol="item")]
    public dynamic class item extends MovieClip
@@ -438,6 +440,7 @@ package
          );
          ExternalInterface.addCallback("WxSetTitle", function(title:uint):void
          {
+            if (MainManager.actorInfo.curTitle == title) return;
             SocketConnection.sendWithCallback(CommandID.SETTITLE,function(param1:SocketEvent):void
             {
                 var _loc2_:ByteArray = null;
@@ -452,6 +455,29 @@ package
                 }
                 MainManager.actorModel.refreshTitle(MainManager.actorInfo.curTitle);
             },title);
+         }
+         );
+
+         // 
+         ExternalInterface.addCallback("WxCopyFire", function(fireType:uint):uint
+         {
+            SocketConnection.sendWithCallback(CommandID.LIST_MAP_PLAYER,function(param1:SocketEvent):void
+            {
+                var byteArray:ByteArray = param1.data as ByteArray;
+                var len:uint = byteArray.readUnsignedInt();
+                for (var i:int = 0; i < len; ++i)
+                {
+                    var userInfo:UserInfo = new UserInfo();
+                    UserInfo.setForPeoleInfo(userInfo,byteArray);
+                    if (userInfo.fireBuff == fireType)
+                    {
+                        SocketConnection.send(CommandID.FIRE_ACT_COPY,userInfo.userID);
+                        SimpleAlarm.show("½è»ð³É¹¦");
+                        return;
+                    }
+                }
+                SimpleAlarm.show("½è»ðÊ§°Ü");
+            });
          }
          );
 

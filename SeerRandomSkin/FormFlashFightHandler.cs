@@ -49,6 +49,8 @@ namespace SeerRandomSkin
             "   return document.Client.WxSetTitle(title);" +
             "};" +
 
+            "WxFightHandler.Utils.CopyFire = (fireType) => { document.Client.WxCopyFire(fireType); };" +
+
             "WxFightHandler.Utils.RoundReset = () => { WxFightHandler.Private.Round = 0; };" +
             "WxFightHandler.Utils.ShowRound = (hpPercent) => { WxFightHandler.Private.Round += 1; seerRandomSkinObj.showFightInfo(WxFightHandler.Private.Round,hpPercent); };" +
 
@@ -65,6 +67,7 @@ namespace SeerRandomSkin
             "};" +
 
             "WxFightHandler.Utils.UsePetItem10PP = () => {" +
+            "   WxFightHandler.Utils.ItemBuy(300017);" +
             "   WxFightHandler.Utils.UsePetItem(300017);" +
             "};" +
 
