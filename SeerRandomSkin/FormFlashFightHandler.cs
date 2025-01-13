@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SeerRandomSkin
@@ -25,7 +26,7 @@ namespace SeerRandomSkin
             "WxFightHandler.Utils.GetBag2 = () => {" +
             "   return document.Client.WxGetBag2();" +
             "};" +
-            "WxFightHandler.Utils.GetSetPetBag = (bag1,bag2=[]) => new Promise((resolve) => {" +
+            "WxFightHandler.Utils.SetPetBag = (bag1,bag2=[]) => new Promise((resolve) => {" +
             "   WxFightHandler.Utils._as3Callback = resolve;" +
             "   document.Client.WxSetPetBag(bag1,bag2);" +
             "});" +
@@ -172,9 +173,12 @@ namespace SeerRandomSkin
             ResetLvTemplate();
         }
 
-        private void btnTest_Click(object sender, EventArgs e)
+        private async void btnTest_Click(object sender, EventArgs e)
         {
+            btnTest.Enabled = false;
             Form1.chromiumBrowser.ExecuteScriptAsync(richTextBox_script.Text);
+            await Task.Delay(1000);
+            btnTest.Enabled = true;
         }
 
         private void lvTemplate_SelectedIndexChanged(object sender, EventArgs e)

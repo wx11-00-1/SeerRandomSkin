@@ -105,5 +105,10 @@ namespace SeerRandomSkin
             listView1.Items.Clear();
             listView1.Items.AddRange(GetAllListViewItems().Where(item => item.Text.Contains(tbName.Text)).ToArray());
         }
+
+        private void tbCode_MouseClick(object sender, MouseEventArgs e)
+        {
+            tbCode.SelectAll();
+        }
     }
 }

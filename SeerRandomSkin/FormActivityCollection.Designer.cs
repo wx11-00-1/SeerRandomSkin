@@ -105,6 +105,7 @@
             this.tbCode.Name = "tbCode";
             this.tbCode.Size = new System.Drawing.Size(100, 21);
             this.tbCode.TabIndex = 3;
+            this.tbCode.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tbCode_MouseClick);
             // 
             // btnSave
             // 

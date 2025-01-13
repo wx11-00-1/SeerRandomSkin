@@ -214,7 +214,7 @@ let GetPetCatchtimeByID = async (id) => {
 };
 ```
 
-#### 1.13 WxFightHandler.Utils.GetSetPetBag
+#### 1.13 WxFightHandler.Utils.SetPetBag
 
 ##### 说明
 
@@ -233,7 +233,7 @@ let GetPetCatchtimeByID = async (id) => {
 ##### 示例
 
 ```js
-await WxFightHandler.Utils.GetSetPetBag([1587000619],[1587000621]);
+await WxFightHandler.Utils.SetPetBag([1587000619],[1587000621]);
 // 发起对战
 ```
 

@@ -40,6 +40,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnItem200hp = new System.Windows.Forms.Button();
+            this.btnItem250hp = new System.Windows.Forms.Button();
             this.btn20pp = new System.Windows.Forms.Button();
             this.btnItem150 = new System.Windows.Forms.Button();
             this.btnItem10pp = new System.Windows.Forms.Button();
@@ -50,8 +52,6 @@
             this.btnFightPanelShow = new System.Windows.Forms.Button();
             this.btnAutoCureOpen = new System.Windows.Forms.Button();
             this.btnAutoCureStop = new System.Windows.Forms.Button();
-            this.btnItem250hp = new System.Windows.Forms.Button();
-            this.btnItem200hp = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,7 +90,7 @@
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "出招方案";
+            this.columnHeader1.Text = "脚本列表";
             this.columnHeader1.Width = 140;
             // 
             // columnHeader2
@@ -159,6 +159,26 @@
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "对战药剂";
+            // 
+            // btnItem200hp
+            // 
+            this.btnItem200hp.Location = new System.Drawing.Point(106, 115);
+            this.btnItem200hp.Name = "btnItem200hp";
+            this.btnItem200hp.Size = new System.Drawing.Size(66, 23);
+            this.btnItem200hp.TabIndex = 12;
+            this.btnItem200hp.Text = "200hp";
+            this.btnItem200hp.UseVisualStyleBackColor = true;
+            this.btnItem200hp.Click += new System.EventHandler(this.btnItem200hp_Click);
+            // 
+            // btnItem250hp
+            // 
+            this.btnItem250hp.Location = new System.Drawing.Point(28, 115);
+            this.btnItem250hp.Name = "btnItem250hp";
+            this.btnItem250hp.Size = new System.Drawing.Size(66, 23);
+            this.btnItem250hp.TabIndex = 11;
+            this.btnItem250hp.Text = "250hp";
+            this.btnItem250hp.UseVisualStyleBackColor = true;
+            this.btnItem250hp.Click += new System.EventHandler(this.btnItem250hp_Click);
             // 
             // btn20pp
             // 
@@ -259,26 +279,6 @@
             this.btnAutoCureStop.Text = "停止自动回血";
             this.btnAutoCureStop.UseVisualStyleBackColor = true;
             this.btnAutoCureStop.Click += new System.EventHandler(this.btnAutoCureStop_Click);
-            // 
-            // btnItem250hp
-            // 
-            this.btnItem250hp.Location = new System.Drawing.Point(28, 115);
-            this.btnItem250hp.Name = "btnItem250hp";
-            this.btnItem250hp.Size = new System.Drawing.Size(66, 23);
-            this.btnItem250hp.TabIndex = 11;
-            this.btnItem250hp.Text = "250hp";
-            this.btnItem250hp.UseVisualStyleBackColor = true;
-            this.btnItem250hp.Click += new System.EventHandler(this.btnItem250hp_Click);
-            // 
-            // btnItem200hp
-            // 
-            this.btnItem200hp.Location = new System.Drawing.Point(106, 115);
-            this.btnItem200hp.Name = "btnItem200hp";
-            this.btnItem200hp.Size = new System.Drawing.Size(66, 23);
-            this.btnItem200hp.TabIndex = 12;
-            this.btnItem200hp.Text = "200hp";
-            this.btnItem200hp.UseVisualStyleBackColor = true;
-            this.btnItem200hp.Click += new System.EventHandler(this.btnItem200hp_Click);
             // 
             // FormFlashFightHandler
             // 
