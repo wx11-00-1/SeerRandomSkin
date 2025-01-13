@@ -54,6 +54,7 @@ namespace SeerRandomSkin
 
             "WxFightHandler.Utils.RoundReset = () => { WxFightHandler.Private.Round = 0; };" +
             "WxFightHandler.Utils.ShowRound = (hpPercent) => { WxFightHandler.Private.Round += 1; seerRandomSkinObj.showFightInfo(WxFightHandler.Private.Round,hpPercent); };" +
+            "WxFightHandler.Utils.GetRound = () => WxFightHandler.Private.Round;" +
 
             "WxFightHandler.Utils.UseSkill = (skillID) => {" +
             "   document.Client.WxUseSkill(skillID);" +
