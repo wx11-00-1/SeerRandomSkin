@@ -40,13 +40,8 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btn6v6 = new System.Windows.Forms.Button();
-            this.btn3v3 = new System.Windows.Forms.Button();
-            this.btnPeakJihadSports = new System.Windows.Forms.Button();
-            this.btnPeakJihadWild = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.btnWndTop = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listView1
@@ -109,7 +104,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(414, 147);
+            this.btnSave.Location = new System.Drawing.Point(338, 155);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(69, 23);
             this.btnSave.TabIndex = 5;
@@ -119,7 +114,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(491, 147);
+            this.btnDelete.Location = new System.Drawing.Point(338, 195);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(69, 23);
             this.btnDelete.TabIndex = 6;
@@ -129,7 +124,7 @@
             // 
             // btnConfirm
             // 
-            this.btnConfirm.Location = new System.Drawing.Point(338, 147);
+            this.btnConfirm.Location = new System.Drawing.Point(460, 155);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(69, 23);
             this.btnConfirm.TabIndex = 7;
@@ -146,59 +141,6 @@
             this.label3.Text = "例如 nono 换色的面板链接为：https://seer.61.com/module/com/robot/module/app/NonoColorChangeP" +
     "anel.swf，则“代号”编辑框应该填入 NonoColorChangePanel";
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.btn6v6);
-            this.groupBox1.Controls.Add(this.btn3v3);
-            this.groupBox1.Controls.Add(this.btnPeakJihadSports);
-            this.groupBox1.Controls.Add(this.btnPeakJihadWild);
-            this.groupBox1.Location = new System.Drawing.Point(341, 267);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(188, 117);
-            this.groupBox1.TabIndex = 9;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "巅峰";
-            // 
-            // btn6v6
-            // 
-            this.btn6v6.Location = new System.Drawing.Point(19, 71);
-            this.btn6v6.Name = "btn6v6";
-            this.btn6v6.Size = new System.Drawing.Size(69, 23);
-            this.btn6v6.TabIndex = 9;
-            this.btn6v6.Text = "6v6";
-            this.btn6v6.UseVisualStyleBackColor = true;
-            this.btn6v6.Click += new System.EventHandler(this.btn6v6_Click);
-            // 
-            // btn3v3
-            // 
-            this.btn3v3.Location = new System.Drawing.Point(104, 71);
-            this.btn3v3.Name = "btn3v3";
-            this.btn3v3.Size = new System.Drawing.Size(69, 23);
-            this.btn3v3.TabIndex = 8;
-            this.btn3v3.Text = "3v3";
-            this.btn3v3.UseVisualStyleBackColor = true;
-            this.btn3v3.Click += new System.EventHandler(this.btn3v3_Click);
-            // 
-            // btnPeakJihadSports
-            // 
-            this.btnPeakJihadSports.Location = new System.Drawing.Point(104, 33);
-            this.btnPeakJihadSports.Name = "btnPeakJihadSports";
-            this.btnPeakJihadSports.Size = new System.Drawing.Size(69, 23);
-            this.btnPeakJihadSports.TabIndex = 7;
-            this.btnPeakJihadSports.Text = "竞技";
-            this.btnPeakJihadSports.UseVisualStyleBackColor = true;
-            this.btnPeakJihadSports.Click += new System.EventHandler(this.btnPeakJihadSports_Click);
-            // 
-            // btnPeakJihadWild
-            // 
-            this.btnPeakJihadWild.Location = new System.Drawing.Point(19, 33);
-            this.btnPeakJihadWild.Name = "btnPeakJihadWild";
-            this.btnPeakJihadWild.Size = new System.Drawing.Size(69, 23);
-            this.btnPeakJihadWild.TabIndex = 6;
-            this.btnPeakJihadWild.Text = "狂野";
-            this.btnPeakJihadWild.UseVisualStyleBackColor = true;
-            this.btnPeakJihadWild.Click += new System.EventHandler(this.btnPeakJihadWild_Click);
-            // 
             // btnSearch
             // 
             this.btnSearch.Location = new System.Drawing.Point(508, 48);
@@ -209,13 +151,23 @@
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
+            // btnWndTop
+            // 
+            this.btnWndTop.Location = new System.Drawing.Point(454, 195);
+            this.btnWndTop.Name = "btnWndTop";
+            this.btnWndTop.Size = new System.Drawing.Size(75, 23);
+            this.btnWndTop.TabIndex = 11;
+            this.btnWndTop.Text = "窗口置顶";
+            this.btnWndTop.UseVisualStyleBackColor = true;
+            this.btnWndTop.Click += new System.EventHandler(this.btnWndTop_Click);
+            // 
             // FormActivityCollection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(593, 531);
+            this.Controls.Add(this.btnWndTop);
             this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.btnDelete);
@@ -228,7 +180,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormActivityCollection";
             this.Load += new System.EventHandler(this.FormActivityCollection_Load);
-            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -247,11 +198,7 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnPeakJihadSports;
-        private System.Windows.Forms.Button btnPeakJihadWild;
-        private System.Windows.Forms.Button btn3v3;
-        private System.Windows.Forms.Button btn6v6;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Button btnWndTop;
     }
 }

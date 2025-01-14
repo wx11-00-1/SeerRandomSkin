@@ -80,26 +80,6 @@ namespace SeerRandomSkin
             ReloadListView();
         }
 
-        private void btnPeakJihadWild_Click(object sender, EventArgs e)
-        {
-            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxPeakJihadWildMode()");
-        }
-
-        private void btnPeakJihadSports_Click(object sender, EventArgs e)
-        {
-            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxPeakJihadSportsMode()");
-        }
-
-        private void btn3v3_Click(object sender, EventArgs e)
-        {
-            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxPeakJihad3v3()");
-        }
-
-        private void btn6v6_Click(object sender, EventArgs e)
-        {
-            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxPeakJihad6v6()");
-        }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
@@ -109,6 +89,11 @@ namespace SeerRandomSkin
         private void tbCode_MouseClick(object sender, MouseEventArgs e)
         {
             tbCode.SelectAll();
+        }
+
+        private void btnWndTop_Click(object sender, EventArgs e)
+        {
+            TopMost = true;
         }
     }
 }
