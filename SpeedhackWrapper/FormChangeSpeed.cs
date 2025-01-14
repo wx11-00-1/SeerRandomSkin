@@ -15,8 +15,10 @@ namespace SpeedhackWrapper
         {
             double.TryParse(textBox1.Text, out var speed);
             if (speed < 1) speed = 1;
-            File.WriteAllText(@"file\dll\speedhack\x64\speedhack.txt", speed.ToString());
+            var tmp = speed.ToString();
+            File.WriteAllText(@"file\dll\speedhack\x64\speedhack.txt", tmp);
             MainClass.ResetSpeed();
+            textBox1.Text = tmp;
         }
 
         private void FormChangeSpeed_Load(object sender, EventArgs e)
