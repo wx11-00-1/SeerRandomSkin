@@ -75,6 +75,7 @@
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(100, 21);
             this.tbName.TabIndex = 1;
+            this.tbName.Click += new System.EventHandler(this.tbName_Click);
             // 
             // label1
             // 

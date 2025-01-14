@@ -93,7 +93,12 @@ namespace SeerRandomSkin
 
         private void btnWndTop_Click(object sender, EventArgs e)
         {
-            TopMost = true;
+            TopMost = !TopMost;
+        }
+
+        private void tbName_Click(object sender, EventArgs e)
+        {
+            tbName.SelectAll();
         }
     }
 }
