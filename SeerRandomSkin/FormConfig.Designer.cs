@@ -56,8 +56,6 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.comboBoxZoom = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.textBox_speedUp = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.checkBox_fd = new System.Windows.Forms.CheckBox();
             this.checkBox_flash_map = new System.Windows.Forms.CheckBox();
@@ -74,6 +72,7 @@
             this.btnRemoveSettings = new System.Windows.Forms.Button();
             this.btnBackup = new System.Windows.Forms.Button();
             this.btnLoadConfig = new System.Windows.Forms.Button();
+            this.cbLoadFormSpeedhack = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_width)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_height)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -121,7 +120,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(507, 80);
+            this.label3.Location = new System.Drawing.Point(507, 116);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 12);
             this.label3.TabIndex = 5;
@@ -130,7 +129,7 @@
             // comboBox_font
             // 
             this.comboBox_font.FormattingEnabled = true;
-            this.comboBox_font.Location = new System.Drawing.Point(546, 76);
+            this.comboBox_font.Location = new System.Drawing.Point(546, 112);
             this.comboBox_font.Name = "comboBox_font";
             this.comboBox_font.Size = new System.Drawing.Size(75, 20);
             this.comboBox_font.TabIndex = 6;
@@ -138,7 +137,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(447, 116);
+            this.label4.Location = new System.Drawing.Point(447, 78);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 12);
             this.label4.TabIndex = 8;
@@ -147,7 +146,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(561, 116);
+            this.label5.Location = new System.Drawing.Point(561, 78);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(11, 12);
             this.label5.TabIndex = 10;
@@ -155,7 +154,7 @@
             // 
             // numericUpDown_win_width
             // 
-            this.numericUpDown_win_width.Location = new System.Drawing.Point(512, 113);
+            this.numericUpDown_win_width.Location = new System.Drawing.Point(512, 75);
             this.numericUpDown_win_width.Maximum = new decimal(new int[] {
             40000,
             0,
@@ -167,7 +166,7 @@
             // 
             // numericUpDown_win_height
             // 
-            this.numericUpDown_win_height.Location = new System.Drawing.Point(576, 113);
+            this.numericUpDown_win_height.Location = new System.Drawing.Point(576, 75);
             this.numericUpDown_win_height.Maximum = new decimal(new int[] {
             40000,
             0,
@@ -352,7 +351,7 @@
             // comboBoxZoom
             // 
             this.comboBoxZoom.FormattingEnabled = true;
-            this.comboBoxZoom.Location = new System.Drawing.Point(425, 76);
+            this.comboBoxZoom.Location = new System.Drawing.Point(425, 112);
             this.comboBoxZoom.Name = "comboBoxZoom";
             this.comboBoxZoom.Size = new System.Drawing.Size(75, 20);
             this.comboBoxZoom.TabIndex = 30;
@@ -360,27 +359,11 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(386, 80);
+            this.label10.Location = new System.Drawing.Point(386, 116);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(41, 12);
             this.label10.TabIndex = 29;
             this.label10.Text = "缩放：";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(485, 151);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(77, 12);
-            this.label11.TabIndex = 31;
-            this.label11.Text = "Flash 倍速：";
-            // 
-            // textBox_speedUp
-            // 
-            this.textBox_speedUp.Location = new System.Drawing.Point(560, 147);
-            this.textBox_speedUp.Name = "textBox_speedUp";
-            this.textBox_speedUp.Size = new System.Drawing.Size(61, 21);
-            this.textBox_speedUp.TabIndex = 32;
             // 
             // groupBox3
             // 
@@ -481,7 +464,7 @@
             // 
             // textBox_defaultURL
             // 
-            this.textBox_defaultURL.Location = new System.Drawing.Point(425, 36);
+            this.textBox_defaultURL.Location = new System.Drawing.Point(425, 152);
             this.textBox_defaultURL.Name = "textBox_defaultURL";
             this.textBox_defaultURL.Size = new System.Drawing.Size(196, 21);
             this.textBox_defaultURL.TabIndex = 34;
@@ -489,7 +472,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(362, 41);
+            this.label12.Location = new System.Drawing.Point(362, 157);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(65, 12);
             this.label12.TabIndex = 35;
@@ -498,7 +481,7 @@
             // checkBox_HideBattleStrategy
             // 
             this.checkBox_HideBattleStrategy.AutoSize = true;
-            this.checkBox_HideBattleStrategy.Location = new System.Drawing.Point(155, 40);
+            this.checkBox_HideBattleStrategy.Location = new System.Drawing.Point(191, 41);
             this.checkBox_HideBattleStrategy.Name = "checkBox_HideBattleStrategy";
             this.checkBox_HideBattleStrategy.Size = new System.Drawing.Size(108, 16);
             this.checkBox_HideBattleStrategy.TabIndex = 36;
@@ -508,7 +491,7 @@
             // cbAutoMute
             // 
             this.cbAutoMute.AutoSize = true;
-            this.cbAutoMute.Location = new System.Drawing.Point(269, 41);
+            this.cbAutoMute.Location = new System.Drawing.Point(336, 41);
             this.cbAutoMute.Name = "cbAutoMute";
             this.cbAutoMute.Size = new System.Drawing.Size(72, 16);
             this.cbAutoMute.TabIndex = 37;
@@ -545,11 +528,22 @@
             this.btnLoadConfig.UseVisualStyleBackColor = true;
             this.btnLoadConfig.Click += new System.EventHandler(this.btnLoadConfig_Click);
             // 
+            // cbLoadFormSpeedhack
+            // 
+            this.cbLoadFormSpeedhack.AutoSize = true;
+            this.cbLoadFormSpeedhack.Location = new System.Drawing.Point(448, 41);
+            this.cbLoadFormSpeedhack.Name = "cbLoadFormSpeedhack";
+            this.cbLoadFormSpeedhack.Size = new System.Drawing.Size(144, 16);
+            this.cbLoadFormSpeedhack.TabIndex = 41;
+            this.cbLoadFormSpeedhack.Text = "自动打开调整倍速窗口";
+            this.cbLoadFormSpeedhack.UseVisualStyleBackColor = true;
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(680, 673);
+            this.Controls.Add(this.cbLoadFormSpeedhack);
             this.Controls.Add(this.btnLoadConfig);
             this.Controls.Add(this.btnBackup);
             this.Controls.Add(this.btnRemoveSettings);
@@ -558,8 +552,6 @@
             this.Controls.Add(this.label12);
             this.Controls.Add(this.textBox_defaultURL);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.textBox_speedUp);
-            this.Controls.Add(this.label11);
             this.Controls.Add(this.comboBoxZoom);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.button4);
@@ -631,8 +623,6 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.ComboBox comboBoxZoom;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox_speedUp;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.CheckBox checkBox_flash_pack;
         private System.Windows.Forms.CheckBox checkBox_h5_pack;
@@ -649,5 +639,6 @@
         private System.Windows.Forms.Button btnRemoveSettings;
         private System.Windows.Forms.Button btnBackup;
         private System.Windows.Forms.Button btnLoadConfig;
+        private System.Windows.Forms.CheckBox cbLoadFormSpeedhack;
     }
 }

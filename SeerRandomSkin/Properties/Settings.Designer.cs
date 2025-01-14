@@ -641,5 +641,17 @@ namespace SeerRandomSkin.Properties {
                 this["AutoMute"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsLoadFormSpeedhack {
+            get {
+                return ((bool)(this["IsLoadFormSpeedhack"]));
+            }
+            set {
+                this["IsLoadFormSpeedhack"] = value;
+            }
+        }
     }
 }

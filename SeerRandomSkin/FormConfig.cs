@@ -41,6 +41,7 @@ namespace SeerRandomSkin
             checkBox_flash_pack.Checked = SettingsDef.IsUseSocketHack;
             checkBox_fd.Checked = SettingsDef.AutoLoadFD;
             cbAutoMute.Checked = SettingsDef.AutoMute;
+            cbLoadFormSpeedhack.Checked = SettingsDef.IsLoadFormSpeedhack;
             // 遍历系统字体
             foreach (var f in FontFamily.Families)
             {
@@ -59,7 +60,6 @@ namespace SeerRandomSkin
             comboBoxZoom.Items.Add("1.5");
             comboBoxZoom.Items.Add("1.75");
             comboBoxZoom.Items.Add("2");
-            textBox_speedUp.Text = File.ReadAllText(@"file\dll\speedhack\x64\speedhack.txt");
             // 加载窗口
             checkBox_flash_activities.Checked = SettingsDef.AutoLoadActivities;
             checkBox_flash_fight.Checked = SettingsDef.AutoLoadFightHandler;
@@ -117,11 +117,7 @@ namespace SeerRandomSkin
             SettingsDef.DefaultURL = textBox_defaultURL.Text;
             SettingsDef.FlashZoom = comboBoxZoom.Text;
             SettingsDef.AutoMute = cbAutoMute.Checked;
-
-            if (double.TryParse(textBox_speedUp.Text, out var speed) && speed >= 1)
-            {
-                File.WriteAllText(@"file\dll\speedhack\x64\speedhack.txt", textBox_speedUp.Text);
-            }
+            SettingsDef.IsLoadFormSpeedhack = cbLoadFormSpeedhack.Checked;
 
             // 窗口
             SettingsDef.AutoLoadActivities = checkBox_flash_activities.Checked;

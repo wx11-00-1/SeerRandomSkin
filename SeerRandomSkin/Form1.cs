@@ -647,7 +647,7 @@ namespace SeerRandomSkin
             string libPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "SpeedhackWrapper.dll");
             int pid = (int)GetCefSubprocessPid("type=ppapi");
             if (pid == 0) return;
-            RemoteHooking.Inject(pid, libPath, libPath, null);
+            RemoteHooking.Inject(pid, libPath, libPath, Configs.IsLoadFormSpeedhack);
         }
 
         private void FlashSocketHack()
