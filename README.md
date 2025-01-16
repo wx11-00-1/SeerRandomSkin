@@ -71,8 +71,8 @@
 ## API
 WxFightHandler 对象提供的属性和方法，通过 js 代码调用，用于编写日常脚本（登录器自带了一些脚本例子，参照着文档看，更容易理解；可以直接在开发者工具的控制台测试）
 ### 1 对战相关
-#### 1.1 WxFightHandler.Private.Round
-记录对战回合
+#### 1.1 WxFightHandler.Utils.GetRound
+无参数。获取本次对战经过的回合数
 #### 1.2 WxFightHandler.Utils.UseSkill
 ##### 说明
 使用技能
