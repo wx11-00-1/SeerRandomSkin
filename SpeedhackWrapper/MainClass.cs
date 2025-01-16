@@ -8,29 +8,20 @@ namespace SpeedhackWrapper
     {
         public MainClass(EasyHook.RemoteHooking.IContext context, bool isLoadFormSpeedhack) { }
 
-        [DllImport("kernel32.dll")]
-        private extern static IntPtr LoadLibrary(string path);
-        [DllImport("kernel32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        private extern static bool FreeLibrary(IntPtr hModule);
-
-        private static IntPtr hSpeedhack = IntPtr.Zero;
+        [DllImport("file\\dll\\speed\\x64\\WxSpeed.dll")]
+        private extern static void HookInit();
+        [DllImport("file\\dll\\speed\\x64\\WxSpeed.dll")]
+        public extern static void SetGameSpeed(double speed);
 
         public void Run(EasyHook.RemoteHooking.IContext context, bool isLoadFormSpeedhack)
         {
-            ResetSpeed();
+            HookInit();
             if (!isLoadFormSpeedhack) return;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             var form = new FormChangeSpeed();
             form.Show();
             Application.Run();
-        }
-
-        public static void ResetSpeed()
-        {
-            if (hSpeedhack != IntPtr.Zero) FreeLibrary(hSpeedhack);
-            hSpeedhack = LoadLibrary(AppDomain.CurrentDomain.BaseDirectory + @"\file\dll\speedhack\x64\version.dll");
         }
     }
 }

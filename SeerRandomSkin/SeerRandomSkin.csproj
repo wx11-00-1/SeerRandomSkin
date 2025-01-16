@@ -277,7 +277,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="file\dll\speedhack\README.md" />
     <None Include="file\swf\PetFightDll.as" />
     <None Include="file\swf\tip.as" />
     <None Include="file\安装包\note.md" />
@@ -320,14 +319,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="file\dll\pepflashplayer32_15_0_0_152.dll" />
-    <Content Include="file\dll\speedhack\x64\speedhack.txt">
+    <Content Include="file\dll\speed\x64\WxSpeed.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="file\dll\speedhack\x64\version.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="file\dll\speedhack\x86\speedhack.txt" />
-    <Content Include="file\dll\speedhack\x86\version.dll" />
     <Content Include="file\swf\PetFightDLL.swf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -403,26 +397,6 @@
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="file\dll\pepflashplayer32_15_0_0_152.dll">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
-      <FileType>File</FileType>
-    </PublishFile>
-    <PublishFile Include="file\dll\speedhack\x86\speedhack.txt">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
-      <FileType>File</FileType>
-    </PublishFile>
-    <PublishFile Include="file\dll\speedhack\x86\version.dll">
       <Visible>False</Visible>
       <Group>
       </Group>
