@@ -119,7 +119,7 @@ namespace SeerRandomSkin
 
             new Thread(() =>
             {
-                Thread.Sleep(2000);
+                Thread.Sleep(3000);
                 if (Configs.IsUseSocketHack) FlashSocketHack();
                 FlashSpeedHack();
             })
