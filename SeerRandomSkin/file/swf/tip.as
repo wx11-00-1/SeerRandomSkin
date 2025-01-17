@@ -360,7 +360,7 @@ package
          );
          ExternalInterface.addCallback("WxSetTitle", function(title:uint):void
          {
-            if (MainManager.actorInfo.curTitle == title) return;
+            if (MainManager.actorInfo.curTitle != title) {
             SocketConnection.sendWithCallback(CommandID.SETTITLE,function(param1:SocketEvent):void
             {
                 var _loc2_:ByteArray = null;
@@ -375,6 +375,8 @@ package
                 }
                 MainManager.actorModel.refreshTitle(MainManager.actorInfo.curTitle);
             },title);
+            }
+            SimpleAlarm.show(MainManager.actorInfo.curTitle);
          }
          );
 
