@@ -135,7 +135,7 @@ WxFightHandler.OnUseSkill = (mySkillInfo,enemySkillInfo) => {
   let petID = WxFightHandler.Utils.GetFightingPetID();
   // 当 3322 精灵（茉蕊儿）阵亡，4377 精灵跟着上场（获得500护盾）
   if (mySkillInfo.remainHP === 0) {
-    if (3322 === petID) { WxFightHandler.Utils.ChangePetByID(mySkillInfo,[4377]); }
+    if (3322 === petID) { WxFightHandler.Utils.ChangePetByID([4377]); }
   }
 };
 ```
@@ -143,8 +143,6 @@ WxFightHandler.OnUseSkill = (mySkillInfo,enemySkillInfo) => {
 ##### 说明
 换上指定 ID 数组中的的精灵
 ##### 参数
-###### fightInfo
-对战信息对象，必须包含 changehps 属性（mySkillInfo 或 petInfo）
 ###### idArray
 精灵 ID **数组**
 ##### 示例
@@ -163,7 +161,7 @@ WxFightHandler.OnChangePet = (petInfo) => {
   // 完整的代码当然不止这点，这里主要演示 ChangePetByID 方法的使用
   if (WxFightHandler.DIDUO === petID) {
     if (WxFightHandler.IsDIDUOFirstUp) {
-      WxFightHandler.Utils.ChangePetByID(petInfo,[WxFightHandler.KELUO]);
+      WxFightHandler.Utils.ChangePetByID([WxFightHandler.KELUO]);
       WxFightHandler.IsDIDUOFirstUp = false;
     } else {
       WxFightHandler.Utils.UseSkill(35914);
@@ -278,6 +276,12 @@ WxFightHandler.Utils.ChangeCloth([1300670, 0, 1300671, 0, 1300672, 0, 1300673, 0
 ###### title
 
 称号 id
+
+#### 1.18 WxFightHandler.Utils.GetFightingPets
+
+##### 说明
+
+无参数。获取本场战斗中，我方精灵的部分信息（id、catchTime、hp、skillArray 等）
 
 ### 2 发包函数
 

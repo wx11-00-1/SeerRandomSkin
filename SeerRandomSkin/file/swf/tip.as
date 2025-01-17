@@ -40,6 +40,7 @@ package
    import com.robot.core.info.clothInfo.PeopleItemInfo;
    import com.robot.core.info.UserInfo;
    import com.robot.core.ui.alert.SimpleAlarm;
+   import com.robot.core.info.pet.PetInfo;
    
    [Embed(source="/_assets/assets.swf", symbol="item")]
    public dynamic class item extends MovieClip
@@ -127,13 +128,29 @@ package
          // 切换精灵
          SocketConnection.WxChangePet = function(petCatchTime:uint):void
          {
+            for each(var pet in SocketConnection.WxFightingPets) {
+                if (pet.catchTime == SocketConnection.WxFightingPetCatchTime) {
+                    // 标记主动切换
+                    if (pet.hp > 0) { SocketConnection.WxIsPositiveChangePet = true; break; }
+                }
+            }
             SocketConnection.send(CommandID.CHANGE_PET,petCatchTime);
          };
          ExternalInterface.addCallback("WxChangePet",SocketConnection.WxChangePet);
-         // 标记主动切换
-         ExternalInterface.addCallback("WxSetIsPositiveChangePet", function():void
+         ExternalInterface.addCallback("WxChangePetByID",function(ids:Array):void
          {
-            SocketConnection.WxIsPositiveChangePet = true;
+            if (ids.length == 0) {
+                for each(var pet in SocketConnection.WxFightingPets) {
+                    if (pet.hp > 0 && pet.catchTime != SocketConnection.WxFightingPetCatchTime) { SocketConnection.WxChangePet(pet.catchTime); break; }
+                }
+                return;
+            }
+            for each(var id:int in ids) {
+                for each(var pet in SocketConnection.WxFightingPets) {
+                    if (pet.hp > 0 && pet.catchTime != SocketConnection.WxFightingPetCatchTime && pet.id == id) { SocketConnection.WxChangePet(pet.catchTime); return; }
+                }
+            }
+            ExternalInterface.call("console.log","未找到指定 id 的精灵");
          });
          // 使用药剂
          ExternalInterface.addCallback("WxUsePetItem", function(itemID:uint):void
@@ -154,6 +171,10 @@ package
          {
             return SocketConnection.WxFightingPetCatchTime;
          });
+         ExternalInterface.addCallback("WxGetFightingPets", function():Array
+         {
+            return SocketConnection.WxFightingPets;
+         });
          // 根据 catchTime 获取背包中的精灵 ID
          SocketConnection.WxGetBagPetIDByCatchTime = function(catchTime:uint):uint
          {
@@ -163,8 +184,23 @@ package
 
          // 自动出招
          // 进入战斗
-         SocketConnection.WxOnReadyToFight = function():void
+         SocketConnection.WxOnReadyToFight = function(event:SocketEvent):void
          {
+            var readyData:NoteReadyToFightInfo = event.data as NoteReadyToFightInfo;
+            SocketConnection.WxFightingPets = []; // 用于切换精灵功能
+            var skillIndex:uint = 0;
+            for each(var petInfo:PetInfo in readyData.userInfos.myInfo.petInfoArr) {
+                var pet:Object = new Object();
+                pet.id = petInfo.id;
+                pet.catchTime = petInfo.catchTime;
+                pet.hp = petInfo.hp;
+                pet.skillArray = [];
+                for (var i:int = 0; i < Math.min(4,petInfo.skillNum); ++i, ++skillIndex) {
+                    pet.skillArray.push(readyData.userInfos.allSkillID[skillIndex]);
+                }
+                pet.hideSKill = petInfo.hideSKill;
+                SocketConnection.WxFightingPets.push(pet);
+            }
             ExternalInterface.call("WxFightHandler.Utils.RoundReset");
             SocketConnection.WxIsPositiveChangePet = false;
          };
@@ -194,6 +230,22 @@ package
                mySkillInfo = _loc2_.secondAttackInfo;
                enemySkillInfo = _loc2_.firstAttackInfo;
             }
+
+            for (var i:int = 0; i < SocketConnection.WxFightingPets.length; ++i) {
+                if (SocketConnection.WxFightingPets[i].catchTime == SocketConnection.WxFightingPetCatchTime) {
+                    SocketConnection.WxFightingPets[i].hp = mySkillInfo.remainHP;
+                    break;
+                }
+            }
+            for each(var pet in mySkillInfo.changehps) {
+                for (var i:int = 0; i < SocketConnection.WxFightingPets.length; ++i) {
+                    if (SocketConnection.WxFightingPets[i].catchTime == pet.id) {
+                        SocketConnection.WxFightingPets[i].hp = pet.hp;
+                        break;
+                    }
+                }
+            }
+
             var hpPercent:Number = enemySkillInfo.maxHp == 0 ? 0 : enemySkillInfo.remainHP * 100 / enemySkillInfo.maxHp;
             ExternalInterface.call("WxFightHandler.Utils.ShowRound",hpPercent);
             if (enemySkillInfo.remainHP == 0)
@@ -242,10 +294,10 @@ package
             SocketConnection.send(CommandID.ITEM_BUY,300011,6);
             SocketConnection.send(CommandID.ITEM_BUY,300017,6);
             var bag:Array = PetManager.getBagMap();
-            for (var i:int = 0; i < bag.length; i++)
+            for each(var pet in bag)
             {
-                SocketConnection.send(CommandID.USE_PET_ITEM_OUT_OF_FIGHT,bag[i].catchTime,300011);
-                SocketConnection.send(CommandID.USE_PET_ITEM_OUT_OF_FIGHT,bag[i].catchTime,300017);
+                SocketConnection.send(CommandID.USE_PET_ITEM_OUT_OF_FIGHT,pet.catchTime,300011);
+                SocketConnection.send(CommandID.USE_PET_ITEM_OUT_OF_FIGHT,pet.catchTime,300017);
             }
          };
          ExternalInterface.addCallback("WxCurePet20HP",SocketConnection.WxCurePet20HP);
@@ -308,20 +360,20 @@ package
             // 清空背包
             var promises:Array = new Array();
             var bagBoth:Array = PetManager.getBagMap(true);
-            for (var i:int = 0; i < bagBoth.length; ++i)
+            for each(var pet in bagBoth)
             {
-                promises.push(PetManager.bagToInStorage(bagBoth[i].catchTime));
+                promises.push(PetManager.bagToInStorage(pet.catchTime));
             }
             Promise.all(promises).then(function():void {
                 promises = [];
                 // 放入精灵
-                for (var i:int = 0; i < bag1.length; ++i)
+                for each(var pet in bag1)
                 {
-                    promises.push(PetManager.storageToInBag(bag1[i]));
+                    promises.push(PetManager.storageToInBag(pet));
                 }
-                for (var i:int = 0; i < bag2.length; ++i)
+                for each(var pet in bag2)
                 {
-                    promises.push(PetManager.storageToSecondBag(bag2[i]));
+                    promises.push(PetManager.storageToSecondBag(pet));
                 }
                 Promise.all(promises).then(function():void
                 {
@@ -335,10 +387,10 @@ package
          {
             var clothes:Array = MainManager.actorInfo.clothes;
             var result:Array = [];
-            for (var i:int = 0; i < clothes.length; i++)
+            for each(var cloth in clothes)
             {
-                result.push(clothes[i].id);
-                result.push(clothes[i].level);
+                result.push(cloth.id);
+                result.push(cloth.level);
             }
             return result;
          }

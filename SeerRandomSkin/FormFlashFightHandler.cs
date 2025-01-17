@@ -88,24 +88,9 @@ namespace SeerRandomSkin
             "WxFightHandler.Utils.GetFightingPetCatchTime = () => { return document.Client.WxGetFightingPetCatchTime(); };" +
             "WxFightHandler.Utils.GetBagPetIDByCatchTime = (ct) => { return document.Client.WxGetBagPetIDByCatchTime(ct); };" +
 
-            "WxFightHandler.Utils.ChangePetByID = (fightInfo,idArray) => {" +
-            // 标记主动切换
-            // 1、刚切换上一只精灵，马上又切换另一只精灵（fightInfo 的类型为 ChangePetInfo）
-            // 2、在场精灵仍然存活，切换上另一只精灵（fightInfo 的类型为 AttackValue）
-            "   if ('petID' in fightInfo || fightInfo.remainHP > 0) { document.Client.WxSetIsPositiveChangePet(); }" +
-            "   let petArray = fightInfo.changehps;" +
-            "   for (let pet of petArray) {" +
-            "       if (pet.hp > 0 && -1 !== idArray.indexOf(WxFightHandler.Utils.GetBagPetIDByCatchTime(pet.id)) && pet.id !== WxFightHandler.Utils.GetFightingPetCatchTime()) {" +
-            "           WxFightHandler.Utils.ChangePet(pet.id); return;" +
-            "       }" +
-            "   }" +
-            // 没有这些 ID 的精灵，随便上一个
-            "   for (let pet of petArray) {" +
-            "       if (pet.hp > 0 && pet.id !== WxFightHandler.Utils.GetFightingPetCatchTime()) {" +
-            "           WxFightHandler.Utils.ChangePet(pet.id); return;" +
-            "       }" +
-            "   }" +
-            "};" +
+            "WxFightHandler.Utils.GetFightingPets = () => { return document.Client.WxGetFightingPets(); };" +
+
+            "WxFightHandler.Utils.ChangePetByID = (ids) => { document.Client.WxChangePetByID(ids); };" +
 
             // 延迟函数
             "WxFightHandler.Utils.Delay = async (millisecond) => {" +
@@ -144,7 +129,7 @@ namespace SeerRandomSkin
             "};\r\n\r\n" +
 
             "WxFightHandler.OnUseSkill = (mySkillInfo,enemySkillInfo) => {\r\n" +
-            "  if (mySkillInfo.remainHP !== 0) {\r\n" +
+            "  if (mySkillInfo.remainHP != 0) {\r\n" +
             "    \r\n" +
             "  }\r\n" +
             "  else {\r\n" +
