@@ -3,6 +3,7 @@ using CefSharp.Callback;
 using CefSharp.Handler;
 using CefSharp.WinForms;
 using EasyHook;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -46,6 +47,9 @@ namespace SeerRandomSkin
 
         public static List<FiddleObject> FiddleObjects;
         public static readonly string FiddleFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"file/fd");
+
+        public static JObject H5SkinsJs;
+        private static HashSet<int> CandidateSkins;
 
         public Form1()
         {
@@ -170,6 +174,20 @@ namespace SeerRandomSkin
             {
                 fiddleObject.FromReg = new Regex(fiddleObject.From);
             }
+
+            // 初始化记录所有可能换上来的皮肤（仅 H5 换肤需要）
+            CandidateSkins = new HashSet<int>(skinIds);
+            foreach (var skin in SpecificPetSkins)
+            {
+                CandidateSkins.Add(skin.Value);
+            }
+            // Flash 端的天尊都修复了，H5 端还是会卡。。。
+            CandidateSkins.Add(3788);
+            CandidateSkins.Add(290003788);
+            CandidateSkins.Add(1400512);
+            CandidateSkins.Add(2900512);
+            CandidateSkins.Add(1400617);
+            CandidateSkins.Add(2900617);
         }
 
         private ChromiumWebBrowser CreateChromium(string address)
@@ -254,6 +272,12 @@ namespace SeerRandomSkin
                             // hook 发送包
                             "       WxSeerUtil.rsPrototypeWrapSend(SocketEncryptImpl.prototype, 'pack');" +
 
+                            // 获取特殊皮肤 js（如：10_8b564f1d.js）
+                            "       let skins = SeerVersionController.remoteVersion.files.resource.cjs_animate.pet;" +
+                            "       let skinsDTO = {};" +
+                            "       for (let key in skins) { skinsDTO[key] = skins[key][`${key}.js`]; };" +
+                            "       seerRandomSkinObj.setH5SkinsJsFileName(JSON.stringify(skinsDTO));" +
+
                             "       WxSeerUtil.Initialized = true;" +
                             "       return 0;" +
                             "   }," +
@@ -284,6 +308,13 @@ namespace SeerRandomSkin
                 static readonly Random random_obj = new Random();
                 // https://seer.61.com/resource/fightResource/pet/swf/3788.swf
                 static readonly Regex rgxPetSkin = new Regex("https:\\/\\/seer\\.61\\.com\\/resource\\/fightResource\\/pet\\/swf\\/(\\d{4,})\\.swf\\?");
+                // https://seerh5.61.com/resource/cjs_animate/pet/3568/3568_3d6130d.js
+                static readonly Regex rgxH5PetSkin = new Regex("https:\\/\\/seerh5\\.61\\.com\\/resource\\/cjs_animate\\/pet\\/(\\d+)\\/\\d+[0-9a-z_]*\\.js");
+                // https://seerh5.61.com/resource/cjs_animate/pet/3568/images/5525_atlas_.png
+                // https://seerh5.61.com/resource/cjs_animate/pet/3568/images/5525_atlas_2.png
+                static readonly Regex rgxH5PetSkinAtlas = new Regex("https:\\/\\/seerh5\\.61\\.com\\/resource\\/cjs_animate\\/pet\\/(\\d+)\\/images\\/([0-9a-z_]+).png");
+                // 5525_atlas_2
+                static readonly Regex rgxAtlas = new Regex("^(\\d+)_.*");
 
                 private int GetRandomSkinId()
                 {
@@ -328,6 +359,49 @@ namespace SeerRandomSkin
                         chromiumBrowser.ExecuteScriptAsync($"console.log({rid}, document.Client.WxGetPetNameByID({rid}))");
                         return new WxUrlResourceHandler(String.Format("https://seer.61.com/resource/fightResource/pet/swf/{0}.swf", rid));
                     }
+                    // H5 精灵皮肤
+                    ms = rgxH5PetSkin.Matches(request.Url);
+                    if (ms.Count > 0) {
+                        int skin_id = int.Parse(ms[0].Groups[1].Value);
+                        // 直接修改 H5 的皮肤 js 会反复重定向，所以把可能换上来的皮肤都排除掉
+                        if (CandidateSkins.Contains(skin_id))
+                        {
+                            return base.GetResourceHandler(chromiumWebBrowser, browser, frame, request);
+                        }
+                        int rid;
+                        if (SpecificPetSkins.ContainsKey(skin_id))
+                        {
+                            SpecificPetSkins.TryGetValue(skin_id, out rid);
+                        }
+                        else if (!Configs.IsRandomSkin || skinExclusion.Contains(skin_id))
+                        {
+                            return base.GetResourceHandler(chromiumWebBrowser, browser, frame, request);
+                        }
+                        else
+                        {
+                            rid = GetRandomSkinId();
+                        }
+                        return new WxUrlResourceHandler(String.Format("https://seerh5.61.com/resource/cjs_animate/pet/{0}/{1}",
+                            rid,
+                            (H5SkinsJs.ContainsKey(rid.ToString()) ? H5SkinsJs[rid.ToString()].ToString() : String.Format("{0}.js", rid))
+                        ));
+                    }
+                    ms = rgxH5PetSkinAtlas.Matches(request.Url);
+                    if (ms.Count > 0) {
+                        string originSkinID = ms[0].Groups[1].Value;
+                        string atlas = ms[0].Groups[2].Value;
+                        ms = rgxAtlas.Matches(atlas);
+                        if (ms.Count > 0)
+                        {
+                            string skinID = ms[0].Groups[1].Value;
+                            if (originSkinID == skinID)
+                            {
+                                return base.GetResourceHandler(chromiumWebBrowser, browser, frame, request);
+                            }
+                            return new WxUrlResourceHandler(String.Format("https://seerh5.61.com/resource/cjs_animate/pet/{0}/images/{1}.png", skinID, atlas));
+                        }
+                    }
+                    
                     if (url.StartsWith("https://seer.61.com/dll/PetFightDLL_201308.swf?"))
                     {
                         if (IsHideFlashFightPanel)
@@ -473,6 +547,7 @@ namespace SeerRandomSkin
 
                     }
                 }
+
             }
         }
 

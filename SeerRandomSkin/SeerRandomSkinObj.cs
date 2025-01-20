@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace SeerRandomSkin
 {
@@ -31,6 +32,16 @@ namespace SeerRandomSkin
         public void ShowFightInfo(int round, double hpPercent)
         {
             Form1.ChangeTitleAction(String.Format("{0} ({1}) [{2}%]", Form1.FormTitle, round, hpPercent));
+        }
+
+        public void SetH5SkinsJsFileName(string json)
+        {
+            Form1.H5SkinsJs = Utils.TryGetJObject(json);
+        }
+
+        public void Log(string s)
+        {
+            MessageBox.Show(s);
         }
     }
 }
