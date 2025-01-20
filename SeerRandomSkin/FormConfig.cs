@@ -171,21 +171,20 @@ namespace SeerRandomSkin
             }
         }
 
-        public static void DeleteUserConfig()
+        public static bool DeleteUserConfig()
         {
             var path = GetUserConfigFilePath();
-            if (Path.GetFileName(path) != "user.config")
+            if (Path.GetFileName(path) != "user.config" || !File.Exists(path))
             {
-                MessageBox.Show("删除配置文件失败，请尝试读取正常的配置文件（不是正常的文件名）");
-                return;
+                return false;
             }
             path = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(path)));
             if (!path.EndsWith(new System.Diagnostics.StackTrace(true).GetFrame(1).GetMethod().DeclaringType.Namespace))
             {
-                MessageBox.Show("删除配置文件失败，请尝试读取正常的配置文件（找不到文件夹）");
-                return;
+                return false;
             }
             Directory.Delete(path, true);
+            return true;
         }
 
         private void btnRemoveSettings_Click(object sender, EventArgs e)
@@ -193,8 +192,7 @@ namespace SeerRandomSkin
             var result = MessageBox.Show("除了本窗口的配置外，还会删除用户自制的脚本、FD 替换等内容，确定继续吗？", "提示", MessageBoxButtons.OKCancel);
             if (result == DialogResult.OK)
             {
-                DeleteUserConfig();
-                MessageBox.Show("恢复成功，请重新打开程序");
+                MessageBox.Show(DeleteUserConfig() ? "恢复成功，请重新打开程序" : "恢复失败");
             }
         }
 
