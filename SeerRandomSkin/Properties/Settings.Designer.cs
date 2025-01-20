@@ -361,110 +361,243 @@ namespace SeerRandomSkin.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{\r\n  \"压血出招\": \"WxFightHandler.OnFirstRound = (fightStartInfo) => {\\n  WxFightHandl" +
-            "er.Utils.UseSkill(0);\\n};\\nWxFightHandler.OnUseSkill = (mySkillInfo,enemySkillIn" +
-            "fo) => {\\n  if (mySkillInfo.remainHP !== 0) {\\n    WxFightHandler.Utils.UseSkill" +
-            "(0);\\n  }\\n  else {\\n    WxFightHandler.Utils.ChangePetByID(mySkillInfo,[]);\\n  " +
-            "}\\n};\\nWxFightHandler.OnChangePet = (petInfo) => {\\n  WxFightHandler.Utils.UseSk" +
-            "ill(0);\\n};\\nWxFightHandler.OnFightOver = (fightOverInfo) => {\\n  WxFightHandler" +
-            ".Utils.StopAutoFight();\\n};\",\r\n  \"奇镰解放\": \"WxFightHandler.OnFirstRound = (fightSt" +
-            "artInfo) => {\\n  WxFightHandler.Utils.UseSkill(36481);\\n};\\nWxFightHandler.OnUse" +
-            "Skill = (mySkillInfo,enemySkillInfo) => {\\n  if (mySkillInfo.remainHP !== 0) {\\n" +
-            "    WxFightHandler.Utils.UseSkill(36481);\\n  }\\n  else {\\n    console.log(\'Pet d" +
-            "ead!\')\\n  }\\n};\\nWxFightHandler.OnChangePet = (petInfo) => {\\n};\\nWxFightHandler" +
-            ".OnFightOver = (fightOverInfo) => {\\n};\",\r\n  \"月华\": \"WxFightHandler.OnFirstRound " +
-            "= (fightStartInfo) => {\\n  WxFightHandler.YQYQ = 36354;\\n  WxFightHandler.BHLH =" +
-            " 36353;\\n  WxFightHandler.UseSkillBHLH = true;\\n  WxFightHandler.Utils.UseSkill(" +
-            "WxFightHandler.YQYQ);\\n};\\n\\nWxFightHandler.OnUseSkill = (mySkillInfo,enemySkill" +
-            "Info) => {\\n  if (mySkillInfo.remainHP === 0) {\\n    WxFightHandler.Utils.StopAu" +
-            "toFight(); console.log(\'Pet dead!\');\\n    return;\\n  }\\n  for (var skill of mySk" +
-            "illInfo.skillList) {\\n    if (skill[0] === WxFightHandler.YQYQ) {\\n      if (ski" +
-            "ll[1] === 0) {\\n        WxFightHandler.Utils.UsePetItem10PP();\\n        WxFightH" +
-            "andler.UseSkillBHLH = false;\\n        return;\\n      } else { break; }\\n    }\\n " +
-            " }\\n  WxFightHandler.Utils.UseSkill(WxFightHandler.UseSkillBHLH ? WxFightHandler" +
-            ".BHLH : WxFightHandler.YQYQ);\\n  WxFightHandler.UseSkillBHLH = !WxFightHandler.U" +
-            "seSkillBHLH;\\n};\\n\\nWxFightHandler.OnChangePet = (petInfo) => {};\\nWxFightHandle" +
-            "r.OnFightOver = (fightOverInfo) => {};\",\r\n  \"弹伤_蒂朵\": \"// 草王、蒂朵、克罗、六界 弹伤，1级时空 补刀\\" +
-            "n\\nWxFightHandler.OnFirstRound = (fightStartInfo) => {\\n  WxFightHandler.MORUIER" +
-            " = 3322;\\n  WxFightHandler.LIUJIE = 3329;\\n  WxFightHandler.KELUO = 2977;\\n  WxF" +
-            "ightHandler.DIDUO = 4377;\\n  WxFightHandler.SHIKONG = 3463;\\n  WxFightHandler.Is" +
-            "DIDUOFirstUp = true;\\n  WxFightHandler.Utils.UseSkill(0);\\n};\\n\\nWxFightHandler." +
-            "OnUseSkill = (mySkillInfo,enemySkillInfo) => {\\n  let petID = WxFightHandler.Uti" +
-            "ls.GetFightingPetID();\\n  if (mySkillInfo.remainHP !== 0) {\\n    WxFightHandler." +
-            "Utils.UseSkill(0);\\n  }\\n  else {\\n    let changePetID = 0;\\n    if (WxFightHand" +
-            "ler.MORUIER === petID) { changePetID = WxFightHandler.DIDUO; }\\n    else if (WxF" +
-            "ightHandler.KELUO === petID) { changePetID = WxFightHandler.DIDUO; }\\n    else i" +
-            "f (WxFightHandler.DIDUO === petID) { changePetID = WxFightHandler.LIUJIE; }\\n   " +
-            " else if (WxFightHandler.LIUJIE === petID) { changePetID = WxFightHandler.SHIKON" +
-            "G; }\\n    WxFightHandler.Utils.ChangePetByID(mySkillInfo,[changePetID]);\\n  }\\n}" +
-            ";\\n\\nWxFightHandler.OnChangePet = (petInfo) => {\\n  let petID = petInfo.petID;\\n" +
-            "  if (WxFightHandler.DIDUO === petID) {\\n    if (WxFightHandler.IsDIDUOFirstUp) " +
-            "{\\n      WxFightHandler.Utils.ChangePetByID(petInfo,[WxFightHandler.KELUO]);\\n  " +
-            "    WxFightHandler.IsDIDUOFirstUp = false;\\n    } else {\\n      WxFightHandler.U" +
-            "tils.UseSkill(35914);\\n    }\\n  }\\n  else if (WxFightHandler.LIUJIE === petID) {" +
-            " WxFightHandler.Utils.UseSkill(19314); }\\n  else if (WxFightHandler.SHIKONG === " +
-            "petID) { WxFightHandler.Utils.UseSkill(31252); }\\n  else { WxFightHandler.Utils." +
-            "UseSkill(0); }\\n};\\n\\nWxFightHandler.OnFightOver = (fightOverInfo) => {};\",\r\n  \"" +
-            "弹伤_表姐\": \"// 表姐、六界 弹伤，圣谱 补刀\\n\\nWxFightHandler.OnFirstRound = (fightStartInfo) => " +
-            "{\\n  WxFightHandler.BIAOJIE = 3512;\\n  WxFightHandler.LIUJIEDS = 3329;\\n  WxFigh" +
-            "tHandler.LIUJIESW = 3045;\\n  WxFightHandler.SHENGPU = 5000;\\n  WxFightHandler.Ut" +
-            "ils.UseSkill(31505);\\n};\\n\\nWxFightHandler.OnUseSkill = (mySkillInfo,enemySkillI" +
-            "nfo) => {\\n  let petID = WxFightHandler.Utils.GetFightingPetID();\\n  if (mySkill" +
-            "Info.remainHP !== 0) {\\n    WxFightHandler.Utils.UseSkill(mySkillInfo.skillList[" +
-            "0][0]);\\n  }\\n  else {\\n    let changePetIDArray = [];\\n    if (WxFightHandler.B" +
-            "IAOJIE === petID) { changePetIDArray.push(WxFightHandler.LIUJIEDS); changePetIDA" +
-            "rray.push(WxFightHandler.LIUJIESW); }\\n    else if (WxFightHandler.LIUJIE === pe" +
-            "tID) { changePetIDArray[0] = WxFightHandler.SHENGPU; }\\n    WxFightHandler.Utils" +
-            ".ChangePetByID(mySkillInfo,changePetIDArray);\\n  }\\n};\\n\\nWxFightHandler.OnChang" +
-            "ePet = (petInfo) => {\\n  let petID = petInfo.petID;\\n  if (WxFightHandler.LIUJIE" +
-            "DS === petID || WxFightHandler.LIUJIESW ===petID) { WxFightHandler.Utils.UseSkil" +
-            "l(19314); }\\n  else if (WxFightHandler.SHENGPU === petID) { WxFightHandler.Utils" +
-            ".UseSkill(31143); }\\n  else { WxFightHandler.Utils.UseSkill(0); }\\n};\\n\\nWxFight" +
-            "Handler.OnFightOver = (fightOverInfo) => {};\",\r\n  \"借金火\": \"// 2024 7月 正常运行\\n// 在未" +
-            "来，所有的数据结构都可能会发生变动，所以不保证永远有效\\n\\n(async () =>\\n    {\\n      let FIRE_BLUE_SMALL = " +
-            "2;\\n      let FIRE_PURPLE_SMALL = 3;\\n      let FIRE_GOLD_SMALL = 4;\\n      let " +
-            "FIRE_GREEN_SMALL = 5;\\n      let FIRE_GREEN_BIG = 6;\\n      let FIRE_BLUE_BIG = " +
-            "7;\\n      let FIRE_PURPLE_BIG = 8;\\n      let FIRE_GOLD_BIG = 9;\\n    \\n      fu" +
-            "nction ReadInt(data)\\n      {\\n        return (data.byteArray[data.position++] <" +
-            "< 24) + (data.byteArray[data.position++] << 16) + (data.byteArray[data.position+" +
-            "+] << 8) + data.byteArray[data.position++];\\n      }\\n    \\n      function ReadB" +
-            "yte(data)\\n      {\\n        return data.byteArray[data.position++];\\n      }\\n  " +
-            "  \\n      class UserInfo\\n      {\\n        constructor(data)\\n        {\\n       " +
-            "   data.position += 4; // 不需要的数据就跳过\\n          this.userID = ReadInt(data);\\n   " +
-            "       data.position += 16;\\n          this.curTitle = ReadInt(data); // 称号\\n   " +
-            "       data.position += 137;\\n          let loopTimes = ReadInt(data); // 这里有一段循" +
-            "环\\n          for (let i = 0; i < loopTimes; ++i)\\n          {\\n            ReadI" +
-            "nt(data);\\n          }\\n          data.position += 60;\\n          // 套装\\n       " +
-            "   loopTimes = ReadInt(data);\\n          this.clothes = [];\\n          for (let " +
-            "i = 0; i < loopTimes; ++i)\\n          {\\n            this.clothes[i] = ReadInt(d" +
-            "ata);\\n            ReadInt(data);\\n          }\\n          data.position += 4;\\n " +
-            "         this.fireBuff = ReadByte(data);\\n          data.position += 28;\\n      " +
-            "  }\\n      }\\n    \\n      // 获取\\n      let data = {};\\n      data.byteArray = aw" +
-            "ait WxFightHandler.Utils.SendAsync(2003,[]);\\n      data.position = 0;\\n      \\n" +
-            "      // 解析\\n      let playerCount = ReadInt(data);\\n      for (let i = 0; i < p" +
-            "layerCount; ++i)\\n      {\\n        let player = new UserInfo(data);\\n        if " +
-            "(player.fireBuff == FIRE_GOLD_BIG || player.fireBuff == FIRE_GOLD_SMALL) \\n     " +
-            "   {\\n          WxFightHandler.Utils.Send(4292,player.userID); console.log(\'借火成功" +
-            "\'); return;\\n        }\\n      }\\n      console.log(\'借火失败\');\\n    })();\",\r\n  \"一直第" +
-            "五\": \"// 适用于 pve\\nWxFightHandler.OnFirstRound = (fightStartInfo) => {\\n  let skil" +
-            "lArray = WxFightHandler.Utils.GetPetInfos()[0].skillArray;\\n  WxFightHandler.Uti" +
-            "ls.UseSkill(skillArray.length < 5 ? 0 : 4); // 若无第五，则用一技能\\n};\\n\\nWxFightHandler." +
-            "OnUseSkill = (mySkillInfo,enemySkillInfo) => {\\n  let petID = WxFightHandler.Uti" +
-            "ls.GetFightingPetID(); console.log(\'onUseSkill\',mySkillInfo)\\n  if (mySkillInfo." +
-            "remainHP !== 0) {\\n    let skillList = mySkillInfo.skillList;\\n    let useSkillI" +
-            "ndex = skillList.length < 5 ? 0 : 4;\\n    if (skillList[useSkillIndex][1] > 0) {" +
-            "\\n      WxFightHandler.Utils.UseSkill(skillList[useSkillIndex][0]);\\n    }\\n    " +
-            "else {\\n      WxFightHandler.Utils.UsePetItem(300017); WxFightHandler.Utils.WxIt" +
-            "emBuy(300017);\\n    }\\n  }\\n  else {\\n    WxFightHandler.Utils.ChangePetByID(myS" +
-            "killInfo,[]);\\n  }\\n};\\n\\nWxFightHandler.OnChangePet = (petInfo) => {\\n  let ski" +
-            "llList = petInfo.skillList;\\n  WxFightHandler.Utils.UseSkill(skillList[skillList" +
-            ".length < 5 ? 0 : 4][0]);\\n};\\n\\nWxFightHandler.OnFightOver = (fightOverInfo) =>" +
-            " {};\",\r\n  \"奇镰解放_延时\": \"WxFightHandler.OnFirstRound = (fightStartInfo) => {\\n  WxF" +
-            "ightHandler.Utils.UseSkill(36481);\\n};\\nWxFightHandler.OnUseSkill = (mySkillInfo" +
-            ",enemySkillInfo) => {\\n  if (mySkillInfo.remainHP !== 0) {\\n    setTimeout(() =>" +
-            " { WxFightHandler.Utils.UseSkill(36481); }, 200);\\n  }\\n  else {\\n    console.lo" +
-            "g(\'Pet dead!\')\\n  }\\n};\\nWxFightHandler.OnChangePet = (petInfo) => {\\n};\\nWxFigh" +
-            "tHandler.OnFightOver = (fightOverInfo) => {\\n};\"\r\n}")]
+        [global::System.Configuration.DefaultSettingValueAttribute("{\r\n  \"压血出招\": \"WxFightHandler.OnFirstRound = (fightStartInfo) =&gt; {\\n  WxFightHa" +
+            "ndler.Utils.UseSkill(0);\\n};\\nWxFightHandler.OnUseSkill = (mySkillInfo,enemySkil" +
+            "lInfo) =&gt; {\\n  if (mySkillInfo.remainHP != 0) {\\n    WxFightHandler.Utils.Use" +
+            "Skill(0);\\n  }\\n  else {\\n    WxFightHandler.Utils.ChangePetByID([]);\\n  }\\n};\\n" +
+            "WxFightHandler.OnChangePet = (petInfo) =&gt; {\\n  WxFightHandler.Utils.UseSkill(" +
+            "0);\\n};\\nWxFightHandler.OnFightOver = (fightOverInfo) =&gt; {\\n  WxFightHandler." +
+            "Utils.StopAutoFight();\\n};\",\r\n  \"奇镰解放\": \"WxFightHandler.OnFirstRound = (fightSta" +
+            "rtInfo) =&gt; {\\n  WxFightHandler.Utils.UseSkill(36481);\\n};\\nWxFightHandler.OnU" +
+            "seSkill = async (mySkillInfo,enemySkillInfo) =&gt; {\\n  await WxFightHandler.Uti" +
+            "ls.Delay(200);\\n  if (mySkillInfo.remainHP !== 0) {\\n    WxFightHandler.Utils.Us" +
+            "eSkill(36481);\\n  }\\n  else {\\n    console.log(\'GG!\')\\n  }\\n};\\nWxFightHandler.O" +
+            "nChangePet = (petInfo) =&gt; {\\n};\\nWxFightHandler.OnFightOver = (fightOverInfo)" +
+            " =&gt; {\\n};\",\r\n  \"月华\": \"WxFightHandler.OnFirstRound = (fightStartInfo) =&gt; {\\" +
+            "n  WxFightHandler.YQYQ = 36354;\\n  WxFightHandler.BHLH = 36353;\\n  WxFightHandle" +
+            "r.UseSkillBHLH = true;\\n  WxFightHandler.Utils.UseSkill(WxFightHandler.YQYQ);\\n}" +
+            ";\\n\\nWxFightHandler.OnUseSkill = async (mySkillInfo,enemySkillInfo) =&gt; {\\n  a" +
+            "wait WxFightHandler.Utils.Delay(200); \\n  if (mySkillInfo.remainHP === 0) {\\n   " +
+            " console.log(\'GG!\');\\n    return;\\n  }\\n  for (var skill of mySkillInfo.skillLis" +
+            "t) {\\n    if (skill[0] === WxFightHandler.YQYQ) {\\n      if (skill[1] === 0) {\\n" +
+            "        WxFightHandler.Utils.UsePetItem10PP();\\n        WxFightHandler.UseSkillB" +
+            "HLH = false;\\n        return;\\n      } else { break; }\\n    }\\n  }\\n  WxFightHan" +
+            "dler.Utils.UseSkill(WxFightHandler.UseSkillBHLH ? WxFightHandler.BHLH : WxFightH" +
+            "andler.YQYQ);\\n  WxFightHandler.UseSkillBHLH = !WxFightHandler.UseSkillBHLH;\\n};" +
+            "\\n\\nWxFightHandler.OnChangePet = (petInfo) =&gt; {};\\nWxFightHandler.OnFightOver" +
+            " = (fightOverInfo) =&gt; {};\",\r\n  \"弹伤_蒂朵\": \"// 草王、蒂朵、克罗、六界 弹伤，1级时空 补刀\\n\\nWxFight" +
+            "Handler.OnFirstRound = (fightStartInfo) =&gt; {\\n  WxFightHandler.MORUIER = 3322" +
+            ";\\n  WxFightHandler.LIUJIE = 3329;\\n  WxFightHandler.KELUO = 2977;\\n  WxFightHan" +
+            "dler.DIDUO = 4377;\\n  WxFightHandler.SHIKONG = 3463;\\n  WxFightHandler.IsDIDUOFi" +
+            "rstUp = true;\\n  WxFightHandler.Utils.UseSkill(0);\\n};\\n\\nWxFightHandler.OnUseSk" +
+            "ill = (mySkillInfo,enemySkillInfo) =&gt; {\\n  let petID = WxFightHandler.Utils.G" +
+            "etFightingPetID();\\n  if (mySkillInfo.remainHP !== 0) {\\n    WxFightHandler.Util" +
+            "s.UseSkill(0);\\n  }\\n  else {\\n    let changePetID = 0;\\n    if (WxFightHandler." +
+            "MORUIER === petID) { changePetID = WxFightHandler.DIDUO; }\\n    else if (WxFight" +
+            "Handler.KELUO === petID) { changePetID = WxFightHandler.DIDUO; }\\n    else if (W" +
+            "xFightHandler.DIDUO === petID) { changePetID = WxFightHandler.LIUJIE; }\\n    els" +
+            "e if (WxFightHandler.LIUJIE === petID) { changePetID = WxFightHandler.SHIKONG; }" +
+            "\\n    WxFightHandler.Utils.ChangePetByID([changePetID]);\\n  }\\n};\\n\\nWxFightHand" +
+            "ler.OnChangePet = (petInfo) =&gt; {\\n  let petID = petInfo.petID;\\n  if (WxFight" +
+            "Handler.DIDUO === petID) {\\n    if (WxFightHandler.IsDIDUOFirstUp) {\\n      WxFi" +
+            "ghtHandler.Utils.ChangePetByID([WxFightHandler.KELUO]);\\n      WxFightHandler.Is" +
+            "DIDUOFirstUp = false;\\n    } else {\\n      WxFightHandler.Utils.UseSkill(35914);" +
+            "\\n    }\\n  }\\n  else if (WxFightHandler.LIUJIE === petID) { WxFightHandler.Utils" +
+            ".UseSkill(19314); }\\n  else if (WxFightHandler.SHIKONG === petID) { WxFightHandl" +
+            "er.Utils.UseSkill(31252); }\\n  else { WxFightHandler.Utils.UseSkill(0); }\\n};\\n\\" +
+            "nWxFightHandler.OnFightOver = (fightOverInfo) =&gt; {};\",\r\n  \"弹伤_表姐\": \"// 表姐、六界 " +
+            "弹伤，圣谱 补刀\\n\\nWxFightHandler.OnFirstRound = (fightStartInfo) =&gt; {\\n  WxFightHan" +
+            "dler.BIAOJIE = 3512;\\n  WxFightHandler.LIUJIEDS = 3329;\\n  WxFightHandler.LIUJIE" +
+            "SW = 3045;\\n  WxFightHandler.SHENGPU = 5000;\\n  WxFightHandler.Utils.UseSkill(31" +
+            "505);\\n};\\n\\nWxFightHandler.OnUseSkill = (mySkillInfo,enemySkillInfo) =&gt; {\\n " +
+            " let petID = WxFightHandler.Utils.GetFightingPetID();\\n  if (mySkillInfo.remainH" +
+            "P !== 0) {\\n    WxFightHandler.Utils.UseSkill(mySkillInfo.skillList[0][0]);\\n  }" +
+            "\\n  else {\\n    let changePetIDArray = [];\\n    if (WxFightHandler.BIAOJIE === p" +
+            "etID) { changePetIDArray.push(WxFightHandler.LIUJIEDS); changePetIDArray.push(Wx" +
+            "FightHandler.LIUJIESW); }\\n    else if (WxFightHandler.LIUJIESW === petID || WxF" +
+            "ightHandler.LIUJIEDS === petID) { changePetIDArray[0] = WxFightHandler.SHENGPU; " +
+            "}\\n    WxFightHandler.Utils.ChangePetByID(changePetIDArray);\\n  }\\n};\\n\\nWxFight" +
+            "Handler.OnChangePet = (petInfo) =&gt; {\\n  let petID = petInfo.petID;\\n  if (WxF" +
+            "ightHandler.LIUJIEDS === petID || WxFightHandler.LIUJIESW ===petID) { WxFightHan" +
+            "dler.Utils.UseSkill(19314); }\\n  else if (WxFightHandler.SHENGPU === petID) { Wx" +
+            "FightHandler.Utils.UseSkill(31143); }\\n  else { WxFightHandler.Utils.UseSkill(0)" +
+            "; }\\n};\\n\\nWxFightHandler.OnFightOver = (fightOverInfo) =&gt; {};\",\r\n  \"一直第五\": \"" +
+            "// 适用于 pve，没有考虑 pvp 的复杂情况（例如被逐界苍星锁住技能）\\n// 如果上场的精灵有特殊的第五技能，就像武心婵那样，无法立刻使用的，请自行添加" +
+            "代码处理\\nWxFightHandler.OnFirstRound = (fightStartInfo) =&gt; {\\n  let firstPetCatc" +
+            "htime = WxFightHandler.Utils.GetFightingPetCatchTime();\\n  for (let pet of WxFig" +
+            "htHandler.Utils.GetFightingPets()) {\\n    if (pet.catchTime === firstPetCatchtim" +
+            "e) {\\n      WxFightHandler.Utils.UseSkill(pet.hideSKill === null ? pet.skillArra" +
+            "y[0][0] : pet.hideSKill.id); // 若无第五，则用一技能\\n      break;\\n    }\\n  }\\n};\\n\\nWxFi" +
+            "ghtHandler.OnUseSkill = async (mySkillInfo,enemySkillInfo) =&gt; {\\n  await WxFi" +
+            "ghtHandler.Utils.Delay(200); // 出招间隔太短会掉线\\n  let petID = WxFightHandler.Utils.Ge" +
+            "tFightingPetID();\\n  if (mySkillInfo.remainHP !== 0) {\\n    let skillList = mySk" +
+            "illInfo.skillList;\\n    let useSkillIndex = skillList.length &lt; 5 ? 0 : 4;\\n  " +
+            "  if (skillList[useSkillIndex][1] &gt; 0) {\\n      WxFightHandler.Utils.UseSkill" +
+            "(skillList[useSkillIndex][0]);\\n    }\\n    else {\\n      WxFightHandler.Utils.Us" +
+            "ePetItem10PP();\\n    }\\n  }\\n  else {\\n    WxFightHandler.Utils.ChangePetByID([]" +
+            ");\\n  }\\n};\\n\\nWxFightHandler.OnChangePet = (petInfo) =&gt; {\\n  let skillList =" +
+            " petInfo.skillList;\\n  WxFightHandler.Utils.UseSkill(skillList[skillList.length " +
+            "&lt; 5 ? 0 : 4][0]);\\n};\\n\\nWxFightHandler.OnFightOver = (fightOverInfo) =&gt; {" +
+            "};\",\r\n  \"一直第一\": \"WxFightHandler.OnFirstRound = (fightStartInfo) =&gt; {\\n  let f" +
+            "irstPetCatchtime = WxFightHandler.Utils.GetFightingPetCatchTime();\\n  for (let p" +
+            "et of WxFightHandler.Utils.GetFightingPets()) {\\n    if (pet.catchTime === first" +
+            "PetCatchtime) {\\n      WxFightHandler.Utils.UseSkill(pet.skillArray[0]);\\n      " +
+            "break;\\n    }\\n  }\\n};\\n\\nWxFightHandler.OnUseSkill = async (mySkillInfo,enemySk" +
+            "illInfo) =&gt; {\\n  await WxFightHandler.Utils.Delay(200);\\n  let petID = WxFigh" +
+            "tHandler.Utils.GetFightingPetID();\\n  if (mySkillInfo.remainHP !== 0) {\\n    let" +
+            " skillList = mySkillInfo.skillList;\\n    let useSkillIndex = 0;\\n    if (skillLi" +
+            "st[useSkillIndex][1] &gt; 0) {\\n      WxFightHandler.Utils.UseSkill(skillList[us" +
+            "eSkillIndex][0]);\\n    }\\n    else {\\n      WxFightHandler.Utils.UsePetItem10PP(" +
+            ");\\n    }\\n  }\\n  else {\\n    WxFightHandler.Utils.ChangePetByID([]);\\n  }\\n};\\n" +
+            "\\nWxFightHandler.OnChangePet = (petInfo) =&gt; {\\n  let skillList = petInfo.skil" +
+            "lList;\\n  WxFightHandler.Utils.UseSkill(skillList[0][0]);\\n};\\n\\nWxFightHandler." +
+            "OnFightOver = (fightOverInfo) =&gt; {};\",\r\n  \"借绿火\": \"(() =&gt; {\\n  let FIRE_BLU" +
+            "E_SMALL = 2;\\n  let FIRE_PURPLE_SMALL = 3;\\n  let FIRE_GOLD_SMALL = 4;\\n  let FI" +
+            "RE_GREEN_SMALL = 5;\\n  let FIRE_GREEN_BIG = 6;\\n  let FIRE_BLUE_BIG = 7;\\n  let " +
+            "FIRE_PURPLE_BIG = 8;\\n  let FIRE_GOLD_BIG = 9;\\n  WxFightHandler.Utils.CopyFire(" +
+            "FIRE_GREEN_SMALL);\\n})();\",\r\n  \"噬梦魔灵2\": \"// 打开开发者工具，在 console 页面查看指引\\n// 制作过程视频：" +
+            "BV1fm8nexENV\\n(async () =&gt; {\\n  function ReadInt(data) { return (data.byteArr" +
+            "ay[data.position++] &lt;&lt; 24) + (data.byteArray[data.position++] &lt;&lt; 16)" +
+            " + (data.byteArray[data.position++] &lt;&lt; 8) + data.byteArray[data.position++" +
+            "]; }\\n  function ReadByte(data) { return data.byteArray[data.position++]; }\\n\\n " +
+            " async function getMultiValue(arr) {\\n    arr.unshift(arr.length); // 赛发送数组的特殊格式" +
+            "，首位是数组长度\\n    let data = {};\\n    data.byteArray = await WxFightHandler.Utils.Se" +
+            "ndAsync(46046, arr);\\n    data.position = 0;\\n    // 将收到的包解析成数组\\n    let result " +
+            "= [];\\n    let arrayLength = ReadInt(data);\\n    for (let i = 0; i &lt; arrayLen" +
+            "gth; ++i) { result.push(ReadInt(data)); }\\n    return result;\\n  }\\n\\n  function" +
+            " getBit(p1, p2) { return (p1 &gt;&gt; (p2 - 1)) &amp; 1; }\\n  function getByte(p" +
+            "1, p2) { return (p1 &gt;&gt; (8 * p2)) &amp; 255; }\\n\\n  async function getMapIn" +
+            "fo(curMap) {\\n    let mapObj = {};\\n\\n    let arr = await getMultiValue([\\n     " +
+            " 103296 + (curMap - 1) / 4,\\n      103309 + curMap - 1,\\n      103360 + (curMap " +
+            "- 1) / 32\\n    ]);\\n    arr[0] = getByte(arr[0], (curMap - 1) % 4);\\n    if (arr" +
+            "[0] &lt; 5) {\\n      // 一共 4 种颜色的球，arr[0] 分别为 1 2 3 4 时，表示地图上有对应的球\\n      if (ar" +
+            "r[0] &gt; 0) {\\n        mapObj.ballType = arr[0];\\n      }\\n    }\\n    else if (" +
+            "arr[0] &lt; 9) {\\n      // 地图上有井，种类为 (arr[0] - 5)\\n      // 数值从 0 开始，与球的标号不同，但是按" +
+            "照顺序，颜色还是对应得上的\\n      mapObj.holeType = arr[0] - 5;\\n    }\\n    else {\\n      // " +
+            "地图上有 NPC\\n    }\\n\\n    // 每张地图都有 4 个门\\n    // doors 数组中，从左到右依次对应界面上显示的门\\n    // " +
+            "0 表示此路不通\\n    // 其他数字，在不同的地图中相同数字的门，表示互相连通\\n    mapObj.doors = [];\\n    for (let" +
+            " i = 1; i &lt;= 4; ++i) {\\n      mapObj.doors[i - 1] = getByte(arr[1], i - 1);\\n" +
+            "    }\\n\\n    return mapObj;\\n  }\\n\\n  async function findPath() {\\n    if (windo" +
+            "w.allMapInfo11813 === undefined) {\\n      window.allMapInfo11813 = [];\\n      fo" +
+            "r (let i = 1; i &lt; 21; ++i) { window.allMapInfo11813.push(await getMapInfo(i))" +
+            "; }\\n      console.log(\'世界地图\', window.allMapInfo11813);\\n    }\\n\\n    // 当前地图\\n " +
+            "   let globalObj = {};\\n    let arr = await getMultiValue([103294, 103295]);\\n  " +
+            "  globalObj.curMap = arr[0] &amp; 255; // 地图标号（一共 20 张地图，标号从 1 开始）\\n    globalOb" +
+            "j.curEnergy = arr[0] &gt;&gt; 8 &amp; 255; // 灵魂能量\\n    globalObj.curHasBall = a" +
+            "rr[0] &gt;&gt; 16 &amp; 255;\\n    globalObj.hasTransferNum = arr[0] &gt;&gt; 24 " +
+            "&amp; 255; // 已走过的步数\\n\\n    globalObj.hasBall = []\\n    for (let i = 1; i &lt;= " +
+            "4; ++i) {\\n      if (getBit(arr[1], i) == 1) {\\n        globalObj.hasBall[i - 1]" +
+            " = 1;\\n      }\\n      else {\\n        globalObj.hasBall[i - 1] = 0;\\n      }\\n  " +
+            "  }\\n\\n    globalObj.doors = window.allMapInfo11813[globalObj.curMap - 1].doors;" +
+            "\\n\\n    // console.log(globalObj);\\n    console.log(`当前地图上，门的编号（从左到右）分别是：[${glob" +
+            "alObj.doors.filter(door =&gt; door!=0).join(\' \')}]`);\\n    if (globalObj.curHasB" +
+            "all === 0) {\\n      console.log(\'寻找最近的球\');\\n      let path = bfs(globalObj.curMa" +
+            "p, m =&gt; (\'ballType\' in m &amp;&amp; globalObj.hasBall[m.ballType-1] === 0));\\" +
+            "n      if (path.length === 0) {\\n        console.log(\'请捡起当前地图上的球\');\\n      }\\n  " +
+            "    else if (path.length &gt; window.allMapInfo11813.length) {\\n        console." +
+            "log(\'剩下的球无法获取，请先耗尽灵魂能量，重置关卡\');\\n      }\\n      else {\\n        console.log(`请进入 " +
+            "${path[0]} 号门`);\\n      }\\n    }\\n    else {\\n      console.log(\'寻找井\');\\n      l" +
+            "et path = bfs(globalObj.curMap, m =&gt; (\'holeType\' in m &amp;&amp; m.holeType =" +
+            "== globalObj.curHasBall-1));\\n      if (path.length === 0) {\\n        console.lo" +
+            "g(\'请将球投入当前地图上的井\');\\n      }\\n      else if (path.length &gt; window.allMapInfo11" +
+            "813.length) {\\n        console.log(\'剩下的井所在位置无法到达，请先耗尽灵魂能量，重置关卡\');\\n      }\\n    " +
+            "  else {\\n        console.log(`请进入 ${path[0]} 号门`);\\n      }\\n    }\\n  }\\n\\n  fu" +
+            "nction bfs(curMap, predicate) {\\n    let visited = (new Array(window.allMapInfo1" +
+            "1813.length)).fill(null); // 记录路径\\n    let queue = [];\\n    queue.push(curMap-1)" +
+            ";\\n    visited[curMap-1] = [];\\n\\n    while (queue.length &gt; 0) {\\n      let c" +
+            "ur = queue.shift();\\n      if (predicate(window.allMapInfo11813[cur])) {\\n      " +
+            "  return visited[cur];\\n      }\\n      for (let door of window.allMapInfo11813[c" +
+            "ur].doors) {\\n        if (door === 0) continue;\\n        // 若两个地图有相同编号的门，则说明这两个地" +
+            "图相互连通\\n        for (let i = 0; i &lt; window.allMapInfo11813.length; ++i) {\\n   " +
+            "       if (i === cur || visited[i] != null) continue;\\n          if (window.allM" +
+            "apInfo11813[i].doors.indexOf(door) != -1) {\\n            queue.push(i);\\n       " +
+            "     visited[i] = visited[cur].concat([door]);\\n          }\\n        }\\n      }\\" +
+            "n    }\\n    return new Array(window.allMapInfo11813.length+1);\\n  }\\n\\n  console" +
+            ".log(\'=====\');\\n  await findPath();\\n})();\",\r\n  \"状态-S-因子1\": \"(() =&gt; {\\n  let " +
+            "SeerState = new Object();\\n  let key = \'SeerStateFragment1\';\\n  if (localStorage" +
+            ".getItem(key)!=null) localStorage.removeItem(key);\\n  SeerState.clothes = WxFigh" +
+            "tHandler.Utils.GetClothes();\\n  SeerState.title = WxFightHandler.Utils.GetTitle(" +
+            ");\\n  SeerState.bag1 = WxFightHandler.Utils.GetBag1().map(pet =&gt; pet.catchTim" +
+            "e);\\n  SeerState.bag2 = WxFightHandler.Utils.GetBag2().map(pet =&gt; pet.catchTi" +
+            "me);\\n  localStorage.setItem(key, JSON.stringify(SeerState));\\n})();\",\r\n  \"状态-L-" +
+            "因子1\": \"(async () =&gt; {\\n  try {\\n    let SeerState = JSON.parse(localStorage.g" +
+            "etItem(\'SeerStateFragment1\'));\\n    await WxFightHandler.Utils.SetPetBag(SeerSta" +
+            "te.bag1, SeerState.bag2);\\n    WxFightHandler.Utils.ChangeCloth(SeerState.clothe" +
+            "s);\\n    WxFightHandler.Utils.SetTitle(SeerState.title);\\n  } catch {}\\n})();\",\r" +
+            "\n  \"状态-S-因子2\": \"(() =&gt; {\\n  let SeerState = new Object();\\n  let key = \'SeerS" +
+            "tateFragment2\';\\n  if (localStorage.getItem(key)!=null) localStorage.removeItem(" +
+            "key);\\n  SeerState.clothes = WxFightHandler.Utils.GetClothes();\\n  SeerState.tit" +
+            "le = WxFightHandler.Utils.GetTitle();\\n  SeerState.bag1 = WxFightHandler.Utils.G" +
+            "etBag1().map(pet =&gt; pet.catchTime);\\n  SeerState.bag2 = WxFightHandler.Utils." +
+            "GetBag2().map(pet =&gt; pet.catchTime);\\n  localStorage.setItem(key, JSON.string" +
+            "ify(SeerState));\\n})();\\n\",\r\n  \"状态-L-因子2\": \"(async () =&gt; {\\n  try {\\n    let " +
+            "SeerState = JSON.parse(localStorage.getItem(\'SeerStateFragment2\'));\\n    await W" +
+            "xFightHandler.Utils.SetPetBag(SeerState.bag1, SeerState.bag2);\\n    WxFightHandl" +
+            "er.Utils.ChangeCloth(SeerState.clothes);\\n    WxFightHandler.Utils.SetTitle(Seer" +
+            "State.title);\\n  } catch {}\\n})();\",\r\n  \"状态-S-因子3\": \"(() =&gt; {\\n  let SeerStat" +
+            "e = new Object();\\n  let key = \'SeerStateFragment3\';\\n  if (localStorage.getItem" +
+            "(key)!=null) localStorage.removeItem(key);\\n  SeerState.clothes = WxFightHandler" +
+            ".Utils.GetClothes();\\n  SeerState.title = WxFightHandler.Utils.GetTitle();\\n  Se" +
+            "erState.bag1 = WxFightHandler.Utils.GetBag1().map(pet =&gt; pet.catchTime);\\n  S" +
+            "eerState.bag2 = WxFightHandler.Utils.GetBag2().map(pet =&gt; pet.catchTime);\\n  " +
+            "localStorage.setItem(key, JSON.stringify(SeerState));\\n})();\\n\",\r\n  \"状态-L-因子3\": " +
+            "\"(async () =&gt; {\\n  try {\\n    let SeerState = JSON.parse(localStorage.getItem" +
+            "(\'SeerStateFragment3\'));\\n    await WxFightHandler.Utils.SetPetBag(SeerState.bag" +
+            "1, SeerState.bag2);\\n    WxFightHandler.Utils.ChangeCloth(SeerState.clothes);\\n " +
+            "   WxFightHandler.Utils.SetTitle(SeerState.title);\\n  } catch {}\\n})();\",\r\n  \"状态" +
+            "-S-因子4\": \"(() =&gt; {\\n  let SeerState = new Object();\\n  let key = \'SeerStateFr" +
+            "agment4\';\\n  if (localStorage.getItem(key)!=null) localStorage.removeItem(key);\\" +
+            "n  SeerState.clothes = WxFightHandler.Utils.GetClothes();\\n  SeerState.title = W" +
+            "xFightHandler.Utils.GetTitle();\\n  SeerState.bag1 = WxFightHandler.Utils.GetBag1" +
+            "().map(pet =&gt; pet.catchTime);\\n  SeerState.bag2 = WxFightHandler.Utils.GetBag" +
+            "2().map(pet =&gt; pet.catchTime);\\n  localStorage.setItem(key, JSON.stringify(Se" +
+            "erState));\\n})();\\n\",\r\n  \"状态-L-因子4\": \"(async () =&gt; {\\n  try {\\n    let SeerSt" +
+            "ate = JSON.parse(localStorage.getItem(\'SeerStateFragment4\'));\\n    await WxFight" +
+            "Handler.Utils.SetPetBag(SeerState.bag1, SeerState.bag2);\\n    WxFightHandler.Uti" +
+            "ls.ChangeCloth(SeerState.clothes);\\n    WxFightHandler.Utils.SetTitle(SeerState." +
+            "title);\\n  } catch {}\\n})();\",\r\n  \"状态-S-因子5\": \"(() =&gt; {\\n  let SeerState = ne" +
+            "w Object();\\n  let key = \'SeerStateFragment5\';\\n  if (localStorage.getItem(key)!" +
+            "=null) localStorage.removeItem(key);\\n  SeerState.clothes = WxFightHandler.Utils" +
+            ".GetClothes();\\n  SeerState.title = WxFightHandler.Utils.GetTitle();\\n  SeerStat" +
+            "e.bag1 = WxFightHandler.Utils.GetBag1().map(pet =&gt; pet.catchTime);\\n  SeerSta" +
+            "te.bag2 = WxFightHandler.Utils.GetBag2().map(pet =&gt; pet.catchTime);\\n  localS" +
+            "torage.setItem(key, JSON.stringify(SeerState));\\n})();\\n\",\r\n  \"状态-L-因子5\": \"(asyn" +
+            "c () =&gt; {\\n  try {\\n    let SeerState = JSON.parse(localStorage.getItem(\'Seer" +
+            "StateFragment5\'));\\n    await WxFightHandler.Utils.SetPetBag(SeerState.bag1, See" +
+            "rState.bag2);\\n    WxFightHandler.Utils.ChangeCloth(SeerState.clothes);\\n    WxF" +
+            "ightHandler.Utils.SetTitle(SeerState.title);\\n  } catch {}\\n})();\",\r\n  \"状态-S-PVE" +
+            "\": \"(() =&gt; {\\n  let SeerState = new Object();\\n  let key = \'SeerStatePVE\';\\n " +
+            " if (localStorage.getItem(key)!=null) localStorage.removeItem(key);\\n  SeerState" +
+            ".clothes = WxFightHandler.Utils.GetClothes();\\n  SeerState.title = WxFightHandle" +
+            "r.Utils.GetTitle();\\n  SeerState.bag1 = WxFightHandler.Utils.GetBag1().map(pet =" +
+            "&gt; pet.catchTime);\\n  SeerState.bag2 = WxFightHandler.Utils.GetBag2().map(pet " +
+            "=&gt; pet.catchTime);\\n  localStorage.setItem(key, JSON.stringify(SeerState));\\n" +
+            "})();\",\r\n  \"状态-L-PVE\": \"(async () =&gt; {\\n  try {\\n    let SeerState = JSON.par" +
+            "se(localStorage.getItem(\'SeerStatePVE\'));\\n    await WxFightHandler.Utils.SetPet" +
+            "Bag(SeerState.bag1, SeerState.bag2);\\n    WxFightHandler.Utils.ChangeCloth(SeerS" +
+            "tate.clothes);\\n    WxFightHandler.Utils.SetTitle(SeerState.title);\\n  } catch {" +
+            "}\\n})();\",\r\n  \"状态-S-PVP\": \"(() =&gt; {\\n  let SeerState = new Object();\\n  let k" +
+            "ey = \'SeerStatePVP\';\\n  if (localStorage.getItem(key)!=null) localStorage.remove" +
+            "Item(key);\\n  SeerState.clothes = WxFightHandler.Utils.GetClothes();\\n  SeerStat" +
+            "e.title = WxFightHandler.Utils.GetTitle();\\n  SeerState.bag1 = WxFightHandler.Ut" +
+            "ils.GetBag1().map(pet =&gt; pet.catchTime);\\n  SeerState.bag2 = WxFightHandler.U" +
+            "tils.GetBag2().map(pet =&gt; pet.catchTime);\\n  localStorage.setItem(key, JSON.s" +
+            "tringify(SeerState));\\n})();\",\r\n  \"状态-L-PVP\": \"(async () =&gt; {\\n  try {\\n    l" +
+            "et SeerState = JSON.parse(localStorage.getItem(\'SeerStatePVP\'));\\n    await WxFi" +
+            "ghtHandler.Utils.SetPetBag(SeerState.bag1, SeerState.bag2);\\n    WxFightHandler." +
+            "Utils.ChangeCloth(SeerState.clothes);\\n    WxFightHandler.Utils.SetTitle(SeerSta" +
+            "te.title);\\n  } catch {}\\n})();\",\r\n  \"对战日志\": \"((fight) =&gt; {\\n  let originFunc" +
+            " = fight[\'OnFirstRound\'];\\n  fight[\'OnFirstRound\'] = (fightStartInfo) =&gt; {\\n " +
+            "   console.log(`【${fightStartInfo.myInfo.petName}】vs【${fightStartInfo.otherInfo." +
+            "petName}】`);\\n    originFunc.apply(this, arguments);\\n  };\\n  originFunc = fight" +
+            "[\'OnUseSkill\'];\\n  fight[\'OnUseSkill\'] = (mySkillInfo,enemySkillInfo) =&gt; {\\n " +
+            "   console.log(`我方${(mySkillInfo.skillID===0 ? \'没有出招\' : \'使用技能 [\' + WxFightHandle" +
+            "r.Utils.GetSkillNameByID(mySkillInfo.skillID) + \']\')}`);\\n    console.log(`敌方${(" +
+            "enemySkillInfo.skillID===0? \'没有出招\' : \'使用技能 [\' + WxFightHandler.Utils.GetSkillNam" +
+            "eByID(enemySkillInfo.skillID) + \']\')}`);\\n    originFunc.apply(this, arguments);" +
+            "\\n  };\\n  originFunc = fight[\'OnChangePet\'];\\n  fight[\'OnChangePet\'] = (petInfo)" +
+            " =&gt; {\\n    console.log(`【${WxFightHandler.Utils.GetPetNameByID(petInfo.petID)" +
+            "}】登场`);\\n    originFunc.apply(this, arguments);\\n  };\\n})(WxFightHandler);\"\r\n}")]
         public string FlashFightTemplate {
             get {
                 return ((string)(this["FlashFightTemplate"]));
@@ -476,7 +609,7 @@ namespace SeerRandomSkin.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{\r\n  \"换色\": \"NonoColorChangePanel\",\r\n  \"巅峰奖励\": \"PeakJihad2023WarOrdePanel\"\r\n}")]
+        [global::System.Configuration.DefaultSettingValueAttribute("{\r\n  \"换色\": \"NonoColorChangePanel\",\r\n  \"炫光\": \"AssessorPanel\"\r\n}")]
         public string ActivityCollection {
             get {
                 return ((string)(this["ActivityCollection"]));
