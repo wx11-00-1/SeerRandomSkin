@@ -105,7 +105,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(338, 155);
+            this.btnSave.Location = new System.Drawing.Point(338, 426);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(69, 23);
             this.btnSave.TabIndex = 5;
@@ -115,7 +115,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(338, 195);
+            this.btnDelete.Location = new System.Drawing.Point(414, 426);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(69, 23);
             this.btnDelete.TabIndex = 6;
@@ -125,7 +125,7 @@
             // 
             // btnConfirm
             // 
-            this.btnConfirm.Location = new System.Drawing.Point(460, 155);
+            this.btnConfirm.Location = new System.Drawing.Point(414, 152);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(69, 23);
             this.btnConfirm.TabIndex = 7;
@@ -135,7 +135,7 @@
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(336, 412);
+            this.label3.Location = new System.Drawing.Point(336, 248);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(193, 118);
             this.label3.TabIndex = 8;
@@ -144,17 +144,17 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(508, 48);
+            this.btnSearch.Location = new System.Drawing.Point(338, 473);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(52, 23);
+            this.btnSearch.Size = new System.Drawing.Size(145, 23);
             this.btnSearch.TabIndex = 10;
-            this.btnSearch.Text = "查询";
+            this.btnSearch.Text = "根据名称查找";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnWndTop
             // 
-            this.btnWndTop.Location = new System.Drawing.Point(454, 195);
+            this.btnWndTop.Location = new System.Drawing.Point(408, 191);
             this.btnWndTop.Name = "btnWndTop";
             this.btnWndTop.Size = new System.Drawing.Size(75, 23);
             this.btnWndTop.TabIndex = 11;
@@ -166,7 +166,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(593, 531);
+            this.ClientSize = new System.Drawing.Size(569, 531);
             this.Controls.Add(this.btnWndTop);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.label3);
