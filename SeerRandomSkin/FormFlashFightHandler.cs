@@ -128,7 +128,7 @@ namespace SeerRandomSkin
             "  \r\n" +
             "};\r\n\r\n" +
 
-            "WxFightHandler.OnUseSkill = (mySkillInfo,enemySkillInfo) => {\r\n" +
+            "WxFightHandler.OnUseSkill = (mySkillInfo,enemySkillInfo,isMeFirst) => {\r\n" +
             "  if (mySkillInfo.remainHP != 0) {\r\n" +
             "    \r\n" +
             "  }\r\n" +

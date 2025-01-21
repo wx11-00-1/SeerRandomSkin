@@ -184,7 +184,7 @@ package
 
          // 自动出招
          // 进入战斗
-         SocketConnection.WxOnReadyToFight = function(event:SocketEvent):void
+         SocketConnection.addCmdListener(CommandID.NOTE_READY_TO_FIGHT,function(event:SocketEvent):void
          {
             var readyData:NoteReadyToFightInfo = event.data as NoteReadyToFightInfo;
             SocketConnection.WxFightingPets = []; // 用于切换精灵功能
@@ -203,23 +203,22 @@ package
             }
             ExternalInterface.call("WxFightHandler.Utils.RoundReset");
             SocketConnection.WxIsPositiveChangePet = false;
-         };
-         SocketConnection.addCmdListener(CommandID.NOTE_READY_TO_FIGHT,SocketConnection.WxOnReadyToFight);
+         });
          // 首发精灵信息
-         SocketConnection.WxOnStartFight = function(event:SocketEvent):void
+         SocketConnection.addCmdListener(CommandID.NOTE_START_FIGHT,function(event:SocketEvent):void
          {
             var _loc2_:FightStartInfo = event.data as FightStartInfo;
             SocketConnection.WxFightingPetCatchTime = _loc2_.myInfo.catchTime;
             SocketConnection.WxFightingPetID = _loc2_.myInfo.petID;
             ExternalInterface.call("WxFightHandler.OnFirstRound",_loc2_);
-         };
-         SocketConnection.addCmdListener(CommandID.NOTE_START_FIGHT,SocketConnection.WxOnStartFight);
+         });
          // 使用技能
-         SocketConnection.WxOnUseSkill = function(param1:SocketEvent) : void
+         SocketConnection.addCmdListener(CommandID.NOTE_USE_SKILL, function(param1:SocketEvent) : void
          {
             var mySkillInfo:AttackValue;
             var enemySkillInfo:AttackValue;
             var _loc2_:UseSkillInfo = param1.data as UseSkillInfo;
+            var isMeFirst:Boolean = true;
             if (_loc2_.firstAttackInfo.userID == MainManager.actorInfo.userID)
             {
                mySkillInfo = _loc2_.firstAttackInfo;
@@ -229,6 +228,7 @@ package
             {
                mySkillInfo = _loc2_.secondAttackInfo;
                enemySkillInfo = _loc2_.firstAttackInfo;
+               isMeFirst = false;
             }
 
             for (var i:int = 0; i < SocketConnection.WxFightingPets.length; ++i) {
@@ -264,11 +264,10 @@ package
                 }
             }
 
-            ExternalInterface.call("WxFightHandler.OnUseSkill",mySkillInfo,enemySkillInfo);
-         };
-         SocketConnection.addCmdListener(CommandID.NOTE_USE_SKILL,SocketConnection.WxOnUseSkill);
+            ExternalInterface.call("WxFightHandler.OnUseSkill",mySkillInfo,enemySkillInfo,isMeFirst);
+         });
          // 切换精灵
-         SocketConnection.WxOnChangePet = function(param1:SocketEvent):void
+         SocketConnection.addCmdListener(CommandID.CHANGE_PET,function(param1:SocketEvent):void
         {
             var _loc2_:ChangePetInfo = param1.data as ChangePetInfo;
             // 己方切换
@@ -285,8 +284,7 @@ package
                     ExternalInterface.call("WxFightHandler.OnChangePet",_loc2_);
                 }
             }
-        };
-         SocketConnection.addCmdListener(CommandID.CHANGE_PET,SocketConnection.WxOnChangePet);
+        });
 
          // 压血后恢复精灵体力
          SocketConnection.WxCurePet20HP = function():void
@@ -432,7 +430,6 @@ package
          }
          );
 
-         // 
          ExternalInterface.addCallback("WxCopyFire", function(fireType:uint):uint
          {
             SocketConnection.sendWithCallback(CommandID.LIST_MAP_PLAYER,function(param1:SocketEvent):void
