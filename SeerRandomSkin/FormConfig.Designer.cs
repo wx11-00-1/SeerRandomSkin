@@ -69,7 +69,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.checkBox_HideBattleStrategy = new System.Windows.Forms.CheckBox();
             this.cbAutoMute = new System.Windows.Forms.CheckBox();
-            this.btnRemoveSettings = new System.Windows.Forms.Button();
+            this.btnResetSettings = new System.Windows.Forms.Button();
             this.btnBackup = new System.Windows.Forms.Button();
             this.btnLoadConfig = new System.Windows.Forms.Button();
             this.cbLoadFormSpeedhack = new System.Windows.Forms.CheckBox();
@@ -498,15 +498,15 @@
             this.cbAutoMute.Text = "自动静音";
             this.cbAutoMute.UseVisualStyleBackColor = true;
             // 
-            // btnRemoveSettings
+            // btnResetSettings
             // 
-            this.btnRemoveSettings.Location = new System.Drawing.Point(54, 621);
-            this.btnRemoveSettings.Name = "btnRemoveSettings";
-            this.btnRemoveSettings.Size = new System.Drawing.Size(131, 23);
-            this.btnRemoveSettings.TabIndex = 38;
-            this.btnRemoveSettings.Text = "恢复默认配置";
-            this.btnRemoveSettings.UseVisualStyleBackColor = true;
-            this.btnRemoveSettings.Click += new System.EventHandler(this.btnRemoveSettings_Click);
+            this.btnResetSettings.Location = new System.Drawing.Point(54, 621);
+            this.btnResetSettings.Name = "btnResetSettings";
+            this.btnResetSettings.Size = new System.Drawing.Size(131, 23);
+            this.btnResetSettings.TabIndex = 38;
+            this.btnResetSettings.Text = "恢复默认配置";
+            this.btnResetSettings.UseVisualStyleBackColor = true;
+            this.btnResetSettings.Click += new System.EventHandler(this.btnResetSettings_Click);
             // 
             // btnBackup
             // 
@@ -546,7 +546,7 @@
             this.Controls.Add(this.cbLoadFormSpeedhack);
             this.Controls.Add(this.btnLoadConfig);
             this.Controls.Add(this.btnBackup);
-            this.Controls.Add(this.btnRemoveSettings);
+            this.Controls.Add(this.btnResetSettings);
             this.Controls.Add(this.cbAutoMute);
             this.Controls.Add(this.checkBox_HideBattleStrategy);
             this.Controls.Add(this.label12);
@@ -636,7 +636,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.CheckBox checkBox_HideBattleStrategy;
         private System.Windows.Forms.CheckBox cbAutoMute;
-        private System.Windows.Forms.Button btnRemoveSettings;
+        private System.Windows.Forms.Button btnResetSettings;
         private System.Windows.Forms.Button btnBackup;
         private System.Windows.Forms.Button btnLoadConfig;
         private System.Windows.Forms.CheckBox cbLoadFormSpeedhack;
