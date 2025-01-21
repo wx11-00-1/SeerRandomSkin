@@ -171,29 +171,9 @@ namespace SeerRandomSkin
             }
         }
 
-        public static bool DeleteUserConfig()
-        {
-            var path = GetUserConfigFilePath();
-            if (Path.GetFileName(path) != "user.config" || !File.Exists(path))
-            {
-                return false;
-            }
-            path = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(path)));
-            if (!path.EndsWith(new System.Diagnostics.StackTrace(true).GetFrame(1).GetMethod().DeclaringType.Namespace))
-            {
-                return false;
-            }
-            Directory.Delete(path, true);
-            return true;
-        }
-
         private void btnRemoveSettings_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("除了本窗口的配置外，还会删除用户自制的脚本、FD 替换等内容，确定继续吗？", "提示", MessageBoxButtons.OKCancel);
-            if (result == DialogResult.OK)
-            {
-                MessageBox.Show(DeleteUserConfig() ? "恢复成功，请重新打开程序" : "恢复失败");
-            }
+            SettingsDef.Reset();
         }
 
         private void btnBackup_Click(object sender, EventArgs e)
@@ -207,7 +187,7 @@ namespace SeerRandomSkin
             var dialog = new FolderBrowserDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                File.Copy(path, Path.Combine(dialog.SelectedPath, "SeerRandomSkin.config"), true);
+                File.Copy(path, Path.Combine(dialog.SelectedPath, "Seer.config"), true);
             }
         }
 
