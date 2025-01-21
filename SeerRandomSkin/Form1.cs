@@ -174,20 +174,6 @@ namespace SeerRandomSkin
             {
                 fiddleObject.FromReg = new Regex(fiddleObject.From);
             }
-
-            // 初始化记录所有可能换上来的皮肤（仅 H5 换肤需要）
-            CandidateSkins = new HashSet<int>(skinIds);
-            foreach (var skin in SpecificPetSkins)
-            {
-                CandidateSkins.Add(skin.Value);
-            }
-            // Flash 端的天尊都修复了，H5 端还是会卡。。。
-            CandidateSkins.Add(3788);
-            CandidateSkins.Add(290003788);
-            CandidateSkins.Add(1400512);
-            CandidateSkins.Add(2900512);
-            CandidateSkins.Add(1400617);
-            CandidateSkins.Add(2900617);
         }
 
         private ChromiumWebBrowser CreateChromium(string address)
@@ -221,6 +207,17 @@ namespace SeerRandomSkin
                     args.Browser.MainFrame.ExecuteJavaScriptAsync("document.body.style.overflow = 'hidden'");
                     if (address == gameH5Address)
                     {
+                        // 恢复 console.log 输出
+                        args.Browser.MainFrame.ExecuteJavaScriptAsync(@"
+                            (function() {
+                                var i = document.createElement('iframe');
+                                i.style.display = 'none';
+                                document.body.appendChild(i);
+                                window.console = i.contentWindow.console;
+                                document.body.removeChild(i);
+                            })();
+                        ");
+
                         args.Browser.MainFrame.ExecuteJavaScriptAsync(
                             "WxSeerUtil = {};" +
                             "WxSeerUtil.AutoCurePet = true;" +
@@ -283,6 +280,17 @@ namespace SeerRandomSkin
                             "   }," +
                             "   set: () => {}" +
                             "});");
+
+                        // Flash 端的天尊都修复了，H5 端还是会卡。。。
+                        CandidateSkins = new HashSet<int>
+                        {
+                            3788,
+                            290003788,
+                            1400512,
+                            2900512,
+                            1400617,
+                            2900617
+                        };
                     }
                     else if (address == gameAddress)
                     {
@@ -363,7 +371,7 @@ namespace SeerRandomSkin
                     ms = rgxH5PetSkin.Matches(request.Url);
                     if (ms.Count > 0) {
                         int skin_id = int.Parse(ms[0].Groups[1].Value);
-                        // 直接修改 H5 的皮肤 js 会反复重定向，所以把可能换上来的皮肤都排除掉
+                        // H5 的皮肤 js 会反复重定向，所以把新换上来的皮肤都排除掉
                         if (CandidateSkins.Contains(skin_id))
                         {
                             return base.GetResourceHandler(chromiumWebBrowser, browser, frame, request);
@@ -381,6 +389,7 @@ namespace SeerRandomSkin
                         {
                             rid = GetRandomSkinId();
                         }
+                        CandidateSkins.Add(rid);
                         return new WxUrlResourceHandler(String.Format("https://seerh5.61.com/resource/cjs_animate/pet/{0}/{1}",
                             rid,
                             (H5SkinsJs.ContainsKey(rid.ToString()) ? H5SkinsJs[rid.ToString()].ToString() : String.Format("{0}.js", rid))
