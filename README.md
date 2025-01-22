@@ -98,7 +98,7 @@ WxFightHandler.OnUseSkill = (mySkillInfo,enemySkillInfo) => {
   }
   else {
     for(var pet of mySkillInfo.changehps) { // 遍历我方除在场精灵外的其他精灵，若存活则切换上场
-      if(pet.hp>0) { WxFightHandler.Utils.ChangePet(pet.id); break; } // 注意此处的 pet.id，它的数值实际上就是精灵的获取时间，只是在这里混用了，大多数情况下 id 并不等于 catchTime
+      if(pet.hp>0) { WxFightHandler.Utils.ChangePet(pet.id); break; } // 注意此处的 pet.id，它的数值实际上就是精灵的获取时间，只是官方在这里混用了，大多数情况下 id 并不等于 catchTime
     }
   }
 };
@@ -183,11 +183,11 @@ WxFightHandler.OnFirstRound = async () => { // 函数要加 async 标识
   await WxFightHandler.Utils.UseSkill(0);
 };
 ```
-#### 1.10 WxFightHandler.Utils.GetBagPetsInfos
+#### 1.10 WxFightHandler.Utils.GetFightingPets
 
 ##### 说明
 
-无参数。获取背包中的精灵信息
+无参数。获取本场战斗中，我方出战精灵的部分信息（id、catchTime、hp、skillArray 等）
 
 #### 1.11 WxFightHandler.Utils.GetBag1
 
@@ -276,12 +276,6 @@ WxFightHandler.Utils.ChangeCloth([1300670, 0, 1300671, 0, 1300672, 0, 1300673, 0
 ###### title
 
 称号 id
-
-#### 1.18 WxFightHandler.Utils.GetFightingPets
-
-##### 说明
-
-无参数。获取本场战斗中，我方精灵的部分信息（id、catchTime、hp、skillArray 等）
 
 ### 2 发包函数
 

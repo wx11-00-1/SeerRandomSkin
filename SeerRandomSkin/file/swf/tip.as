@@ -175,12 +175,6 @@ package
          {
             return SocketConnection.WxFightingPets;
          });
-         // 根据 catchTime 获取背包中的精灵 ID
-         SocketConnection.WxGetBagPetIDByCatchTime = function(catchTime:uint):uint
-         {
-            return PetManager.getPetInfo(catchTime).id;
-         };
-         ExternalInterface.addCallback("WxGetBagPetIDByCatchTime",SocketConnection.WxGetBagPetIDByCatchTime);
 
          // 自动出招
          // 进入战斗

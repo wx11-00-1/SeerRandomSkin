@@ -86,8 +86,6 @@ namespace SeerRandomSkin
 
             "WxFightHandler.Utils.GetFightingPetID = () => { return document.Client.WxGetFightingPetID(); };" +
             "WxFightHandler.Utils.GetFightingPetCatchTime = () => { return document.Client.WxGetFightingPetCatchTime(); };" +
-            "WxFightHandler.Utils.GetBagPetIDByCatchTime = (ct) => { return document.Client.WxGetBagPetIDByCatchTime(ct); };" +
-
             "WxFightHandler.Utils.GetFightingPets = () => { return document.Client.WxGetFightingPets(); };" +
 
             "WxFightHandler.Utils.ChangePetByID = (ids) => { document.Client.WxChangePetByID(ids); };" +
