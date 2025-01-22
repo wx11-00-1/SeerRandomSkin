@@ -97,5 +97,15 @@ namespace SeerRandomSkin
         {
             RefreshListView(Form1.FiddleObjects.Where(obj => obj.Description.Contains(tbDesc.Text)).ToList());
         }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count == 1)
+            {
+                tbFrom.Text = listView1.SelectedItems[0].SubItems[1].Text;
+                tbTo.Text = listView1.SelectedItems[0].SubItems[2].Text;
+                tbDesc.Text = listView1.SelectedItems[0].SubItems[3].Text;
+            }
+        }
     }
 }
