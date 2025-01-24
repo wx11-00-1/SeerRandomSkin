@@ -86,14 +86,14 @@
             // 
             // tbFrom
             // 
-            this.tbFrom.Location = new System.Drawing.Point(48, 351);
+            this.tbFrom.Location = new System.Drawing.Point(48, 329);
             this.tbFrom.Name = "tbFrom";
             this.tbFrom.Size = new System.Drawing.Size(220, 21);
             this.tbFrom.TabIndex = 1;
             // 
             // tbTo
             // 
-            this.tbTo.Location = new System.Drawing.Point(300, 351);
+            this.tbTo.Location = new System.Drawing.Point(300, 329);
             this.tbTo.Name = "tbTo";
             this.tbTo.Size = new System.Drawing.Size(220, 21);
             this.tbTo.TabIndex = 2;
@@ -101,7 +101,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(277, 355);
+            this.label1.Location = new System.Drawing.Point(277, 333);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(17, 12);
             this.label1.TabIndex = 3;
@@ -110,7 +110,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(46, 402);
+            this.label2.Location = new System.Drawing.Point(46, 380);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 12);
             this.label2.TabIndex = 4;
@@ -118,14 +118,14 @@
             // 
             // tbDesc
             // 
-            this.tbDesc.Location = new System.Drawing.Point(93, 399);
+            this.tbDesc.Location = new System.Drawing.Point(93, 377);
             this.tbDesc.Name = "tbDesc";
             this.tbDesc.Size = new System.Drawing.Size(314, 21);
             this.tbDesc.TabIndex = 5;
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(439, 397);
+            this.btnAdd.Location = new System.Drawing.Point(439, 375);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 6;
@@ -135,7 +135,7 @@
             // 
             // btnDel
             // 
-            this.btnDel.Location = new System.Drawing.Point(531, 397);
+            this.btnDel.Location = new System.Drawing.Point(531, 375);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(75, 23);
             this.btnDel.TabIndex = 7;
@@ -145,7 +145,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(490, 442);
+            this.btnSearch.Location = new System.Drawing.Point(490, 420);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(116, 23);
             this.btnSearch.TabIndex = 8;
@@ -155,7 +155,7 @@
             // 
             // btnChooseFile
             // 
-            this.btnChooseFile.Location = new System.Drawing.Point(531, 351);
+            this.btnChooseFile.Location = new System.Drawing.Point(531, 329);
             this.btnChooseFile.Name = "btnChooseFile";
             this.btnChooseFile.Size = new System.Drawing.Size(75, 23);
             this.btnChooseFile.TabIndex = 9;
@@ -165,12 +165,11 @@
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(46, 322);
+            this.label3.Location = new System.Drawing.Point(46, 420);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(365, 12);
+            this.label3.Size = new System.Drawing.Size(361, 61);
             this.label3.TabIndex = 10;
-            this.label3.Text = "原网址可以用复合 C# 语法的正则表达式。修改后请重新打开本软件";
+            this.label3.Text = "左边编辑框输入原 url 的正则表达式，要注意 url 中常用的问号、小数点之类的符号，在正则表达式里有特殊含义。修改后重新打开本软件才会生效。";
             // 
             // FormFiddler
             // 
