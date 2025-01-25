@@ -118,6 +118,10 @@ namespace SeerRandomSkin
             "};" +
             "WxFightHandler.Utils.GetSkillNameByID = (skillID) => {" +
             "   return document.Client.WxGetSkillNameByID(skillID);" +
+            "};" +
+
+            "WxFightHandler.Utils.GetItemNumByID = (id) => {" +
+            "   return document.Client.WxGetItemNumByID(id);" +
             "};"
             ;
 

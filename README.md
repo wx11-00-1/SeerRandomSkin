@@ -311,6 +311,20 @@ WxFightHandler.Utils.ChangeCloth([1300670, 0, 1300671, 0, 1300672, 0, 1300673, 0
 根据 ID 获取技能名称
 ##### 参数
 ###### ID
-#### 3.4 WxFightHandler.Utils.GetAllCloth
+### 4 其他
+
+#### 4.1 WxFightHandler.Utils.GetAllCloth
+
 ##### 说明
 无参数。获取游戏内所有套装部件的信息
+
+#### 4.2 WxFightHandler.Utils.GetItemNumByID
+
+##### 说明
+
+根据 id 获取物品数量
+
+##### 参数
+
+###### ID
+

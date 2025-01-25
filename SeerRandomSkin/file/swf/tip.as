@@ -41,6 +41,7 @@ package
    import com.robot.core.info.UserInfo;
    import com.robot.core.ui.alert.SimpleAlarm;
    import com.robot.core.info.pet.PetInfo;
+   import com.robot.core.manager.ItemManager;
    
    [Embed(source="/_assets/assets.swf", symbol="item")]
    public dynamic class item extends MovieClip
@@ -484,6 +485,13 @@ package
          ExternalInterface.addCallback("WxGetSkillNameByID", function(skillID:uint):String
          {
             return SkillXMLInfo.getName(skillID);
+         }
+         );
+
+         // 获取物品数量
+         ExternalInterface.addCallback("WxGetItemNumByID", function(id:uint):int
+         {
+            return ItemManager.getNumByID(id);
          }
          );
 

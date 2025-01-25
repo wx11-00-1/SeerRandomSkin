@@ -588,10 +588,10 @@ namespace SeerRandomSkin.Properties {
             "killInfo.skillID===0 ? \'没有出招\' : \'使用技能 [\' + WxFightHandler.Utils.GetSkillNameByID" +
             "(mySkillInfo.skillID) + \']\')}`);\\n    console.log(` 敌方${(enemySkillInfo.skillID=" +
             "==0? \'没有出招\' : \'使用技能 [\' + WxFightHandler.Utils.GetSkillNameByID(enemySkillInfo.sk" +
-            "illID) + \']\')}`);\\n    originUseSkill(mySkillInfo,enemySkillInfo);\\n  };\\n\\n  le" +
-            "t originChangePet = fight[\'OnChangePet\'];\\n  fight[\'OnChangePet\'] = (petInfo) =>" +
-            " {\\n    console.log(`【${WxFightHandler.Utils.GetPetNameByID(petInfo.petID)}】登场`)" +
-            ";\\n    originChangePet(petInfo);\\n  };\\n})(WxFightHandler);\"\r\n}")]
+            "illID) + \']\')}`);\\n    originUseSkill(mySkillInfo,enemySkillInfo,isMeFirst);\\n  " +
+            "};\\n\\n  let originChangePet = fight[\'OnChangePet\'];\\n  fight[\'OnChangePet\'] = (p" +
+            "etInfo) => {\\n    console.log(`【${WxFightHandler.Utils.GetPetNameByID(petInfo.pe" +
+            "tID)}】登场`);\\n    originChangePet(petInfo);\\n  };\\n})(WxFightHandler);\"\r\n}")]
         public string FlashFightTemplate {
             get {
                 return ((string)(this["FlashFightTemplate"]));
