@@ -151,7 +151,10 @@ package
                     if (pet.hp > 0 && pet.catchTime != SocketConnection.WxFightingPetCatchTime && pet.id == id) { SocketConnection.WxChangePet(pet.catchTime); return; }
                 }
             }
-            ExternalInterface.call("console.log","未找到指定 id 的精灵");
+            for each(var pet in SocketConnection.WxFightingPets) {
+                if (pet.hp > 0 && pet.catchTime != SocketConnection.WxFightingPetCatchTime) { SocketConnection.WxChangePet(pet.catchTime); break; }
+            }
+            ExternalInterface.call("console.log","未找到指定 id 的精灵",ids);
          });
          // 使用药剂
          ExternalInterface.addCallback("WxUsePetItem", function(itemID:uint):void

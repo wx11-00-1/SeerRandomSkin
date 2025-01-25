@@ -180,7 +180,7 @@ WxFightHandler.OnChangePet = (petInfo) => {
 WxFightHandler.OnFirstRound = async () => { // 函数要加 async 标识
   await WxFightHandler.Utils.Delay(1000);
   console.log('开始对战');
-  await WxFightHandler.Utils.UseSkill(0);
+  WxFightHandler.Utils.UseSkill(0);
 };
 ```
 #### 1.10 WxFightHandler.Utils.GetFightingPets
