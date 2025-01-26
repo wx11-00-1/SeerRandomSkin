@@ -33,7 +33,10 @@
             this.button1 = new System.Windows.Forms.Button();
             this.btnRandom = new System.Windows.Forms.Button();
             this.btnLike = new System.Windows.Forms.Button();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
             // 
             // numericUpDown1
@@ -88,12 +91,46 @@
             this.btnLike.UseVisualStyleBackColor = true;
             this.btnLike.Click += new System.EventHandler(this.btnLike_Click);
             // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(47, 143);
+            this.numericUpDown2.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(120, 21);
+            this.numericUpDown2.TabIndex = 4;
+            this.numericUpDown2.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(205, 143);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "确定";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // FormStrollMap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(412, 164);
+            this.ClientSize = new System.Drawing.Size(412, 222);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.numericUpDown2);
             this.Controls.Add(this.btnLike);
             this.Controls.Add(this.btnRandom);
             this.Controls.Add(this.button1);
@@ -102,6 +139,7 @@
             this.Name = "FormStrollMap";
             this.Load += new System.EventHandler(this.FormStrollMap_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -112,5 +150,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnRandom;
         private System.Windows.Forms.Button btnLike;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.Button button2;
     }
 }

@@ -32,5 +32,10 @@ namespace SeerRandomSkin
             Properties.Settings.Default.FavouriteMap = (int)numericUpDown1.Value;
             Properties.Settings.Default.Save();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form1.chromiumBrowser.ExecuteScriptAsync(String.Format("document.Client.WxChangeMap({0})", numericUpDown2.Value));
+        }
     }
 }
