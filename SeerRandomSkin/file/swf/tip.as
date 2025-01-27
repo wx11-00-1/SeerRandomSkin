@@ -42,6 +42,7 @@ package
    import com.robot.core.ui.alert.SimpleAlarm;
    import com.robot.core.info.pet.PetInfo;
    import com.robot.core.manager.ItemManager;
+   import com.robot.app.fight.FightManager;
    
    [Embed(source="/_assets/assets.swf", symbol="item")]
    public dynamic class item extends MovieClip
@@ -495,6 +496,13 @@ package
          ExternalInterface.addCallback("WxGetItemNumByID", function(id:uint):int
          {
             return ItemManager.getNumByID(id);
+         }
+         );
+
+         // 隐藏对战界面
+         ExternalInterface.addCallback("WxSetIsHidePetFight", function(hide:Boolean):void
+         {
+            FightManager.petFightClass = hide ? "PetFightDLL" : "PetFightDLL_201308";
          }
          );
 

@@ -246,7 +246,7 @@
             this.btnFightPanelHide.Name = "btnFightPanelHide";
             this.btnFightPanelHide.Size = new System.Drawing.Size(141, 23);
             this.btnFightPanelHide.TabIndex = 9;
-            this.btnFightPanelHide.Text = "隐藏Flash对战界面";
+            this.btnFightPanelHide.Text = "隐藏对战界面";
             this.btnFightPanelHide.UseVisualStyleBackColor = true;
             this.btnFightPanelHide.Click += new System.EventHandler(this.btnFightPanelHide_Click);
             // 
@@ -256,7 +256,7 @@
             this.btnFightPanelShow.Name = "btnFightPanelShow";
             this.btnFightPanelShow.Size = new System.Drawing.Size(141, 23);
             this.btnFightPanelShow.TabIndex = 10;
-            this.btnFightPanelShow.Text = "显示Flash对战界面";
+            this.btnFightPanelShow.Text = "显示对战界面";
             this.btnFightPanelShow.UseVisualStyleBackColor = true;
             this.btnFightPanelShow.Click += new System.EventHandler(this.btnFightPanelShow_Click);
             // 

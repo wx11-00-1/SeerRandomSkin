@@ -40,7 +40,6 @@ namespace SeerRandomSkin
 
         public static string FormTitle; // 窗口标题
         public static Action<string> ChangeTitleAction;
-        public static bool IsHideFlashFightPanel { get; set; }
 
         public static Dictionary<int, int> SpecificPetSkins;
 
@@ -264,7 +263,6 @@ namespace SeerRandomSkin
                     {
                         args.Browser.MainFrame.ExecuteJavaScriptAsync(String.Format("document.body.style.zoom = {0};", Configs.FlashZoom));
                         args.Browser.MainFrame.ExecuteJavaScriptAsync(FormFlashFightHandler.JS_FIGHT_ENVIRONMENT);
-                        IsHideFlashFightPanel = false;
                     }
                 }
             };
@@ -328,12 +326,9 @@ namespace SeerRandomSkin
                         chromiumBrowser.ExecuteScriptAsync($"console.log({rid}, document.Client.WxGetPetNameByID({rid}))");
                         return new WxUrlResourceHandler(String.Format("https://seer.61.com/resource/fightResource/pet/swf/{0}.swf", rid));
                     }
-                    if (url.StartsWith("https://seer.61.com/dll/PetFightDLL_201308.swf?"))
+                    if (url.StartsWith("https://seer.61.com/dll/PetFightDLL.swf?"))
                     {
-                        if (IsHideFlashFightPanel)
-                        {
-                            return new WxFileResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\PetFightDLL.swf");
-                        }
+                        return new WxFileResourceHandler(AppDomain.CurrentDomain.BaseDirectory + @"\file\swf\PetFightDLL.swf");
                     }
                     else if (url.StartsWith("https://seer.61.com/resource/xml/battleStrategy.xml?"))
                     {
@@ -677,12 +672,6 @@ namespace SeerRandomSkin
         private void 变速ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FlashSpeedHack();
-        }
-
-        private void 隐藏战斗界面ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            IsHideFlashFightPanel = !IsHideFlashFightPanel;
-            MessageBox.Show(IsHideFlashFightPanel ? "战斗界面已隐藏" : "战斗界面正常显示");
         }
 
         private void 压血ToolStripMenuItem_Click(object sender, EventArgs e)

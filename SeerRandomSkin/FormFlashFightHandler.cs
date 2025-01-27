@@ -294,12 +294,12 @@ namespace SeerRandomSkin
 
         private void btnFightPanelHide_Click(object sender, EventArgs e)
         {
-            Form1.IsHideFlashFightPanel = true;
+            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxSetIsHidePetFight(true);");
         }
 
         private void btnFightPanelShow_Click(object sender, EventArgs e)
         {
-            Form1.IsHideFlashFightPanel = false;
+            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxSetIsHidePetFight(false);");
         }
 
         private void btnAutoCureOpen_Click(object sender, EventArgs e)
