@@ -58,6 +58,28 @@ package
             return;
          }
 
+         // xml
+         ExternalInterface.addCallback("WxGetItemNameByID", function(itemID:uint):String
+         {
+            return ItemXMLInfo.getName(itemID);
+         }
+         );
+         ExternalInterface.addCallback("WxGetAllCloth", function():Array
+         {
+            return ItemXMLInfo.getAllCloth();
+         }
+         );
+         ExternalInterface.addCallback("WxGetPetNameByID", function(petID:uint):String
+         {
+            return PetXMLInfo.getName(petID);
+         }
+         );
+         ExternalInterface.addCallback("WxGetSkillNameByID", function(skillID:uint):String
+         {
+            return SkillXMLInfo.getName(skillID);
+         }
+         );
+
          // 获取背包精灵信息
         ExternalInterface.addCallback("WxGetBagPetInfos",
             function():Array
@@ -470,28 +492,6 @@ package
          }
          );
 
-         // xml
-         ExternalInterface.addCallback("WxGetItemNameByID", function(itemID:uint):String
-         {
-            return ItemXMLInfo.getName(itemID);
-         }
-         );
-         ExternalInterface.addCallback("WxGetAllCloth", function():Array
-         {
-            return ItemXMLInfo.getAllCloth();
-         }
-         );
-         ExternalInterface.addCallback("WxGetPetNameByID", function(petID:uint):String
-         {
-            return PetXMLInfo.getName(petID);
-         }
-         );
-         ExternalInterface.addCallback("WxGetSkillNameByID", function(skillID:uint):String
-         {
-            return SkillXMLInfo.getName(skillID);
-         }
-         );
-
          // 获取物品数量
          ExternalInterface.addCallback("WxGetItemNumByID", function(id:uint):int
          {
@@ -505,6 +505,21 @@ package
             FightManager.petFightClass = hide ? "PetFightDLL" : "PetFightDLL_201308";
          }
          );
+
+         // 自动与地图上的野生精灵对战
+         SocketConnection.WxOnOgreList = function(e:SocketEvent):void {
+            var ba:ByteArray = e.data as ByteArray;
+            ba.position = 0;
+            for (var i:int = 0; i < 9; ++i) {
+                if (ba.readUnsignedInt() == SocketConnection.WxWaitingForOrgeID) { FightManager.fightWithNpc(i); return; }
+            }
+         };
+         ExternalInterface.addCallback("WxAutoFight", function(petID:uint):void
+         {
+            SocketConnection.removeCmdListener(CommandID.MAP_OGRE_LIST,SocketConnection.WxOnOgreList);
+            SocketConnection.WxWaitingForOrgeID = petID;
+            SocketConnection.addCmdListener(CommandID.MAP_OGRE_LIST,SocketConnection.WxOnOgreList);
+         });
 
          // 将 nono 丢回仓库
          setTimeout(function():void

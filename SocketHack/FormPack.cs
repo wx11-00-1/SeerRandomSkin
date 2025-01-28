@@ -8,8 +8,6 @@ namespace SocketHack
 {
     public partial class FormPack : Form
     {
-        private const int titleAndMenuHeight = 60;
-
         public static Action<string, string, string> ActionShowPack;
         public static Action<string> ActionShowMsg;
 

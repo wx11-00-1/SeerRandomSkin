@@ -328,3 +328,27 @@ WxFightHandler.Utils.ChangeCloth([1300670, 0, 1300671, 0, 1300672, 0, 1300673, 0
 
 ###### ID
 
+#### 4.3 WxFightHandler.Utils.AutoFight
+
+##### 说明
+
+自动向地图上的野生精灵发起对战
+
+##### 参数
+
+###### ID
+
+野生精灵的 ID
+
+##### 示例
+
+```js
+// 先去克洛斯星
+WxFightHandler.OnFirstRound = () => {
+    // 对战首回合，使用特殊胶囊捕捉
+    WxFightHandler.Utils.Send(2409,300505);
+    WxFightHandler.Utils.ItemBuy(300505);
+};
+WxFightHandler.Utils.AutoFight(164); // 闪光皮皮
+```
+

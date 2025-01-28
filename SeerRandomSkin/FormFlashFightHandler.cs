@@ -122,7 +122,9 @@ namespace SeerRandomSkin
 
             "WxFightHandler.Utils.GetItemNumByID = (id) => {" +
             "   return document.Client.WxGetItemNumByID(id);" +
-            "};"
+            "};" +
+
+            "WxFightHandler.Utils.AutoFight = id => document.Client.WxAutoFight(id);"
             ;
 
         public const string JS_FIGHT_DEFAULT =
@@ -148,7 +150,7 @@ namespace SeerRandomSkin
             "};"
             ;
 
-        private static JObject jFightTemplate = Utils.TryGetJObject(Properties.Settings.Default.FlashFightTemplate);
+        private static readonly JObject jFightTemplate = Utils.TryGetJObject(Properties.Settings.Default.FlashFightTemplate);
 
         public FormFlashFightHandler()
         {
@@ -171,29 +173,16 @@ namespace SeerRandomSkin
 
         private void lvTemplate_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var indices = lvTemplate.SelectedIndices;
-            if (indices.Count == 1)
-            {
-                var it = lvTemplate.Items[indices[0]];
-                tbTemplateName.Text = it.SubItems[0].Text;
-                richTextBox_script.Text = it.SubItems[1].Text;
-            }
+            if (lvTemplate.SelectedItems.Count != 1) return;
+            var item = lvTemplate.SelectedItems[0];
+            tbTemplateName.Text = item.Text;
+            richTextBox_script.Text = jFightTemplate[item.Text].ToString();
         }
 
-        private LinkedList<ListViewItem> GetAllListViewItems()
+        private IEnumerable<ListViewItem> GetAllListViewItems()
         {
-            var items = new LinkedList<ListViewItem>();
-            var properties = jFightTemplate.Properties();
-            foreach (var property in properties)
-            {
-                var item = new ListViewItem()
-                {
-                    Text = property.Name,
-                };
-                item.SubItems.Add(property.Value.ToString());
-                items.AddLast(item);
-            }
-            return items;
+            // 取所有 key
+            return jFightTemplate.AsJEnumerable().Select(item => new ListViewItem(item.Path));
         }
 
         private void ResetLvTemplate()

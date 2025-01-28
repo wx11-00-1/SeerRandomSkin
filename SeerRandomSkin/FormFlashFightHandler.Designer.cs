@@ -32,8 +32,6 @@
             this.richTextBox_script = new System.Windows.Forms.RichTextBox();
             this.btnTest = new System.Windows.Forms.Button();
             this.lvTemplate = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tbTemplateName = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
@@ -75,28 +73,16 @@
             // 
             // lvTemplate
             // 
-            this.lvTemplate.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2});
             this.lvTemplate.FullRowSelect = true;
             this.lvTemplate.HideSelection = false;
             this.lvTemplate.Location = new System.Drawing.Point(31, 37);
+            this.lvTemplate.MultiSelect = false;
             this.lvTemplate.Name = "lvTemplate";
             this.lvTemplate.Size = new System.Drawing.Size(141, 451);
             this.lvTemplate.TabIndex = 2;
             this.lvTemplate.UseCompatibleStateImageBehavior = false;
-            this.lvTemplate.View = System.Windows.Forms.View.Details;
+            this.lvTemplate.View = System.Windows.Forms.View.List;
             this.lvTemplate.SelectedIndexChanged += new System.EventHandler(this.lvTemplate_SelectedIndexChanged);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "脚本列表";
-            this.columnHeader1.Width = 140;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "内容";
-            this.columnHeader2.Width = 267;
             // 
             // tbTemplateName
             // 
@@ -314,8 +300,6 @@
         private System.Windows.Forms.RichTextBox richTextBox_script;
         private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.ListView lvTemplate;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.TextBox tbTemplateName;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnRemove;
