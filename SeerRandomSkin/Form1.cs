@@ -59,7 +59,11 @@ namespace SeerRandomSkin
             //初始化cef
             CefSettings settings = new CefSettings();
             settings.CefCommandLineArgs.Add("ppapi-flash-version", "99.0.0.999"); //显示out of date时，直接冒充一下版本
+#if x64
             settings.CefCommandLineArgs.Add("ppapi-flash-path", @"file/dll/pepflashplayer.dll");
+#else
+            settings.CefCommandLineArgs.Add("ppapi-flash-path", @"file/dll/pepflashplayer32_15_0_0_152.dll");
+#endif
             settings.CachePath = AppDomain.CurrentDomain.BaseDirectory + @"\cache";
             settings.LogSeverity = LogSeverity.Disable;//关闭记录debug.log的功能
             Cef.EnableHighDPISupport();
@@ -119,7 +123,9 @@ namespace SeerRandomSkin
             new Thread(() =>
             {
                 Thread.Sleep(3000);
+#if x64
                 if (Configs.IsUseSocketHack) FlashSocketHack();
+#endif
                 FlashSpeedHack();
             })
             { IsBackground = true }.Start();
