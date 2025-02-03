@@ -352,3 +352,30 @@ WxFightHandler.OnFirstRound = () => {
 WxFightHandler.Utils.AutoFight(164); // 闪光皮皮
 ```
 
+#### 4.4 WxFightHandler.Utils.SetIsAutoCure
+
+##### 说明
+
+设置对战结束后是否自动治疗
+
+##### 参数
+
+true 或 false
+
+#### 4.5 WxFightHandler.Utils.CurePet20HP
+
+##### 说明
+
+无参数。为出战背包的所有精灵恢复20HP、10PP
+
+#### 4.6 WxFightHandler.Utils.CurePetAll
+
+##### 说明
+
+无参数。恢复整个背包所有精灵体力、PP
+
+#### 4.7 WxFightHandler.Utils.LowHP
+
+##### 说明
+
+无参数。关闭自动治疗，发起与白虎完全体的对战，对战结束后恢复20HP

@@ -124,7 +124,12 @@ namespace SeerRandomSkin
             "   return document.Client.WxGetItemNumByID(id);" +
             "};" +
 
-            "WxFightHandler.Utils.AutoFight = id => document.Client.WxAutoFight(id);"
+            "WxFightHandler.Utils.AutoFight = id => document.Client.WxAutoFight(id);" +
+
+            "WxFightHandler.Utils.SetIsAutoCure = cure => cure ? document.Client.WxAutoCureStart() : document.Client.WxAutoCureStop();" +
+            "WxFightHandler.Utils.CurePet20HP = () => document.Client.WxCurePet20HP();" +
+            "WxFightHandler.Utils.CurePetAll = () => document.Client.WxCurePetAll();" +
+            "WxFightHandler.Utils.LowHP = () => document.Client.WxLowHP();"
             ;
 
         public const string JS_FIGHT_DEFAULT =
@@ -262,8 +267,7 @@ namespace SeerRandomSkin
 
         private void btnItem10pp_Click(object sender, EventArgs e)
         {
-            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxItemBuy(300017);");
-            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxUsePetItem(300017);");
+            Form1.chromiumBrowser.ExecuteScriptAsync("WxFightHandler.Utils.UsePetItem10PP();");
         }
 
         private void btn20pp_Click(object sender, EventArgs e)

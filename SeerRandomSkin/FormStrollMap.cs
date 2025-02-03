@@ -24,7 +24,7 @@ namespace SeerRandomSkin
         private async void btnRandom_Click(object sender, EventArgs e)
         {
             int.TryParse((await Form1.chromiumBrowser.EvaluateScriptAsync("document.Client.WxChangeMapRandom()")).Result.ToString(), out int id);
-            numericUpDown1.Value = id;
+            numericUpDown2.Value = id;
         }
 
         private void btnLike_Click(object sender, EventArgs e)
