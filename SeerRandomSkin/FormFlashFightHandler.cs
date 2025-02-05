@@ -26,10 +26,14 @@ namespace SeerRandomSkin
             "WxFightHandler.Utils.GetBag2 = () => {" +
             "   return document.Client.WxGetBag2();" +
             "};" +
-            "WxFightHandler.Utils.SetPetBag = (bag1,bag2=[]) => new Promise((resolve) => {" +
-            "   WxFightHandler.Utils._as3Callback = resolve;" +
-            "   document.Client.WxSetPetBag(bag1,bag2);" +
-            "});" +
+            "WxFightHandler.Utils.ClearBag = () => new Promise(res => { WxFightHandler.Utils._as3Callback = res; document.Client.WxClearBag(); });" +
+            "WxFightHandler.Utils.SetBag1 = bag1 => new Promise(res => { WxFightHandler.Utils._as3Callback = res; document.Client.WxSetBag1(bag1); });" +
+            "WxFightHandler.Utils.SetBag2 = bag2 => new Promise(res => { WxFightHandler.Utils._as3Callback = res; document.Client.WxSetBag2(bag2); });" +
+            "WxFightHandler.Utils.SetPetBag = async (bag1,bag2=[]) => {" +
+            "   await WxFightHandler.Utils.ClearBag();" +
+            "   await WxFightHandler.Utils.SetBag1(bag1);" +
+            "   await WxFightHandler.Utils.SetBag2(bag2);" +
+            "};" +
 
             "WxFightHandler.Utils.GetStoragePets = async () => await new Promise((resolve) => {" +
             "   WxFightHandler.Utils._as3Callback = resolve;" +

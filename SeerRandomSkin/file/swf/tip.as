@@ -374,34 +374,40 @@ package
                 return PetManager.getSecondBagMap();
             }
         );
-         ExternalInterface.addCallback("WxSetPetBag", function(bag1:Array, bag2:Array):void
-         {
-            // 清空背包
-            var promises:Array = new Array();
+        ExternalInterface.addCallback("WxClearBag",function():void
+        {
             var bagBoth:Array = PetManager.getBagMap(true);
-            for each(var pet in bagBoth)
-            {
-                promises.push(PetManager.bagToInStorage(pet.catchTime));
+            if (bagBoth.length > 0) {
+                var promises:Array = new Array();
+                for each(var pet in bagBoth) { promises.push(PetManager.bagToInStorage(pet.catchTime)); }
+                Promise.all(promises).then(function():void { ExternalInterface.call("WxFightHandler.Utils._as3Callback"); });
             }
-            Promise.all(promises).then(function():void {
-                promises = [];
-                // 放入精灵
-                for each(var pet in bag1)
-                {
-                    promises.push(PetManager.storageToInBag(pet));
-                }
-                for each(var pet in bag2)
-                {
-                    promises.push(PetManager.storageToSecondBag(pet));
-                }
-                Promise.all(promises).then(function():void
-                {
-                    PetManager.upDateByOnce();
-                    ExternalInterface.call("WxFightHandler.Utils._as3Callback");
-                });
-            });
-         }
-         );
+            else {
+                ExternalInterface.call("WxFightHandler.Utils._as3Callback");
+            }
+        });
+        ExternalInterface.addCallback("WxSetBag1",function(bag1:Array):void
+        {
+            if (bag1.length > 0) {
+                var promises:Array = new Array();
+                for each(var pet in bag1) { promises.push(PetManager.storageToInBag(pet)); }
+                Promise.all(promises).then(function():void { PetManager.upDateByOnce(); ExternalInterface.call("WxFightHandler.Utils._as3Callback"); });
+            }
+            else {
+                ExternalInterface.call("WxFightHandler.Utils._as3Callback");
+            }
+        });
+        ExternalInterface.addCallback("WxSetBag2",function(bag2:Array):void
+        {
+            if (bag2.length > 0) {
+                var promises:Array = new Array();
+                for each(var pet in bag2) { promises.push(PetManager.storageToSecondBag(pet)); }
+                Promise.all(promises).then(function():void { PetManager.upDateByOnce(); ExternalInterface.call("WxFightHandler.Utils._as3Callback"); });
+            }
+            else {
+                ExternalInterface.call("WxFightHandler.Utils._as3Callback");
+            }
+        });
          ExternalInterface.addCallback("WxGetClothes", function():Array
          {
             var clothes:Array = MainManager.actorInfo.clothes;
