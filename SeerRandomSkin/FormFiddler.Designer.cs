@@ -44,6 +44,7 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnChooseFile = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnOpenFilePath = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listView1
@@ -145,7 +146,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(490, 420);
+            this.btnSearch.Location = new System.Drawing.Point(490, 415);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(116, 23);
             this.btnSearch.TabIndex = 8;
@@ -171,11 +172,22 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "左边编辑框输入原 url 的正则表达式，要注意 url 中常用的问号、小数点之类的符号，在正则表达式里有特殊含义。修改后重新打开本软件才会生效。";
             // 
+            // btnOpenFilePath
+            // 
+            this.btnOpenFilePath.Location = new System.Drawing.Point(490, 444);
+            this.btnOpenFilePath.Name = "btnOpenFilePath";
+            this.btnOpenFilePath.Size = new System.Drawing.Size(116, 23);
+            this.btnOpenFilePath.TabIndex = 11;
+            this.btnOpenFilePath.Text = "打开文件所在位置";
+            this.btnOpenFilePath.UseVisualStyleBackColor = true;
+            this.btnOpenFilePath.Click += new System.EventHandler(this.btnOpenFilePath_Click);
+            // 
             // FormFiddler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(661, 502);
+            this.Controls.Add(this.btnOpenFilePath);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnChooseFile);
             this.Controls.Add(this.btnSearch);
@@ -212,5 +224,6 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnChooseFile;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnOpenFilePath;
     }
 }

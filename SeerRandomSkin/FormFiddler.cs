@@ -54,7 +54,13 @@ namespace SeerRandomSkin
                 {
                     Directory.CreateDirectory(Form1.FiddleFilePath);
                 }
-                File.Copy(fiddleFilePath, Path.Combine(Form1.FiddleFilePath, tbTo.Text), true);
+                var destFilename = Path.Combine(Form1.FiddleFilePath, tbTo.Text);
+                if (File.Exists(destFilename))
+                {
+                    MessageBox.Show("请不要用同一个文件替换多个URL");
+                    return;
+                }
+                File.Copy(fiddleFilePath, destFilename);
                 isUrl = false;
             }
             Form1.FiddleObjects.Add(new FiddleObject
@@ -106,6 +112,11 @@ namespace SeerRandomSkin
                 tbTo.Text = listView1.SelectedItems[0].SubItems[2].Text;
                 tbDesc.Text = listView1.SelectedItems[0].SubItems[3].Text;
             }
+        }
+
+        private void btnOpenFilePath_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(Form1.FiddleFilePath);
         }
     }
 }
