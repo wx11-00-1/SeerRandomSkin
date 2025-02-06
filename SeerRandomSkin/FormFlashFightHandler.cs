@@ -133,7 +133,9 @@ namespace SeerRandomSkin
             "WxFightHandler.Utils.SetIsAutoCure = cure => cure ? document.Client.WxAutoCureStart() : document.Client.WxAutoCureStop();" +
             "WxFightHandler.Utils.CurePet20HP = () => document.Client.WxCurePet20HP();" +
             "WxFightHandler.Utils.CurePetAll = () => document.Client.WxCurePetAll();" +
-            "WxFightHandler.Utils.LowHP = () => document.Client.WxLowHP();"
+            "WxFightHandler.Utils.LowHP = () => document.Client.WxLowHP();" +
+            "WxFightHandler.Utils.SimpleAlarm = msg => document.Client.WxSimpleAlarm(msg);" +
+            "WxFightHandler.Utils.Alarm = msg => document.Client.WxAlarm(msg);"
             ;
 
         public const string JS_FIGHT_DEFAULT =

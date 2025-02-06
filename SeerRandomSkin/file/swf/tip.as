@@ -453,7 +453,7 @@ package
                 MainManager.actorModel.refreshTitle(MainManager.actorInfo.curTitle);
             },title);
             }
-            SimpleAlarm.show(MainManager.actorInfo.curTitle);
+            SimpleAlarm.show(title);
          }
          );
 
@@ -526,6 +526,10 @@ package
             SocketConnection.WxWaitingForOrgeID = petID;
             SocketConnection.addCmdListener(CommandID.MAP_OGRE_LIST,SocketConnection.WxOnOgreList);
          });
+
+         // 提示信息
+         ExternalInterface.addCallback("WxSimpleAlarm",SimpleAlarm.show);
+         ExternalInterface.addCallback("WxAlarm",function(msg:String):void { Alarm.show(msg); });
 
          // 将 nono 丢回仓库
          setTimeout(function():void
