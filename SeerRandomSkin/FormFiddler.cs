@@ -116,7 +116,7 @@ namespace SeerRandomSkin
 
         private void btnOpenFilePath_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(Form1.FiddleFilePath);
+            if (Directory.Exists(Form1.FiddleFilePath)) System.Diagnostics.Process.Start(Form1.FiddleFilePath);
         }
     }
 }
