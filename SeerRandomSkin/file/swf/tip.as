@@ -43,6 +43,8 @@ package
    import com.robot.core.info.pet.PetInfo;
    import com.robot.core.manager.ItemManager;
    import com.robot.app.fight.FightManager;
+    import org.taomee.manager.EventManager;
+    import com.robot.core.event.RobotEvent;
    
    [Embed(source="/_assets/assets.swf", symbol="item")]
    public dynamic class item extends MovieClip
@@ -64,11 +66,6 @@ package
             return ItemXMLInfo.getName(itemID);
          }
          );
-         ExternalInterface.addCallback("WxGetAllCloth", function():Array
-         {
-            return ItemXMLInfo.getAllCloth();
-         }
-         );
          ExternalInterface.addCallback("WxGetPetNameByID", function(petID:uint):String
          {
             return PetXMLInfo.getName(petID);
@@ -79,6 +76,12 @@ package
             return SkillXMLInfo.getName(skillID);
          }
          );
+
+         EventManager.addEventListener(RobotEvent.CREATED_MAP_USER,function():void
+         {
+            EventManager.removeEventListener(RobotEvent.CREATED_MAP_USER,arguments.callee);
+             SocketConnection.send(CommandID.NONO_FOLLOW_OR_HOOM,0); // 将 nono 丢回仓库
+         });
 
          // 获取背包精灵信息
         ExternalInterface.addCallback("WxGetBagPetInfos",
@@ -453,7 +456,6 @@ package
                 MainManager.actorModel.refreshTitle(MainManager.actorInfo.curTitle);
             },title);
             }
-            SimpleAlarm.show(title);
          }
          );
 
@@ -530,12 +532,6 @@ package
          // 提示信息
          ExternalInterface.addCallback("WxSimpleAlarm",SimpleAlarm.show);
          ExternalInterface.addCallback("WxAlarm",function(msg:String):void { Alarm.show(msg); });
-
-         // 将 nono 丢回仓库
-         setTimeout(function():void
-         {
-             SocketConnection.send(CommandID.NONO_FOLLOW_OR_HOOM,0);
-         }, 1000);
       }
    }
 }

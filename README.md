@@ -9,7 +9,7 @@
 
 ## 使用
 
-下载 Releases 中的压缩包，解压，运行 SeerRandomSkin.exe
+下载 Releases 中的压缩包，解压，运行可执行程序
 
 ###### 异常情况处理
 
@@ -27,10 +27,10 @@
 
 顺着这条线索，我在吾爱论坛上又下载到一份易语言版本的发包例子；因为之前我也研究过易语言变速，又没学过 C#，当然是从易语言开始了。
 然后就碰上了如何实现 FD 功能的问题，试用过别人封装的易语言的 FD 模块，都很容易卡对战加载；看模块的介绍说是封装了 C# 的库，于是我也转向了 C#。
-因为站在了巨人的肩膀上（直接抄代码)，封包功能方面少踩了一些坑。
-变速功能就难多了，好在最后还是找到了能参考的项目；一个有趣的地方是，能够实现只加速精灵出招动画，不加速倒计时！（有个叫彩虹的登录器，也用到了这个技巧）
+因为站在了巨人的肩膀上（直接抄核心代码)，封包功能方面少踩了一些坑。
+变速功能就难多了，好在最后还是找到了能参考的项目；一个有趣的地方是，能够实现只加速精灵出招动画，不加速倒计时！（有个Rainbow登录器，应该也是用这个技巧）
 
-后来又通过 TO 登录器认识了 CefSharp，开了个新的巨坑。。。
+后来又通过 TO 登录器认识了 CefSharp，开了这个新的巨坑。。。
 
 从24年开始，游戏环境剧烈变动。无论是 PVP 还是 PVE，都让我感到枯燥乏味。
 完全成为“机械族”，丧失了游戏的意义；想过彻底告别，亦是难以割舍，我还是喜欢好看的精灵，华丽的特效，偶然想到的随机换肤这个点子，也是我选择留下来的重要原因。
@@ -40,15 +40,11 @@
 ## 功能
 
 - Flash 端
-  - **小助手蒂朵**，在游戏内部提供借绿火和自动治疗等功能
   - 随机换肤
   - 关电池
   - 变速
-  - 更换加载背景
-  - 自动出招
   - 读取封包
-  - 用 js 制作日常脚本
-
+  - **对战助手**，用 js 代码制作日常脚本
 - H5 端
   - 保存当前套装、称号、精灵背包，一键更换
   - 战斗结束后自动治疗
@@ -60,7 +56,7 @@
 
 - 使用谷歌浏览器内核，有着与官方微端相同的优势：
   - 自带 Flash 插件，无需另外安装。画质更加清晰，同时更加稳定，大幅减少与 Flash 相关问题的出现
-  - 支持 H5 端（性能似乎比 WebView2 内核更好）
+  - 支持 H5 端
   - 开发者工具
   - 与网页通过 js 代码进行交互
 
@@ -115,7 +111,7 @@ WxFightHandler.Utils.UsePetItem(300011); // 使用回 20 血的药剂
 ```
 #### 1.5 WxFightHandler.Utils.UsePetItem10PP
 ##### 说明
-无参数。使用回 10 pp 的药剂
+无参数。先用赛尔豆买，再使用恢复 10 pp 的药剂
 #### 1.6 WxFightHandler.Utils.ItemBuy
 ##### 说明
 购买道具
@@ -228,13 +224,6 @@ let GetPetCatchtimeByID = async (id) => {
 
 备注背包（默认值为空数组）
 
-##### 示例
-
-```js
-await WxFightHandler.Utils.SetPetBag([1587000619],[1587000621]);
-// 发起对战
-```
-
 #### 1.14 WxFightHandler.Utils.GetClothes
 
 ##### 说明
@@ -313,12 +302,7 @@ WxFightHandler.Utils.ChangeCloth([1300670, 0, 1300671, 0, 1300672, 0, 1300673, 0
 ###### ID
 ### 4 其他
 
-#### 4.1 WxFightHandler.Utils.GetAllCloth
-
-##### 说明
-无参数。获取游戏内所有套装部件的信息
-
-#### 4.2 WxFightHandler.Utils.GetItemNumByID
+#### 4.1 WxFightHandler.Utils.GetItemNumByID
 
 ##### 说明
 
@@ -328,7 +312,7 @@ WxFightHandler.Utils.ChangeCloth([1300670, 0, 1300671, 0, 1300672, 0, 1300673, 0
 
 ###### ID
 
-#### 4.3 WxFightHandler.Utils.AutoFight
+#### 4.2 WxFightHandler.Utils.AutoFight
 
 ##### 说明
 
@@ -352,7 +336,7 @@ WxFightHandler.OnFirstRound = () => {
 WxFightHandler.Utils.AutoFight(164); // 闪光皮皮
 ```
 
-#### 4.4 WxFightHandler.Utils.SetIsAutoCure
+#### 4.3 WxFightHandler.Utils.SetIsAutoCure
 
 ##### 说明
 
@@ -362,35 +346,35 @@ WxFightHandler.Utils.AutoFight(164); // 闪光皮皮
 
 true 或 false
 
-#### 4.5 WxFightHandler.Utils.CurePet20HP
+#### 4.4 WxFightHandler.Utils.CurePet20HP
 
 ##### 说明
 
 无参数。为出战背包的所有精灵恢复20HP、10PP
 
-#### 4.6 WxFightHandler.Utils.CurePetAll
+#### 4.5 WxFightHandler.Utils.CurePetAll
 
 ##### 说明
 
 无参数。恢复整个背包所有精灵体力、PP
 
-#### 4.7 WxFightHandler.Utils.LowHP
+#### 4.6 WxFightHandler.Utils.LowHP
 
 ##### 说明
 
 无参数。关闭自动治疗，发起与白虎完全体的对战，对战结束后恢复20HP
 
-#### 4.8 WxFightHandler.Utils.SimpleAlarm
+#### 4.7 WxFightHandler.Utils.SimpleAlarm
 
 ##### 说明
 
-在游戏中显示提示信息，维持一小段时间后，自动消失
+在游戏中显示提示信息，维持一小段时间后，自动消失；一种使用场景：不算耗时，但又不是立刻能完成的任务，在完成后给用户提示
 
 ##### 参数
 
 字符串
 
-#### 4.9 WxFightHandler.Utils.Alarm
+#### 4.8 WxFightHandler.Utils.Alarm
 
 ##### 说明
 
