@@ -591,7 +591,19 @@ namespace SeerRandomSkin.Properties {
             "illID) + \']\')}`);\\n    originUseSkill(mySkillInfo,enemySkillInfo,isMeFirst);\\n  " +
             "};\\n\\n  let originChangePet = fight[\'OnChangePet\'];\\n  fight[\'OnChangePet\'] = (p" +
             "etInfo) => {\\n    console.log(`【${WxFightHandler.Utils.GetPetNameByID(petInfo.pe" +
-            "tID)}】登场`);\\n    originChangePet(petInfo);\\n  };\\n})(WxFightHandler);\"\r\n}")]
+            "tID)}】登场`);\\n    originChangePet(petInfo);\\n  };\\n})(WxFightHandler);\",\r\n  \"稀有精灵" +
+            "\": \"// 先去克洛斯星\\nWxFightHandler.OnFirstRound = () => {\\n    // 对战首回合，使用特殊胶囊捕捉\\n   " +
+            " WxFightHandler.Utils.Send(2409,300505);\\n    WxFightHandler.Utils.ItemBuy(30050" +
+            "5);\\n};\\nWxFightHandler.Utils.AutoFight(164); // 闪光皮皮\",\r\n  \"通行证-精灵养成\": \"(async (" +
+            ") => {\\n  let bag1 = WxFightHandler.Utils.GetBag1().map(pet => pet.catchTime);\\n" +
+            "  let bag2 = WxFightHandler.Utils.GetBag2().map(pet => pet.catchTime);\\n  let pe" +
+            "ts = await WxFightHandler.Utils.GetStoragePets();\\n  // 从仓库取出一只 皮皮\\n  pets = pet" +
+            "s.filter(pet => pet.id===10);\\n  if (pets.length) {\\n    let ct = pets[0].catchT" +
+            "ime;\\n    await WxFightHandler.Utils.SetPetBag([ct]);\\n    // 性格\\n    WxFightHan" +
+            "dler.Utils.Send(2326,ct,300070);\\n    await WxFightHandler.Utils.Delay(500);\\n  " +
+            "  // 恢复背包\\n    WxFightHandler.Utils.SetPetBag(bag1,bag2);\\n    // 领奖\\n    WxFigh" +
+            "tHandler.Utils.Send(41916,1,3);\\n    WxFightHandler.Utils.SimpleAlarm(\'ok\');\\n  " +
+            "}\\n})();\"\r\n}")]
         public string FlashFightTemplate {
             get {
                 return ((string)(this["FlashFightTemplate"]));
