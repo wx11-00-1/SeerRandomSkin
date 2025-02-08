@@ -216,6 +216,12 @@
     <Compile Include="FormPetBag.Designer.cs">
       <DependentUpon>FormPetBag.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormPetFollow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPetFollow.Designer.cs">
+      <DependentUpon>FormPetFollow.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormScreenShot.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -262,6 +268,9 @@
     <EmbeddedResource Include="FormPetBag.resx">
       <DependentUpon>FormPetBag.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormPetFollow.resx">
+      <DependentUpon>FormPetFollow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormScreenShot.resx">
       <DependentUpon>FormScreenShot.cs</DependentUpon>
     </EmbeddedResource>
@@ -283,7 +292,6 @@
     </Compile>
     <None Include="file\swf\PetFightDll.as" />
     <None Include="file\swf\tip.as" />
-    <None Include="file\安装包\note.md" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -340,7 +348,6 @@
     <Content Include="file\xml\battleStrategy.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="file\安装包\01.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SocketHack\SocketHack.csproj">
@@ -406,16 +413,6 @@
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="file\dll\pepflashplayer32_15_0_0_152.dll">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
-      <FileType>File</FileType>
-    </PublishFile>
-    <PublishFile Include="file\安装包\01.png">
       <Visible>False</Visible>
       <Group>
       </Group>

@@ -127,6 +127,7 @@ namespace SeerRandomSkin
 
             "WxFightHandler.Utils.AutoFight = id => document.Client.WxAutoFight(id);" +
 
+            "WxFightHandler.Utils.SetIsHidePetFight = h => document.Client.WxSetIsHidePetFight(h);" +
             "WxFightHandler.Utils.SetIsAutoCure = cure => cure ? document.Client.WxAutoCureStart() : document.Client.WxAutoCureStop();" +
             "WxFightHandler.Utils.CurePet20HP = () => document.Client.WxCurePet20HP();" +
             "WxFightHandler.Utils.CurePetAll = () => document.Client.WxCurePetAll();" +

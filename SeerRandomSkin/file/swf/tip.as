@@ -45,6 +45,7 @@ package
    import com.robot.app.fight.FightManager;
     import org.taomee.manager.EventManager;
     import com.robot.core.event.RobotEvent;
+    import com.robot.core.info.pet.PetShowInfo;
    
    [Embed(source="/_assets/assets.swf", symbol="item")]
    public dynamic class item extends MovieClip
@@ -456,6 +457,7 @@ package
                 MainManager.actorModel.refreshTitle(MainManager.actorInfo.curTitle);
             },title);
             }
+            SimpleAlarm.show(MainManager.actorInfo.curTitle);
          }
          );
 
@@ -532,6 +534,29 @@ package
          // 提示信息
          ExternalInterface.addCallback("WxSimpleAlarm",SimpleAlarm.show);
          ExternalInterface.addCallback("WxAlarm",function(msg:String):void { Alarm.show(msg); });
+
+         // 精灵跟随
+         ExternalInterface.addCallback("WxPetFollow",function(id1:uint,ab1:uint,li1:Boolean, id2:uint,ab2:uint,li2:Boolean):void
+         {
+                if (id1 == 0) {
+                    MainManager.actorModel.hidePet();
+                    return;
+                }
+             var info:PetShowInfo = new PetShowInfo();
+                info.userID = MainManager.actorID;
+                info.catchTime = 160000000;
+                info.petID = id1;
+                info.isBright = li1;
+                info.abilityType = ab1;
+                info.flag = 1;
+                info.otherPetId = id2;
+                info.otherBright = li2;
+                info.otherAbilityType = ab2;
+                MainManager.actorModel.showPet(info);
+         });
+         // 缩放
+         ExternalInterface.addCallback("WxScale1",function(sc:Number):void { MainManager.actorModel.scaleX = MainManager.actorModel.scaleY = sc; });
+         ExternalInterface.addCallback("WxScale2",function(sc:Number):void { MainManager.actorModel.pet.scaleX = MainManager.actorModel.pet.scaleY = sc; });
       }
    }
 }

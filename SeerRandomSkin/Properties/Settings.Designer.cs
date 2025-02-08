@@ -792,5 +792,17 @@ namespace SeerRandomSkin.Properties {
                 this["IsLoadFormSpeedhack"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PetFollow {
+            get {
+                return ((string)(this["PetFollow"]));
+            }
+            set {
+                this["PetFollow"] = value;
+            }
+        }
     }
 }

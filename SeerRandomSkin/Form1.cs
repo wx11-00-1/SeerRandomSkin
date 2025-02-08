@@ -719,5 +719,11 @@ namespace SeerRandomSkin
             var f = new FormFiddler();
             f.Show();
         }
+
+        private void 精灵跟随ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var f = new FormPetFollow();
+            f.Show();
+        }
     }
 }

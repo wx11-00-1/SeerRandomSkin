@@ -56,6 +56,7 @@
             this.逛地图ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.指定皮肤ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelBrowser = new System.Windows.Forms.Panel();
+            this.精灵跟随ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -223,7 +224,8 @@
             this.对战助手ToolStripMenuItem,
             this.活动收藏夹ToolStripMenuItem,
             this.逛地图ToolStripMenuItem,
-            this.指定皮肤ToolStripMenuItem});
+            this.指定皮肤ToolStripMenuItem,
+            this.精灵跟随ToolStripMenuItem});
             this.flashToolStripMenuItem1.Name = "flashToolStripMenuItem1";
             this.flashToolStripMenuItem1.Size = new System.Drawing.Size(49, 21);
             this.flashToolStripMenuItem1.Text = "Flash";
@@ -231,42 +233,42 @@
             // 变速ToolStripMenuItem
             // 
             this.变速ToolStripMenuItem.Name = "变速ToolStripMenuItem";
-            this.变速ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.变速ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.变速ToolStripMenuItem.Text = "变速";
             this.变速ToolStripMenuItem.Click += new System.EventHandler(this.变速ToolStripMenuItem_Click);
             // 
             // 压血ToolStripMenuItem
             // 
             this.压血ToolStripMenuItem.Name = "压血ToolStripMenuItem";
-            this.压血ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.压血ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.压血ToolStripMenuItem.Text = "压血";
             this.压血ToolStripMenuItem.Click += new System.EventHandler(this.压血ToolStripMenuItem_Click);
             // 
             // 对战助手ToolStripMenuItem
             // 
             this.对战助手ToolStripMenuItem.Name = "对战助手ToolStripMenuItem";
-            this.对战助手ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.对战助手ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.对战助手ToolStripMenuItem.Text = "对战助手";
             this.对战助手ToolStripMenuItem.Click += new System.EventHandler(this.对战助手ToolStripMenuItem_Click);
             // 
             // 活动收藏夹ToolStripMenuItem
             // 
             this.活动收藏夹ToolStripMenuItem.Name = "活动收藏夹ToolStripMenuItem";
-            this.活动收藏夹ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.活动收藏夹ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.活动收藏夹ToolStripMenuItem.Text = "活动收藏夹";
             this.活动收藏夹ToolStripMenuItem.Click += new System.EventHandler(this.活动收藏夹ToolStripMenuItem_Click);
             // 
             // 逛地图ToolStripMenuItem
             // 
             this.逛地图ToolStripMenuItem.Name = "逛地图ToolStripMenuItem";
-            this.逛地图ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.逛地图ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.逛地图ToolStripMenuItem.Text = "逛地图";
             this.逛地图ToolStripMenuItem.Click += new System.EventHandler(this.逛地图ToolStripMenuItem_Click);
             // 
             // 指定皮肤ToolStripMenuItem
             // 
             this.指定皮肤ToolStripMenuItem.Name = "指定皮肤ToolStripMenuItem";
-            this.指定皮肤ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.指定皮肤ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.指定皮肤ToolStripMenuItem.Text = "指定皮肤";
             this.指定皮肤ToolStripMenuItem.Click += new System.EventHandler(this.指定皮肤ToolStripMenuItem_Click);
             // 
@@ -277,6 +279,13 @@
             this.panelBrowser.Name = "panelBrowser";
             this.panelBrowser.Size = new System.Drawing.Size(960, 560);
             this.panelBrowser.TabIndex = 1;
+            // 
+            // 精灵跟随ToolStripMenuItem
+            // 
+            this.精灵跟随ToolStripMenuItem.Name = "精灵跟随ToolStripMenuItem";
+            this.精灵跟随ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.精灵跟随ToolStripMenuItem.Text = "精灵跟随";
+            this.精灵跟随ToolStripMenuItem.Click += new System.EventHandler(this.精灵跟随ToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -326,6 +335,7 @@
         private System.Windows.Forms.ToolStripMenuItem 指定皮肤ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fDToolStripMenuItem;
         private System.Windows.Forms.Panel panelBrowser;
+        private System.Windows.Forms.ToolStripMenuItem 精灵跟随ToolStripMenuItem;
     }
 }
 
