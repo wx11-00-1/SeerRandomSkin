@@ -99,5 +99,15 @@ namespace SeerRandomSkin
             Properties.Settings.Default.PetFollow = jPets.ToString();
             Properties.Settings.Default.Save();
         }
+
+        private void btnScale1_Click(object sender, EventArgs e)
+        {
+            Form1.chromiumBrowser.ExecuteScriptAsync($"document.Client.WxScale1({textBox1.Text})");
+        }
+
+        private void btnScale2_Click(object sender, EventArgs e)
+        {
+            Form1.chromiumBrowser.ExecuteScriptAsync($"document.Client.WxScale2({textBox2.Text})");
+        }
     }
 }

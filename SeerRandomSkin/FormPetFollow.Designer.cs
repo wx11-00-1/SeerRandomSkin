@@ -52,10 +52,10 @@
             this.btnConfirm = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.btnScale1 = new System.Windows.Forms.Button();
             this.btnScale2 = new System.Windows.Forms.Button();
+            this.btnScale1 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_id1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -312,21 +312,15 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "缩放";
             // 
-            // textBox1
+            // btnScale2
             // 
-            this.textBox1.Location = new System.Drawing.Point(22, 31);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(64, 21);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "1";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(109, 31);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(64, 21);
-            this.textBox2.TabIndex = 1;
-            this.textBox2.Text = "1";
+            this.btnScale2.Location = new System.Drawing.Point(109, 62);
+            this.btnScale2.Name = "btnScale2";
+            this.btnScale2.Size = new System.Drawing.Size(64, 23);
+            this.btnScale2.TabIndex = 3;
+            this.btnScale2.Text = "精灵";
+            this.btnScale2.UseVisualStyleBackColor = true;
+            this.btnScale2.Click += new System.EventHandler(this.btnScale2_Click);
             // 
             // btnScale1
             // 
@@ -336,15 +330,23 @@
             this.btnScale1.TabIndex = 2;
             this.btnScale1.Text = "赛尔";
             this.btnScale1.UseVisualStyleBackColor = true;
+            this.btnScale1.Click += new System.EventHandler(this.btnScale1_Click);
             // 
-            // btnScale2
+            // textBox2
             // 
-            this.btnScale2.Location = new System.Drawing.Point(109, 62);
-            this.btnScale2.Name = "btnScale2";
-            this.btnScale2.Size = new System.Drawing.Size(64, 23);
-            this.btnScale2.TabIndex = 3;
-            this.btnScale2.Text = "精灵";
-            this.btnScale2.UseVisualStyleBackColor = true;
+            this.textBox2.Location = new System.Drawing.Point(109, 31);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(64, 21);
+            this.textBox2.TabIndex = 1;
+            this.textBox2.Text = "1";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(22, 31);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(64, 21);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.Text = "1";
             // 
             // FormPetFollow
             // 
