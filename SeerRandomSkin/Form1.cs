@@ -680,16 +680,6 @@ namespace SeerRandomSkin
             FlashSpeedHack();
         }
 
-        private void 压血ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!FormFlashFightHandler.SetFightTemplate("压血出招"))
-            {
-                MessageBox.Show("没有找到压血的出招方案，请先恢复默认配置");
-                return;
-            }
-            chromiumBrowser.ExecuteScriptAsync("document.Client.WxLowHP();");
-        }
-
         private void 对战助手ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new FormFlashFightHandler();

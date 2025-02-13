@@ -66,320 +66,175 @@
 
 ## API
 WxFightHandler 对象提供的属性和方法，通过 js 代码调用，用于编写日常脚本（登录器自带了一些脚本例子，参照着文档看，更容易理解；可以直接在开发者工具的控制台测试）
-### 1 对战相关
-#### 1.1 WxFightHandler.Utils.GetRound
+### 1 对战过程
+#### WxFightHandler.Utils.GetRound
 无参数。获取本次对战经过的回合数
-#### 1.2 WxFightHandler.Utils.UseSkill
-##### 说明
-使用技能
-##### 参数
-###### skillID
-技能 ID
-##### 示例
-```js
-WxFightHandler.Utils.UseSkill(19940); // 使用技能：违·永恒之寂
-```
-#### 1.3 WxFightHandler.Utils.ChangePet
-##### 说明
-切换精灵
-##### 参数
-###### petCatchTime
-精灵获取时间，常用于标识精灵
-##### 示例
-```js
-// 在一般出招回合触发
-WxFightHandler.OnUseSkill = (mySkillInfo,enemySkillInfo) => {
-  if (mySkillInfo.remainHP !== 0) {
-    WxFightHandler.Utils.UseSkill(0); // 我方精灵存活，使用技能（0技能表示此回合弃权，不出招）
-  }
-  else {
-    for(var pet of mySkillInfo.changehps) { // 遍历我方除在场精灵外的其他精灵，若存活则切换上场
-      if(pet.hp>0) { WxFightHandler.Utils.ChangePet(pet.id); break; } // 注意此处的 pet.id，它的数值实际上就是精灵的获取时间，只是官方在这里混用了，大多数情况下 id 并不等于 catchTime
-    }
-  }
-};
-```
-#### 1.4 WxFightHandler.Utils.UsePetItem
-##### 说明
-在战斗中使用道具（药剂、胶囊等）
-##### 参数
-###### itemID
-道具 ID
-##### 示例
-```js
-WxFightHandler.Utils.UsePetItem(300011); // 使用回 20 血的药剂
-```
-#### 1.5 WxFightHandler.Utils.UsePetItem10PP
-##### 说明
-无参数。先用赛尔豆买，再使用恢复 10 pp 的药剂
-#### 1.6 WxFightHandler.Utils.ItemBuy
-##### 说明
-购买道具
-##### 参数
-###### itemID
-道具 ID
-##### 示例
-```js
-WxFightHandler.Utils.ItemBuy(300017); // 购买 10 pp 药剂，可以在战斗中使用
-```
-#### 1.7 WxFightHandler.Utils.GetFightingPetID
-##### 说明
-无参数。在战斗中，获取当前在场精灵的 ID
-##### 示例
-```js
-WxFightHandler.OnUseSkill = (mySkillInfo,enemySkillInfo) => {
-  let petID = WxFightHandler.Utils.GetFightingPetID();
-  // 当 3322 精灵（茉蕊儿）阵亡，4377 精灵跟着上场（获得500护盾）
-  if (mySkillInfo.remainHP === 0) {
-    if (3322 === petID) { WxFightHandler.Utils.ChangePetByID([4377]); }
-  }
-};
-```
-#### 1.8 WxFightHandler.Utils.ChangePetByID
-##### 说明
-换上指定 ID 数组中的的精灵
-##### 参数
-###### idArray
-精灵 ID **数组**
-##### 示例
-```js
-// 首回合触发
-WxFightHandler.OnFirstRound = () => {
-  WxFightHandler.KELUO = 2977;
-  WxFightHandler.DIDUO = 4377;
-  WxFightHandler.IsDIDUOFirstUp = true;
-  WxFightHandler.Utils.UseSkill(0);
-};
-// 发生死亡切换时触发
-WxFightHandler.OnChangePet = (petInfo) => {
-  let petID = petInfo.petID;
-  // 这一段的目的是：首发1级草王送死，给蒂朵500护盾；蒂朵第一次上场时立刻切换上1级神寂·克罗诺斯送死，锁伤250保护蒂朵第二次上场，顺利自爆
-  // 完整的代码当然不止这点，这里主要演示 ChangePetByID 方法的使用
-  if (WxFightHandler.DIDUO === petID) {
-    if (WxFightHandler.IsDIDUOFirstUp) {
-      WxFightHandler.Utils.ChangePetByID([WxFightHandler.KELUO]);
-      WxFightHandler.IsDIDUOFirstUp = false;
-    } else {
-      WxFightHandler.Utils.UseSkill(35914);
-    }
-  }
-};
-```
-#### 1.9 WxFightHandler.Utils.Delay
-##### 说明
-等待一段时间。有些日常关卡出招太快会掉线；调试时可以使用，方便观察脚本运行情况
-##### 参数
-###### millisecond
-毫秒（一毫秒 = 一千分之一秒）
-##### 示例
-```js
-WxFightHandler.OnFirstRound = async () => { // 函数要加 async 标识
-  await WxFightHandler.Utils.Delay(1000);
-  console.log('开始对战');
-  WxFightHandler.Utils.UseSkill(0);
-};
-```
-#### 1.10 WxFightHandler.Utils.GetFightingPets
+#### WxFightHandler.Utils.UseSkill
+说明：
 
-##### 说明
+使用技能
+
+参数：
+
+- skillID：技能 ID
+
+#### WxFightHandler.Utils.ChangePet
+说明：
+
+切换精灵
+
+参数：
+
+- petCatchTime：精灵获取时间，用于标识精灵
+
+#### WxFightHandler.Utils.UsePetItem
+说明：
+
+在战斗中使用道具（药剂、胶囊等）
+
+参数：
+
+- itemID：道具 ID
+
+#### WxFightHandler.Utils.UsePetItem10PP
+说明：
+
+无参数。先用赛尔豆买，再使用恢复 10 pp 的药剂
+#### WxFightHandler.Utils.ItemBuy
+说明：
+
+购买道具
+
+参数：
+
+- itemID：道具 ID
+
+#### WxFightHandler.Utils.GetFightingPetID
+说明：
+
+无参数。在战斗中，获取当前在场精灵的 ID
+#### WxFightHandler.Utils.ChangePetByID
+说明：
+
+换上指定 ID 数组中的的精灵
+
+参数：
+
+- idArray：精灵 ID **数组**
+
+#### WxFightHandler.Utils.DelayAsync
+说明：
+
+等待一段时间。有些日常关卡出招太快会掉线；调试时可以使用，方便观察脚本运行情况
+
+参数：
+
+- millisecond：毫秒（一毫秒 = 一千分之一秒）
+
+#### WxFightHandler.Utils.GetFightingPets
+
+说明：
 
 无参数。获取本场战斗中，我方出战精灵的部分信息（id、catchTime、hp、skillArray 等）
 
-#### 1.11 WxFightHandler.Utils.GetBag1
-
-##### 说明
-
-无参数。获取出招背包的精灵信息（GetBag2 是备战背包，即下面那一行）
-
-#### 1.12 WxFightHandler.Utils.GetStoragePets
-
-##### 说明
-
-无参数。获取仓库中所有精灵
-
-##### 示例
-
-```js
-let GetPetCatchtimeByID = async (id) => {
-    let pets = await WxFightHandler.Utils.GetStoragePets();
-    //pets = pets.filter(pet => pet.id===id).sort((a,b) => a.level-b.level); // 按精灵等级升序排列
-    pets = pets.filter(pet => pet.id===id).sort((a,b) => b.level-a.level); // 降序
-    return pets.length===0 ? 0 : pets[0].catchTime; // 找不到就返回 0；否则返回排在最前面的
-};
-```
-
-#### 1.13 WxFightHandler.Utils.SetPetBag
-
-##### 说明
-
-更换背包中的精灵
-
-##### 参数
-
-###### bag1
-
-出战背包精灵的 catchTime 数组
-
-###### bag2
-
-备注背包（默认值为空数组）
-
-#### 1.14 WxFightHandler.Utils.GetClothes
-
-##### 说明
-
-无参数。获取套装 id 数组
-
-#### 1.15 WxFightHandler.Utils.ChangeCloth
-
-##### 说明
-
-更换套装
-
-##### 参数
-
-###### clothes
-
-套装数组
-
-##### 示例
-
-```js
-WxFightHandler.Utils.ChangeCloth([1300670, 0, 1300671, 0, 1300672, 0, 1300673, 0]); // 银翼骑士套装
-```
-
-#### 1.16 WxFightHandler.Utils.GetTitle
-
-##### 说明
-
-无参数。获取当前称号 id
-
-#### 1.17 WxFightHandler.Utils.SetTitle
-
-##### 说明
-
-更换称号
-
-##### 参数
-
-###### title
-
-称号 id
-
 ### 2 发包函数
 
-#### 2.1 WxFightHandler.Utils.Send
-##### 说明
+#### WxFightHandler.Utils.Send
+说明：
+
 发送封包
-##### 参数
-###### commandID
-命令号
-###### ...args
-任意数量的整数参数
-#### 2.2 WxFightHandler.Utils.SendAsync
-##### 说明
-发包 并接收返回值
-##### 参数
-###### commandID
-命令号
-###### parameterArray
-整数参数**数组**
-### 3 xml
-#### 3.1 WxFightHandler.Utils.GetItemNameByID
-##### 说明
-根据 ID 获取道具名称
-##### 参数
-###### ID
-#### 3.2 WxFightHandler.Utils.GetPetNameByID
-##### 说明
-根据 ID 获取精灵名称
-##### 参数
-###### ID
-#### 3.3 WxFightHandler.Utils.GetSkillNameByID
-##### 说明
-根据 ID 获取技能名称
-##### 参数
-###### ID
-### 4 其他
 
-#### 4.1 WxFightHandler.Utils.GetItemNumByID
+参数：
 
-##### 说明
+- commandID：命令号
 
-根据 id 获取物品数量
+- ...args：任意数量的整数参数
 
-##### 参数
+#### WxFightHandler.Utils.SendAsync
+说明：
 
-###### ID
+发包，并接收返回值
 
-#### 4.2 WxFightHandler.Utils.AutoFight
+参数：
 
-##### 说明
+- commandID：命令号
 
-自动向地图上的野生精灵发起对战
+- parameterArray：整数参数**数组**
 
-##### 参数
+### 3 反射
 
-###### ID
+#### WxFightHandler.Reflection.Get
 
-野生精灵的 ID
+说明：
 
-##### 示例
+获取对象的静态属性
+
+示例：
 
 ```js
-// 先去克洛斯星
-WxFightHandler.OnFirstRound = () => {
-    // 对战首回合，使用特殊胶囊捕捉
-    WxFightHandler.Utils.Send(2409,300505);
-    WxFightHandler.Utils.ItemBuy(300505);
-};
-WxFightHandler.Utils.AutoFight(164); // 闪光皮皮
+WxFightHandler.Reflection.Get('com.robot.core.manager.MainManager','actorInfo.userID'); // 自己的米米号WxFightHandler.Reflection.Get('com.robot.core.manager.MainManager','actorInfo.nick'); // 昵称
 ```
 
-#### 4.3 WxFightHandler.Utils.SetIsAutoCure
+#### WxFightHandler.Reflection.Set
 
-##### 说明
+说明：
+
+设置对象的静态属性
+
+#### WxFightHandler.Reflection.Action
+
+说明：
+
+调用对象的静态方法（无返回值）
+
+参数：
+
+- className：对象的全类名
+- methodName：方法名
+- ...args：任意数量的参数
+
+#### WxFightHandler.Reflection.Func
+
+说明：
+
+调用对象的静态方法（有返回值）
+
+### 4 其他
+
+#### WxFightHandler.Utils.SetIsAutoCure
+
+说明：
 
 设置对战结束后是否自动治疗
 
-##### 参数
+参数：
 
 true 或 false
 
-#### 4.4 WxFightHandler.Utils.CurePet20HP
+#### WxFightHandler.Utils.CurePet20HP
 
-##### 说明
+说明：
 
 无参数。为出战背包的所有精灵恢复20HP、10PP
 
-#### 4.5 WxFightHandler.Utils.CurePetAll
+#### WxFightHandler.Utils.CurePetAll
 
-##### 说明
+说明：
 
 无参数。恢复整个背包所有精灵体力、PP
 
-#### 4.6 WxFightHandler.Utils.LowHP
+#### WxFightHandler.Utils.LowHP
 
-##### 说明
+说明：
 
-无参数。关闭自动治疗，发起与白虎完全体的对战，对战结束后恢复20HP
+无参数。发起与白虎完全体的对战
 
-#### 4.7 WxFightHandler.Utils.SimpleAlarm
+#### WxFightHandler.Utils.SimpleAlarm
 
-##### 说明
+说明：
 
 在游戏中显示提示信息，维持一小段时间后，自动消失；一种使用场景：不算耗时，但又不是立刻能完成的任务，在完成后给用户提示
 
-##### 参数
-
-字符串
-
-#### 4.8 WxFightHandler.Utils.Alarm
-
-##### 说明
-
-弹出不会自动消失的确认框
-
-##### 参数
+参数：
 
 字符串

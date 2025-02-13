@@ -13,7 +13,7 @@ namespace SeerRandomSkin
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form1.chromiumBrowser.ExecuteScriptAsync(String.Format("document.Client.WxChangeMap({0})", numericUpDown1.Value));
+            Form1.chromiumBrowser.ExecuteScriptAsync(String.Format("WxFightHandler.Utils.ChangeMap({0})", numericUpDown1.Value));
         }
 
         private void FormStrollMap_Load(object sender, EventArgs e)
@@ -35,7 +35,7 @@ namespace SeerRandomSkin
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form1.chromiumBrowser.ExecuteScriptAsync(String.Format("document.Client.WxChangeMap({0})", numericUpDown2.Value));
+            Form1.chromiumBrowser.ExecuteScriptAsync(String.Format("WxFightHandler.Utils.ChangeMap({0})", numericUpDown2.Value));
         }
     }
 }

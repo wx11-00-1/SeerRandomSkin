@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CefSharp;
+using System;
 
 namespace SeerRandomSkin
 {
@@ -28,9 +29,9 @@ namespace SeerRandomSkin
             Form1.childFormPack.ShowSendPack(cmd, pack);
         }
 
-        public void ShowFightInfo(int round, double hpPercent)
+        public void ShowFightInfo(double hp1, int round, double hp2)
         {
-            Form1.ChangeTitleAction(String.Format("{0} ({1}) [{2}%]", Form1.FormTitle, round, hpPercent));
+            Form1.ChangeTitleAction(String.Format("{0} {1}% ({2}) {3}%", Form1.FormTitle, hp1, round, hp2));
         }
     }
 }

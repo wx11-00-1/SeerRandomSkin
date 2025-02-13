@@ -4,12 +4,8 @@ package
    import com.robot.core.info.UserInfo;
    import com.robot.core.manager.PetManager;
    import com.robot.core.net.SocketConnection;
-   import com.robot.core.npc.NpcDialog;
-   import com.robot.core.ui.alert.Alarm;
    import flash.display.MovieClip;
    import flash.utils.ByteArray;
-   import flash.utils.setTimeout;
-   import flash.utils.JSON;
    import org.taomee.events.SocketEvent;
    import flash.external.ExternalInterface;
    import com.robot.core.manager.MainManager;
@@ -19,33 +15,28 @@ package
    import com.robot.core.info.fightInfo.ChangePetInfo;
    import com.robot.core.manager.SystemTimerManager;
    import com.robot.core.info.fightInfo.FightStartInfo;
-   import com.robot.core.config.xml.ItemXMLInfo;
-   import com.robot.core.config.xml.PetXMLInfo;
-   import com.robot.core.config.xml.SkillXMLInfo;
    import com.robot.app.task.petstory.util.KTool;
    import com.robot.core.info.fightInfo.NoteReadyToFightInfo;
-   import com.robot.core.info.fightInfo.FighterUserInfos;
    import com.robot.core.info.fightInfo.FightStartInfo;
    import com.robot.core.info.fightInfo.attack.FightOverInfo;
    import com.robot.app.toolBar.ToolBarController;
    import com.robot.core.manager.MapManager;
-   import com.robot.core.manager.ModuleManager;
-   import com.robot.app2.control.PeakJihad2023Controller;
-   import com.robot.core.config.ClientConfig;
    import com.robot.core.config.xml.MapXMLInfo;
    import com.robot.core.info.pet.PetStorage2015PetInfo;
    import com.codecatalyst.promise.Promise;
    import com.robot.core.behavior.ChangeClothBehavior;
-   import com.robot.core.manager.UserManager;
    import com.robot.core.info.clothInfo.PeopleItemInfo;
-   import com.robot.core.info.UserInfo;
    import com.robot.core.ui.alert.SimpleAlarm;
    import com.robot.core.info.pet.PetInfo;
-   import com.robot.core.manager.ItemManager;
    import com.robot.app.fight.FightManager;
-    import org.taomee.manager.EventManager;
-    import com.robot.core.event.RobotEvent;
     import com.robot.core.info.pet.PetShowInfo;
+   import flash.utils.getDefinitionByName;
+   import com.robot.app2.control.activityHelper.ActivityHelperManager;
+   import com.robot.app2.control.activityHelper.helps.SimpleHelper;
+    import com.codecatalyst.promise.Deferred;
+   import flash.utils.setTimeout;
+   import com.robot.core.manager.UserInfoManager;
+   import flash.utils.IDataInput;
    
    [Embed(source="/_assets/assets.swf", symbol="item")]
    public dynamic class item extends MovieClip
@@ -56,44 +47,11 @@ package
       {
          super();
 
-         if (SocketConnection.WxScreenShot != null)
-         {
-            return;
-         }
+         if (SocketConnection.WxIsAutoCure != null) return;
 
-         // xml
-         ExternalInterface.addCallback("WxGetItemNameByID", function(itemID:uint):String
-         {
-            return ItemXMLInfo.getName(itemID);
-         }
-         );
-         ExternalInterface.addCallback("WxGetPetNameByID", function(petID:uint):String
-         {
-            return PetXMLInfo.getName(petID);
-         }
-         );
-         ExternalInterface.addCallback("WxGetSkillNameByID", function(skillID:uint):String
-         {
-            return SkillXMLInfo.getName(skillID);
-         }
-         );
+         SocketConnection.WxCallback = function(result:* = null):void { ExternalInterface.call("WxFightHandler.Private._as3Callback",result); }
 
-         EventManager.addEventListener(RobotEvent.CREATED_MAP_USER,function():void
-         {
-            EventManager.removeEventListener(RobotEvent.CREATED_MAP_USER,arguments.callee);
-             SocketConnection.send(CommandID.NONO_FOLLOW_OR_HOOM,0); // 将 nono 丢回仓库
-         });
-
-         // 获取背包精灵信息
-        ExternalInterface.addCallback("WxGetBagPetInfos",
-            function():Array
-            {
-                return PetManager.allInfos;
-            }
-        );
-
-         // 地图 和 活动
-         ExternalInterface.addCallback("WxChangeMap",MapManager.changeMap);
+         // 地图
          ExternalInterface.addCallback("WxChangeMapRandom",function():uint
          {
             var mapList:Array = MapXMLInfo.getIDList();
@@ -101,58 +59,33 @@ package
             MapManager.changeMap(id);
             return id;
          });
-         ExternalInterface.addCallback("WxShowAppModule",ModuleManager.showAppModule);
 
          // 隐藏其他用户
          ToolBarController.showOrHideAllUser(false);
 
          // 关电池
          SocketConnection.send(41162,0);
-         // 巅峰记牌器
-         SocketConnection.WxScreenShot = function() : void
-         {
-            ExternalInterface.call("seerRandomSkinObj.screenShot");
-         };
-         SocketConnection.addCmdListener(45144,SocketConnection.WxScreenShot);
+
+         /// 对战相关
 
          // 自动治疗
          SocketConnection.WxIsAutoCure = true;
-         SocketConnection.WxAutoCureStart = function():void
-         {
-            SocketConnection.WxIsAutoCure = true;
-         };
-         SocketConnection.WxAutoCureStop = function():void
-         {
-            SocketConnection.WxIsAutoCure = false;
-         };
-         ExternalInterface.addCallback("WxAutoCureStart",SocketConnection.WxAutoCureStart);
-         ExternalInterface.addCallback("WxAutoCureStop",SocketConnection.WxAutoCureStop);
          SocketConnection.WxCurePetAll = function():void
          {
             var bagBoth:Array = PetManager.getBagMap(true);
-            for (var i:int = 0; i < bagBoth.length; ++i)
-            {
-                SocketConnection.send(CommandID.PET_ONE_CURE,bagBoth[i].catchTime);
-            }
-         };
+            for (var i:int = 0; i < bagBoth.length; ++i) SocketConnection.send(CommandID.PET_ONE_CURE,bagBoth[i].catchTime);
+         }
          ExternalInterface.addCallback("WxCurePetAll",SocketConnection.WxCurePetAll);
-         SocketConnection.WxOnFightEnd = function(event:SocketEvent) : void
+         SocketConnection.addCmdListener(CommandID.FIGHT_OVER,function(event:SocketEvent) : void
          {
-            if (SocketConnection.WxIsAutoCure)
-            {
-                SocketConnection.WxCurePetAll();
-            }
+            if (SocketConnection.WxIsAutoCure) SocketConnection.WxCurePetAll();
             var fightOverInfo:FightOverInfo = event.data as FightOverInfo;
             ExternalInterface.call("WxFightHandler.OnFightOver",fightOverInfo);
-         };
-         SocketConnection.addCmdListener(CommandID.FIGHT_OVER,SocketConnection.WxOnFightEnd);
+         });
 
          // 使用技能
-         SocketConnection.WxUseSkill = function(skillID:uint):void
-         {
-            SocketConnection.send(CommandID.USE_SKILL,skillID);
-         };
-         ExternalInterface.addCallback("WxUseSkill",SocketConnection.WxUseSkill);
+         ExternalInterface.addCallback("WxUseSkill",function(skillID:uint):void { SocketConnection.send(CommandID.USE_SKILL,skillID); });
+
          // 切换精灵
          SocketConnection.WxChangePet = function(petCatchTime:uint):void
          {
@@ -183,29 +116,15 @@ package
             }
             ExternalInterface.call("console.log","未找到指定 id 的精灵",ids);
          });
-         // 使用药剂
-         ExternalInterface.addCallback("WxUsePetItem", function(itemID:uint):void
-         {
-            SocketConnection.send(CommandID.USE_PET_ITEM,SocketConnection.WxFightingPetCatchTime,itemID,0);
-         });
-         ExternalInterface.addCallback("WxItemBuy", function(itemID:uint):void
-         {
-            SocketConnection.send(CommandID.ITEM_BUY,itemID,1);
-         });
 
-         // 获取战斗时在场精灵 ID
-         ExternalInterface.addCallback("WxGetFightingPetID", function():uint
-         {
-            return SocketConnection.WxFightingPetID;
-         });
-         ExternalInterface.addCallback("WxGetFightingPetCatchTime", function():uint
-         {
-            return SocketConnection.WxFightingPetCatchTime;
-         });
-         ExternalInterface.addCallback("WxGetFightingPets", function():Array
-         {
-            return SocketConnection.WxFightingPets;
-         });
+         // 使用药剂
+         ExternalInterface.addCallback("WxUsePetItem", function(itemID:uint):void { SocketConnection.send(CommandID.USE_PET_ITEM,SocketConnection.WxFightingPetCatchTime,itemID,0); });
+         ExternalInterface.addCallback("WxItemBuy", function(itemID:uint):void { SocketConnection.send(CommandID.ITEM_BUY,itemID,1); });
+
+         // 获取战斗时，正在战斗的精灵信息
+         ExternalInterface.addCallback("WxGetFightingPetID", function():uint { return SocketConnection.WxFightingPetID; });
+         ExternalInterface.addCallback("WxGetFightingPetCatchTime", function():uint { return SocketConnection.WxFightingPetCatchTime; });
+         ExternalInterface.addCallback("WxGetFightingPets", function():Array { return SocketConnection.WxFightingPets; });
 
          // 自动出招
          // 进入战斗
@@ -226,7 +145,7 @@ package
                 pet.hideSKill = petInfo.hideSKill;
                 SocketConnection.WxFightingPets.push(pet);
             }
-            ExternalInterface.call("WxFightHandler.Utils.RoundReset");
+            ExternalInterface.call("WxFightHandler.Private.RoundReset");
             SocketConnection.WxIsPositiveChangePet = false;
          });
          // 首发精灵信息
@@ -271,8 +190,7 @@ package
                 }
             }
 
-            var hpPercent:Number = enemySkillInfo.maxHp == 0 ? 0 : enemySkillInfo.remainHP * 100 / enemySkillInfo.maxHp;
-            ExternalInterface.call("WxFightHandler.Utils.ShowRound",hpPercent);
+            ExternalInterface.call("WxFightHandler.Private.ShowRound",(mySkillInfo.maxHp == 0 ? 0 : mySkillInfo.remainHP * 100 / mySkillInfo.maxHp),(enemySkillInfo.maxHp == 0 ? 0 : enemySkillInfo.remainHP * 100 / enemySkillInfo.maxHp));
             if (enemySkillInfo.remainHP == 0)
             {
                 var isEnemyAllDead:Boolean = true;
@@ -311,8 +229,8 @@ package
             }
         });
 
-         // 压血后恢复精灵体力
-         SocketConnection.WxCurePet20HP = function():void
+         // 压血
+         ExternalInterface.addCallback("WxCurePet20HP",function():void
          {
             SocketConnection.send(CommandID.ITEM_BUY,300011,6);
             SocketConnection.send(CommandID.ITEM_BUY,300017,6);
@@ -322,22 +240,8 @@ package
                 SocketConnection.send(CommandID.USE_PET_ITEM_OUT_OF_FIGHT,pet.catchTime,300011);
                 SocketConnection.send(CommandID.USE_PET_ITEM_OUT_OF_FIGHT,pet.catchTime,300017);
             }
-         };
-         ExternalInterface.addCallback("WxCurePet20HP",SocketConnection.WxCurePet20HP);
-         // 压血
-         SocketConnection.WxLowHPFightOver = function():void
-         {
-            SocketConnection.removeCmdListener(CommandID.FIGHT_OVER,SocketConnection.WxLowHPFightOver);
-            SocketConnection.WxAutoCureStart();
-            SocketConnection.WxCurePet20HP();
-         };
-         SocketConnection.WxLowHP = function():void
-         {
-            SocketConnection.WxAutoCureStop();
-            SocketConnection.send(41129, (SystemTimerManager.sysBJDate.hours < 12 || SystemTimerManager.sysBJDate.hours >= 15) ? 8692 : 8694);
-            SocketConnection.addCmdListener(CommandID.FIGHT_OVER,SocketConnection.WxLowHPFightOver);
-         };
-         ExternalInterface.addCallback("WxLowHP",SocketConnection.WxLowHP);
+         });
+         ExternalInterface.addCallback("WxLowHP",function():void { SocketConnection.send(41129, (SystemTimerManager.sysBJDate.hours < 12 || SystemTimerManager.sysBJDate.hours >= 15) ? 8692 : 8694); });
 
          // 获取仓库精灵
          SocketConnection.WxGetStoragePets = function(allInfo:Array,startID:int = 1):void
@@ -356,74 +260,47 @@ package
                 }
                 else
                 {
-                   ExternalInterface.call("WxFightHandler.Utils._as3Callback",allInfo);
+                   SocketConnection.WxCallback(allInfo);
                 }
             });
          };
-         ExternalInterface.addCallback("WxGetStoragePets", function():void
-         {
-            SocketConnection.WxGetStoragePets([]);
-         }
-         );
+         ExternalInterface.addCallback("WxGetStoragePets",function():void { SocketConnection.WxGetStoragePets([]); });
          // 背包
-        ExternalInterface.addCallback("WxGetBag1",
-            function():Array
-            {
-                return PetManager.getBagMap();
-            }
-        );
-        ExternalInterface.addCallback("WxGetBag2",
-            function():Array
-            {
-                return PetManager.getSecondBagMap();
-            }
-        );
         ExternalInterface.addCallback("WxClearBag",function():void
         {
             var bagBoth:Array = PetManager.getBagMap(true);
             if (bagBoth.length > 0) {
                 var promises:Array = new Array();
                 for each(var pet in bagBoth) { promises.push(PetManager.bagToInStorage(pet.catchTime)); }
-                Promise.all(promises).then(function():void { ExternalInterface.call("WxFightHandler.Utils._as3Callback"); });
+                Promise.all(promises).then(function():void { SocketConnection.WxCallback(); });
             }
             else {
-                ExternalInterface.call("WxFightHandler.Utils._as3Callback");
+                SocketConnection.WxCallback();
             }
         });
-        ExternalInterface.addCallback("WxSetBag1",function(bag1:Array):void
+        ExternalInterface.addCallback("WxSetBag1",function(bag:Array):void
         {
-            if (bag1.length > 0) {
+            if (bag.length > 0) {
                 var promises:Array = new Array();
-                for each(var pet in bag1) { promises.push(PetManager.storageToInBag(pet)); }
-                Promise.all(promises).then(function():void { PetManager.upDateByOnce(); ExternalInterface.call("WxFightHandler.Utils._as3Callback"); });
+                for each(var pet in bag) { promises.push(PetManager.storageToInBag(pet)); }
+                Promise.all(promises).then(function():void { SocketConnection.WxCallback(); });
             }
             else {
-                ExternalInterface.call("WxFightHandler.Utils._as3Callback");
+                SocketConnection.WxCallback();
             }
         });
-        ExternalInterface.addCallback("WxSetBag2",function(bag2:Array):void
+        ExternalInterface.addCallback("WxSetBag2",function(bag:Array):void
         {
-            if (bag2.length > 0) {
+            if (bag.length > 0) {
                 var promises:Array = new Array();
-                for each(var pet in bag2) { promises.push(PetManager.storageToSecondBag(pet)); }
-                Promise.all(promises).then(function():void { PetManager.upDateByOnce(); ExternalInterface.call("WxFightHandler.Utils._as3Callback"); });
+                for each(var pet in bag) { promises.push(PetManager.storageToSecondBag(pet)); }
+                Promise.all(promises).then(function():void { SocketConnection.WxCallback(); });
             }
             else {
-                ExternalInterface.call("WxFightHandler.Utils._as3Callback");
+                SocketConnection.WxCallback();
             }
         });
-         ExternalInterface.addCallback("WxGetClothes", function():Array
-         {
-            var clothes:Array = MainManager.actorInfo.clothes;
-            var result:Array = [];
-            for each(var cloth in clothes)
-            {
-                result.push(cloth.id);
-                result.push(cloth.level);
-            }
-            return result;
-         }
-         );
+
          ExternalInterface.addCallback("WxChangeCloth", function(clothes:Array):void
          {
             var clothArray:Array = [];
@@ -434,11 +311,7 @@ package
             MainManager.actorModel.execBehavior(new ChangeClothBehavior(clothArray));
          }
          );
-         ExternalInterface.addCallback("WxGetTitle", function():uint
-         {
-            return MainManager.actorInfo.curTitle;
-         }
-         );
+
          ExternalInterface.addCallback("WxSetTitle", function(title:uint):void
          {
             if (MainManager.actorInfo.curTitle != title) {
@@ -457,34 +330,92 @@ package
                 MainManager.actorModel.refreshTitle(MainManager.actorInfo.curTitle);
             },title);
             }
-            SimpleAlarm.show(MainManager.actorInfo.curTitle);
          }
          );
 
-         ExternalInterface.addCallback("WxCopyFire", function(fireType:uint):uint
-         {
-            SocketConnection.sendWithCallback(CommandID.LIST_MAP_PLAYER,function(param1:SocketEvent):void
+            SocketConnection.WxCopyFireByUserID = function(userid:int):void { SocketConnection.send(CommandID.FIRE_ACT_COPY,userid); }
+            // 借火（默认绿火）
+            ExternalInterface.addCallback("WxCopyFireFromMap", function(fireTypes:Array = null):void
             {
-                var byteArray:ByteArray = param1.data as ByteArray;
-                var len:uint = byteArray.readUnsignedInt();
-                for (var i:int = 0; i < len; ++i)
+                if (fireTypes == null) {
+                    fireTypes = [5,6];
+                }
+                SocketConnection.sendWithCallback(CommandID.LIST_MAP_PLAYER,function(param1:SocketEvent):void
+                {
+                    var byteArray:ByteArray = param1.data as ByteArray;
+                    var len:uint = byteArray.readUnsignedInt();
+                    var userInfo:UserInfo = new UserInfo();
+                    for (var i:int = 0; i < len; ++i)
+                    {
+                        UserInfo.setForPeoleInfo(userInfo,byteArray);
+                        if (fireTypes.indexOf(userInfo.fireBuff) != -1)
+                        {
+                            SocketConnection.WxCopyFireByUserID(userInfo.userID);
+                            SocketConnection.WxCallback(true);
+                            return;
+                        }
+                    }
+                    SocketConnection.WxCallback(false);
+                });
+            });
+            // 排行榜
+            ExternalInterface.addCallback("WxGetRankListLen", function(key:int, sub_key:int):void
+            {
+                // key：120 竞技，182 狂野，157 图鉴（新增积分）
+                KTool.getRankListLen(key,sub_key,function(len:int):void
+                {
+                    SocketConnection.WxCallback(len);
+                });
+            });
+            // 向排行榜上的活跃玩家借火
+            ExternalInterface.addCallback("WxCopyFireFromRank", function(key:int, sub_key:int, offset:int, fireTypes:Array = null):void
+            {
+                if (fireTypes == null) {
+                    fireTypes = [5,6];
+                }
+                KTool.getBingLieRangeRankList(key,sub_key,offset,offset+99).then(function(l:Array):void
+                {
+                    // 获取其中的在线玩家
+                    var userIDs:Array = [];
+                    for each (var o:Object in l) {
+                        userIDs.push(o.userid);
+                    }
+                    var promises:Array = [];
+                    UserInfoManager.seeOnLine(userIDs,function(onlineSeer:Array):void
+                    {
+                        if (onlineSeer.length == 0) {
+                            SocketConnection.WxCallback(false);
+                            return;
+                        }
+                        for each (var s:Object in onlineSeer) {
+                            promises.push(SocketConnection.WxCopyFirePromise(s.userID,fireTypes));
+                        }
+                        Promise.all(promises).then(function(results:Array):void
+                        {
+                            SocketConnection.WxCallback(results.indexOf(true) != -1);
+                        });
+                    });
+                });
+            });
+            SocketConnection.WxCopyFirePromise = function(userid:int, fireTypes:Array):Promise
+            {
+                var d:Deferred = new Deferred();
+                SocketConnection.sendWithPromise(CommandID.GET_SIM_USERINFO,[userid]).then(function(event:SocketEvent):void
                 {
                     var userInfo:UserInfo = new UserInfo();
-                    UserInfo.setForPeoleInfo(userInfo,byteArray);
-                    if (userInfo.fireBuff == fireType)
-                    {
-                        SocketConnection.send(CommandID.FIRE_ACT_COPY,userInfo.userID);
-                        SimpleAlarm.show("借火成功");
-                        return;
+                    UserInfo.setForSimpleInfo(userInfo,event.data as IDataInput);
+                    if (fireTypes.indexOf(userInfo.fireBuff) != -1) {
+                        SocketConnection.WxCopyFireByUserID(userInfo.userID);
+                        d.resolve(true);
                     }
-                }
-                SimpleAlarm.show("借火失败");
-            });
-         }
-         );
+                    else {
+                        d.resolve(false);
+                    }
+                });
+                return d.promise;
+            };
 
          // 发包函数
-         ExternalInterface.addCallback("WxSend",SocketConnection.send);
          ExternalInterface.addCallback("WxSendWithCallback2", function(commandID:int, parameterArray:Array = null):void
          {
             SocketConnection.sendWithCallback2(commandID,
@@ -496,25 +427,13 @@ package
                 {
                     packet.push(data.readUnsignedByte());
                 }
-                ExternalInterface.call("WxFightHandler.Utils._as3Callback",packet);
+                SocketConnection.WxCallback(packet);
             }
             ,parameterArray);
-         }
-         );
-
-         // 获取物品数量
-         ExternalInterface.addCallback("WxGetItemNumByID", function(id:uint):int
-         {
-            return ItemManager.getNumByID(id);
-         }
-         );
+         });
 
          // 隐藏对战界面
-         ExternalInterface.addCallback("WxSetIsHidePetFight", function(hide:Boolean):void
-         {
-            FightManager.petFightClass = hide ? "PetFightDLL" : "PetFightDLL_201308";
-         }
-         );
+         ExternalInterface.addCallback("WxSetIsHidePetFight", function(hide:Boolean):void { FightManager.petFightClass = hide ? "PetFightDLL" : "PetFightDLL_201308"; });
 
          // 自动与地图上的野生精灵对战
          SocketConnection.WxOnOgreList = function(e:SocketEvent):void {
@@ -523,7 +442,7 @@ package
             for (var i:int = 0; i < 9; ++i) {
                 if (ba.readUnsignedInt() == SocketConnection.WxWaitingForOrgeID) { FightManager.fightWithNpc(i); return; }
             }
-         };
+         }
          ExternalInterface.addCallback("WxAutoFight", function(petID:uint):void
          {
             SocketConnection.removeCmdListener(CommandID.MAP_OGRE_LIST,SocketConnection.WxOnOgreList);
@@ -531,9 +450,52 @@ package
             SocketConnection.addCmdListener(CommandID.MAP_OGRE_LIST,SocketConnection.WxOnOgreList);
          });
 
-         // 提示信息
-         ExternalInterface.addCallback("WxSimpleAlarm",SimpleAlarm.show);
-         ExternalInterface.addCallback("WxAlarm",function(msg:String):void { Alarm.show(msg); });
+         // 获取活动数据
+         ExternalInterface.addCallback("WxGetActivityValue",function(name:String,key:String):void {
+            ActivityHelperManager.getHelper(name).then(function(param1:SimpleHelper):void {
+                SocketConnection.WxCallback(param1.getValue(key));
+            });
+         });
+
+         // 反射
+         ExternalInterface.addCallback("WxReflSet",function(className:String,path:String,val:*):void {
+            var keys:Array = path.split(".");  // 使用 `.` 分隔路径
+            var lastKey:String = keys.pop();   // 获取最后一个属性的键
+            var current:Object = getDefinitionByName(className);
+            for each (var key:String in keys) {
+                current = current[key]; // 访问嵌套的对象
+            }
+            current[lastKey] = val; // 最后赋值
+         });
+         ExternalInterface.addCallback("WxReflGet",function(className:String,path:String):* {
+            var keys:Array = path.split(".");
+            var lastKey:String = keys.pop();
+            var current:Object = getDefinitionByName(className);
+            for each (var key:String in keys) {
+                current = current[key];
+            }
+            return current[lastKey];
+         });
+         ExternalInterface.addCallback("WxReflAction",function(className:String,path:String,... rest):void {
+            var keys:Array = path.split(".");
+            var lastKey:String = keys.pop();
+            var current:Object = getDefinitionByName(className);
+            for each (var key:String in keys) {
+                current = current[key];
+            }
+            current[lastKey].apply(null,rest);
+         });
+         ExternalInterface.addCallback("WxReflFunc",function(className:String,path:String,... rest):* {
+            var keys:Array = path.split(".");
+            var lastKey:String = keys.pop();
+            var current:Object = getDefinitionByName(className);
+            for each (var key:String in keys) {
+                current = current[key];
+            }
+            return current[lastKey].apply(null,rest);
+         });
+
+         setTimeout(function():void {SocketConnection.send(CommandID.NONO_FOLLOW_OR_HOOM,0);},640); // 将 nono 丢回仓库
 
          // 精灵跟随
          ExternalInterface.addCallback("WxPetFollow",function(id1:uint,ab1:uint,li1:Boolean, id2:uint,ab2:uint,li2:Boolean):void
@@ -557,6 +519,13 @@ package
          // 缩放
          ExternalInterface.addCallback("WxScale1",function(sc:Number):void { MainManager.actorModel.scaleX = MainManager.actorModel.scaleY = sc; });
          ExternalInterface.addCallback("WxScale2",function(sc:Number):void { MainManager.actorModel.pet.scaleX = MainManager.actorModel.pet.scaleY = sc; });
+
+         // 巅峰记牌器
+         SocketConnection.WxScreenShot = function() : void
+         {
+            ExternalInterface.call("seerRandomSkinObj.screenShot");
+         }
+         SocketConnection.addCmdListener(45144,SocketConnection.WxScreenShot);
       }
    }
 }

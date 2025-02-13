@@ -42,7 +42,7 @@ namespace SeerRandomSkin
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            Form1.chromiumBrowser.ExecuteScriptAsync(String.Format("document.Client.WxShowAppModule('{0}')", tbCode.Text));
+            Form1.chromiumBrowser.ExecuteScriptAsync(String.Format("WxFightHandler.Utils.ShowAppModule('{0}')", tbCode.Text));
         }
 
         private void btnSave_Click(object sender, EventArgs e)

@@ -11,130 +11,172 @@ namespace SeerRandomSkin
     public partial class FormFlashFightHandler : Form
     {
         public const string JS_FIGHT_ENVIRONMENT =
-            "WxFightHandler = {};" +
+            @"
+WxFightHandler = {};
+WxFightHandler.Private = {};
+WxFightHandler.Utils = {};
 
-            "WxFightHandler.Utils = {};" +
+WxFightHandler.Reflection = {};
+WxFightHandler.Reflection.Get = (className,k) => document.Client.WxReflGet(className,k);
+WxFightHandler.Reflection.Set = (className,k,v) => document.Client.WxReflSet(className,k,v);
+WxFightHandler.Reflection.Action = (className,methodName,...args) => document.Client.WxReflAction(className,methodName,...args);
+WxFightHandler.Reflection.Func = (className,methodName,...args) => document.Client.WxReflFunc(className,methodName,...args);
 
-            "WxFightHandler.Private = {};" +
+WxFightHandler.Const = {};
+WxFightHandler.Const.DelayMs = 200;
+WxFightHandler.Const.Pet = 'com.robot.core.pet.Pet';
+WxFightHandler.Const.PetManager = 'com.robot.core.manager.PetManager';
+WxFightHandler.Const.MainManager = 'com.robot.core.manager.MainManager';
+WxFightHandler.Const.SocketConnection = 'com.robot.core.net.SocketConnection';
 
-            "WxFightHandler.Utils.GetBagPetInfos = () => {" +
-            "   return document.Client.WxGetBagPetInfos();" +
-            "};" +
-            "WxFightHandler.Utils.GetBag1 = () => {" +
-            "   return document.Client.WxGetBag1();" +
-            "};" +
-            "WxFightHandler.Utils.GetBag2 = () => {" +
-            "   return document.Client.WxGetBag2();" +
-            "};" +
-            "WxFightHandler.Utils.ClearBag = () => new Promise(res => { WxFightHandler.Utils._as3Callback = res; document.Client.WxClearBag(); });" +
-            "WxFightHandler.Utils.SetBag1 = bag1 => new Promise(res => { WxFightHandler.Utils._as3Callback = res; document.Client.WxSetBag1(bag1); });" +
-            "WxFightHandler.Utils.SetBag2 = bag2 => new Promise(res => { WxFightHandler.Utils._as3Callback = res; document.Client.WxSetBag2(bag2); });" +
-            "WxFightHandler.Utils.SetPetBag = async (bag1,bag2=[]) => {" +
-            "   await WxFightHandler.Utils.ClearBag();" +
-            "   await WxFightHandler.Utils.SetBag1(bag1);" +
-            "   await WxFightHandler.Utils.SetBag2(bag2);" +
-            "};" +
+WxFightHandler.Utils.GetBagPetInfos = () => WxFightHandler.Reflection.Get(WxFightHandler.Const.PetManager,'allInfos');
+WxFightHandler.Utils.GetBag1 = () => WxFightHandler.Reflection.Func(WxFightHandler.Const.PetManager,'getBagMap');
+WxFightHandler.Utils.GetBag2 = () => WxFightHandler.Reflection.Func(WxFightHandler.Const.PetManager,'getSecondBagMap');
 
-            "WxFightHandler.Utils.GetStoragePets = async () => await new Promise((resolve) => {" +
-            "   WxFightHandler.Utils._as3Callback = resolve;" +
-            "   document.Client.WxGetStoragePets();" +
-            "});" +
+WxFightHandler.Private.ClearBagAsync = () => new Promise(res => { WxFightHandler.Private._as3Callback = res; document.Client.WxClearBag(); });
+WxFightHandler.Private.SetBag1Async = bag1 => new Promise(res => { WxFightHandler.Private._as3Callback = res; document.Client.WxSetBag1(bag1); });
+WxFightHandler.Private.SetBag2Async = bag2 => new Promise(res => { WxFightHandler.Private._as3Callback = res; document.Client.WxSetBag2(bag2); });
+WxFightHandler.Utils.SetPetBagAsync = async (bag1, bag2 = []) => {
+  await WxFightHandler.Private.ClearBagAsync();
+  await WxFightHandler.Private.SetBag1Async(bag1);
+  await WxFightHandler.Private.SetBag2Async(bag2);
+  await WxFightHandler.Utils.DelayAsync(1000);
+};
 
-            "WxFightHandler.Utils.GetClothes = () => {" +
-            "   return document.Client.WxGetClothes();" +
-            "};" +
-            "WxFightHandler.Utils.ChangeCloth = (clothes) => {" +
-            "   return document.Client.WxChangeCloth(clothes);" +
-            "};" +
+WxFightHandler.Utils.GetStoragePetsAsync = () => new Promise(resolve => {
+  WxFightHandler.Private._as3Callback = resolve;
+  document.Client.WxGetStoragePets();
+});
 
-            "WxFightHandler.Utils.GetTitle = () => {" +
-            "   return document.Client.WxGetTitle();" +
-            "};" +
-            "WxFightHandler.Utils.SetTitle = (title) => {" +
-            "   return document.Client.WxSetTitle(title);" +
-            "};" +
+WxFightHandler.Utils.GetClothes = () => {
+  const cs = WxFightHandler.Reflection.Get(WxFightHandler.Const.MainManager,'actorInfo.clothes');
+  let result = [];
+  for (let c of cs) {
+    result.push(c.id);
+    result.push(c.level);
+  }
+  return result;
+}
+WxFightHandler.Utils.ChangeCloth = clothes => document.Client.WxChangeCloth(clothes);
 
-            "WxFightHandler.Utils.CopyFire = (fireType) => { document.Client.WxCopyFire(fireType); };" +
+WxFightHandler.Utils.GetTitle = () => WxFightHandler.Reflection.Get(WxFightHandler.Const.MainManager,'actorInfo.curTitle');
+WxFightHandler.Utils.SetTitle = title => document.Client.WxSetTitle(title);
 
-            "WxFightHandler.Utils.RoundReset = () => { WxFightHandler.Private.Round = 0; };" +
-            "WxFightHandler.Utils.ShowRound = (hpPercent) => { WxFightHandler.Private.Round += 1; seerRandomSkinObj.showFightInfo(WxFightHandler.Private.Round,hpPercent); };" +
-            "WxFightHandler.Utils.GetRound = () => WxFightHandler.Private.Round;" +
+WxFightHandler.Private.RoundReset = () => WxFightHandler.Private.Round = 0;
+WxFightHandler.Utils.GetRound = () => WxFightHandler.Private.Round;
 
-            "WxFightHandler.Utils.UseSkill = (skillID) => {" +
-            "   document.Client.WxUseSkill(skillID);" +
-            "};" +
+WxFightHandler.Private.ShowRound = (hp1,hp2) => { WxFightHandler.Private.Round += 1; seerRandomSkinObj.showFightInfo(hp1,WxFightHandler.Private.Round,hp2); };
 
-            "WxFightHandler.Utils.ChangePet = (petCatchTime) => {" +
-            "   document.Client.WxChangePet(petCatchTime);" +
-            "};" +
+WxFightHandler.Utils.UseSkill = skillID => document.Client.WxUseSkill(skillID);
+WxFightHandler.Utils.ChangePet = petCatchTime => document.Client.WxChangePet(petCatchTime);
+WxFightHandler.Utils.UsePetItem = itemID => document.Client.WxUsePetItem(itemID);
+WxFightHandler.Utils.UsePetItem10PP = () => {
+  WxFightHandler.Utils.ItemBuy(300017);
+  WxFightHandler.Utils.UsePetItem(300017);
+};
+WxFightHandler.Utils.ItemBuy = itemID => document.Client.WxItemBuy(itemID);
 
-            "WxFightHandler.Utils.UsePetItem = (itemID) => {" +
-            "   document.Client.WxUsePetItem(itemID);" +
-            "};" +
+WxFightHandler.Utils.StopAutoFight = () => { WxFightHandler.OnFirstRound = WxFightHandler.OnUseSkill = WxFightHandler.OnChangePet = WxFightHandler.OnFightOver = () => {}; };
 
-            "WxFightHandler.Utils.UsePetItem10PP = () => {" +
-            "   WxFightHandler.Utils.ItemBuy(300017);" +
-            "   WxFightHandler.Utils.UsePetItem(300017);" +
-            "};" +
+WxFightHandler.Utils.GetFightingPetID = () => document.Client.WxGetFightingPetID();
+WxFightHandler.Utils.GetFightingPetCatchTime = () => document.Client.WxGetFightingPetCatchTime();
+WxFightHandler.Utils.GetFightingPets = () => document.Client.WxGetFightingPets();
+WxFightHandler.Utils.ChangePetByID = ids => document.Client.WxChangePetByID(ids);
 
-            "WxFightHandler.Utils.ItemBuy = (itemID) => {" +
-            "   document.Client.WxItemBuy(itemID);" +
-            "};" +
+WxFightHandler.Utils.DelayAsync = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-            "WxFightHandler.Utils.StopAutoFight = () => {" +
-            "   WxFightHandler.OnFirstRound=()=>{};" +
-            "   WxFightHandler.OnUseSkill=()=>{};" +
-            "   WxFightHandler.OnChangePet=()=>{};" +
-            "   WxFightHandler.OnFightOver=()=>{};" +
-            "};" +
+WxFightHandler.Utils.Send = (commandID, ...args) => WxFightHandler.Reflection.Action(WxFightHandler.Const.SocketConnection,'send',commandID, ...args);
+WxFightHandler.Utils.SendAsync = (commandID, parameterArray) => new Promise(resolve => {
+  WxFightHandler.Private._as3Callback = resolve;
+  document.Client.WxSendWithCallback2(commandID, parameterArray);
+});
 
-            "WxFightHandler.Utils.GetFightingPetID = () => { return document.Client.WxGetFightingPetID(); };" +
-            "WxFightHandler.Utils.GetFightingPetCatchTime = () => { return document.Client.WxGetFightingPetCatchTime(); };" +
-            "WxFightHandler.Utils.GetFightingPets = () => { return document.Client.WxGetFightingPets(); };" +
+WxFightHandler.Utils.GetPetNameByID = petID => WxFightHandler.Reflection.Func('com.robot.core.config.xml.PetXMLInfo','getName',petID);
+WxFightHandler.Utils.GetSkillNameByID = skillID => WxFightHandler.Reflection.Func('com.robot.core.config.xml.SkillXMLInfo','getName',skillID);
 
-            "WxFightHandler.Utils.ChangePetByID = (ids) => { document.Client.WxChangePetByID(ids); };" +
+WxFightHandler.Utils.AutoFight = id => document.Client.WxAutoFight(id);
 
-            // 延迟函数
-            "WxFightHandler.Utils.Delay = async (millisecond) => {" +
-            "   return new Promise((resolve) => { setTimeout(() => { resolve(); },millisecond); });" +
-            "};" +
+WxFightHandler.Utils.SetIsHidePetFight = h => document.Client.WxSetIsHidePetFight(h);
+WxFightHandler.Utils.SetIsAutoCure = cure => WxFightHandler.Reflection.Set(WxFightHandler.Const.SocketConnection,'WxIsAutoCure',cure);
+WxFightHandler.Utils.CurePet20HP = () => document.Client.WxCurePet20HP();
+WxFightHandler.Utils.CurePetAll = () => document.Client.WxCurePetAll();
+WxFightHandler.Utils.LowHP = () => document.Client.WxLowHP();
+WxFightHandler.Utils.SimpleAlarm = msg => WxFightHandler.Reflection.Action('com.robot.core.ui.alert.SimpleAlarm','show',msg);
 
-            // 发包 并接收返回值
-            "WxFightHandler.Utils.Send = (commandID, ...args) => {" +
-            "   document.Client.WxSend(commandID, ...args);" +
-            "};" +
-            "WxFightHandler.Utils.SendAsync = async (commandID,parameterArray) => {" +
-            "   return await new Promise((resolve) => {" +
-            "       WxFightHandler.Utils._as3Callback = resolve;" +
-            "       document.Client.WxSendWithCallback2(commandID,parameterArray);" +
-            "   });" +
-            "};" +
+WxFightHandler.Utils.CopyFireAsync = async (fireType = null) => {
+  // 从地图上借
+  if (await new Promise((resolve) => {
+    WxFightHandler.Private._as3Callback = resolve;
+    document.Client.WxCopyFireFromMap(fireType);
+  })) {
+    WxFightHandler.Utils.SimpleAlarm('借火成功');
+    return true;
+  }
 
-            // xml
-            "WxFightHandler.Utils.GetItemNameByID = (itemID) => {" +
-            "   return document.Client.WxGetItemNameByID(itemID);" +
-            "};" +
-            "WxFightHandler.Utils.GetPetNameByID = (petID) => {" +
-            "   return document.Client.WxGetPetNameByID(petID);" +
-            "};" +
-            "WxFightHandler.Utils.GetSkillNameByID = (skillID) => {" +
-            "   return document.Client.WxGetSkillNameByID(skillID);" +
-            "};" +
+  // 向图鉴-新增排行榜上的活跃玩家借
+  let dateToYYYYMMDDInt = date => {
+    let year = date.getFullYear(); // 获取年份
+    let month = date.getMonth() + 1; // 获取月份，加1是因为月份从0开始
+    let day = date.getDate(); // 获取日期
+    return year * 10000 + month * 100 + day; // 将年、月、日组合成YYYYMMDD格式的整数
+  }
 
-            "WxFightHandler.Utils.GetItemNumByID = (id) => {" +
-            "   return document.Client.WxGetItemNumByID(id);" +
-            "};" +
+  let date = new Date();
+  let day = date.getDay();
+  let offset = 0;
+  switch (day) {
+    case 1:
+      offset = 3;
+      break;
+    case 2:
+      offset = 4;
+      break;
+    case 3:
+      offset = 5;
+      break;
+    case 4:
+      offset = 6;
+      break;
+    case 6:
+      offset = 1;
+      break;
+    case 0:
+      offset = 2;
+      break;
+  }
+  date.setDate(date.getDate() - offset);
 
-            "WxFightHandler.Utils.AutoFight = id => document.Client.WxAutoFight(id);" +
+  let key = 157; // 图鉴-新增排行榜
+  let sub_key = dateToYYYYMMDDInt(date);
+  // console.log(sub_key);
+  let len = await new Promise(resolve => {
+    WxFightHandler.Private._as3Callback = resolve;
+    document.Client.WxGetRankListLen(key, sub_key);
+  });
+  len -= 100;
+  for (let i = 0; i <= len; i += 100) {
+    WxFightHandler.Utils.SimpleAlarm(`${i}/${len}`);
+    if (await new Promise(resolve => {
+      WxFightHandler.Private._as3Callback = resolve;
+      document.Client.WxCopyFireFromRank(key, sub_key, i, fireType);
+    })) {
+      WxFightHandler.Utils.SimpleAlarm('借火成功');
+      return true;
+    }
+  }
+  WxFightHandler.Utils.SimpleAlarm('借火失败');
+  return false;
+};
 
-            "WxFightHandler.Utils.SetIsHidePetFight = h => document.Client.WxSetIsHidePetFight(h);" +
-            "WxFightHandler.Utils.SetIsAutoCure = cure => cure ? document.Client.WxAutoCureStart() : document.Client.WxAutoCureStop();" +
-            "WxFightHandler.Utils.CurePet20HP = () => document.Client.WxCurePet20HP();" +
-            "WxFightHandler.Utils.CurePetAll = () => document.Client.WxCurePetAll();" +
-            "WxFightHandler.Utils.LowHP = () => document.Client.WxLowHP();" +
-            "WxFightHandler.Utils.SimpleAlarm = msg => document.Client.WxSimpleAlarm(msg);" +
-            "WxFightHandler.Utils.Alarm = msg => document.Client.WxAlarm(msg);"
-            ;
+WxFightHandler.Utils.GetActivityValueAsync = (name,key) => new Promise(resolve => {
+  WxFightHandler.Private._as3Callback = resolve;
+  document.Client.WxGetActivityValue(name,key); 
+});
+
+WxFightHandler.Utils.ChangeMap = id => WxFightHandler.Reflection.Action('com.robot.core.manager.MapManager','changeMap',id);
+WxFightHandler.Utils.ShowAppModule = id => WxFightHandler.Reflection.Action('com.robot.core.manager.ModuleManager','showAppModule',id);
+
+            ";
 
         public const string JS_FIGHT_DEFAULT =
             "WxFightHandler.OnFirstRound = (fightStartInfo) => {\r\n" +
@@ -301,12 +343,12 @@ namespace SeerRandomSkin
 
         private void btnAutoCureOpen_Click(object sender, EventArgs e)
         {
-            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxAutoCureStart();");
+            Form1.chromiumBrowser.ExecuteScriptAsync("WxFightHandler.Utils.SetIsAutoCure(true);");
         }
 
         private void btnAutoCureStop_Click(object sender, EventArgs e)
         {
-            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxAutoCureStop();");
+            Form1.chromiumBrowser.ExecuteScriptAsync("WxFightHandler.Utils.SetIsAutoCure(false);");
         }
     }
 }
