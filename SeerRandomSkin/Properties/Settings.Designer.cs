@@ -32,90 +32,94 @@ namespace SeerRandomSkin.Properties {
             "75,880,881,886,905,908,923,927,928,945,950,957,961,962,965,974,987,998,999,1000," +
             "1003,1011,1012,1017,1018,1019,1020,1029,1045,1061,1086,1087,1093,1109,1111,1115," +
             "1121,1122,1155,1156,1165,1166,1167,1168,1177,1179,1187,1189,1201,1202,1204,1215," +
-            "1256,1287,1288,1290,1306,1327,1336,1355,1394,1412,1446,1447,1449,1456,1526,1527," +
-            "1533,1534,1537,1567,1568,1569,1580,1587,1588,1630,1631,1632,1648,1651,1656,1657," +
-            "1665,1669,1678,1679,1680,1681,1700,1715,1717,1730,1745,1746,1748,1756,1776,1777," +
-            "1802,1806,1809,1815,1819,1825,1836,1840,1851,1861,1864,1910,1944,1945,1951,1955," +
-            "1956,1960,1971,1972,2000,2001,2006,2034,2045,2048,2049,2054,2073,2085,2147,2149," +
-            "2156,2167,2168,2172,2173,2174,2175,2178,2186,2197,2206,2218,2219,2234,2242,2247," +
-            "2250,2257,2262,2283,2288,2310,2321,2325,2326,2333,2347,2358,2363,2375,2376,2377," +
-            "2387,2394,2400,2402,2407,2413,2429,2430,2437,2438,2441,2442,2462,2468,2469,2471," +
-            "2488,2500,2502,2503,2508,2516,2519,2520,2521,2533,2535,2545,2580,2591,2606,2607," +
-            "2612,2619,2620,2625,2634,2635,2636,2643,2648,2652,2655,2661,2662,2665,2673,2676," +
-            "2678,2681,2684,2691,2703,2708,2710,2733,2736,2744,2748,2761,2769,2780,2786,2787," +
-            "2793,2794,2796,2800,2811,2813,2821,2824,2825,2835,2837,2839,2840,2842,2843,2849," +
-            "2850,2852,2853,2858,2859,2861,2873,2875,2879,2883,2887,2888,2893,2906,2915,2935," +
-            "2937,2951,2953,2955,2967,2982,2988,2991,3001,3003,3017,3038,3042,3043,3044,3050," +
-            "3057,3066,3074,3075,3081,3082,3087,3092,3094,3097,3102,3103,3104,3105,3110,3111," +
-            "3112,3113,3117,3118,3122,3128,3129,3134,3137,3140,3141,3146,3147,3156,3163,3164," +
-            "3168,3171,3179,3190,3192,3193,3194,3196,3204,3205,3210,3214,3216,3224,3227,3228," +
-            "3229,3232,3233,3234,3237,3239,3240,3243,3249,3256,3261,3267,3269,3273,3289,3290," +
-            "3293,3294,3295,3296,3302,3303,3304,3305,3307,3308,3309,3311,3312,3315,3318,3320," +
-            "3321,3322,3324,3325,3326,3327,3328,3333,3336,3340,3343,3346,3353,3354,3355,3356," +
-            "3357,3358,3373,3374,3375,3378,3380,3383,3388,3392,3395,3397,3402,3403,3404,3414," +
-            "3418,3421,3425,3430,3435,3436,3437,3439,3440,3443,3446,3455,3456,3458,3461,3463," +
-            "3465,3478,3479,3481,3486,3487,3488,3490,3491,3502,3503,3504,3506,3510,3511,3516," +
-            "3525,3532,3535,3539,3545,3547,3552,3554,3567,3568,3569,3570,3571,3575,3577,3578," +
-            "3580,3590,3612,3615,3623,3626,3631,3642,3643,3644,3645,3649,3655,3663,3664,3665," +
-            "3668,3669,3676,3679,3683,3685,3691,3693,3694,3701,3703,3704,3711,3717,3724,3740," +
-            "3741,3742,3743,3758,3774,3776,3778,3780,3783,3786,3790,3792,3797,3803,3807,3808," +
-            "3810,3813,3816,3820,3830,3833,3841,3842,3845,3857,3858,3861,3866,3867,3873,3875," +
-            "3878,3879,3883,3888,3889,3891,3892,3898,3899,3914,3919,3920,3928,3929,3937,3939," +
-            "3940,3941,3945,3949,3957,3959,3961,3964,3965,3986,3987,3992,3998,4004,4005,4007," +
-            "4009,4015,4017,4018,4022,4024,4027,4032,4035,4037,4038,4041,4042,4046,4052,4054," +
-            "4055,4057,4061,4064,4065,4068,4074,4081,4086,4088,4093,4097,4101,4106,4107,4109," +
-            "4110,4114,4115,4123,4124,4125,4131,4132,4135,4139,4143,4146,4147,4151,4154,4156," +
-            "4159,4160,4163,4165,4166,4173,4174,4177,4179,4182,4184,4186,4187,4188,4189,4193," +
-            "4209,4215,4219,4221,4222,4231,4233,4237,4240,4241,4242,4246,4247,4249,4250,4251," +
-            "4252,4253,4254,4261,4262,4268,4272,4273,4275,4277,4280,4284,4286,4287,4288,4289," +
-            "4290,4291,4295,4300,4301,4302,4303,4304,4305,4306,4307,4309,4310,4313,4318,4319," +
-            "4321,4322,4324,4325,4327,4328,4329,4330,4331,4333,4334,4338,4340,4342,4345,4347," +
-            "4352,4353,4356,4358,4360,4364,4365,4372,4373,4374,4385,4389,4390,4391,4392,4397," +
-            "4401,4402,4407,4408,4410,4412,4413,4417,4420,4421,4423,4424,4426,4429,4436,4438," +
-            "4440,4441,4442,4446,4448,4449,4451,4455,4456,4458,4459,4461,4462,4465,4466,4467," +
-            "4469,4472,4477,4480,4481,4482,4483,4484,4488,4490,4491,4492,4496,4498,4499,4500," +
-            "4502,4504,4505,4509,4510,4511,4514,4516,4518,4519,4522,4524,4526,4527,4529,4530," +
-            "4531,4534,4535,4538,4539,4546,4547,4548,4551,4552,4553,4554,4555,4557,4559,4560," +
-            "4562,4566,4567,4569,4572,4573,4574,4577,4582,4584,4585,4587,4588,4589,4591,4593," +
-            "4594,4595,4597,4598,4600,4604,4605,4606,4609,4612,4613,4617,4619,4620,4622,4623," +
-            "4625,4627,4628,4630,4634,4635,4636,4642,4643,4644,4646,4648,4649,4650,4651,4652," +
-            "4653,4654,4655,4656,4658,4661,4662,4663,4667,4669,4671,4672,4674,4676,4677,4678," +
-            "4679,4680,4681,4683,4684,4685,4686,4687,4688,4689,4691,4693,4694,4695,4696,4697," +
-            "4698,4699,4700,4702,4703,4704,4705,4706,4707,4708,5002,5005,5008,5009,5010,5011," +
-            "5013,5014,5015,5016,5017,5018,5019,5021,5024,5025,5027,5030,5031,5032,5033,5036," +
-            "5039,5042,5044,5045,5046,5047,5052,5053,5055,5056,5057,5058,5059,5060,5061,5062," +
-            "5063,5064,5069,5071,5072,5073,5074,5075,5111,5357,5403,5404,5494,5498,5503,5509," +
-            "5601,5605,5606,5607,5608,5693,5713,5772,5773,5774,5776,5785,5786,5787,5788,5789," +
-            "5790,5796,5797,5819,5820,5821,5824,1400126,1400130,1400132,1400138,1400139,14001" +
-            "41,1400142,1400143,1400148,1400149,1400150,1400153,1400155,1400158,1400159,14001" +
-            "60,1400161,1400165,1400166,1400168,1400170,1400174,1400176,1400178,1400179,14001" +
-            "82,1400183,1400185,1400187,1400189,1400193,1400194,1400195,1400204,1400213,14002" +
-            "20,1400224,1400225,1400231,1400233,1400241,1400242,1400246,1400247,1400249,14002" +
-            "50,1400252,1400253,1400261,1400262,1400268,1400269,1400280,1400281,1400283,14002" +
-            "84,1400286,1400287,1400288,1400294,1400295,1400297,1400299,1400301,1400302,14003" +
-            "04,1400305,1400306,1400307,1400308,1400309,1400311,1400313,1400314,1400315,14003" +
-            "17,1400318,1400321,1400322,1400325,1400327,1400328,1400329,1400330,1400332,14003" +
-            "33,1400334,1400335,1400336,1400340,1400342,1400344,1400345,1400346,1400347,14003" +
-            "48,1400351,1400352,1400354,1400356,1400359,1400360,1400365,1400367,1400369,14003" +
-            "71,1400372,1400374,1400375,1400377,1400378,1400379,1400380,1400382,1400383,14003" +
-            "84,1400385,1400386,1400387,1400392,1400394,1400395,1400396,1400398,1400404,14004" +
-            "09,1400410,1400411,1400412,1400413,1400414,1400415,1400416,1400417,1400419,14004" +
-            "20,1400421,1400422,1400427,1400430,1400431,1400433,1400434,1400436,1400437,14004" +
-            "38,1400440,1400442,1400445,1400446,1400447,1400448,1400450,1400454,1400455,14004" +
-            "57,1400460,1400464,1400465,1400467,1400468,1400469,1400470,1400471,1400472,14004" +
-            "73,1400474,1400475,1400478,1400479,1400480,1400481,1400482,1400486,1400487,14004" +
-            "89,1400490,1400491,1400492,1400493,1400495,1400496,1400497,1400501,1400502,14005" +
-            "07,1400508,1400510,1400511,1400514,1400516,1400517,1400519,1400520,1400522,14005" +
-            "23,1400525,1400527,1400530,1400531,1400532,1400534,1400535,1400536,1400540,14005" +
-            "41,1400542,1400543,1400544,1400546,1400547,1400548,1400549,1400552,1400553,14005" +
-            "55,1400556,1400559,1400560,1400561,1400563,1400564,1400565,1400566,1400568,14005" +
-            "69,1400570,1400571,1400572,1400575,1400576,1400578,1400579,1400580,1400582,14005" +
-            "83,1400584,1400587,1400588,1400589,1400592,1400594,1400595,1400596,1400599,14006" +
+            "1256,1287,1288,1290,1306,1327,1355,1394,1412,1446,1447,1449,1456,1526,1527,1533," +
+            "1534,1537,1567,1568,1569,1580,1587,1588,1630,1631,1632,1648,1651,1656,1657,1665," +
+            "1669,1678,1679,1680,1681,1700,1715,1730,1745,1746,1748,1756,1776,1777,1802,1806," +
+            "1809,1815,1819,1825,1836,1840,1851,1861,1864,1910,1944,1945,1951,1955,1956,1960," +
+            "1971,1972,2000,2001,2006,2034,2045,2048,2049,2054,2073,2085,2147,2149,2156,2167," +
+            "2168,2172,2173,2174,2175,2178,2186,2197,2206,2218,2219,2234,2242,2247,2250,2257," +
+            "2262,2283,2288,2310,2321,2325,2326,2333,2347,2358,2363,2375,2376,2377,2387,2394," +
+            "2400,2402,2407,2413,2429,2430,2437,2438,2441,2442,2468,2469,2471,2488,2500,2502," +
+            "2503,2508,2516,2520,2521,2533,2535,2545,2580,2591,2606,2607,2612,2619,2620,2625," +
+            "2634,2635,2636,2643,2648,2652,2655,2662,2665,2673,2676,2678,2681,2684,2691,2703," +
+            "2710,2733,2748,2761,2769,2780,2786,2787,2793,2794,2796,2800,2811,2813,2821,2824," +
+            "2825,2835,2837,2839,2840,2842,2843,2849,2850,2852,2853,2858,2859,2861,2873,2875," +
+            "2879,2883,2887,2888,2893,2906,2915,2935,2937,2951,2953,2967,2982,2988,2991,3001," +
+            "3017,3038,3042,3043,3044,3050,3057,3066,3074,3075,3081,3082,3087,3092,3094,3097," +
+            "3102,3103,3104,3105,3110,3111,3112,3113,3117,3118,3122,3128,3129,3134,3137,3140," +
+            "3141,3146,3147,3156,3163,3164,3168,3171,3179,3190,3192,3193,3194,3196,3205,3210," +
+            "3214,3216,3224,3227,3228,3229,3232,3233,3234,3237,3239,3240,3249,3256,3261,3267," +
+            "3273,3289,3290,3293,3294,3295,3296,3302,3303,3304,3305,3307,3308,3309,3311,3312," +
+            "3315,3318,3320,3321,3322,3324,3325,3326,3328,3333,3336,3340,3343,3353,3354,3355," +
+            "3356,3357,3358,3373,3374,3375,3378,3380,3383,3388,3392,3395,3397,3402,3403,3404," +
+            "3414,3418,3421,3425,3430,3435,3436,3437,3439,3440,3443,3446,3455,3456,3458,3461," +
+            "3465,3478,3479,3481,3487,3488,3490,3491,3502,3503,3504,3506,3510,3511,3516,3532," +
+            "3535,3539,3545,3547,3552,3554,3567,3568,3569,3570,3571,3575,3577,3578,3580,3590," +
+            "3612,3626,3631,3643,3645,3649,3655,3663,3664,3665,3668,3669,3676,3679,3683,3685," +
+            "3691,3693,3694,3701,3703,3704,3711,3717,3724,3740,3741,3742,3743,3758,3774,3776," +
+            "3778,3780,3783,3786,3790,3792,3797,3803,3807,3808,3810,3813,3816,3820,3830,3841," +
+            "3842,3845,3857,3858,3861,3866,3867,3873,3875,3879,3883,3888,3889,3891,3892,3898," +
+            "3914,3919,3920,3928,3937,3939,3940,3945,3949,3957,3959,3964,3965,3986,3987,3992," +
+            "4004,4005,4007,4009,4015,4017,4018,4024,4027,4035,4037,4038,4041,4046,4052,4054," +
+            "4055,4057,4061,4064,4065,4068,4074,4081,4086,4088,4093,4097,4101,4106,4107,4110," +
+            "4114,4115,4123,4124,4125,4131,4132,4135,4139,4143,4146,4147,4151,4154,4156,4159," +
+            "4160,4165,4166,4173,4174,4177,4179,4182,4184,4186,4187,4188,4189,4193,4209,4215," +
+            "4219,4221,4222,4231,4233,4237,4240,4241,4242,4246,4247,4249,4250,4251,4252,4253," +
+            "4261,4262,4268,4272,4273,4275,4277,4280,4284,4286,4287,4288,4289,4290,4291,4295," +
+            "4300,4301,4302,4303,4304,4305,4306,4307,4309,4310,4313,4318,4319,4321,4322,4324," +
+            "4325,4327,4328,4329,4330,4331,4333,4334,4338,4340,4342,4345,4347,4352,4353,4356," +
+            "4358,4360,4364,4365,4372,4373,4374,4389,4390,4391,4392,4397,4401,4402,4407,4408," +
+            "4410,4412,4413,4417,4420,4421,4423,4424,4426,4436,4438,4440,4441,4442,4446,4448," +
+            "4449,4451,4455,4456,4458,4459,4461,4462,4465,4466,4467,4469,4472,4477,4480,4481," +
+            "4482,4484,4488,4490,4491,4492,4496,4498,4499,4500,4502,4504,4505,4509,4510,4511," +
+            "4514,4516,4518,4519,4522,4524,4526,4527,4529,4531,4534,4535,4538,4539,4546,4547," +
+            "4548,4551,4552,4553,4554,4555,4557,4559,4560,4566,4567,4569,4572,4573,4574,4577," +
+            "4582,4584,4585,4587,4588,4589,4591,4593,4594,4595,4597,4598,4600,4604,4605,4606," +
+            "4609,4612,4613,4617,4619,4620,4622,4623,4625,4627,4628,4630,4634,4635,4636,4642," +
+            "4643,4644,4646,4648,4649,4650,4651,4652,4653,4654,4655,4656,4658,4661,4662,4663," +
+            "4667,4669,4671,4672,4674,4676,4677,4678,4679,4680,4681,4683,4684,4685,4686,4687," +
+            "4688,4689,4691,4693,4694,4695,4696,4697,4698,4699,4700,4702,4703,4705,4707,4708," +
+            "4709,4710,4711,4712,4713,4714,4715,4716,4717,4718,4719,4720,4721,4722,4723,4724," +
+            "4725,5002,5005,5008,5009,5010,5011,5013,5014,5015,5016,5017,5018,5019,5021,5024," +
+            "5025,5027,5030,5031,5032,5033,5036,5039,5042,5044,5045,5046,5047,5052,5053,5055," +
+            "5056,5057,5058,5059,5060,5061,5062,5063,5064,5069,5071,5072,5073,5074,5075,5111," +
+            "5357,5403,5404,5494,5498,5503,5509,5601,5605,5606,5607,5608,5693,5713,5772,5773," +
+            "5774,5776,5785,5786,5787,5788,5789,5790,5796,5797,5819,5820,5821,5824,5825,14001" +
+            "26,1400129,1400130,1400131,1400132,1400133,1400134,1400138,1400139,1400141,14001" +
+            "42,1400143,1400148,1400149,1400150,1400153,1400155,1400158,1400159,1400160,14001" +
+            "61,1400163,1400166,1400168,1400170,1400174,1400176,1400178,1400179,1400181,14001" +
+            "82,1400183,1400185,1400187,1400189,1400193,1400194,1400195,1400204,1400207,14002" +
+            "12,1400213,1400214,1400220,1400224,1400225,1400230,1400231,1400236,1400238,14002" +
+            "39,1400246,1400247,1400249,1400250,1400252,1400253,1400256,1400261,1400262,14002" +
+            "68,1400269,1400280,1400281,1400283,1400284,1400286,1400287,1400288,1400294,14002" +
+            "95,1400297,1400299,1400301,1400302,1400303,1400304,1400305,1400306,1400307,14003" +
+            "08,1400309,1400311,1400312,1400313,1400314,1400315,1400317,1400318,1400319,14003" +
+            "20,1400321,1400322,1400324,1400325,1400327,1400328,1400329,1400330,1400332,14003" +
+            "33,1400334,1400335,1400336,1400337,1400338,1400339,1400340,1400341,1400342,14003" +
+            "44,1400345,1400346,1400348,1400349,1400351,1400352,1400354,1400356,1400359,14003" +
+            "60,1400361,1400362,1400363,1400364,1400365,1400367,1400369,1400371,1400372,14003" +
+            "74,1400375,1400377,1400378,1400379,1400380,1400382,1400383,1400384,1400385,14003" +
+            "86,1400387,1400388,1400389,1400392,1400394,1400395,1400396,1400398,1400399,14004" +
+            "04,1400409,1400410,1400411,1400412,1400413,1400414,1400415,1400416,1400417,14004" +
+            "19,1400420,1400421,1400422,1400427,1400430,1400431,1400433,1400434,1400436,14004" +
+            "37,1400438,1400440,1400442,1400445,1400446,1400447,1400448,1400450,1400454,14004" +
+            "55,1400457,1400460,1400461,1400464,1400465,1400467,1400468,1400469,1400470,14004" +
+            "71,1400472,1400473,1400474,1400475,1400478,1400479,1400480,1400481,1400482,14004" +
+            "83,1400486,1400487,1400489,1400490,1400491,1400492,1400493,1400496,1400497,14004" +
+            "98,1400501,1400502,1400503,1400507,1400508,1400510,1400511,1400514,1400516,14005" +
+            "17,1400519,1400520,1400522,1400523,1400525,1400527,1400528,1400530,1400531,14005" +
+            "32,1400534,1400535,1400536,1400537,1400539,1400540,1400541,1400542,1400543,14005" +
+            "44,1400545,1400546,1400547,1400548,1400549,1400552,1400553,1400555,1400556,14005" +
+            "59,1400560,1400563,1400564,1400565,1400566,1400568,1400569,1400570,1400571,14005" +
+            "72,1400575,1400576,1400577,1400578,1400579,1400580,1400582,1400583,1400584,14005" +
+            "87,1400588,1400589,1400592,1400593,1400594,1400595,1400596,1400599,1400600,14006" +
             "01,1400604,1400605,1400606,1400607,1400608,1400611,1400613,1400616,1400619,14006" +
             "20,1400621,1400622,1400623,1400634,1400635,1400636,1400639,1400640,1400641,14006" +
-            "42,1400644,1400646,1400650,1400652,1400653,1400654,1400658,1400659,1400660,14006" +
-            "61,1400662,1400664,1400665,1400666,1400667,1400669,1400670,1400671,1400674,14006" +
-            "75,1400678,1400679,1400680,1400681,1400682,")]
+            "42,1400644,1400645,1400646,1400650,1400652,1400653,1400654,1400658,1400659,14006" +
+            "60,1400661,1400662,1400664,1400665,1400666,1400667,1400669,1400670,1400671,14006" +
+            "74,1400675,1400678,1400679,1400680,1400681,1400682,1400683,1400684,1400685,14006" +
+            "86,1400687,1400688,1400689,1400690,1400691,1400692,1400693,1400694,1400695,14006" +
+            "96,")]
         public string SkinIds {
             get {
                 return ((string)(this["SkinIds"]));
@@ -448,236 +452,174 @@ namespace SeerRandomSkin.Properties {
             " }\\n    }\\n  }\\n  WxFightHandler.Utils.UseSkill(WxFightHandler.flag ? WxFightHan" +
             "dler.悲欢离合 : WxFightHandler.阴晴圆缺);\\n  WxFightHandler.flag = !WxFightHandler.flag;" +
             "\\n};\\n\\nWxFightHandler.OnChangePet = () => {};\\nWxFightHandler.OnFightOver = () " +
-            "=> {};\",\r\n  \"pve-压血\": \"if (WxFightHandler.Utils.GetBag1().length === 0) {\\n  ale" +
-            "rt(\'没有出战精灵\');\\n  return;\\n}\\nWxFightHandler.OnFirstRound = () => { WxFightHandle" +
-            "r.Utils.UseSkill(0); }\\nWxFightHandler.OnUseSkill = async (mySkillInfo) => {\\n  " +
-            "await WxFightHandler.Utils.DelayAsync(WxFightHandler.Const.DelayMs);\\n  if (mySk" +
-            "illInfo.remainHP != 0) {\\n    WxFightHandler.Utils.UseSkill(0);\\n  }\\n  else {\\n" +
-            "    WxFightHandler.Utils.ChangePetByID([]);\\n  }\\n}\\nWxFightHandler.OnChangePet " +
-            "= () => { WxFightHandler.Utils.UseSkill(0); }\\nWxFightHandler.OnFightOver = () =" +
-            "> {\\n  WxFightHandler.Utils.StopAutoFight();\\n  WxFightHandler.Utils.CurePet20HP" +
-            "();\\n}\\n\\nWxFightHandler.Utils.SetIsAutoCure(false);\\nWxFightHandler.Utils.LowHP" +
-            "();\",\r\n  \"pve-套装-漆黑-假面-吉光\": \"WxFightHandler.Utils.ChangeCloth([1301043,0,1301044" +
-            ",0,1301045,0,1301046,0,1300954,0]);\\nWxFightHandler.Utils.SetTitle(272);\",\r\n  \"p" +
-            "ve-套装-耀世-魔界-神话\": \"WxFightHandler.Utils.ChangeCloth([1300950,0,1300951,0,1300952," +
-            "0,1300953,0,1300874,0]);\\nWxFightHandler.Utils.SetTitle(300);\",\r\n  \"pve-套装-银翼-假面" +
-            "-吉光\": \"WxFightHandler.Utils.ChangeCloth([1300670,0,1300671,0,1300672,0,1300673,0" +
-            ",1300954,0]);\\nWxFightHandler.Utils.SetTitle(272);\",\r\n  \"pve-状态-因子1-保存\": \"(() =>" +
-            " {\\n  let SeerState = new Object();\\n  let key = \'SeerStateFragment1\';\\n  if (lo" +
-            "calStorage.getItem(key)!=null) localStorage.removeItem(key);\\n  SeerState.clothe" +
-            "s = WxFightHandler.Utils.GetClothes();\\n  SeerState.title = WxFightHandler.Utils" +
-            ".GetTitle();\\n  SeerState.bag1 = WxFightHandler.Utils.GetBag1().map(pet => pet.c" +
-            "atchTime);\\n  SeerState.bag2 = WxFightHandler.Utils.GetBag2().map(pet => pet.cat" +
-            "chTime);\\n  localStorage.setItem(key, JSON.stringify(SeerState));\\n})();\",\r\n  \"p" +
-            "ve-状态-因子1-更换\": \"(async () => {\\n  try {\\n    let SeerState = JSON.parse(localSto" +
-            "rage.getItem(\'SeerStateFragment1\'));\\n    await WxFightHandler.Utils.SetPetBagAs" +
-            "ync(SeerState.bag1, SeerState.bag2);\\n    WxFightHandler.Utils.ChangeCloth(SeerS" +
-            "tate.clothes);\\n    WxFightHandler.Utils.SetTitle(SeerState.title);\\n  } catch {" +
-            "alert(\'未保存\')}\\n})();\",\r\n  \"pve-状态-因子2-保存\": \"(() => {\\n  let SeerState = new Obje" +
-            "ct();\\n  let key = \'SeerStateFragment2\';\\n  if (localStorage.getItem(key)!=null)" +
-            " localStorage.removeItem(key);\\n  SeerState.clothes = WxFightHandler.Utils.GetCl" +
-            "othes();\\n  SeerState.title = WxFightHandler.Utils.GetTitle();\\n  SeerState.bag1" +
-            " = WxFightHandler.Utils.GetBag1().map(pet => pet.catchTime);\\n  SeerState.bag2 =" +
-            " WxFightHandler.Utils.GetBag2().map(pet => pet.catchTime);\\n  localStorage.setIt" +
-            "em(key, JSON.stringify(SeerState));\\n})();\",\r\n  \"pve-状态-因子2-更换\": \"(async () => {" +
-            "\\n  try {\\n    let SeerState = JSON.parse(localStorage.getItem(\'SeerStateFragmen" +
-            "t2\'));\\n    await WxFightHandler.Utils.SetPetBagAsync(SeerState.bag1, SeerState." +
-            "bag2);\\n    WxFightHandler.Utils.ChangeCloth(SeerState.clothes);\\n    WxFightHan" +
-            "dler.Utils.SetTitle(SeerState.title);\\n  } catch {alert(\'未保存\')}\\n})();\",\r\n  \"pve" +
-            "-状态-因子3-保存\": \"(() => {\\n  let SeerState = new Object();\\n  let key = \'SeerStateF" +
-            "ragment3\';\\n  if (localStorage.getItem(key)!=null) localStorage.removeItem(key);" +
-            "\\n  SeerState.clothes = WxFightHandler.Utils.GetClothes();\\n  SeerState.title = " +
-            "WxFightHandler.Utils.GetTitle();\\n  SeerState.bag1 = WxFightHandler.Utils.GetBag" +
-            "1().map(pet => pet.catchTime);\\n  SeerState.bag2 = WxFightHandler.Utils.GetBag2(" +
-            ").map(pet => pet.catchTime);\\n  localStorage.setItem(key, JSON.stringify(SeerSta" +
-            "te));\\n})();\",\r\n  \"pve-状态-因子3-更换\": \"(async () => {\\n  try {\\n    let SeerState =" +
-            " JSON.parse(localStorage.getItem(\'SeerStateFragment3\'));\\n    await WxFightHandl" +
-            "er.Utils.SetPetBagAsync(SeerState.bag1, SeerState.bag2);\\n    WxFightHandler.Uti" +
-            "ls.ChangeCloth(SeerState.clothes);\\n    WxFightHandler.Utils.SetTitle(SeerState." +
-            "title);\\n  } catch {alert(\'未保存\')}\\n})();\",\r\n  \"pve-状态-因子4-保存\": \"(() => {\\n  let " +
-            "SeerState = new Object();\\n  let key = \'SeerStateFragment4\';\\n  if (localStorage" +
-            ".getItem(key)!=null) localStorage.removeItem(key);\\n  SeerState.clothes = WxFigh" +
-            "tHandler.Utils.GetClothes();\\n  SeerState.title = WxFightHandler.Utils.GetTitle(" +
-            ");\\n  SeerState.bag1 = WxFightHandler.Utils.GetBag1().map(pet => pet.catchTime);" +
-            "\\n  SeerState.bag2 = WxFightHandler.Utils.GetBag2().map(pet => pet.catchTime);\\n" +
-            "  localStorage.setItem(key, JSON.stringify(SeerState));\\n})();\",\r\n  \"pve-状态-因子4-" +
-            "更换\": \"(async () => {\\n  try {\\n    let SeerState = JSON.parse(localStorage.getIt" +
-            "em(\'SeerStateFragment4\'));\\n    await WxFightHandler.Utils.SetPetBagAsync(SeerSt" +
-            "ate.bag1, SeerState.bag2);\\n    WxFightHandler.Utils.ChangeCloth(SeerState.cloth" +
-            "es);\\n    WxFightHandler.Utils.SetTitle(SeerState.title);\\n  } catch {alert(\'未保存" +
-            "\')}\\n})();\",\r\n  \"pve-状态-因子5-保存\": \"(() => {\\n  let SeerState = new Object();\\n  l" +
-            "et key = \'SeerStateFragment5\';\\n  if (localStorage.getItem(key)!=null) localStor" +
-            "age.removeItem(key);\\n  SeerState.clothes = WxFightHandler.Utils.GetClothes();\\n" +
-            "  SeerState.title = WxFightHandler.Utils.GetTitle();\\n  SeerState.bag1 = WxFight" +
-            "Handler.Utils.GetBag1().map(pet => pet.catchTime);\\n  SeerState.bag2 = WxFightHa" +
-            "ndler.Utils.GetBag2().map(pet => pet.catchTime);\\n  localStorage.setItem(key, JS" +
-            "ON.stringify(SeerState));\\n})();\",\r\n  \"pve-状态-因子5-更换\": \"(async () => {\\n  try {\\" +
-            "n    let SeerState = JSON.parse(localStorage.getItem(\'SeerStateFragment5\'));\\n  " +
-            "  await WxFightHandler.Utils.SetPetBagAsync(SeerState.bag1, SeerState.bag2);\\n  " +
-            "  WxFightHandler.Utils.ChangeCloth(SeerState.clothes);\\n    WxFightHandler.Utils" +
-            ".SetTitle(SeerState.title);\\n  } catch {alert(\'未保存\')}\\n})();\",\r\n  \"pve-绿火\": \"(as" +
-            "ync () => {\\n  let FIRE_BLUE_SMALL = 2;\\n  let FIRE_PURPLE_SMALL = 3;\\n  let FIR" +
-            "E_GOLD_SMALL = 4;\\n  let FIRE_GREEN_SMALL = 5;\\n  let FIRE_GREEN_BIG = 6;\\n  let" +
-            " FIRE_BLUE_BIG = 7;\\n  let FIRE_PURPLE_BIG = 8;\\n  let FIRE_GOLD_BIG = 9;\\n  if " +
-            "(await WxFightHandler.Utils.CopyFireAsync([FIRE_GREEN_SMALL])) {\\n    setTimeout" +
-            "(() => {\\n      WxFightHandler.Utils.SimpleAlarm(\'火焰好像快失效了\');\\n    }, 10 * 60 * " +
-            "1000);\\n  }\\n})();\",\r\n  \"pve-金火\": \"(async () => {\\n    let FIRE_BLUE_SMALL = 2;\\" +
-            "n    let FIRE_PURPLE_SMALL = 3;\\n    let FIRE_GOLD_SMALL = 4;\\n    let FIRE_GREE" +
-            "N_SMALL = 5;\\n    let FIRE_GREEN_BIG = 6;\\n    let FIRE_BLUE_BIG = 7;\\n    let F" +
-            "IRE_PURPLE_BIG = 8;\\n    let FIRE_GOLD_BIG = 9;\\n    await WxFightHandler.Utils." +
-            "CopyFireAsync([FIRE_GOLD_BIG,FIRE_GOLD_SMALL]);\\n  })();\",\r\n  \"关卡-噬梦魔灵-第二关\": \"//" +
-            " 打开开发者工具，在 console 页面查看指引\\n// 制作过程视频：BV1fm8nexENV\\n(async () => {\\n  function Re" +
-            "adInt(data) { return (data.byteArray[data.position++] << 24) + (data.byteArray[d" +
-            "ata.position++] << 16) + (data.byteArray[data.position++] << 8) + data.byteArray" +
-            "[data.position++]; }\\n  function ReadByte(data) { return data.byteArray[data.pos" +
-            "ition++]; }\\n\\n  async function getMultiValue(arr) {\\n    arr.unshift(arr.length" +
-            "); // 赛发送数组的特殊格式，首位是数组长度\\n    let data = {};\\n    data.byteArray = await WxFight" +
-            "Handler.Utils.SendAsync(46046, arr);\\n    data.position = 0;\\n    // 将收到的包解析成数组\\" +
-            "n    let result = [];\\n    let arrayLength = ReadInt(data);\\n    for (let i = 0;" +
-            " i < arrayLength; ++i) { result.push(ReadInt(data)); }\\n    return result;\\n  }\\" +
-            "n\\n  function getBit(p1, p2) { return (p1 >> (p2 - 1)) & 1; }\\n  function getByt" +
-            "e(p1, p2) { return (p1 >> (8 * p2)) & 255; }\\n\\n  async function getMapInfo(curM" +
-            "ap) {\\n    let mapObj = {};\\n\\n    let arr = await getMultiValue([\\n      103296" +
-            " + (curMap - 1) / 4,\\n      103309 + curMap - 1,\\n      103360 + (curMap - 1) / " +
-            "32\\n    ]);\\n    arr[0] = getByte(arr[0], (curMap - 1) % 4);\\n    if (arr[0] < 5" +
-            ") {\\n      // 一共 4 种颜色的球，arr[0] 分别为 1 2 3 4 时，表示地图上有对应的球\\n      if (arr[0] > 0) " +
-            "{\\n        mapObj.ballType = arr[0];\\n      }\\n    }\\n    else if (arr[0] < 9) {" +
-            "\\n      // 地图上有井，种类为 (arr[0] - 5)\\n      // 数值从 0 开始，与球的标号不同，但是按照顺序，颜色还是对应得上的\\n " +
-            "     mapObj.holeType = arr[0] - 5;\\n    }\\n    else {\\n      // 地图上有 NPC\\n    }\\" +
-            "n\\n    // 每张地图都有 4 个门\\n    // doors 数组中，从左到右依次对应界面上显示的门\\n    // 0 表示此路不通\\n    //" +
-            " 其他数字，在不同的地图中相同数字的门，表示互相连通\\n    mapObj.doors = [];\\n    for (let i = 1; i <= 4; " +
-            "++i) {\\n      mapObj.doors[i - 1] = getByte(arr[1], i - 1);\\n    }\\n\\n    return" +
-            " mapObj;\\n  }\\n\\n  async function findPath() {\\n    if (window.allMapInfo11813 =" +
-            "== undefined) {\\n      window.allMapInfo11813 = [];\\n      for (let i = 1; i < 2" +
-            "1; ++i) { window.allMapInfo11813.push(await getMapInfo(i)); }\\n      console.log" +
-            "(\'世界地图\', window.allMapInfo11813);\\n    }\\n\\n    // 当前地图\\n    let globalObj = {};" +
-            "\\n    let arr = await getMultiValue([103294, 103295]);\\n    globalObj.curMap = a" +
-            "rr[0] & 255; // 地图标号（一共 20 张地图，标号从 1 开始）\\n    globalObj.curEnergy = arr[0] >> 8 " +
-            "& 255; // 灵魂能量\\n    globalObj.curHasBall = arr[0] >> 16 & 255;\\n    globalObj.ha" +
-            "sTransferNum = arr[0] >> 24 & 255; // 已走过的步数\\n\\n    globalObj.hasBall = []\\n    " +
-            "for (let i = 1; i <= 4; ++i) {\\n      if (getBit(arr[1], i) == 1) {\\n        glo" +
-            "balObj.hasBall[i - 1] = 1;\\n      }\\n      else {\\n        globalObj.hasBall[i -" +
-            " 1] = 0;\\n      }\\n    }\\n\\n    globalObj.doors = window.allMapInfo11813[globalO" +
-            "bj.curMap - 1].doors;\\n\\n    // console.log(globalObj);\\n    console.log(`当前地图上，" +
-            "门的编号（从左到右）分别是：[${globalObj.doors.filter(door => door!=0).join(\' \')}]`);\\n    if " +
-            "(globalObj.curHasBall === 0) {\\n      console.log(\'寻找最近的球\');\\n      let path = b" +
-            "fs(globalObj.curMap, m => (\'ballType\' in m && globalObj.hasBall[m.ballType-1] ==" +
-            "= 0));\\n      if (path.length === 0) {\\n        console.log(\'请捡起当前地图上的球\');\\n    " +
-            "  }\\n      else if (path.length > window.allMapInfo11813.length) {\\n        cons" +
-            "ole.log(\'剩下的球无法获取，请先耗尽灵魂能量，重置关卡\');\\n      }\\n      else {\\n        console.log(`" +
-            "请进入 ${path[0]} 号门`);\\n      }\\n    }\\n    else {\\n      console.log(\'寻找井\');\\n   " +
-            "   let path = bfs(globalObj.curMap, m => (\'holeType\' in m && m.holeType === glob" +
-            "alObj.curHasBall-1));\\n      if (path.length === 0) {\\n        console.log(\'请将球投" +
-            "入当前地图上的井\');\\n      }\\n      else if (path.length > window.allMapInfo11813.length" +
-            ") {\\n        console.log(\'剩下的井所在位置无法到达，请先耗尽灵魂能量，重置关卡\');\\n      }\\n      else {\\n" +
-            "        console.log(`请进入 ${path[0]} 号门`);\\n      }\\n    }\\n  }\\n\\n  function bfs" +
-            "(curMap, predicate) {\\n    let visited = (new Array(window.allMapInfo11813.lengt" +
-            "h)).fill(null); // 记录路径\\n    let queue = [];\\n    queue.push(curMap-1);\\n    vis" +
-            "ited[curMap-1] = [];\\n\\n    while (queue.length > 0) {\\n      let cur = queue.sh" +
-            "ift();\\n      if (predicate(window.allMapInfo11813[cur])) {\\n        return visi" +
-            "ted[cur];\\n      }\\n      for (let door of window.allMapInfo11813[cur].doors) {\\" +
-            "n        if (door === 0) continue;\\n        // 若两个地图有相同编号的门，则说明这两个地图相互连通\\n      " +
-            "  for (let i = 0; i < window.allMapInfo11813.length; ++i) {\\n          if (i ===" +
-            " cur || visited[i] != null) continue;\\n          if (window.allMapInfo11813[i].d" +
-            "oors.indexOf(door) != -1) {\\n            queue.push(i);\\n            visited[i] " +
-            "= visited[cur].concat([door]);\\n          }\\n        }\\n      }\\n    }\\n    retu" +
-            "rn new Array(window.allMapInfo11813.length+1);\\n  }\\n\\n  console.log(\'=====\');\\n" +
-            "  await findPath();\\n})();\",\r\n  \"关卡-暗黑托鲁克\": \"// 需要有精灵：3437 艾欧丽娅（携带技能疾击之刺、第五技能侍君奉" +
-            "此生）\\n(async () => {\\n  function ReadInt(data) { return (data.byteArray[data.posi" +
-            "tion++] << 24) + (data.byteArray[data.position++] << 16) + (data.byteArray[data." +
-            "position++] << 8) + data.byteArray[data.position++]; }\\n  function ReadByte(data" +
-            ") { return data.byteArray[data.position++]; }\\n\\n  async function getMultiValue(" +
-            "arr) {\\n    arr.unshift(arr.length); // 赛发送数组的特殊格式，首位是数组长度\\n    let data = {};\\n" +
-            "    data.byteArray = await WxFightHandler.Utils.SendAsync(46046, arr);\\n    data" +
-            ".position = 0;\\n    // 将收到的包解析成数组\\n    let result = [];\\n    let arrayLength = R" +
-            "eadInt(data);\\n    for (let i = 0; i < arrayLength; ++i) { result.push(ReadInt(d" +
-            "ata)); }\\n    return result;\\n  }\\n\\n  async function updateItems(arr) {\\n    ar" +
-            "r.unshift(arr.length);\\n    let data = {};\\n    data.byteArray = await WxFightHa" +
-            "ndler.Utils.SendAsync(42399, arr); // MULTI_ITEM_LIST\\n    data.position = 0;\\n " +
-            "   let result = [];\\n    let arrayLength = ReadInt(data);\\n    for (let i = 0; i" +
-            " < arrayLength; ++i) {\\n      let item = {};\\n      item.itemID = ReadInt(data);" +
-            "\\n      item.itemNum = ReadInt(data);\\n      item.leftTime = ReadInt(data);\\n   " +
-            "   item._itemLevel = ReadInt(data);\\n      item.updateTime = ReadInt(data);\\n   " +
-            "   result.push(item);\\n    }\\n    return result;\\n  }\\n\\n  const 艾欧丽娅 = 3437;\\n " +
-            " const 疾击之刺 = 31114;\\n  const 侍君奉此生 = 31117;\\n  let bag1 = WxFightHandler.Utils." +
-            "GetBag1();\\n  let bag2 = WxFightHandler.Utils.GetBag2();\\n  let pets = await WxF" +
-            "ightHandler.Utils.GetStoragePetsAsync();\\n  pets = pets.filter(pet => pet.id===艾" +
-            "欧丽娅);\\n  if (pets.length===0) {\\n    // 再看看背包里有没有\\n    pets = bag1.concat(bag2)." +
-            "filter(pet => pet.id===艾欧丽娅);\\n    if (pets.length===0) {\\n      alert(\'未找到艾欧丽娅，" +
-            "任务终止\');\\n      return;\\n    }\\n  }\\n  await WxFightHandler.Utils.SetPetBagAsync(" +
-            "[pets[0].catchTime]);\\n  let petInfo = WxFightHandler.Utils.GetBagPetInfos()[0];" +
-            "\\n  if (petInfo.skillArray.filter(sk => sk.id===疾击之刺).length===0) {\\n    alert(\'" +
-            "【艾欧丽娅】没有搭配技能【疾击之刺】，任务终止\');\\n    return;\\n  }\\n  if (petInfo.hideSKill.id!==侍君奉此生" +
-            ") {\\n    alert(\'【艾欧丽娅】没有搭配技能【侍君奉此生】，任务终止\');\\n    return;\\n  }\\n\\n  WxFightHandle" +
-            "r.Utils.SimpleAlarm(\'崩塌吧！天空之城！\');\\n  WxFightHandler.Utils.SetIsHidePetFight(true" +
-            ");\\n\\n  // 发起战斗\\n  let fightWithTlk = (region) => {\\n    return new Promise(res " +
-            "=> {\\n      WxFightHandler.OnFightOver = (overInfo) => {\\n        res (overInfo." +
-            "winnerID != 0);\\n      }\\n      WxFightHandler.Utils.Send(41129, region);\\n    }" +
-            ");\\n  }\\n\\n  while (true) {\\n    // 剩余挑战次数\\n    let arr = await getMultiValue([1" +
-            "2045,2065]);\\n    if (3 - arr[0] + arr[1] === 0) break;\\n    // console.log(\'新一轮" +
-            "挑战\');\\n    for (let i = 0; i < 6; ++i) {\\n      let data = {};\\n      data.byteA" +
-            "rray = await WxFightHandler.Utils.SendAsync(47087, []); // SKY_CITY_GET_BOSS_REG" +
-            "ION\\n      data.position = 0;\\n      let region = ReadInt(data);\\n      if (regi" +
-            "on === 251) {\\n        // 真身\\n        // 出招\\n        WxFightHandler.OnFirstRound" +
-            " = () => WxFightHandler.Utils.UseSkill(侍君奉此生);\\n        WxFightHandler.OnUseSkil" +
-            "l = async (mySkillInfo) => {\\n          await WxFightHandler.Utils.DelayAsync(20" +
-            "0);\\n          WxFightHandler.Utils.UseSkill(侍君奉此生);\\n        }\\n        let isW" +
-            "in = await fightWithTlk(region);\\n        // console.log(`对战真身，${isWin?\'胜利\':\'失败\'" +
-            "}`);\\n        // 失败后的情况有点奇怪，没看明白，就不处理了\\n        await WxFightHandler.Utils.Delay" +
-            "Async(5000);\\n        break;\\n      }\\n      else {\\n        // 出招\\n        WxFi" +
-            "ghtHandler.OnFirstRound = () => WxFightHandler.Utils.UseSkill(疾击之刺);\\n        Wx" +
-            "FightHandler.OnUseSkill = async (mySkillInfo) => {\\n          await WxFightHandl" +
-            "er.Utils.DelayAsync(200);\\n          WxFightHandler.Utils.UseSkill(疾击之刺);\\n     " +
-            "   }\\n        let isWin = await fightWithTlk(region);\\n        // console.log(`对" +
-            "战分身，${isWin?\'胜利\':\'失败\'}`);\\n        await WxFightHandler.Utils.DelayAsync(5000);\\" +
-            "n      }\\n    }\\n  }\\n\\n  let items = await updateItems([1700364,1700365]);\\n  i" +
-            "f (items[1].itemNum<100 && items[0].itemNum>150) {\\n    // 合成\\n    while (items[" +
-            "0].itemNum >= 150) {\\n      WxFightHandler.Utils.Send(2901, 1768);\\n      items[" +
-            "0].itemNum -= 50;\\n      ++items[1].itemNum;\\n    }\\n  }\\n  WxFightHandler.Utils" +
-            ".StopAutoFight();\\n  WxFightHandler.Utils.SetIsHidePetFight(false);\\n  // 恢复背包\\n" +
-            "  await WxFightHandler.Utils.SetPetBagAsync(bag1.map(pet => pet.catchTime),bag2." +
-            "map(pet => pet.catchTime));\\n  if (items[0].itemNum>=100 && items[1].itemNum>=10" +
-            "0) {\\n    alert(\'可以去地图965领取精灵了\');\\n  }\\n  else {\\n    alert(`当前进度：${items[0].ite" +
-            "mNum}/100 | ${items[1].itemNum}/100`);\\n  }\\n})();\\n// 参考资料：\\n// https://seer.61" +
-            ".com/module/com/robot/module/app/BlackBulukeMainPanel.swf\\n// https://seer.61.co" +
-            "m/dll/RobotAppDLL.swf\\n// https://seer.61.com/dll/PetFightDLL_201308.swf\\n// com" +
-            ".robot.app.task.control.TianKongZhiChengController\\n// com.robot.app2.control.Bl" +
-            "ackTuolukeGame\",\r\n  \"日常-通行证-养成任务\": \"(async () => {\\n  let bag1 = WxFightHandler." +
-            "Utils.GetBag1();\\n  let bag2 = WxFightHandler.Utils.GetBag2();\\n  let pets = awa" +
-            "it WxFightHandler.Utils.GetStoragePetsAsync();\\n  // 从仓库取出一只 皮皮\\n  pets = pets.f" +
-            "ilter(pet => pet.id===10);\\n  if (pets.length === 0) {\\n    pets = bag1.concat(b" +
-            "ag2).filter(pet => pet.id===10);\\n    if (pets.length === 0) WxFightHandler.Util" +
-            "s.SimpleAlarm(\'没有精灵皮皮，任务失败\');\\n  }\\n  let ct = pets[0].catchTime;\\n  await WxFig" +
-            "htHandler.Utils.SetPetBagAsync([ct]);\\n  // 性格\\n  WxFightHandler.Utils.Send(2326" +
-            ",ct,300070);\\n  // 恢复背包\\n  await WxFightHandler.Utils.SetPetBagAsync(bag1.map(pe" +
-            "t => pet.catchTime),bag2.map(pet => pet.catchTime));\\n  // 领奖\\n  WxFightHandler." +
-            "Utils.Send(41916,1,3);\\n  WxFightHandler.Utils.SimpleAlarm(\'ok\');\\n})();\",\r\n  \"活" +
-            "动-精灵鉴定\": \"WxFightHandler.Utils.ShowAppModule(\'AssessorPanel\'); // https://seer.6" +
-            "1.com/module/com/robot/module/app/AssessorPanel.swf\",\r\n  \"状态-pvp-保存\": \"(() => {\\" +
-            "n  let SeerState = new Object();\\n  let key = \'SeerStatePVP\';\\n  if (localStorag" +
-            "e.getItem(key)!=null) localStorage.removeItem(key);\\n  SeerState.clothes = WxFig" +
-            "htHandler.Utils.GetClothes();\\n  SeerState.title = WxFightHandler.Utils.GetTitle" +
-            "();\\n  SeerState.bag1 = WxFightHandler.Utils.GetBag1().map(pet => pet.catchTime)" +
-            ";\\n  SeerState.bag2 = WxFightHandler.Utils.GetBag2().map(pet => pet.catchTime);\\" +
-            "n  localStorage.setItem(key, JSON.stringify(SeerState));\\n})();\",\r\n  \"状态-pvp-更换\"" +
-            ": \"(async () => {\\n  try {\\n    let SeerState = JSON.parse(localStorage.getItem(" +
-            "\'SeerStatePVP\'));\\n    await WxFightHandler.Utils.SetPetBagAsync(SeerState.bag1," +
-            " SeerState.bag2);\\n    WxFightHandler.Utils.ChangeCloth(SeerState.clothes);\\n   " +
-            " WxFightHandler.Utils.SetTitle(SeerState.title);\\n  } catch {alert(\'未保存\')}\\n})()" +
-            ";\",\r\n  \"状态-日常-保存\": \"(() => {\\n  let SeerState = new Object();\\n  let key = \'Seer" +
-            "StatePVE\';\\n  if (localStorage.getItem(key)!=null) localStorage.removeItem(key);" +
-            "\\n  SeerState.clothes = WxFightHandler.Utils.GetClothes();\\n  SeerState.title = " +
-            "WxFightHandler.Utils.GetTitle();\\n  SeerState.bag1 = WxFightHandler.Utils.GetBag" +
-            "1().map(pet => pet.catchTime);\\n  SeerState.bag2 = WxFightHandler.Utils.GetBag2(" +
-            ").map(pet => pet.catchTime);\\n  localStorage.setItem(key, JSON.stringify(SeerSta" +
-            "te));\\n})();\",\r\n  \"状态-日常-更换\": \"(async () => {\\n  try {\\n    let SeerState = JSON" +
-            ".parse(localStorage.getItem(\'SeerStatePVE\'));\\n    await WxFightHandler.Utils.Se" +
-            "tPetBagAsync(SeerState.bag1, SeerState.bag2);\\n    WxFightHandler.Utils.ChangeCl" +
-            "oth(SeerState.clothes);\\n    WxFightHandler.Utils.SetTitle(SeerState.title);\\n  " +
-            "} catch {alert(\'未保存\')}\\n})();\",\r\n  \"野生精灵\": \"WxFightHandler.OnFirstRound = () => " +
-            "{\\n    // 对战首回合，使用特殊胶囊捕捉\\n    WxFightHandler.Utils.Send(2409,300505);\\n    WxFig" +
-            "htHandler.Utils.ItemBuy(300505);\\n};\\nWxFightHandler.Utils.AutoFight(164); // 闪光" +
-            "皮皮\\nWxFightHandler.Utils.ChangeMap(10); // 克洛斯星\"\r\n}")]
+            "=> {};\",\r\n  \"pve-压血\": \"if (WxFightHandler.Utils.GetBag1().length > 0) {\\n  WxFig" +
+            "htHandler.OnFirstRound = () => { WxFightHandler.Utils.UseSkill(0); }\\n  WxFightH" +
+            "andler.OnUseSkill = async (mySkillInfo) => {\\n    await WxFightHandler.Utils.Del" +
+            "ayAsync(WxFightHandler.Const.DelayMs);\\n    if (mySkillInfo.remainHP != 0) {\\n  " +
+            "    WxFightHandler.Utils.UseSkill(0);\\n    }\\n    else {\\n      WxFightHandler.U" +
+            "tils.ChangePetByID([]);\\n    }\\n  }\\n  WxFightHandler.OnChangePet = () => { WxFi" +
+            "ghtHandler.Utils.UseSkill(0); }\\n  WxFightHandler.OnFightOver = () => {\\n    WxF" +
+            "ightHandler.Utils.StopAutoFight();\\n    WxFightHandler.Utils.CurePet20HP();\\n  }" +
+            "\\n\\n  WxFightHandler.Utils.SetIsAutoCure(false);\\n  WxFightHandler.Utils.LowHP()" +
+            ";\\n}\\nelse {\\n  alert(\'没有出战精灵\');\\n}\",\r\n  \"pve-套装-漆黑-假面-吉光\": \"WxFightHandler.Util" +
+            "s.ChangeCloth([1301043,0,1301044,0,1301045,0,1301046,0,1300954,0]);\\nWxFightHand" +
+            "ler.Utils.SetTitle(272);\",\r\n  \"pve-套装-耀世-魔界-神话\": \"WxFightHandler.Utils.ChangeClo" +
+            "th([1300950,0,1300951,0,1300952,0,1300953,0,1300874,0]);\\nWxFightHandler.Utils.S" +
+            "etTitle(300);\",\r\n  \"pve-套装-银翼-假面-吉光\": \"WxFightHandler.Utils.ChangeCloth([1300670" +
+            ",0,1300671,0,1300672,0,1300673,0,1300954,0]);\\nWxFightHandler.Utils.SetTitle(272" +
+            ");\",\r\n  \"pve-状态-因子1-保存\": \"WxFightHandler.Utils.StateSave(\'因子1\')\",\r\n  \"pve-状态-因子1" +
+            "-更换\": \"WxFightHandler.Utils.StateLoadAsync(\'因子1\')\",\r\n  \"pve-状态-因子2-保存\": \"WxFight" +
+            "Handler.Utils.StateSave(\'因子2\')\",\r\n  \"pve-状态-因子2-更换\": \"WxFightHandler.Utils.State" +
+            "LoadAsync(\'因子2\')\",\r\n  \"pve-状态-因子3-保存\": \"WxFightHandler.Utils.StateSave(\'因子3\')\",\r" +
+            "\n  \"pve-状态-因子3-更换\": \"WxFightHandler.Utils.StateLoadAsync(\'因子3\')\",\r\n  \"pve-状态-因子4" +
+            "-保存\": \"WxFightHandler.Utils.StateSave(\'因子4\')\",\r\n  \"pve-状态-因子4-更换\": \"WxFightHandl" +
+            "er.Utils.StateLoadAsync(\'因子4\')\",\r\n  \"pve-状态-因子5-保存\": \"WxFightHandler.Utils.State" +
+            "Save(\'因子5\')\",\r\n  \"pve-状态-因子5-更换\": \"WxFightHandler.Utils.StateLoadAsync(\'因子5\')\",\r" +
+            "\n  \"pve-绿火\": \"(async () => {\\n  let FIRE_BLUE_SMALL = 2;\\n  let FIRE_PURPLE_SMAL" +
+            "L = 3;\\n  let FIRE_GOLD_SMALL = 4;\\n  let FIRE_GREEN_SMALL = 5;\\n  let FIRE_GREE" +
+            "N_BIG = 6;\\n  let FIRE_BLUE_BIG = 7;\\n  let FIRE_PURPLE_BIG = 8;\\n  let FIRE_GOL" +
+            "D_BIG = 9;\\n  if (await WxFightHandler.Utils.CopyFireAsync([FIRE_GREEN_SMALL])) " +
+            "{\\n    setTimeout(() => {\\n      WxFightHandler.Utils.SimpleAlarm(\'火焰好像快失效了\');\\n" +
+            "    }, 10 * 60 * 1000);\\n  }\\n})();\",\r\n  \"pve-金火\": \"(async () => {\\n    let FIRE" +
+            "_BLUE_SMALL = 2;\\n    let FIRE_PURPLE_SMALL = 3;\\n    let FIRE_GOLD_SMALL = 4;\\n" +
+            "    let FIRE_GREEN_SMALL = 5;\\n    let FIRE_GREEN_BIG = 6;\\n    let FIRE_BLUE_BI" +
+            "G = 7;\\n    let FIRE_PURPLE_BIG = 8;\\n    let FIRE_GOLD_BIG = 9;\\n    await WxFi" +
+            "ghtHandler.Utils.CopyFireAsync([FIRE_GOLD_BIG,FIRE_GOLD_SMALL]);\\n  })();\",\r\n  \"" +
+            "关卡-噬梦魔灵-第二关\": \"// 打开开发者工具，在 console 页面查看指引\\n// 制作过程视频：BV1fm8nexENV\\n(async () =>" +
+            " {\\n  function ReadInt(data) { return (data.byteArray[data.position++] << 24) + " +
+            "(data.byteArray[data.position++] << 16) + (data.byteArray[data.position++] << 8)" +
+            " + data.byteArray[data.position++]; }\\n  function ReadByte(data) { return data.b" +
+            "yteArray[data.position++]; }\\n\\n  async function getMultiValue(arr) {\\n    arr.u" +
+            "nshift(arr.length); // 赛发送数组的特殊格式，首位是数组长度\\n    let data = {};\\n    data.byteArra" +
+            "y = await WxFightHandler.Utils.SendAsync(46046, arr);\\n    data.position = 0;\\n " +
+            "   // 将收到的包解析成数组\\n    let result = [];\\n    let arrayLength = ReadInt(data);\\n  " +
+            "  for (let i = 0; i < arrayLength; ++i) { result.push(ReadInt(data)); }\\n    ret" +
+            "urn result;\\n  }\\n\\n  function getBit(p1, p2) { return (p1 >> (p2 - 1)) & 1; }\\n" +
+            "  function getByte(p1, p2) { return (p1 >> (8 * p2)) & 255; }\\n\\n  async functio" +
+            "n getMapInfo(curMap) {\\n    let mapObj = {};\\n\\n    let arr = await getMultiValu" +
+            "e([\\n      103296 + (curMap - 1) / 4,\\n      103309 + curMap - 1,\\n      103360 " +
+            "+ (curMap - 1) / 32\\n    ]);\\n    arr[0] = getByte(arr[0], (curMap - 1) % 4);\\n " +
+            "   if (arr[0] < 5) {\\n      // 一共 4 种颜色的球，arr[0] 分别为 1 2 3 4 时，表示地图上有对应的球\\n     " +
+            " if (arr[0] > 0) {\\n        mapObj.ballType = arr[0];\\n      }\\n    }\\n    else " +
+            "if (arr[0] < 9) {\\n      // 地图上有井，种类为 (arr[0] - 5)\\n      // 数值从 0 开始，与球的标号不同，但是" +
+            "按照顺序，颜色还是对应得上的\\n      mapObj.holeType = arr[0] - 5;\\n    }\\n    else {\\n      //" +
+            " 地图上有 NPC\\n    }\\n\\n    // 每张地图都有 4 个门\\n    // doors 数组中，从左到右依次对应界面上显示的门\\n    //" +
+            " 0 表示此路不通\\n    // 其他数字，在不同的地图中相同数字的门，表示互相连通\\n    mapObj.doors = [];\\n    for (le" +
+            "t i = 1; i <= 4; ++i) {\\n      mapObj.doors[i - 1] = getByte(arr[1], i - 1);\\n  " +
+            "  }\\n\\n    return mapObj;\\n  }\\n\\n  async function findPath() {\\n    if (window." +
+            "allMapInfo11813 === undefined) {\\n      window.allMapInfo11813 = [];\\n      for " +
+            "(let i = 1; i < 21; ++i) { window.allMapInfo11813.push(await getMapInfo(i)); }\\n" +
+            "      console.log(\'世界地图\', window.allMapInfo11813);\\n    }\\n\\n    // 当前地图\\n    le" +
+            "t globalObj = {};\\n    let arr = await getMultiValue([103294, 103295]);\\n    glo" +
+            "balObj.curMap = arr[0] & 255; // 地图标号（一共 20 张地图，标号从 1 开始）\\n    globalObj.curEner" +
+            "gy = arr[0] >> 8 & 255; // 灵魂能量\\n    globalObj.curHasBall = arr[0] >> 16 & 255;\\" +
+            "n    globalObj.hasTransferNum = arr[0] >> 24 & 255; // 已走过的步数\\n\\n    globalObj.h" +
+            "asBall = []\\n    for (let i = 1; i <= 4; ++i) {\\n      if (getBit(arr[1], i) == " +
+            "1) {\\n        globalObj.hasBall[i - 1] = 1;\\n      }\\n      else {\\n        glob" +
+            "alObj.hasBall[i - 1] = 0;\\n      }\\n    }\\n\\n    globalObj.doors = window.allMap" +
+            "Info11813[globalObj.curMap - 1].doors;\\n\\n    // console.log(globalObj);\\n    co" +
+            "nsole.log(`当前地图上，门的编号（从左到右）分别是：[${globalObj.doors.filter(door => door!=0).join(\'" +
+            " \')}]`);\\n    if (globalObj.curHasBall === 0) {\\n      console.log(\'寻找最近的球\');\\n " +
+            "     let path = bfs(globalObj.curMap, m => (\'ballType\' in m && globalObj.hasBall" +
+            "[m.ballType-1] === 0));\\n      if (path.length === 0) {\\n        console.log(\'请捡" +
+            "起当前地图上的球\');\\n      }\\n      else if (path.length > window.allMapInfo11813.length" +
+            ") {\\n        console.log(\'剩下的球无法获取，请先耗尽灵魂能量，重置关卡\');\\n      }\\n      else {\\n    " +
+            "    console.log(`请进入 ${path[0]} 号门`);\\n      }\\n    }\\n    else {\\n      console" +
+            ".log(\'寻找井\');\\n      let path = bfs(globalObj.curMap, m => (\'holeType\' in m && m." +
+            "holeType === globalObj.curHasBall-1));\\n      if (path.length === 0) {\\n        " +
+            "console.log(\'请将球投入当前地图上的井\');\\n      }\\n      else if (path.length > window.allMa" +
+            "pInfo11813.length) {\\n        console.log(\'剩下的井所在位置无法到达，请先耗尽灵魂能量，重置关卡\');\\n      " +
+            "}\\n      else {\\n        console.log(`请进入 ${path[0]} 号门`);\\n      }\\n    }\\n  }\\" +
+            "n\\n  function bfs(curMap, predicate) {\\n    let visited = (new Array(window.allM" +
+            "apInfo11813.length)).fill(null); // 记录路径\\n    let queue = [];\\n    queue.push(cu" +
+            "rMap-1);\\n    visited[curMap-1] = [];\\n\\n    while (queue.length > 0) {\\n      l" +
+            "et cur = queue.shift();\\n      if (predicate(window.allMapInfo11813[cur])) {\\n  " +
+            "      return visited[cur];\\n      }\\n      for (let door of window.allMapInfo118" +
+            "13[cur].doors) {\\n        if (door === 0) continue;\\n        // 若两个地图有相同编号的门，则说明" +
+            "这两个地图相互连通\\n        for (let i = 0; i < window.allMapInfo11813.length; ++i) {\\n  " +
+            "        if (i === cur || visited[i] != null) continue;\\n          if (window.all" +
+            "MapInfo11813[i].doors.indexOf(door) != -1) {\\n            queue.push(i);\\n      " +
+            "      visited[i] = visited[cur].concat([door]);\\n          }\\n        }\\n      }" +
+            "\\n    }\\n    return new Array(window.allMapInfo11813.length+1);\\n  }\\n\\n  consol" +
+            "e.log(\'=====\');\\n  await findPath();\\n})();\",\r\n  \"关卡-暗黑托鲁克\": \"// 需要有精灵：3437 艾欧丽娅" +
+            "（携带技能疾击之刺、第五技能侍君奉此生）\\n(async () => {\\n  function ReadInt(data) { return (data.by" +
+            "teArray[data.position++] << 24) + (data.byteArray[data.position++] << 16) + (dat" +
+            "a.byteArray[data.position++] << 8) + data.byteArray[data.position++]; }\\n  funct" +
+            "ion ReadByte(data) { return data.byteArray[data.position++]; }\\n\\n  async functi" +
+            "on getMultiValue(arr) {\\n    arr.unshift(arr.length); // 赛发送数组的特殊格式，首位是数组长度\\n   " +
+            " let data = {};\\n    data.byteArray = await WxFightHandler.Utils.SendAsync(46046" +
+            ", arr);\\n    data.position = 0;\\n    // 将收到的包解析成数组\\n    let result = [];\\n    le" +
+            "t arrayLength = ReadInt(data);\\n    for (let i = 0; i < arrayLength; ++i) { resu" +
+            "lt.push(ReadInt(data)); }\\n    return result;\\n  }\\n\\n  async function updateIte" +
+            "ms(arr) {\\n    arr.unshift(arr.length);\\n    let data = {};\\n    data.byteArray " +
+            "= await WxFightHandler.Utils.SendAsync(42399, arr); // MULTI_ITEM_LIST\\n    data" +
+            ".position = 0;\\n    let result = [];\\n    let arrayLength = ReadInt(data);\\n    " +
+            "for (let i = 0; i < arrayLength; ++i) {\\n      let item = {};\\n      item.itemID" +
+            " = ReadInt(data);\\n      item.itemNum = ReadInt(data);\\n      item.leftTime = Re" +
+            "adInt(data);\\n      item._itemLevel = ReadInt(data);\\n      item.updateTime = Re" +
+            "adInt(data);\\n      result.push(item);\\n    }\\n    return result;\\n  }\\n\\n  cons" +
+            "t 艾欧丽娅 = 3437;\\n  const 疾击之刺 = 31114;\\n  const 侍君奉此生 = 31117;\\n  let bag1 = WxFi" +
+            "ghtHandler.Utils.GetBag1();\\n  let bag2 = WxFightHandler.Utils.GetBag2();\\n  let" +
+            " pets = await WxFightHandler.Utils.GetStoragePetsAsync();\\n  pets = pets.filter(" +
+            "pet => pet.id===艾欧丽娅);\\n  if (pets.length===0) {\\n    // 再看看背包里有没有\\n    pets = b" +
+            "ag1.concat(bag2).filter(pet => pet.id===艾欧丽娅);\\n    if (pets.length===0) {\\n    " +
+            "  alert(\'未找到艾欧丽娅，任务终止\');\\n      return;\\n    }\\n  }\\n  await WxFightHandler.Util" +
+            "s.SetPetBagAsync([pets[0].catchTime]);\\n  let petInfo = WxFightHandler.Utils.Get" +
+            "BagPetInfos()[0];\\n  if (petInfo.skillArray.filter(sk => sk.id===疾击之刺).length===" +
+            "0) {\\n    alert(\'【艾欧丽娅】没有搭配技能【疾击之刺】，任务终止\');\\n    return;\\n  }\\n  if (petInfo.hid" +
+            "eSKill.id!==侍君奉此生) {\\n    alert(\'【艾欧丽娅】没有搭配技能【侍君奉此生】，任务终止\');\\n    return;\\n  }\\n" +
+            "\\n  WxFightHandler.Utils.SimpleAlarm(\'崩塌吧！天空之城！\');\\n  WxFightHandler.Utils.SetIs" +
+            "HidePetFight(true);\\n\\n  // 发起战斗\\n  let fightWithTlk = (region) => {\\n    return" +
+            " new Promise(res => {\\n      WxFightHandler.OnFightOver = (overInfo) => {\\n     " +
+            "   res (overInfo.winnerID != 0);\\n      }\\n      WxFightHandler.Utils.Send(41129" +
+            ", region);\\n    });\\n  }\\n\\n  while (true) {\\n    // 剩余挑战次数\\n    let arr = await" +
+            " getMultiValue([12045,2065]);\\n    if (3 - arr[0] + arr[1] === 0) break;\\n    //" +
+            " console.log(\'新一轮挑战\');\\n    for (let i = 0; i < 6; ++i) {\\n      let data = {};\\" +
+            "n      data.byteArray = await WxFightHandler.Utils.SendAsync(47087, []); // SKY_" +
+            "CITY_GET_BOSS_REGION\\n      data.position = 0;\\n      let region = ReadInt(data)" +
+            ";\\n      if (region === 251) {\\n        // 真身\\n        // 出招\\n        WxFightHan" +
+            "dler.OnFirstRound = () => WxFightHandler.Utils.UseSkill(侍君奉此生);\\n        WxFight" +
+            "Handler.OnUseSkill = async (mySkillInfo) => {\\n          await WxFightHandler.Ut" +
+            "ils.DelayAsync(200);\\n          WxFightHandler.Utils.UseSkill(侍君奉此生);\\n        }" +
+            "\\n        let isWin = await fightWithTlk(region);\\n        // console.log(`对战真身，" +
+            "${isWin?\'胜利\':\'失败\'}`);\\n        // 失败后的情况有点奇怪，没看明白，就不处理了\\n        await WxFightHa" +
+            "ndler.Utils.DelayAsync(5000);\\n        break;\\n      }\\n      else {\\n        //" +
+            " 出招\\n        WxFightHandler.OnFirstRound = () => WxFightHandler.Utils.UseSkill(疾" +
+            "击之刺);\\n        WxFightHandler.OnUseSkill = async (mySkillInfo) => {\\n          a" +
+            "wait WxFightHandler.Utils.DelayAsync(200);\\n          WxFightHandler.Utils.UseSk" +
+            "ill(疾击之刺);\\n        }\\n        let isWin = await fightWithTlk(region);\\n        " +
+            "// console.log(`对战分身，${isWin?\'胜利\':\'失败\'}`);\\n        await WxFightHandler.Utils.D" +
+            "elayAsync(5000);\\n      }\\n    }\\n  }\\n\\n  let items = await updateItems([170036" +
+            "4,1700365]);\\n  if (items[1].itemNum<100 && items[0].itemNum>150) {\\n    // 合成\\n" +
+            "    while (items[0].itemNum >= 150) {\\n      WxFightHandler.Utils.Send(2901, 176" +
+            "8);\\n      items[0].itemNum -= 50;\\n      ++items[1].itemNum;\\n    }\\n  }\\n  WxF" +
+            "ightHandler.Utils.StopAutoFight();\\n  WxFightHandler.Utils.SetIsHidePetFight(fal" +
+            "se);\\n  // 恢复背包\\n  await WxFightHandler.Utils.SetPetBagAsync(bag1.map(pet => pet" +
+            ".catchTime),bag2.map(pet => pet.catchTime));\\n  if (items[0].itemNum>=100 && ite" +
+            "ms[1].itemNum>=100) {\\n    alert(\'可以去地图965领取精灵了\');\\n  }\\n  else {\\n    alert(`当前" +
+            "进度：${items[0].itemNum}/100 | ${items[1].itemNum}/100`);\\n  }\\n})();\\n// 参考资料：\\n/" +
+            "/ https://seer.61.com/module/com/robot/module/app/BlackBulukeMainPanel.swf\\n// h" +
+            "ttps://seer.61.com/dll/RobotAppDLL.swf\\n// https://seer.61.com/dll/PetFightDLL_2" +
+            "01308.swf\\n// com.robot.app.task.control.TianKongZhiChengController\\n// com.robo" +
+            "t.app2.control.BlackTuolukeGame\",\r\n  \"日常-通行证-养成任务\": \"(async () => {\\n  let bag1 " +
+            "= WxFightHandler.Utils.GetBag1();\\n  let bag2 = WxFightHandler.Utils.GetBag2();\\" +
+            "n  let pets = await WxFightHandler.Utils.GetStoragePetsAsync();\\n  // 从仓库取出一只 皮皮" +
+            "\\n  pets = pets.filter(pet => pet.id===10);\\n  if (pets.length === 0) {\\n    pet" +
+            "s = bag1.concat(bag2).filter(pet => pet.id===10);\\n    if (pets.length === 0) Wx" +
+            "FightHandler.Utils.SimpleAlarm(\'没有精灵皮皮，任务失败\');\\n  }\\n  let ct = pets[0].catchTim" +
+            "e;\\n  await WxFightHandler.Utils.SetPetBagAsync([ct]);\\n  // 性格\\n  WxFightHandle" +
+            "r.Utils.Send(2326,ct,300070);\\n  // 恢复背包\\n  await WxFightHandler.Utils.SetPetBag" +
+            "Async(bag1.map(pet => pet.catchTime),bag2.map(pet => pet.catchTime));\\n  // 领奖\\n" +
+            "  WxFightHandler.Utils.Send(41916,1,3);\\n  WxFightHandler.Utils.SimpleAlarm(\'ok\'" +
+            ");\\n})();\",\r\n  \"活动-精灵鉴定\": \"WxFightHandler.Utils.ShowAppModule(\'AssessorPanel\'); " +
+            "// https://seer.61.com/module/com/robot/module/app/AssessorPanel.swf\",\r\n  \"状态-pv" +
+            "p-保存\": \"WxFightHandler.Utils.StateSave(\'pvp\')\",\r\n  \"状态-pvp-更换\": \"WxFightHandler." +
+            "Utils.StateLoadAsync(\'pvp\')\",\r\n  \"状态-日常-保存\": \"WxFightHandler.Utils.StateSave(\'日常" +
+            "\')\",\r\n  \"状态-日常-更换\": \"WxFightHandler.Utils.StateLoadAsync(\'日常\')\",\r\n  \"野生精灵\": \"WxF" +
+            "ightHandler.OnFirstRound = () => {\\n    // 对战首回合，使用特殊胶囊捕捉\\n    WxFightHandler.Ut" +
+            "ils.Send(2409,300505);\\n    WxFightHandler.Utils.ItemBuy(300505);\\n};\\nWxFightHa" +
+            "ndler.Utils.AutoFight(164); // 闪光皮皮\\nWxFightHandler.Utils.ChangeMap(10); // 克洛斯星" +
+            "\"\r\n}")]
         public string FlashFightTemplate {
             get {
                 return ((string)(this["FlashFightTemplate"]));

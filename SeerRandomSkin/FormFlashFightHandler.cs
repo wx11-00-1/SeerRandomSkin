@@ -176,6 +176,28 @@ WxFightHandler.Utils.GetActivityValueAsync = (name,key) => new Promise(resolve =
 WxFightHandler.Utils.ChangeMap = id => WxFightHandler.Reflection.Action('com.robot.core.manager.MapManager','changeMap',id);
 WxFightHandler.Utils.ShowAppModule = id => WxFightHandler.Reflection.Action('com.robot.core.manager.ModuleManager','showAppModule',id);
 
+WxFightHandler.Utils.StateSave = k => {
+  let s = {};
+  s.clothes = WxFightHandler.Utils.GetClothes();
+  s.title = WxFightHandler.Utils.GetTitle();
+  s.bag1 = WxFightHandler.Utils.GetBag1().map(pet => pet.catchTime);
+  s.bag2 = WxFightHandler.Utils.GetBag2().map(pet => pet.catchTime);
+  let st = {};
+  if (localStorage.getItem(WxFightHandler.Const.StateKey)!=null) st = JSON.parse(localStorage.getItem(WxFightHandler.Const.StateKey));
+  st[k] = s;
+  localStorage.setItem(WxFightHandler.Const.StateKey, JSON.stringify(st));
+  WxFightHandler.Utils.SimpleAlarm('ok');
+}
+WxFightHandler.Utils.StateLoadAsync = async k => {
+  try {
+    let s = JSON.parse(localStorage.getItem(WxFightHandler.Const.StateKey))[k];
+    WxFightHandler.Utils.ChangeCloth(s.clothes);
+    WxFightHandler.Utils.SetTitle(s.title);
+    await WxFightHandler.Utils.SetPetBagAsync(s.bag1, s.bag2);
+    WxFightHandler.Utils.SimpleAlarm('ok');
+  } catch {alert(`${k} 不存在`)}
+}
+
             ";
 
         public const string JS_FIGHT_DEFAULT =
