@@ -706,5 +706,11 @@ namespace SeerRandomSkin
             var f = new FormPetFollow();
             f.Show();
         }
+
+        private void 清除缓存ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Directory.Delete(AppDomain.CurrentDomain.BaseDirectory + @"\cache", true);
+            MessageBox.Show("清除成功，重启登录器生效");
+        }
     }
 }
