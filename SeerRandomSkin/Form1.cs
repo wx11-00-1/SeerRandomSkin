@@ -709,8 +709,15 @@ namespace SeerRandomSkin
 
         private void 清除缓存ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Directory.Delete(AppDomain.CurrentDomain.BaseDirectory + @"\cache", true);
-            MessageBox.Show("清除成功，重启登录器生效");
+            try
+            {
+                Directory.Delete(AppDomain.CurrentDomain.BaseDirectory + @"\cache", true);
+            }
+            catch (Exception) { }
+            finally
+            {
+                MessageBox.Show("清除完成，重启登录器生效");
+            }
         }
     }
 }
