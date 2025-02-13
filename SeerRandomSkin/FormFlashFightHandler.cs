@@ -24,6 +24,7 @@ WxFightHandler.Reflection.Func = (className,methodName,...args) => document.Clie
 
 WxFightHandler.Const = {};
 WxFightHandler.Const.DelayMs = 200;
+WxFightHandler.Const.StateKey = 'LanBaiState';
 WxFightHandler.Const.Pet = 'com.robot.core.pet.Pet';
 WxFightHandler.Const.PetManager = 'com.robot.core.manager.PetManager';
 WxFightHandler.Const.MainManager = 'com.robot.core.manager.MainManager';
