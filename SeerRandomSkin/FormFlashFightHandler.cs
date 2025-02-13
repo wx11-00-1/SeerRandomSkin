@@ -69,7 +69,7 @@ WxFightHandler.Private.ShowRound = (hp1,hp2) => { WxFightHandler.Private.Round +
 
 WxFightHandler.Utils.UseSkill = skillID => document.Client.WxUseSkill(skillID);
 WxFightHandler.Utils.ChangePet = petCatchTime => document.Client.WxChangePet(petCatchTime);
-WxFightHandler.Utils.UsePetItem = itemID => document.Client.WxUsePetItem(itemID);
+WxFightHandler.Utils.UsePetItem = itemID => WxFightHandler.Utils.UsePetItem(itemID);
 WxFightHandler.Utils.UsePetItem10PP = () => {
   WxFightHandler.Utils.ItemBuy(300017);
   WxFightHandler.Utils.UsePetItem(300017);
@@ -315,22 +315,22 @@ WxFightHandler.Utils.StateLoadAsync = async k => {
 
         private void btnCure20_Click(object sender, EventArgs e)
         {
-            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxCurePet20HP();");
+            Form1.chromiumBrowser.ExecuteScriptAsync("WxFightHandler.Utils.CurePet20HP();");
         }
 
         private void btnCureAll_Click(object sender, EventArgs e)
         {
-            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxCurePetAll();");
+            Form1.chromiumBrowser.ExecuteScriptAsync("WxFightHandler.Utils.CurePetAll();");
         }
 
         private void btnItem170_Click(object sender, EventArgs e)
         {
-            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxUsePetItem(300749);");
+            Form1.chromiumBrowser.ExecuteScriptAsync("WxFightHandler.Utils.UsePetItem(300749);");
         }
 
         private void btnItem150_Click(object sender, EventArgs e)
         {
-            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxUsePetItem(300701);");
+            Form1.chromiumBrowser.ExecuteScriptAsync("WxFightHandler.Utils.UsePetItem(300701);");
         }
 
         private void btnItem10pp_Click(object sender, EventArgs e)
@@ -340,27 +340,27 @@ WxFightHandler.Utils.StateLoadAsync = async k => {
 
         private void btn20pp_Click(object sender, EventArgs e)
         {
-            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxUsePetItem(300018);");
+            Form1.chromiumBrowser.ExecuteScriptAsync("WxFightHandler.Utils.UsePetItem(300018);");
         }
 
         private void btnItem250hp_Click(object sender, EventArgs e)
         {
-            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxUsePetItem(300079);");
+            Form1.chromiumBrowser.ExecuteScriptAsync("WxFightHandler.Utils.UsePetItem(300079);");
         }
 
         private void btnItem200hp_Click(object sender, EventArgs e)
         {
-            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxUsePetItem(300157);");
+            Form1.chromiumBrowser.ExecuteScriptAsync("WxFightHandler.Utils.UsePetItem(300157);");
         }
 
         private void btnFightPanelHide_Click(object sender, EventArgs e)
         {
-            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxSetIsHidePetFight(true);");
+            Form1.chromiumBrowser.ExecuteScriptAsync("WxFightHandler.Utils.SetIsHidePetFight(true);");
         }
 
         private void btnFightPanelShow_Click(object sender, EventArgs e)
         {
-            Form1.chromiumBrowser.ExecuteScriptAsync("document.Client.WxSetIsHidePetFight(false);");
+            Form1.chromiumBrowser.ExecuteScriptAsync("WxFightHandler.Utils.SetIsHidePetFight(false);");
         }
 
         private void btnAutoCureOpen_Click(object sender, EventArgs e)
