@@ -41,17 +41,11 @@
             this.tbPackStr = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnReadyToFight = new System.Windows.Forms.Button();
-            this.button_fightSkill0 = new System.Windows.Forms.Button();
-            this.button_fightExit = new System.Windows.Forms.Button();
-            this.button_fightCatch = new System.Windows.Forms.Button();
             this.btnCleanPackSpace = new System.Windows.Forms.Button();
             this.richTextBox_filter = new System.Windows.Forms.RichTextBox();
             this.button3 = new System.Windows.Forms.Button();
-            this.btnSurrender = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // button2
@@ -168,60 +162,6 @@
             0,
             0});
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.btnSurrender);
-            this.groupBox2.Controls.Add(this.btnReadyToFight);
-            this.groupBox2.Controls.Add(this.button_fightSkill0);
-            this.groupBox2.Controls.Add(this.button_fightExit);
-            this.groupBox2.Controls.Add(this.button_fightCatch);
-            this.groupBox2.Location = new System.Drawing.Point(43, 552);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(530, 55);
-            this.groupBox2.TabIndex = 15;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "对战";
-            // 
-            // btnReadyToFight
-            // 
-            this.btnReadyToFight.Location = new System.Drawing.Point(402, 20);
-            this.btnReadyToFight.Name = "btnReadyToFight";
-            this.btnReadyToFight.Size = new System.Drawing.Size(107, 23);
-            this.btnReadyToFight.TabIndex = 16;
-            this.btnReadyToFight.Text = "READY_TO_FIGHT";
-            this.btnReadyToFight.UseVisualStyleBackColor = true;
-            this.btnReadyToFight.Click += new System.EventHandler(this.btnReadyToFight_Click);
-            // 
-            // button_fightSkill0
-            // 
-            this.button_fightSkill0.Location = new System.Drawing.Point(196, 20);
-            this.button_fightSkill0.Name = "button_fightSkill0";
-            this.button_fightSkill0.Size = new System.Drawing.Size(75, 23);
-            this.button_fightSkill0.TabIndex = 15;
-            this.button_fightSkill0.Text = "弃权";
-            this.button_fightSkill0.UseVisualStyleBackColor = true;
-            this.button_fightSkill0.Click += new System.EventHandler(this.button_fightSkill0_Click);
-            // 
-            // button_fightExit
-            // 
-            this.button_fightExit.Location = new System.Drawing.Point(108, 20);
-            this.button_fightExit.Name = "button_fightExit";
-            this.button_fightExit.Size = new System.Drawing.Size(75, 23);
-            this.button_fightExit.TabIndex = 14;
-            this.button_fightExit.Text = "撤退";
-            this.button_fightExit.UseVisualStyleBackColor = true;
-            this.button_fightExit.Click += new System.EventHandler(this.button_fightExit_Click);
-            // 
-            // button_fightCatch
-            // 
-            this.button_fightCatch.Location = new System.Drawing.Point(20, 20);
-            this.button_fightCatch.Name = "button_fightCatch";
-            this.button_fightCatch.Size = new System.Drawing.Size(75, 23);
-            this.button_fightCatch.TabIndex = 13;
-            this.button_fightCatch.Text = "捕捉";
-            this.button_fightCatch.UseVisualStyleBackColor = true;
-            this.button_fightCatch.Click += new System.EventHandler(this.button_fightCatch_Click);
-            // 
             // btnCleanPackSpace
             // 
             this.btnCleanPackSpace.Location = new System.Drawing.Point(282, 281);
@@ -250,25 +190,25 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // btnSurrender
+            // btnExport
             // 
-            this.btnSurrender.Location = new System.Drawing.Point(284, 20);
-            this.btnSurrender.Name = "btnSurrender";
-            this.btnSurrender.Size = new System.Drawing.Size(75, 23);
-            this.btnSurrender.TabIndex = 17;
-            this.btnSurrender.Text = "认输";
-            this.btnSurrender.UseVisualStyleBackColor = true;
-            this.btnSurrender.Click += new System.EventHandler(this.btnSurrender_Click);
+            this.btnExport.Location = new System.Drawing.Point(211, 281);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(65, 23);
+            this.btnExport.TabIndex = 19;
+            this.btnExport.Text = "导出表格";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // FormPack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(622, 629);
+            this.ClientSize = new System.Drawing.Size(622, 573);
+            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.richTextBox_filter);
             this.Controls.Add(this.btnCleanPackSpace);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.tbPackStr);
@@ -282,7 +222,6 @@
             this.Name = "FormPack";
             this.Load += new System.EventHandler(this.FormScreenShot_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -301,15 +240,10 @@
         private System.Windows.Forms.TextBox tbPackStr;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button_fightSkill0;
-        private System.Windows.Forms.Button button_fightExit;
-        private System.Windows.Forms.Button button_fightCatch;
         private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.Button btnReadyToFight;
         private System.Windows.Forms.Button btnCleanPackSpace;
         private System.Windows.Forms.RichTextBox richTextBox_filter;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button btnSurrender;
+        private System.Windows.Forms.Button btnExport;
     }
 }

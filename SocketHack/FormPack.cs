@@ -1,6 +1,8 @@
 ﻿using Seer;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -123,35 +125,58 @@ namespace SocketHack
             btnSend.Enabled = !btnSend.Enabled;
         }
 
-        private void button_fightCatch_Click(object sender, EventArgs e)
-        {
-            MainClass.SendPack(2601, new int[] { 300505,1 });
-            MainClass.SendPack(2409, new int[] { 300505 });
-        }
-
-        private void button_fightExit_Click(object sender, EventArgs e)
-        {
-            MainClass.SendPack(2410, new int[] { });
-        }
-
-        private void button_fightSkill0_Click(object sender, EventArgs e)
-        {
-            MainClass.SendPack(2405, new int[] { 0 });
-        }
-
-        private void btnReadyToFight_Click(object sender, EventArgs e)
-        {
-            MainClass.SendPack(2404, new int[] { });
-        }
-
         private void button3_Click(object sender, EventArgs e)
         {
             HideCmds = new HashSet<string>(richTextBox_filter.Text.Split(','));
         }
 
-        private void btnSurrender_Click(object sender, EventArgs e)
+        private void btnExport_Click(object sender, EventArgs e)
         {
-            MainClass.SendPack(2593, new int[] { });
+            if (listViewPack.Items.Count == 0)
+            {
+                MessageBox.Show("没有数据可以导出");
+                return;
+            }
+
+            var saveFileDialog = new SaveFileDialog
+            {
+                Filter = "CSV 文件|*.csv",
+                Title = "保存为 CSV 文件"
+            };
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                var filePath = saveFileDialog.FileName;
+                var sb = new StringBuilder();
+
+                // 添加列标题
+                for (int i = 0; i < listViewPack.Columns.Count; i++)
+                {
+                    sb.Append(listViewPack.Columns[i].Text);
+                    if (i < listViewPack.Columns.Count - 1)
+                    {
+                        sb.Append(",");
+                    }
+                }
+                sb.AppendLine();
+
+                // 添加行数据
+                foreach (ListViewItem item in listViewPack.Items)
+                {
+                    for (int i = 0; i < item.SubItems.Count; i++)
+                    {
+                        sb.Append(item.SubItems[i].Text);
+                        if (i < item.SubItems.Count - 1)
+                        {
+                            sb.Append(",");
+                        }
+                    }
+                    sb.AppendLine();
+                }
+
+                // 写入文件
+                File.WriteAllText(filePath, sb.ToString(), Encoding.UTF8);
+                MessageBox.Show("导出成功");
+            }
         }
     }
 }
