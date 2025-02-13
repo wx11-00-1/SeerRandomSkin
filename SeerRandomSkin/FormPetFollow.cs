@@ -25,6 +25,7 @@ namespace SeerRandomSkin
         private const string KEY_ID = "id";
         private const string KEY_ABILITY_TYPE = "type";
         private const string KEY_LIGHT = "light";
+        private const string KEY_SCALE = "sc";
 
         private void FormPetFollow_Load(object sender, EventArgs e)
         {
@@ -47,6 +48,7 @@ namespace SeerRandomSkin
                         break;
                 }
                 cbLight1.Checked = bool.Parse(jPets[KEY_PET1][KEY_LIGHT].ToString());
+                textBox1.Text = jPets[KEY_PET1][KEY_SCALE].ToString();
 
                 numericUpDown_id2.Value = int.Parse(jPets[KEY_PET2][KEY_ID].ToString());
                 switch (jPets[KEY_PET2][KEY_ABILITY_TYPE].ToString())
@@ -65,6 +67,7 @@ namespace SeerRandomSkin
                         break;
                 }
                 cbLight2.Checked = bool.Parse(jPets[KEY_PET2][KEY_LIGHT].ToString());
+                textBox2.Text = jPets[KEY_PET2][KEY_SCALE].ToString();
             }
             catch (Exception) { }
         }
@@ -88,13 +91,15 @@ namespace SeerRandomSkin
             {
                 { KEY_ID, numericUpDown_id1.Value },
                 { KEY_ABILITY_TYPE, rbRed1.Checked ? 1 : rbBlue1.Checked ? 2 : rbYellow1.Checked ? 3 : 0 },
-                { KEY_LIGHT, cbLight1.Checked }
+                { KEY_LIGHT, cbLight1.Checked },
+                { KEY_SCALE, textBox1.Text }
             };
             jPets[KEY_PET2] = new JObject
             {
                 { KEY_ID, numericUpDown_id2.Value },
                 { KEY_ABILITY_TYPE, rbRed2.Checked ? 1 : rbBlue2.Checked ? 2 : rbYellow2.Checked ? 3 : 0 },
-                { KEY_LIGHT, cbLight2.Checked }
+                { KEY_LIGHT, cbLight2.Checked },
+                { KEY_SCALE, textBox2.Text }
             };
             Properties.Settings.Default.PetFollow = jPets.ToString();
             Properties.Settings.Default.Save();
