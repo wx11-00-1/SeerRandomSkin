@@ -63,10 +63,9 @@ namespace SeerRandomSkin
             // 加载窗口
             checkBox_flash_activities.Checked = SettingsDef.AutoLoadActivities;
             checkBox_flash_fight.Checked = SettingsDef.AutoLoadFightHandler;
-            checkBox_h5_pack.Checked = SettingsDef.AutoLoadH5Pack;
-            checkBox_h5_pet_bag.Checked = SettingsDef.AutoLoadPetBag;
             checkBox_screen_shot.Checked = SettingsDef.AutoLoadScreenShot;
             checkBox_flash_map.Checked = SettingsDef.AutoLoadFlashMap;
+            checkBox_flash_pet_follow.Checked = SettingsDef.AutoLoadPetFollow;
         }
 
         private void button_Save_Click(object sender, EventArgs e)
@@ -122,11 +121,10 @@ namespace SeerRandomSkin
             // 窗口
             SettingsDef.AutoLoadActivities = checkBox_flash_activities.Checked;
             SettingsDef.AutoLoadFightHandler = checkBox_flash_fight.Checked;
-            SettingsDef.AutoLoadH5Pack = checkBox_h5_pack.Checked;
-            SettingsDef.AutoLoadPetBag = checkBox_h5_pet_bag.Checked;
             SettingsDef.AutoLoadScreenShot = checkBox_screen_shot.Checked;
             SettingsDef.AutoLoadFlashMap = checkBox_flash_map.Checked;
             SettingsDef.AutoLoadFD = checkBox_fd.Checked;
+            SettingsDef.AutoLoadPetFollow = checkBox_flash_pet_follow.Checked;
 
             SettingsDef.Save();
             MessageBox.Show("保存成功");

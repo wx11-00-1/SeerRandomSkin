@@ -139,14 +139,6 @@ namespace SeerRandomSkin
             {
                 var f = new FormFlashFightHandler(); f.Show();
             }
-            if (Configs.AutoLoadH5Pack)
-            {
-                childFormPack = new FormPack(); childFormPack.Show();
-            }
-            if (Configs.AutoLoadPetBag)
-            {
-                var f = new FormPetBag(); f.Show();
-            }
             if (Configs.AutoLoadScreenShot)
             {
                 childFormScreenShot = new FormScreenShot
@@ -163,6 +155,10 @@ namespace SeerRandomSkin
             if (Configs.AutoLoadFD)
             {
                 var f = new FormFiddler(); f.Show();
+            }
+            if (Configs.AutoLoadPetFollow)
+            {
+                var f = new FormPetFollow(); f.Show();
             }
 
             SpecificPetSkins = Utils.TryJsonConvert<Dictionary<int, int>>(Configs.SpecificPetSkins);

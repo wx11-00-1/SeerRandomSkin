@@ -726,36 +726,12 @@ namespace SeerRandomSkin.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool AutoLoadPetBag {
-            get {
-                return ((bool)(this["AutoLoadPetBag"]));
-            }
-            set {
-                this["AutoLoadPetBag"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool AutoLoadScreenShot {
             get {
                 return ((bool)(this["AutoLoadScreenShot"]));
             }
             set {
                 this["AutoLoadScreenShot"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool AutoLoadH5Pack {
-            get {
-                return ((bool)(this["AutoLoadH5Pack"]));
-            }
-            set {
-                this["AutoLoadH5Pack"] = value;
             }
         }
         
@@ -876,6 +852,18 @@ namespace SeerRandomSkin.Properties {
             }
             set {
                 this["PetFollow"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoLoadPetFollow {
+            get {
+                return ((bool)(this["AutoLoadPetFollow"]));
+            }
+            set {
+                this["AutoLoadPetFollow"] = value;
             }
         }
     }
