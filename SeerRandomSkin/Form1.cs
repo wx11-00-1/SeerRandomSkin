@@ -671,11 +671,6 @@ namespace SeerRandomSkin
             childFormScreenShot.ScreenShot();
         }
 
-        private void 变速ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FlashSpeedHack();
-        }
-
         private void 对战助手ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new FormFlashFightHandler();
