@@ -485,7 +485,7 @@ package
             return current[lastKey].apply(null,rest);
          });
 
-         setTimeout(function():void {SocketConnection.send(CommandID.NONO_FOLLOW_OR_HOOM,0);},640); // ½« nono ¶ª»Ø²Ö¿â
+         setTimeout(function():void {SocketConnection.send(CommandID.NONO_FOLLOW_OR_HOOM,0);},1000); // ½« nono ¶ª»Ø²Ö¿â
 
          // ¾«Áé¸úËæ
          ExternalInterface.addCallback("WxPetFollow",function(id1:uint,ab1:uint,li1:Boolean, id2:uint,ab2:uint,li2:Boolean):void
