@@ -75,7 +75,6 @@ package
             var bagBoth:Array = PetManager.getBagMap(true);
             for (var i:int = 0; i < bagBoth.length; ++i) SocketConnection.send(CommandID.PET_ONE_CURE,bagBoth[i].catchTime);
          }
-         ExternalInterface.addCallback("WxCurePetAll",SocketConnection.WxCurePetAll);
          SocketConnection.addCmdListener(CommandID.FIGHT_OVER,function(event:SocketEvent) : void
          {
             if (SocketConnection.WxIsAutoCure) SocketConnection.WxCurePetAll();
@@ -97,7 +96,6 @@ package
             }
             SocketConnection.send(CommandID.CHANGE_PET,petCatchTime);
          };
-         ExternalInterface.addCallback("WxChangePet",SocketConnection.WxChangePet);
          ExternalInterface.addCallback("WxChangePetByID",function(ids:Array):void
          {
             if (ids.length == 0) {
@@ -120,11 +118,6 @@ package
          // 使用药剂
          ExternalInterface.addCallback("WxUsePetItem", function(itemID:uint):void { SocketConnection.send(CommandID.USE_PET_ITEM,SocketConnection.WxFightingPetCatchTime,itemID,0); });
          ExternalInterface.addCallback("WxItemBuy", function(itemID:uint):void { SocketConnection.send(CommandID.ITEM_BUY,itemID,1); });
-
-         // 获取战斗时，正在战斗的精灵信息
-         ExternalInterface.addCallback("WxGetFightingPetID", function():uint { return SocketConnection.WxFightingPetID; });
-         ExternalInterface.addCallback("WxGetFightingPetCatchTime", function():uint { return SocketConnection.WxFightingPetCatchTime; });
-         ExternalInterface.addCallback("WxGetFightingPets", function():Array { return SocketConnection.WxFightingPets; });
 
          // 自动出招
          // 进入战斗
@@ -431,9 +424,6 @@ package
             }
             ,parameterArray);
          });
-
-         // 隐藏对战界面
-         ExternalInterface.addCallback("WxSetIsHidePetFight", function(hide:Boolean):void { FightManager.petFightClass = hide ? "PetFightDLL" : "PetFightDLL_201308"; });
 
          // 自动与地图上的野生精灵对战
          SocketConnection.WxOnOgreList = function(e:SocketEvent):void {

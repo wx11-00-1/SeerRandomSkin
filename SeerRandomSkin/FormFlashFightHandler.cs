@@ -11,7 +11,7 @@ namespace SeerRandomSkin
     public partial class FormFlashFightHandler : Form
     {
         public const string JS_FIGHT_ENVIRONMENT =
-            @"
+@"
 WxFightHandler = {};
 WxFightHandler.Private = {};
 WxFightHandler.Utils = {};
@@ -23,8 +23,8 @@ WxFightHandler.Reflection.Action = (className,methodName,...args) => document.Cl
 WxFightHandler.Reflection.Func = (className,methodName,...args) => document.Client.WxReflFunc(className,methodName,...args);
 
 WxFightHandler.Const = {};
-WxFightHandler.Const.DelayMs = 200;
 WxFightHandler.Const.StateKey = 'LanBaiState';
+WxFightHandler.Const.DelayMs = 200;
 WxFightHandler.Const.Pet = 'com.robot.core.pet.Pet';
 WxFightHandler.Const.PetManager = 'com.robot.core.manager.PetManager';
 WxFightHandler.Const.MainManager = 'com.robot.core.manager.MainManager';
@@ -69,8 +69,8 @@ WxFightHandler.Utils.GetRound = () => WxFightHandler.Private.Round;
 WxFightHandler.Private.ShowRound = (hp1,hp2) => { WxFightHandler.Private.Round += 1; seerRandomSkinObj.showFightInfo(hp1,WxFightHandler.Private.Round,hp2); };
 
 WxFightHandler.Utils.UseSkill = skillID => document.Client.WxUseSkill(skillID);
-WxFightHandler.Utils.ChangePet = petCatchTime => document.Client.WxChangePet(petCatchTime);
-WxFightHandler.Utils.UsePetItem = itemID => WxFightHandler.Utils.UsePetItem(itemID);
+WxFightHandler.Utils.ChangePet = petCatchTime => WxFightHandler.Reflection.Action(WxFightHandler.Const.SocketConnection,'WxChangePet',petCatchTime);
+WxFightHandler.Utils.UsePetItem = itemID => document.Client.WxUsePetItem(itemID);
 WxFightHandler.Utils.UsePetItem10PP = () => {
   WxFightHandler.Utils.ItemBuy(300017);
   WxFightHandler.Utils.UsePetItem(300017);
@@ -79,9 +79,9 @@ WxFightHandler.Utils.ItemBuy = itemID => document.Client.WxItemBuy(itemID);
 
 WxFightHandler.Utils.StopAutoFight = () => { WxFightHandler.OnFirstRound = WxFightHandler.OnUseSkill = WxFightHandler.OnChangePet = WxFightHandler.OnFightOver = () => {}; };
 
-WxFightHandler.Utils.GetFightingPetID = () => document.Client.WxGetFightingPetID();
-WxFightHandler.Utils.GetFightingPetCatchTime = () => document.Client.WxGetFightingPetCatchTime();
-WxFightHandler.Utils.GetFightingPets = () => document.Client.WxGetFightingPets();
+WxFightHandler.Utils.GetFightingPetID = () => WxFightHandler.Reflection.Get(WxFightHandler.Const.SocketConnection,'WxFightingPetID');
+WxFightHandler.Utils.GetFightingPetCatchTime = () => WxFightHandler.Reflection.Get(WxFightHandler.Const.SocketConnection,'WxFightingPetCatchTime');
+WxFightHandler.Utils.GetFightingPets = () => WxFightHandler.Reflection.Get(WxFightHandler.Const.SocketConnection,'WxFightingPets');
 WxFightHandler.Utils.ChangePetByID = ids => document.Client.WxChangePetByID(ids);
 
 WxFightHandler.Utils.DelayAsync = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -97,10 +97,10 @@ WxFightHandler.Utils.GetSkillNameByID = skillID => WxFightHandler.Reflection.Fun
 
 WxFightHandler.Utils.AutoFight = id => document.Client.WxAutoFight(id);
 
-WxFightHandler.Utils.SetIsHidePetFight = h => document.Client.WxSetIsHidePetFight(h);
+WxFightHandler.Utils.SetIsHidePetFight = h => WxFightHandler.Reflection.Set('com.robot.app.fight.FightManager','petFightClass',(h ? 'PetFightDLL' : 'PetFightDLL_201308'));
 WxFightHandler.Utils.SetIsAutoCure = cure => WxFightHandler.Reflection.Set(WxFightHandler.Const.SocketConnection,'WxIsAutoCure',cure);
 WxFightHandler.Utils.CurePet20HP = () => document.Client.WxCurePet20HP();
-WxFightHandler.Utils.CurePetAll = () => document.Client.WxCurePetAll();
+WxFightHandler.Utils.CurePetAll = () => WxFightHandler.Reflection.Action(WxFightHandler.Const.SocketConnection,'WxCurePetAll');
 WxFightHandler.Utils.LowHP = () => document.Client.WxLowHP();
 WxFightHandler.Utils.SimpleAlarm = msg => WxFightHandler.Reflection.Action('com.robot.core.ui.alert.SimpleAlarm','show',msg);
 
@@ -199,8 +199,7 @@ WxFightHandler.Utils.StateLoadAsync = async k => {
   } catch {alert(`${k} 不存在`)}
 }
 
-            ";
-
+";
         public const string JS_FIGHT_DEFAULT =
             "WxFightHandler.OnFirstRound = (fightStartInfo) => {\r\n" +
             "  \r\n" +
