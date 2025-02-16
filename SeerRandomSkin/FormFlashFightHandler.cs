@@ -21,6 +21,8 @@ WxFightHandler.Reflection.Get = (className,k) => document.Client.WxReflGet(class
 WxFightHandler.Reflection.Set = (className,k,v) => document.Client.WxReflSet(className,k,v);
 WxFightHandler.Reflection.Action = (className,methodName,...args) => document.Client.WxReflAction(className,methodName,...args);
 WxFightHandler.Reflection.Func = (className,methodName,...args) => document.Client.WxReflFunc(className,methodName,...args);
+WxFightHandler.Reflection.AddObj = (key,className,...args) => document.Client.WxAddObj(key,className,...args);
+WxFightHandler.Reflection.SetObj = (k,a,v,u) => document.Client.WxSetObj(k,a,v,u);
 
 WxFightHandler.Const = {};
 WxFightHandler.Const.StateKey = 'LanBaiState';
@@ -69,7 +71,7 @@ WxFightHandler.Utils.GetRound = () => WxFightHandler.Private.Round;
 WxFightHandler.Private.ShowRound = (hp1,hp2) => { WxFightHandler.Private.Round += 1; seerRandomSkinObj.showFightInfo(hp1,WxFightHandler.Private.Round,hp2); };
 
 WxFightHandler.Utils.UseSkill = skillID => document.Client.WxUseSkill(skillID);
-WxFightHandler.Utils.ChangePet = petCatchTime => WxFightHandler.Reflection.Action(WxFightHandler.Const.SocketConnection,'WxChangePet',petCatchTime);
+WxFightHandler.Utils.ChangePet = petCatchTime => WxFightHandler.Reflection.Action(WxFightHandler.Const.SocketConnection,'WxChangePet',false,petCatchTime);
 WxFightHandler.Utils.UsePetItem = itemID => document.Client.WxUsePetItem(itemID);
 WxFightHandler.Utils.UsePetItem10PP = () => {
   WxFightHandler.Utils.ItemBuy(300017);
@@ -86,14 +88,20 @@ WxFightHandler.Utils.ChangePetByID = ids => document.Client.WxChangePetByID(ids)
 
 WxFightHandler.Utils.DelayAsync = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-WxFightHandler.Utils.Send = (commandID, ...args) => WxFightHandler.Reflection.Action(WxFightHandler.Const.SocketConnection,'send',commandID, ...args);
+WxFightHandler.Utils.Send = (commandID, ...args) => {
+  let ps = [];
+  for (let arg of args) {
+    ps.push(false); ps.push(arg);
+  }
+  WxFightHandler.Reflection.Action(WxFightHandler.Const.SocketConnection,'send',false,commandID, ...ps);
+}
 WxFightHandler.Utils.SendAsync = (commandID, parameterArray) => new Promise(resolve => {
   WxFightHandler.Private._as3Callback = resolve;
   document.Client.WxSendWithCallback2(commandID, parameterArray);
 });
 
-WxFightHandler.Utils.GetPetNameByID = petID => WxFightHandler.Reflection.Func('com.robot.core.config.xml.PetXMLInfo','getName',petID);
-WxFightHandler.Utils.GetSkillNameByID = skillID => WxFightHandler.Reflection.Func('com.robot.core.config.xml.SkillXMLInfo','getName',skillID);
+WxFightHandler.Utils.GetPetNameByID = petID => WxFightHandler.Reflection.Func('com.robot.core.config.xml.PetXMLInfo','getName',false,petID);
+WxFightHandler.Utils.GetSkillNameByID = skillID => WxFightHandler.Reflection.Func('com.robot.core.config.xml.SkillXMLInfo','getName',false,skillID);
 
 WxFightHandler.Utils.AutoFight = id => document.Client.WxAutoFight(id);
 
@@ -102,7 +110,7 @@ WxFightHandler.Utils.SetIsAutoCure = cure => WxFightHandler.Reflection.Set(WxFig
 WxFightHandler.Utils.CurePet20HP = () => document.Client.WxCurePet20HP();
 WxFightHandler.Utils.CurePetAll = () => WxFightHandler.Reflection.Action(WxFightHandler.Const.SocketConnection,'WxCurePetAll');
 WxFightHandler.Utils.LowHP = () => document.Client.WxLowHP();
-WxFightHandler.Utils.SimpleAlarm = msg => WxFightHandler.Reflection.Action('com.robot.core.ui.alert.SimpleAlarm','show',msg);
+WxFightHandler.Utils.SimpleAlarm = msg => WxFightHandler.Reflection.Action('com.robot.core.ui.alert.SimpleAlarm','show',false,msg);
 
 WxFightHandler.Utils.CopyFireAsync = async (fireType = null) => {
   // 从地图上借
@@ -174,8 +182,8 @@ WxFightHandler.Utils.GetActivityValueAsync = (name,key) => new Promise(resolve =
   document.Client.WxGetActivityValue(name,key); 
 });
 
-WxFightHandler.Utils.ChangeMap = id => WxFightHandler.Reflection.Action('com.robot.core.manager.MapManager','changeMap',id);
-WxFightHandler.Utils.ShowAppModule = id => WxFightHandler.Reflection.Action('com.robot.core.manager.ModuleManager','showAppModule',id);
+WxFightHandler.Utils.ChangeMap = id => WxFightHandler.Reflection.Action('com.robot.core.manager.MapManager','changeMap',false,id);
+WxFightHandler.Utils.ShowAppModule = id => WxFightHandler.Reflection.Action('com.robot.core.manager.ModuleManager','showAppModule',false,id);
 
 WxFightHandler.Utils.StateSave = k => {
   let s = {};

@@ -82,7 +82,7 @@ namespace SeerRandomSkin
             if (rbRed2.Checked) ab2 = 10;
             else if (rbBlue2.Checked) ab2 = 20;
             else if (rbYellow2.Checked) ab2 = 32;
-            Form1.chromiumBrowser.ExecuteScriptAsync($"document.Client.WxPetFollow({numericUpDown_id1.Value},{ab1},{(cbLight1.Checked ? "true" : "false")},{numericUpDown_id2.Value},{ab2},{(cbLight2.Checked ? "true" : "false")})");
+            WxPetFollow((int)numericUpDown_id1.Value, ab1, cbLight1.Checked, (int)numericUpDown_id2.Value, ab2, cbLight2.Checked);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -107,12 +107,68 @@ namespace SeerRandomSkin
 
         private void btnScale1_Click(object sender, EventArgs e)
         {
-            Form1.chromiumBrowser.ExecuteScriptAsync($"document.Client.WxScale1({textBox1.Text})");
+            WxScale1(textBox1.Text);
         }
 
         private void btnScale2_Click(object sender, EventArgs e)
         {
-            Form1.chromiumBrowser.ExecuteScriptAsync($"document.Client.WxScale2({textBox2.Text})");
+            WxScale2(textBox2.Text);
+        }
+
+        private static void WxPetFollow(int id1, int ab1, bool l1, int id2, int ab2, bool l2)
+        {
+            Form1.chromiumBrowser.ExecuteScriptAsync("(() => {const k = 'psi';WxFightHandler.Reflection.AddObj(k,'com.robot.core.info.pet.PetShowInfo');WxFightHandler.Reflection.SetObj(k,'petID'," + id1.ToString() + ");WxFightHandler.Reflection.SetObj(k,'abilityType'," + ab1.ToString() + ");WxFightHandler.Reflection.SetObj(k,'isBright'," + (l1 ? "true" : "false") + ");WxFightHandler.Reflection.SetObj(k,'otherPetId'," + id2.ToString() + ");WxFightHandler.Reflection.SetObj(k,'otherAbilityType'," + ab2.ToString() + ");WxFightHandler.Reflection.SetObj(k,'otherBright'," + (l2 ? "true" : "false") + ");" + "WxFightHandler.Reflection.Action(WxFightHandler.Const.MainManager,'actorModel.showPet',true,k);})()");
+        }
+        private static void WxScale1(string s)
+        {
+            Form1.chromiumBrowser.ExecuteScriptAsync($"WxFightHandler.Reflection.Set(WxFightHandler.Const.MainManager,'actorModel.scaleX',{s});WxFightHandler.Reflection.Set(WxFightHandler.Const.MainManager,'actorModel.scaleY',{s})");
+        }
+        private static void WxScale2(string s)
+        {
+            Form1.chromiumBrowser.ExecuteScriptAsync($"WxFightHandler.Reflection.Set(WxFightHandler.Const.MainManager,'actorModel.pet.scaleX',{s});WxFightHandler.Reflection.Set(WxFightHandler.Const.MainManager,'actorModel.pet.scaleY',{s})");
+        }
+
+        public static void WxPetFollow()
+        {
+            try
+            {
+                int ab1 = 0, ab2 = 0;
+                switch (jPets[KEY_PET1][KEY_ABILITY_TYPE].ToString())
+                {
+                    case "1":
+                        ab1 = 10;
+                        break;
+                    case "2":
+                        ab1 = 20;
+                        break;
+                    case "3":
+                        ab1 = 32;
+                        break;
+                }
+                switch (jPets[KEY_PET2][KEY_ABILITY_TYPE].ToString())
+                {
+                    case "1":
+                        ab2 = 10;
+                        break;
+                    case "2":
+                        ab2 = 20;
+                        break;
+                    case "3":
+                        ab2 = 32;
+                        break;
+                }
+                WxPetFollow(int.Parse(jPets[KEY_PET1][KEY_ID].ToString()), ab1, bool.Parse(jPets[KEY_PET1][KEY_LIGHT].ToString()), int.Parse(jPets[KEY_PET2][KEY_ID].ToString()), ab2, bool.Parse(jPets[KEY_PET2][KEY_LIGHT].ToString()));
+            }
+            catch (Exception) { }
+        }
+        public static void WxScale()
+        {
+            try
+            {
+                WxScale1(jPets[KEY_PET1][KEY_SCALE].ToString());
+                WxScale2(jPets[KEY_PET2][KEY_SCALE].ToString());
+            }
+            catch (Exception) { }
         }
     }
 }

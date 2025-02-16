@@ -26,10 +26,8 @@ package
    import com.codecatalyst.promise.Promise;
    import com.robot.core.behavior.ChangeClothBehavior;
    import com.robot.core.info.clothInfo.PeopleItemInfo;
-   import com.robot.core.ui.alert.SimpleAlarm;
    import com.robot.core.info.pet.PetInfo;
    import com.robot.app.fight.FightManager;
-    import com.robot.core.info.pet.PetShowInfo;
    import flash.utils.getDefinitionByName;
    import com.robot.app2.control.activityHelper.ActivityHelperManager;
    import com.robot.app2.control.activityHelper.helps.SimpleHelper;
@@ -37,6 +35,7 @@ package
    import flash.utils.setTimeout;
    import com.robot.core.manager.UserInfoManager;
    import flash.utils.IDataInput;
+   import flash.utils.Dictionary;
    
    [Embed(source="/_assets/assets.swf", symbol="item")]
    public dynamic class item extends MovieClip
@@ -448,6 +447,32 @@ package
          });
 
          // 反射
+         SocketConnection.WxObjMap = new Dictionary(); // 对象池。使用场景：用js代码创建as3对象，作为参数传递给as3函数
+         ExternalInterface.addCallback("WxAddObj",function(key:String,className:String,... rest):void {
+            var c:Class = getDefinitionByName(className) as Class;
+            // 构造函数
+            switch(rest.length) {
+                case 0:
+                    SocketConnection.WxObjMap[key] = new c();
+                    break;
+                case 1:
+                    SocketConnection.WxObjMap[key] = new c(rest[0]);
+                    break;
+                case 2:
+                    SocketConnection.WxObjMap[key] = new c(rest[0],rest[1]);
+                    break;
+                case 3:
+                    SocketConnection.WxObjMap[key] = new c(rest[0],rest[1],rest[2]);
+                    break;
+                case 4:
+                    SocketConnection.WxObjMap[key] = new c(rest[0],rest[1],rest[2],rest[3]);
+                    break;
+                default:
+                    ExternalInterface.call("console.log","参数过多");
+                    break;
+            }
+         });
+         ExternalInterface.addCallback("WxSetObj",function(key:String,at:String,val:*,useMap:Boolean):void { SocketConnection.WxObjMap[key][at] = useMap ? SocketConnection.WxObjMap[val] : val; });
          ExternalInterface.addCallback("WxReflSet",function(className:String,path:String,val:*):void {
             var keys:Array = path.split(".");  // 使用 `.` 分隔路径
             var lastKey:String = keys.pop();   // 获取最后一个属性的键
@@ -473,7 +498,9 @@ package
             for each (var key:String in keys) {
                 current = current[key];
             }
-            current[lastKey].apply(null,rest);
+            var ps:Array = []; // 真正要传的参数。一个 ps 元素对应两个 rest 元素；每个元素都要伴随一个标志位，标志是否从 对象池 里面找（还是不能传 Function 类型的参数）
+            for (var i = 0; i < rest.length; i += 2) ps.push(rest[i] ? SocketConnection.WxObjMap[rest[i+1]] : rest[i+1]);
+            current[lastKey].apply(null,ps);
          });
          ExternalInterface.addCallback("WxReflFunc",function(className:String,path:String,... rest):* {
             var keys:Array = path.split(".");
@@ -482,33 +509,14 @@ package
             for each (var key:String in keys) {
                 current = current[key];
             }
-            return current[lastKey].apply(null,rest);
+            var ps:Array = [];
+            for (var i = 0; i < rest.length; i += 2) ps.push(rest[i] ? SocketConnection.WxObjMap[rest[i+1]] : rest[i+1]);
+            return current[lastKey].apply(null,ps);
          });
 
          setTimeout(function():void {SocketConnection.send(CommandID.NONO_FOLLOW_OR_HOOM,0);},1000); // 将 nono 丢回仓库
 
-         // 精灵跟随
-         ExternalInterface.addCallback("WxPetFollow",function(id1:uint,ab1:uint,li1:Boolean, id2:uint,ab2:uint,li2:Boolean):void
-         {
-                if (id1 == 0) {
-                    MainManager.actorModel.hidePet();
-                    return;
-                }
-             var info:PetShowInfo = new PetShowInfo();
-                info.userID = MainManager.actorID;
-                info.catchTime = 160000000;
-                info.petID = id1;
-                info.isBright = li1;
-                info.abilityType = ab1;
-                info.flag = 1;
-                info.otherPetId = id2;
-                info.otherBright = li2;
-                info.otherAbilityType = ab2;
-                MainManager.actorModel.showPet(info);
-         });
-         // 缩放
-         ExternalInterface.addCallback("WxScale1",function(sc:Number):void { MainManager.actorModel.scaleX = MainManager.actorModel.scaleY = sc; });
-         ExternalInterface.addCallback("WxScale2",function(sc:Number):void { MainManager.actorModel.pet.scaleX = MainManager.actorModel.pet.scaleY = sc; });
+         ExternalInterface.call("seerRandomSkinObj.onLogined");
 
          // 巅峰记牌器
          SocketConnection.WxScreenShot = function() : void

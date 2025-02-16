@@ -1,5 +1,6 @@
 ﻿using CefSharp;
 using System;
+using System.Threading.Tasks;
 
 namespace SeerRandomSkin
 {
@@ -32,6 +33,13 @@ namespace SeerRandomSkin
         public void ShowFightInfo(double hp1, int round, double hp2)
         {
             Form1.ChangeTitleAction(String.Format("{0} {1}% ({2}) {3}%", Form1.FormTitle, hp1, round, hp2));
+        }
+
+        public async void OnLogined()
+        {
+            FormPetFollow.WxPetFollow();
+            await Task.Delay(3000);
+            FormPetFollow.WxScale();
         }
     }
 }
