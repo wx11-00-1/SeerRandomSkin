@@ -13,19 +13,14 @@ package
    import com.robot.core.info.fightInfo.attack.AttackValue;
    import com.robot.petFightModule_201308.view.TimerManager;
    import com.robot.core.info.fightInfo.ChangePetInfo;
-   import com.robot.core.manager.SystemTimerManager;
    import com.robot.core.info.fightInfo.FightStartInfo;
    import com.robot.app.task.petstory.util.KTool;
    import com.robot.core.info.fightInfo.NoteReadyToFightInfo;
    import com.robot.core.info.fightInfo.FightStartInfo;
    import com.robot.core.info.fightInfo.attack.FightOverInfo;
    import com.robot.app.toolBar.ToolBarController;
-   import com.robot.core.manager.MapManager;
-   import com.robot.core.config.xml.MapXMLInfo;
    import com.robot.core.info.pet.PetStorage2015PetInfo;
    import com.codecatalyst.promise.Promise;
-   import com.robot.core.behavior.ChangeClothBehavior;
-   import com.robot.core.info.clothInfo.PeopleItemInfo;
    import com.robot.core.info.pet.PetInfo;
    import com.robot.app.fight.FightManager;
    import flash.utils.getDefinitionByName;
@@ -50,15 +45,6 @@ package
 
          SocketConnection.WxCallback = function(result:* = null):void { ExternalInterface.call("WxFightHandler.Private._as3Callback",result); }
 
-         // 地图
-         ExternalInterface.addCallback("WxChangeMapRandom",function():uint
-         {
-            var mapList:Array = MapXMLInfo.getIDList();
-            var id:uint = mapList[Math.round(Math.random() * mapList.length)];
-            MapManager.changeMap(id);
-            return id;
-         });
-
          // 隐藏其他用户
          ToolBarController.showOrHideAllUser(false);
 
@@ -80,9 +66,6 @@ package
             var fightOverInfo:FightOverInfo = event.data as FightOverInfo;
             ExternalInterface.call("WxFightHandler.OnFightOver",fightOverInfo);
          });
-
-         // 使用技能
-         ExternalInterface.addCallback("WxUseSkill",function(skillID:uint):void { SocketConnection.send(CommandID.USE_SKILL,skillID); });
 
          // 切换精灵
          SocketConnection.WxChangePet = function(petCatchTime:uint):void
@@ -116,7 +99,6 @@ package
 
          // 使用药剂
          ExternalInterface.addCallback("WxUsePetItem", function(itemID:uint):void { SocketConnection.send(CommandID.USE_PET_ITEM,SocketConnection.WxFightingPetCatchTime,itemID,0); });
-         ExternalInterface.addCallback("WxItemBuy", function(itemID:uint):void { SocketConnection.send(CommandID.ITEM_BUY,itemID,1); });
 
          // 自动出招
          // 进入战斗
@@ -221,20 +203,6 @@ package
             }
         });
 
-         // 压血
-         ExternalInterface.addCallback("WxCurePet20HP",function():void
-         {
-            SocketConnection.send(CommandID.ITEM_BUY,300011,6);
-            SocketConnection.send(CommandID.ITEM_BUY,300017,6);
-            var bag:Array = PetManager.getBagMap();
-            for each(var pet in bag)
-            {
-                SocketConnection.send(CommandID.USE_PET_ITEM_OUT_OF_FIGHT,pet.catchTime,300011);
-                SocketConnection.send(CommandID.USE_PET_ITEM_OUT_OF_FIGHT,pet.catchTime,300017);
-            }
-         });
-         ExternalInterface.addCallback("WxLowHP",function():void { SocketConnection.send(41129, (SystemTimerManager.sysBJDate.hours < 12 || SystemTimerManager.sysBJDate.hours >= 15) ? 8692 : 8694); });
-
          // 获取仓库精灵
          SocketConnection.WxGetStoragePets = function(allInfo:Array,startID:int = 1):void
          {
@@ -292,17 +260,6 @@ package
                 SocketConnection.WxCallback();
             }
         });
-
-         ExternalInterface.addCallback("WxChangeCloth", function(clothes:Array):void
-         {
-            var clothArray:Array = [];
-            for (var i:int = 0; i < clothes.length; i+=2)
-            {
-                clothArray.push(new PeopleItemInfo(clothes[i],clothes[i+1]));
-            }
-            MainManager.actorModel.execBehavior(new ChangeClothBehavior(clothArray));
-         }
-         );
 
          ExternalInterface.addCallback("WxSetTitle", function(title:uint):void
          {
@@ -455,17 +412,20 @@ package
                 case 0:
                     SocketConnection.WxObjMap[key] = new c();
                     break;
-                case 1:
-                    SocketConnection.WxObjMap[key] = new c(rest[0]);
-                    break;
                 case 2:
-                    SocketConnection.WxObjMap[key] = new c(rest[0],rest[1]);
-                    break;
-                case 3:
-                    SocketConnection.WxObjMap[key] = new c(rest[0],rest[1],rest[2]);
+                    SocketConnection.WxObjMap[key] = new c(rest[0] ? SocketConnection.WxObjMap[rest[1]] : rest[1]);
                     break;
                 case 4:
-                    SocketConnection.WxObjMap[key] = new c(rest[0],rest[1],rest[2],rest[3]);
+                    SocketConnection.WxObjMap[key] = new c(rest[0] ? SocketConnection.WxObjMap[rest[1]] : rest[1],rest[2] ? SocketConnection.WxObjMap[rest[3]] : rest[3]);
+                    break;
+                case 6:
+                    SocketConnection.WxObjMap[key] = new c(rest[0] ? SocketConnection.WxObjMap[rest[1]] : rest[1],rest[2] ? SocketConnection.WxObjMap[rest[3]] : rest[3],rest[4] ? SocketConnection.WxObjMap[rest[5]] : rest[5]);
+                    break;
+                case 8:
+                    SocketConnection.WxObjMap[key] = new c(rest[0] ? SocketConnection.WxObjMap[rest[1]] : rest[1],rest[2] ? SocketConnection.WxObjMap[rest[3]] : rest[3],rest[4] ? SocketConnection.WxObjMap[rest[5]] : rest[5],rest[6] ? SocketConnection.WxObjMap[rest[7]] : rest[7]);
+                    break;
+                case 10:
+                    SocketConnection.WxObjMap[key] = new c(rest[0] ? SocketConnection.WxObjMap[rest[1]] : rest[1],rest[2] ? SocketConnection.WxObjMap[rest[3]] : rest[3],rest[4] ? SocketConnection.WxObjMap[rest[5]] : rest[5],rest[6] ? SocketConnection.WxObjMap[rest[7]] : rest[7],rest[8] ? SocketConnection.WxObjMap[rest[9]] : rest[9]);
                     break;
                 default:
                     ExternalInterface.call("console.log","参数过多");
@@ -473,6 +433,9 @@ package
             }
          });
          ExternalInterface.addCallback("WxSetObj",function(key:String,at:String,val:*,useMap:Boolean):void { SocketConnection.WxObjMap[key][at] = useMap ? SocketConnection.WxObjMap[val] : val; });
+         ExternalInterface.addCallback("WxObjAction",function(key:String,methodName:String,... rest):void { SocketConnection.WxObjMap[key][methodName].apply(null,restTrans(rest)); });
+         ExternalInterface.addCallback("WxObjFunc",function(key:String,methodName:String,... rest):void { return SocketConnection.WxObjMap[key][methodName].apply(null,restTrans(rest)); });
+
          ExternalInterface.addCallback("WxReflSet",function(className:String,path:String,val:*):void {
             var keys:Array = path.split(".");  // 使用 `.` 分隔路径
             var lastKey:String = keys.pop();   // 获取最后一个属性的键
@@ -498,9 +461,7 @@ package
             for each (var key:String in keys) {
                 current = current[key];
             }
-            var ps:Array = []; // 真正要传的参数。一个 ps 元素对应两个 rest 元素；每个元素都要伴随一个标志位，标志是否从 对象池 里面找（还是不能传 Function 类型的参数）
-            for (var i = 0; i < rest.length; i += 2) ps.push(rest[i] ? SocketConnection.WxObjMap[rest[i+1]] : rest[i+1]);
-            current[lastKey].apply(null,ps);
+            current[lastKey].apply(null,restTrans(rest));
          });
          ExternalInterface.addCallback("WxReflFunc",function(className:String,path:String,... rest):* {
             var keys:Array = path.split(".");
@@ -509,12 +470,10 @@ package
             for each (var key:String in keys) {
                 current = current[key];
             }
-            var ps:Array = [];
-            for (var i = 0; i < rest.length; i += 2) ps.push(rest[i] ? SocketConnection.WxObjMap[rest[i+1]] : rest[i+1]);
-            return current[lastKey].apply(null,ps);
+            return current[lastKey].apply(null,restTrans(rest));
          });
 
-         setTimeout(function():void {SocketConnection.send(CommandID.NONO_FOLLOW_OR_HOOM,0);},1000); // 将 nono 丢回仓库
+         setTimeout(function():void {SocketConnection.send(CommandID.NONO_FOLLOW_OR_HOOM,0);},800); // 将 nono 丢回仓库
 
          ExternalInterface.call("seerRandomSkinObj.onLogined");
 
@@ -524,6 +483,12 @@ package
             ExternalInterface.call("seerRandomSkinObj.screenShot");
          }
          SocketConnection.addCmdListener(45144,SocketConnection.WxScreenShot);
+      }
+
+      private static function restTrans(rest:Array):Array {
+        var ps:Array = []; // 真正要传的参数。一个 ps 元素对应两个 rest 元素；每个元素都要伴随一个标志位，标志是否从 对象池 里面找（还是不能传 Function 类型的参数）
+        for (var i = 0; i < rest.length; i += 2) ps.push(rest[i] ? SocketConnection.WxObjMap[rest[i+1]] : rest[i+1]);
+        return ps;
       }
    }
 }

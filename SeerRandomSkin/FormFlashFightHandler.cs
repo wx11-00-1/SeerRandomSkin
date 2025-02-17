@@ -23,6 +23,8 @@ WxFightHandler.Reflection.Action = (className,methodName,...args) => document.Cl
 WxFightHandler.Reflection.Func = (className,methodName,...args) => document.Client.WxReflFunc(className,methodName,...args);
 WxFightHandler.Reflection.AddObj = (key,className,...args) => document.Client.WxAddObj(key,className,...args);
 WxFightHandler.Reflection.SetObj = (k,a,v,u) => document.Client.WxSetObj(k,a,v,u);
+WxFightHandler.Reflection.ObjAction = (k,m,...args) => document.Client.WxObjAction(k,m,...args);
+WxFightHandler.Reflection.ObjFunc = (k,m,...args) => document.Client.WxObjFunc(k,m,...args);
 
 WxFightHandler.Const = {};
 WxFightHandler.Const.StateKey = 'LanBaiState';
@@ -60,7 +62,16 @@ WxFightHandler.Utils.GetClothes = () => {
   }
   return result;
 }
-WxFightHandler.Utils.ChangeCloth = clothes => document.Client.WxChangeCloth(clothes);
+WxFightHandler.Utils.ChangeCloth = (clothes,isNet=true) => {
+  const k1 = 'cl', k2 = 'it', k3 = 'be';
+  WxFightHandler.Reflection.AddObj(k1,'Array');
+  for (let i=0; i<clothes.length; i+=2) {
+    WxFightHandler.Reflection.AddObj(k2,'com.robot.core.info.clothInfo.PeopleItemInfo',false,clothes[i],false,clothes[i+1]);
+    WxFightHandler.Reflection.ObjAction(k1,'push',true,k2);
+  }
+  WxFightHandler.Reflection.AddObj(k3,'com.robot.core.behavior.ChangeClothBehavior',true,k1,false,isNet);
+  WxFightHandler.Reflection.Action(WxFightHandler.Const.MainManager,'actorModel.execBehavior',true,k3);
+}
 
 WxFightHandler.Utils.GetTitle = () => WxFightHandler.Reflection.Get(WxFightHandler.Const.MainManager,'actorInfo.curTitle');
 WxFightHandler.Utils.SetTitle = title => document.Client.WxSetTitle(title);
@@ -70,14 +81,14 @@ WxFightHandler.Utils.GetRound = () => WxFightHandler.Private.Round;
 
 WxFightHandler.Private.ShowRound = (hp1,hp2) => { WxFightHandler.Private.Round += 1; seerRandomSkinObj.showFightInfo(hp1,WxFightHandler.Private.Round,hp2); };
 
-WxFightHandler.Utils.UseSkill = skillID => document.Client.WxUseSkill(skillID);
+WxFightHandler.Utils.UseSkill = skillID => WxFightHandler.Utils.Send(2405,skillID);
 WxFightHandler.Utils.ChangePet = petCatchTime => WxFightHandler.Reflection.Action(WxFightHandler.Const.SocketConnection,'WxChangePet',false,petCatchTime);
 WxFightHandler.Utils.UsePetItem = itemID => document.Client.WxUsePetItem(itemID);
 WxFightHandler.Utils.UsePetItem10PP = () => {
   WxFightHandler.Utils.ItemBuy(300017);
   WxFightHandler.Utils.UsePetItem(300017);
 };
-WxFightHandler.Utils.ItemBuy = itemID => document.Client.WxItemBuy(itemID);
+WxFightHandler.Utils.ItemBuy = (itemID,c=1) => WxFightHandler.Utils.Send(2601,itemID,c);
 
 WxFightHandler.Utils.StopAutoFight = () => { WxFightHandler.OnFirstRound = WxFightHandler.OnUseSkill = WxFightHandler.OnChangePet = WxFightHandler.OnFightOver = () => {}; };
 
@@ -107,9 +118,19 @@ WxFightHandler.Utils.AutoFight = id => document.Client.WxAutoFight(id);
 
 WxFightHandler.Utils.SetIsHidePetFight = h => WxFightHandler.Reflection.Set('com.robot.app.fight.FightManager','petFightClass',(h ? 'PetFightDLL' : 'PetFightDLL_201308'));
 WxFightHandler.Utils.SetIsAutoCure = cure => WxFightHandler.Reflection.Set(WxFightHandler.Const.SocketConnection,'WxIsAutoCure',cure);
-WxFightHandler.Utils.CurePet20HP = () => document.Client.WxCurePet20HP();
+WxFightHandler.Utils.CurePet20HP = () => {
+  WxFightHandler.Utils.ItemBuy(300011,6);
+  WxFightHandler.Utils.ItemBuy(300017,6);
+  for (let p of WxFightHandler.Utils.GetBag1()) {
+    WxFightHandler.Utils.Send(2326,p.catchTime,300011);
+    WxFightHandler.Utils.Send(2326,p.catchTime,300017);
+  }
+}
 WxFightHandler.Utils.CurePetAll = () => WxFightHandler.Reflection.Action(WxFightHandler.Const.SocketConnection,'WxCurePetAll');
-WxFightHandler.Utils.LowHP = () => document.Client.WxLowHP();
+WxFightHandler.Utils.LowHP = () => {
+  const c = ((new Date()).getUTCHours() + 8) % 24;
+  WxFightHandler.Utils.Send(41129,(c < 12 || c >= 15) ? 8692 : 8694);
+}
 WxFightHandler.Utils.SimpleAlarm = msg => WxFightHandler.Reflection.Action('com.robot.core.ui.alert.SimpleAlarm','show',false,msg);
 
 WxFightHandler.Utils.CopyFireAsync = async (fireType = null) => {
