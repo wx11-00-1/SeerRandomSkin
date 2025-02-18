@@ -16,15 +16,18 @@ WxFightHandler = {};
 WxFightHandler.Private = {};
 WxFightHandler.Utils = {};
 
-WxFightHandler.Reflection = {};
-WxFightHandler.Reflection.Get = (className,k) => document.Client.WxReflGet(className,k);
-WxFightHandler.Reflection.Set = (className,k,v,u=false) => document.Client.WxReflSet(className,k,v,u);
-WxFightHandler.Reflection.Action = (className,methodName,...args) => document.Client.WxReflAction(className,methodName,...args);
-WxFightHandler.Reflection.Func = (className,methodName,...args) => document.Client.WxReflFunc(className,methodName,...args);
-WxFightHandler.Reflection.AddObj = (key,className,...args) => document.Client.WxAddObj(key,className,...args);
-WxFightHandler.Reflection.SetObj = (k,a,v,u) => document.Client.WxSetObj(k,a,v,u);
-WxFightHandler.Reflection.ObjAction = (k,m,...args) => document.Client.WxObjAction(k,m,...args);
-WxFightHandler.Reflection.ObjFunc = (k,m,...args) => document.Client.WxObjFunc(k,m,...args);
+WxFightHandler.Refl = {};
+WxFightHandler.Refl.Set = (name,a,u,v) => document.Client.WxRefl(1,name,a,u,v);
+WxFightHandler.Refl.Get = (name,a) => document.Client.WxRefl(2,name,a);
+WxFightHandler.Refl.Func = (name,method,...args) => document.Client.WxRefl(3,name,method,...args);
+WxFightHandler.Refl.Tmp = (name,method,key,...args) => document.Client.WxRefl(4,name,method,key,...args);
+
+WxFightHandler.Dict = {};
+WxFightHandler.Dict.Add = (key,name,...args) => document.Client.WxAddObj(key,name,...args);
+WxFightHandler.Dict.Set = (key,a,u,v) => WxFightHandler.Refl.Set(WxFightHandler.Const.SocketConnection,`WxOs.${key}.${a}`,u,v);
+WxFightHandler.Dict.Get = (key,a) => WxFightHandler.Refl.Get(WxFightHandler.Const.SocketConnection,`WxOs.${key}.${a}`);
+WxFightHandler.Dict.Func = (key,method,...args) => WxFightHandler.Refl.Func(WxFightHandler.Const.SocketConnection,`WxOs.${key}.${method}`,...args);
+WxFightHandler.Dict.Tmp = (key,method,key2,...args) => WxFightHandler.Refl.Tmp(WxFightHandler.Const.SocketConnection,`WxOs.${key}.${method}`,key2,...args);
 
 WxFightHandler.Const = {};
 WxFightHandler.Const.StateKey = 'LanBaiState';
@@ -34,9 +37,9 @@ WxFightHandler.Const.PetManager = 'com.robot.core.manager.PetManager';
 WxFightHandler.Const.MainManager = 'com.robot.core.manager.MainManager';
 WxFightHandler.Const.SocketConnection = 'com.robot.core.net.SocketConnection';
 
-WxFightHandler.Utils.GetBagPetInfos = () => WxFightHandler.Reflection.Get(WxFightHandler.Const.PetManager,'allInfos');
-WxFightHandler.Utils.GetBag1 = () => WxFightHandler.Reflection.Func(WxFightHandler.Const.PetManager,'getBagMap');
-WxFightHandler.Utils.GetBag2 = () => WxFightHandler.Reflection.Func(WxFightHandler.Const.PetManager,'getSecondBagMap');
+WxFightHandler.Utils.GetBagPetInfos = () => WxFightHandler.Refl.Get(WxFightHandler.Const.PetManager,'allInfos');
+WxFightHandler.Utils.GetBag1 = () => WxFightHandler.Refl.Func(WxFightHandler.Const.PetManager,'getBagMap');
+WxFightHandler.Utils.GetBag2 = () => WxFightHandler.Refl.Func(WxFightHandler.Const.PetManager,'getSecondBagMap');
 
 WxFightHandler.Private.ClearBagAsync = () => new Promise(res => { WxFightHandler.Private._as3Callback = res; document.Client.WxClearBag(); });
 WxFightHandler.Private.SetBag1Async = bag1 => new Promise(res => { WxFightHandler.Private._as3Callback = res; document.Client.WxSetBag1(bag1); });
@@ -54,7 +57,7 @@ WxFightHandler.Utils.GetStoragePetsAsync = () => new Promise(resolve => {
 });
 
 WxFightHandler.Utils.GetClothes = () => {
-  const cs = WxFightHandler.Reflection.Get(WxFightHandler.Const.MainManager,'actorInfo.clothes');
+  const cs = WxFightHandler.Refl.Get(WxFightHandler.Const.MainManager,'actorInfo.clothes');
   let result = [];
   for (let c of cs) {
     result.push(c.id);
@@ -64,17 +67,17 @@ WxFightHandler.Utils.GetClothes = () => {
 }
 WxFightHandler.Utils.ChangeCloth = (clothes,isNet=true) => {
   const k1 = 'cl', k2 = 'it', k3 = 'be';
-  WxFightHandler.Reflection.AddObj(k1,'Array');
+  WxFightHandler.Dict.Add(k1,'Array');
   for (let i=0; i<clothes.length; i+=2) {
     if (clothes[i] === 0) continue;
-    WxFightHandler.Reflection.AddObj(k2,'com.robot.core.info.clothInfo.PeopleItemInfo',false,clothes[i],false,clothes[i+1]);
-    WxFightHandler.Reflection.ObjAction(k1,'push',true,k2);
+    WxFightHandler.Dict.Add(k2,'com.robot.core.info.clothInfo.PeopleItemInfo',false,clothes[i],false,clothes[i+1]);
+    WxFightHandler.Dict.Func(k1,'push',true,k2);
   }
-  WxFightHandler.Reflection.AddObj(k3,'com.robot.core.behavior.ChangeClothBehavior',true,k1,false,isNet);
-  WxFightHandler.Reflection.Action(WxFightHandler.Const.MainManager,'actorModel.execBehavior',true,k3);
+  WxFightHandler.Dict.Add(k3,'com.robot.core.behavior.ChangeClothBehavior',true,k1,false,isNet);
+  WxFightHandler.Refl.Func(WxFightHandler.Const.MainManager,'actorModel.execBehavior',true,k3);
 }
 
-WxFightHandler.Utils.GetTitle = () => WxFightHandler.Reflection.Get(WxFightHandler.Const.MainManager,'actorInfo.curTitle');
+WxFightHandler.Utils.GetTitle = () => WxFightHandler.Refl.Get(WxFightHandler.Const.MainManager,'actorInfo.curTitle');
 WxFightHandler.Utils.SetTitle = title => document.Client.WxSetTitle(title);
 
 WxFightHandler.Private.RoundReset = () => WxFightHandler.Private.Round = 0;
@@ -83,7 +86,7 @@ WxFightHandler.Utils.GetRound = () => WxFightHandler.Private.Round;
 WxFightHandler.Private.ShowRound = (hp1,hp2) => { WxFightHandler.Private.Round += 1; seerRandomSkinObj.showFightInfo(hp1,WxFightHandler.Private.Round,hp2); };
 
 WxFightHandler.Utils.UseSkill = skillID => WxFightHandler.Utils.Send(2405,skillID);
-WxFightHandler.Utils.ChangePet = petCatchTime => WxFightHandler.Reflection.Action(WxFightHandler.Const.SocketConnection,'WxChangePet',false,petCatchTime);
+WxFightHandler.Utils.ChangePet = petCatchTime => WxFightHandler.Refl.Func(WxFightHandler.Const.SocketConnection,'WxChangePet',false,petCatchTime);
 WxFightHandler.Utils.UsePetItem = itemID => document.Client.WxUsePetItem(itemID);
 WxFightHandler.Utils.UsePetItem10PP = () => {
   WxFightHandler.Utils.ItemBuy(300017);
@@ -93,32 +96,30 @@ WxFightHandler.Utils.ItemBuy = (itemID,c=1) => WxFightHandler.Utils.Send(2601,it
 
 WxFightHandler.Utils.StopAutoFight = () => { WxFightHandler.OnFirstRound = WxFightHandler.OnUseSkill = WxFightHandler.OnChangePet = WxFightHandler.OnFightOver = () => {}; };
 
-WxFightHandler.Utils.GetFightingPetID = () => WxFightHandler.Reflection.Get(WxFightHandler.Const.SocketConnection,'WxFightingPetID');
-WxFightHandler.Utils.GetFightingPetCatchTime = () => WxFightHandler.Reflection.Get(WxFightHandler.Const.SocketConnection,'WxFightingPetCatchTime');
-WxFightHandler.Utils.GetFightingPets = () => WxFightHandler.Reflection.Get(WxFightHandler.Const.SocketConnection,'WxFightingPets');
+WxFightHandler.Utils.GetFightingPetID = () => WxFightHandler.Refl.Get(WxFightHandler.Const.SocketConnection,'WxFightingPetID');
+WxFightHandler.Utils.GetFightingPetCatchTime = () => WxFightHandler.Refl.Get(WxFightHandler.Const.SocketConnection,'WxFightingPetCatchTime');
+WxFightHandler.Utils.GetFightingPets = () => WxFightHandler.Refl.Get(WxFightHandler.Const.SocketConnection,'WxFightingPets');
 WxFightHandler.Utils.ChangePetByID = ids => document.Client.WxChangePetByID(ids);
 
 WxFightHandler.Utils.DelayAsync = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 WxFightHandler.Utils.Send = (commandID, ...args) => {
   let ps = [];
-  for (let arg of args) {
-    ps.push(false); ps.push(arg);
-  }
-  WxFightHandler.Reflection.Action(WxFightHandler.Const.SocketConnection,'send',false,commandID, ...ps);
+  for (let arg of args) { ps.push(false); ps.push(arg); }
+  WxFightHandler.Refl.Func(WxFightHandler.Const.SocketConnection,'send',false,commandID, ...ps);
 }
 WxFightHandler.Utils.SendAsync = (commandID, parameterArray) => new Promise(resolve => {
   WxFightHandler.Private._as3Callback = resolve;
   document.Client.WxSendWithCallback2(commandID, parameterArray);
 });
 
-WxFightHandler.Utils.GetPetNameByID = petID => WxFightHandler.Reflection.Func('com.robot.core.config.xml.PetXMLInfo','getName',false,petID);
-WxFightHandler.Utils.GetSkillNameByID = skillID => WxFightHandler.Reflection.Func('com.robot.core.config.xml.SkillXMLInfo','getName',false,skillID);
+WxFightHandler.Utils.GetPetNameByID = petID => WxFightHandler.Refl.Func('com.robot.core.config.xml.PetXMLInfo','getName',false,petID);
+WxFightHandler.Utils.GetSkillNameByID = skillID => WxFightHandler.Refl.Func('com.robot.core.config.xml.SkillXMLInfo','getName',false,skillID);
 
 WxFightHandler.Utils.AutoFight = id => document.Client.WxAutoFight(id);
 
-WxFightHandler.Utils.SetIsHidePetFight = h => WxFightHandler.Reflection.Set('com.robot.app.fight.FightManager','petFightClass',(h ? 'PetFightDLL' : 'PetFightDLL_201308'));
-WxFightHandler.Utils.SetIsAutoCure = cure => WxFightHandler.Reflection.Set(WxFightHandler.Const.SocketConnection,'WxIsAutoCure',cure);
+WxFightHandler.Utils.SetIsHidePetFight = h => WxFightHandler.Refl.Set('com.robot.app.fight.FightManager','petFightClass',false,(h ? 'PetFightDLL' : 'PetFightDLL_201308'));
+WxFightHandler.Utils.SetIsAutoCure = cure => WxFightHandler.Refl.Set(WxFightHandler.Const.SocketConnection,'WxIsAutoCure',false,cure);
 WxFightHandler.Utils.CurePet20HP = () => {
   WxFightHandler.Utils.ItemBuy(300011,6);
   WxFightHandler.Utils.ItemBuy(300017,6);
@@ -127,12 +128,12 @@ WxFightHandler.Utils.CurePet20HP = () => {
     WxFightHandler.Utils.Send(2326,p.catchTime,300017);
   }
 }
-WxFightHandler.Utils.CurePetAll = () => WxFightHandler.Reflection.Action(WxFightHandler.Const.SocketConnection,'WxCurePetAll');
+WxFightHandler.Utils.CurePetAll = () => WxFightHandler.Refl.Func(WxFightHandler.Const.SocketConnection,'WxCurePetAll');
 WxFightHandler.Utils.LowHP = () => {
   const c = ((new Date()).getUTCHours() + 8) % 24;
   WxFightHandler.Utils.Send(41129,(c < 12 || c >= 15) ? 8692 : 8694);
 }
-WxFightHandler.Utils.SimpleAlarm = msg => WxFightHandler.Reflection.Action('com.robot.core.ui.alert.SimpleAlarm','show',false,msg);
+WxFightHandler.Utils.SimpleAlarm = msg => WxFightHandler.Refl.Func('com.robot.core.ui.alert.SimpleAlarm','show',false,msg);
 
 WxFightHandler.Utils.CopyFireAsync = async (fireType = null) => {
   // 从地图上借
@@ -204,8 +205,8 @@ WxFightHandler.Utils.GetActivityValueAsync = (name,key) => new Promise(resolve =
   document.Client.WxGetActivityValue(name,key); 
 });
 
-WxFightHandler.Utils.ChangeMap = id => WxFightHandler.Reflection.Action('com.robot.core.manager.MapManager','changeMap',false,id);
-WxFightHandler.Utils.ShowAppModule = id => WxFightHandler.Reflection.Action('com.robot.core.manager.ModuleManager','showAppModule',false,id);
+WxFightHandler.Utils.ChangeMap = id => WxFightHandler.Refl.Func('com.robot.core.manager.MapManager','changeMap',false,id);
+WxFightHandler.Utils.ShowAppModule = id => WxFightHandler.Refl.Func('com.robot.core.manager.ModuleManager','showAppModule',false,id);
 
 WxFightHandler.Utils.StateSave = k => {
   let s = {};

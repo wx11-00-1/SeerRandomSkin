@@ -24,8 +24,6 @@ package
    import com.robot.core.info.pet.PetInfo;
    import com.robot.app.fight.FightManager;
    import flash.utils.getDefinitionByName;
-   import com.robot.app2.control.activityHelper.ActivityHelperManager;
-   import com.robot.app2.control.activityHelper.helps.SimpleHelper;
     import com.codecatalyst.promise.Deferred;
    import flash.utils.setTimeout;
    import com.robot.core.manager.UserInfoManager;
@@ -398,79 +396,61 @@ package
 
          // 获取活动数据
          ExternalInterface.addCallback("WxGetActivityValue",function(name:String,key:String):void {
-            ActivityHelperManager.getHelper(name).then(function(param1:SimpleHelper):void {
+            getDefinitionByName("com.robot.app2.control.activityHelper.ActivityHelperManager").getHelper(name).then(function(param1:*):void {
                 SocketConnection.WxCallback(param1.getValue(key));
             });
          });
 
-         // 反射
-         SocketConnection.WxObjMap = new Dictionary(); // 对象池。使用场景：用js代码创建as3对象，作为参数传递给as3函数
+         SocketConnection.WxOs = new Dictionary(); // 对象池。使用场景：用js代码创建as3对象，作为参数传递给as3函数
          ExternalInterface.addCallback("WxAddObj",function(key:String,className:String,... rest):void {
             var c:Class = getDefinitionByName(className) as Class;
             // 构造函数
             switch(rest.length) {
                 case 0:
-                    SocketConnection.WxObjMap[key] = new c();
+                    SocketConnection.WxOs[key] = new c();
                     break;
                 case 2:
-                    SocketConnection.WxObjMap[key] = new c(rest[0] ? SocketConnection.WxObjMap[rest[1]] : rest[1]);
+                    SocketConnection.WxOs[key] = new c(rest[0] ? SocketConnection.WxOs[rest[1]] : rest[1]);
                     break;
                 case 4:
-                    SocketConnection.WxObjMap[key] = new c(rest[0] ? SocketConnection.WxObjMap[rest[1]] : rest[1],rest[2] ? SocketConnection.WxObjMap[rest[3]] : rest[3]);
+                    SocketConnection.WxOs[key] = new c(rest[0] ? SocketConnection.WxOs[rest[1]] : rest[1],rest[2] ? SocketConnection.WxOs[rest[3]] : rest[3]);
                     break;
                 case 6:
-                    SocketConnection.WxObjMap[key] = new c(rest[0] ? SocketConnection.WxObjMap[rest[1]] : rest[1],rest[2] ? SocketConnection.WxObjMap[rest[3]] : rest[3],rest[4] ? SocketConnection.WxObjMap[rest[5]] : rest[5]);
+                    SocketConnection.WxOs[key] = new c(rest[0] ? SocketConnection.WxOs[rest[1]] : rest[1],rest[2] ? SocketConnection.WxOs[rest[3]] : rest[3],rest[4] ? SocketConnection.WxOs[rest[5]] : rest[5]);
                     break;
                 case 8:
-                    SocketConnection.WxObjMap[key] = new c(rest[0] ? SocketConnection.WxObjMap[rest[1]] : rest[1],rest[2] ? SocketConnection.WxObjMap[rest[3]] : rest[3],rest[4] ? SocketConnection.WxObjMap[rest[5]] : rest[5],rest[6] ? SocketConnection.WxObjMap[rest[7]] : rest[7]);
+                    SocketConnection.WxOs[key] = new c(rest[0] ? SocketConnection.WxOs[rest[1]] : rest[1],rest[2] ? SocketConnection.WxOs[rest[3]] : rest[3],rest[4] ? SocketConnection.WxOs[rest[5]] : rest[5],rest[6] ? SocketConnection.WxOs[rest[7]] : rest[7]);
                     break;
                 case 10:
-                    SocketConnection.WxObjMap[key] = new c(rest[0] ? SocketConnection.WxObjMap[rest[1]] : rest[1],rest[2] ? SocketConnection.WxObjMap[rest[3]] : rest[3],rest[4] ? SocketConnection.WxObjMap[rest[5]] : rest[5],rest[6] ? SocketConnection.WxObjMap[rest[7]] : rest[7],rest[8] ? SocketConnection.WxObjMap[rest[9]] : rest[9]);
+                    SocketConnection.WxOs[key] = new c(rest[0] ? SocketConnection.WxOs[rest[1]] : rest[1],rest[2] ? SocketConnection.WxOs[rest[3]] : rest[3],rest[4] ? SocketConnection.WxOs[rest[5]] : rest[5],rest[6] ? SocketConnection.WxOs[rest[7]] : rest[7],rest[8] ? SocketConnection.WxOs[rest[9]] : rest[9]);
                     break;
                 default:
                     ExternalInterface.call("console.log","参数过多");
                     break;
             }
          });
-         ExternalInterface.addCallback("WxSetObj",function(key:String,at:String,val:*,useMap:Boolean):void { SocketConnection.WxObjMap[key][at] = useMap ? SocketConnection.WxObjMap[val] : val; });
-         ExternalInterface.addCallback("WxObjAction",function(key:String,methodName:String,... rest):void { SocketConnection.WxObjMap[key][methodName].apply(null,restTrans(rest)); });
-         ExternalInterface.addCallback("WxObjFunc",function(key:String,methodName:String,... rest):void { return SocketConnection.WxObjMap[key][methodName].apply(null,restTrans(rest)); });
-
-         ExternalInterface.addCallback("WxReflSet",function(className:String,path:String,val:*,useMap:Boolean):void {
+         
+         ExternalInterface.addCallback("WxRefl",function(type:uint,name:String,path:String,... rest):* {
             var keys:Array = path.split(".");  // 使用 `.` 分隔路径
             var lastKey:String = keys.pop();   // 获取最后一个属性的键
-            var current:Object = getDefinitionByName(className);
+            var current:Object = getDefinitionByName(name);
             for each (var key:String in keys) {
                 current = current[key]; // 访问嵌套的对象
             }
-            current[lastKey] = useMap ? SocketConnection.WxObjMap[val] : val; // 最后赋值
-         });
-         ExternalInterface.addCallback("WxReflGet",function(className:String,path:String):* {
-            var keys:Array = path.split(".");
-            var lastKey:String = keys.pop();
-            var current:Object = getDefinitionByName(className);
-            for each (var key:String in keys) {
-                current = current[key];
+            switch(type) {
+                case 1: // 设置属性的值
+                    current[lastKey] = rest[0] ? SocketConnection.WxOs[rest[1]] : rest[1]; return;
+                case 2: // 获取
+                    return current[lastKey];
+                case 3: // 调用方法
+                case 4: // 将返回值暂存到 对象池（应对一些无法直接输出到js层的对象）
+                    var ps:Array = []; // 真正要传的参数。一个 ps 元素对应两个 rest 元素；每个元素都要伴随一个标志位，标志是否从 对象池 里面找（还是不能传 Function 类型的参数）
+                    var i:int = type - 3;
+                    for (; i < rest.length; i += 2) ps.push(rest[i] ? SocketConnection.WxOs[rest[i+1]] : rest[i+1]);
+                    if (type==3) return current[lastKey].apply(null,ps);
+                    else SocketConnection.WxOs[rest[0]] = current[lastKey].apply(null,ps);
+                    break;
             }
-            return current[lastKey];
-         });
-         ExternalInterface.addCallback("WxReflAction",function(className:String,path:String,... rest):void {
-            var keys:Array = path.split(".");
-            var lastKey:String = keys.pop();
-            var current:Object = getDefinitionByName(className);
-            for each (var key:String in keys) {
-                current = current[key];
-            }
-            current[lastKey].apply(null,restTrans(rest));
-         });
-         ExternalInterface.addCallback("WxReflFunc",function(className:String,path:String,... rest):* {
-            var keys:Array = path.split(".");
-            var lastKey:String = keys.pop();
-            var current:Object = getDefinitionByName(className);
-            for each (var key:String in keys) {
-                current = current[key];
-            }
-            return current[lastKey].apply(null,restTrans(rest));
          });
 
          setTimeout(function():void {SocketConnection.send(CommandID.NONO_FOLLOW_OR_HOOM,0);},800); // 将 nono 丢回仓库
@@ -490,12 +470,6 @@ package
                 setTimeout(function():void {MainManager.actorModel.pet.scaleX=MainManager.actorModel.pet.scaleY=s;},1600);
             })
          });
-      }
-
-      private static function restTrans(rest:Array):Array {
-        var ps:Array = []; // 真正要传的参数。一个 ps 元素对应两个 rest 元素；每个元素都要伴随一个标志位，标志是否从 对象池 里面找（还是不能传 Function 类型的参数）
-        for (var i = 0; i < rest.length; i += 2) ps.push(rest[i] ? SocketConnection.WxObjMap[rest[i+1]] : rest[i+1]);
-        return ps;
       }
    }
 }

@@ -23,7 +23,7 @@ namespace SeerRandomSkin
 
         private async void btnRandom_Click(object sender, EventArgs e)
         {
-            int.TryParse((await Form1.chromiumBrowser.EvaluateScriptAsync("(()=>{ let maps=WxFightHandler.Reflection.Func('com.robot.core.config.xml.MapXMLInfo','getIDList');let r=maps[Math.floor(Math.random() * maps.length)];WxFightHandler.Utils.ChangeMap(r);return r; })()")).Result.ToString(), out int id);
+            int.TryParse((await Form1.chromiumBrowser.EvaluateScriptAsync("(()=>{ let maps=WxFightHandler.Refl.Func('com.robot.core.config.xml.MapXMLInfo','getIDList');let r=maps[Math.floor(Math.random() * maps.length)];WxFightHandler.Utils.ChangeMap(r);return r; })()")).Result.ToString(), out int id);
             numericUpDown2.Value = id;
         }
 
