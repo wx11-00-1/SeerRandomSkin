@@ -40,6 +40,9 @@ namespace SeerRandomSkin
             FormPetFollow.WxPetFollow();
             await Task.Delay(3000);
             FormPetFollow.WxScale();
+            FormPetFollow.ChangeCloth(Properties.Settings.Default.Suits);
+            FormPetFollow.ShowMount(Properties.Settings.Default.Mount);
+            FormPetFollow.ScaleKeep();
         }
     }
 }

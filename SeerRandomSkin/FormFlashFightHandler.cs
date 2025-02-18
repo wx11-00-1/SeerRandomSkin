@@ -18,7 +18,7 @@ WxFightHandler.Utils = {};
 
 WxFightHandler.Reflection = {};
 WxFightHandler.Reflection.Get = (className,k) => document.Client.WxReflGet(className,k);
-WxFightHandler.Reflection.Set = (className,k,v) => document.Client.WxReflSet(className,k,v);
+WxFightHandler.Reflection.Set = (className,k,v,u=false) => document.Client.WxReflSet(className,k,v,u);
 WxFightHandler.Reflection.Action = (className,methodName,...args) => document.Client.WxReflAction(className,methodName,...args);
 WxFightHandler.Reflection.Func = (className,methodName,...args) => document.Client.WxReflFunc(className,methodName,...args);
 WxFightHandler.Reflection.AddObj = (key,className,...args) => document.Client.WxAddObj(key,className,...args);
@@ -66,6 +66,7 @@ WxFightHandler.Utils.ChangeCloth = (clothes,isNet=true) => {
   const k1 = 'cl', k2 = 'it', k3 = 'be';
   WxFightHandler.Reflection.AddObj(k1,'Array');
   for (let i=0; i<clothes.length; i+=2) {
+    if (clothes[i] === 0) continue;
     WxFightHandler.Reflection.AddObj(k2,'com.robot.core.info.clothInfo.PeopleItemInfo',false,clothes[i],false,clothes[i+1]);
     WxFightHandler.Reflection.ObjAction(k1,'push',true,k2);
   }

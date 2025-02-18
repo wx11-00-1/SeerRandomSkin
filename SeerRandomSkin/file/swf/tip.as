@@ -436,14 +436,14 @@ package
          ExternalInterface.addCallback("WxObjAction",function(key:String,methodName:String,... rest):void { SocketConnection.WxObjMap[key][methodName].apply(null,restTrans(rest)); });
          ExternalInterface.addCallback("WxObjFunc",function(key:String,methodName:String,... rest):void { return SocketConnection.WxObjMap[key][methodName].apply(null,restTrans(rest)); });
 
-         ExternalInterface.addCallback("WxReflSet",function(className:String,path:String,val:*):void {
+         ExternalInterface.addCallback("WxReflSet",function(className:String,path:String,val:*,useMap:Boolean):void {
             var keys:Array = path.split(".");  // 使用 `.` 分隔路径
             var lastKey:String = keys.pop();   // 获取最后一个属性的键
             var current:Object = getDefinitionByName(className);
             for each (var key:String in keys) {
                 current = current[key]; // 访问嵌套的对象
             }
-            current[lastKey] = val; // 最后赋值
+            current[lastKey] = useMap ? SocketConnection.WxObjMap[val] : val; // 最后赋值
          });
          ExternalInterface.addCallback("WxReflGet",function(className:String,path:String):* {
             var keys:Array = path.split(".");
@@ -483,6 +483,13 @@ package
             ExternalInterface.call("seerRandomSkinObj.screenShot");
          }
          SocketConnection.addCmdListener(45144,SocketConnection.WxScreenShot);
+
+         // 保持精灵缩放
+         ExternalInterface.addCallback("WxScaleKeep",function(s:Number):void {
+            getDefinitionByName("org.taomee.manager.EventManager").addEventListener(getDefinitionByName("com.robot.core.event.RobotEvent").CREATED_MAP_USER,function():void {
+                setTimeout(function():void {MainManager.actorModel.pet.scaleX=MainManager.actorModel.pet.scaleY=s;},1600);
+            })
+         });
       }
 
       private static function restTrans(rest:Array):Array {

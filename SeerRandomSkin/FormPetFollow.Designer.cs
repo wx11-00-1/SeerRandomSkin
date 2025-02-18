@@ -50,17 +50,31 @@
             this.label6 = new System.Windows.Forms.Label();
             this.numericUpDown_id2 = new System.Windows.Forms.NumericUpDown();
             this.btnConfirm = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnScale2 = new System.Windows.Forms.Button();
             this.btnScale1 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.lvSuit = new System.Windows.Forms.ListView();
+            this.lvMount = new System.Windows.Forms.ListView();
+            this.lvFoot = new System.Windows.Forms.ListView();
+            this.lvWaist = new System.Windows.Forms.ListView();
+            this.lvHand = new System.Windows.Forms.ListView();
+            this.lvEye = new System.Windows.Forms.ListView();
+            this.lvHead = new System.Windows.Forms.ListView();
+            this.tbSearch = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.btnTrans = new System.Windows.Forms.Button();
+            this.cbDefPet = new System.Windows.Forms.CheckBox();
+            this.cbDefSuit = new System.Windows.Forms.CheckBox();
+            this.cbScale = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_id1)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_id2)).BeginInit();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -281,7 +295,7 @@
             // 
             // btnConfirm
             // 
-            this.btnConfirm.Location = new System.Drawing.Point(368, 300);
+            this.btnConfirm.Location = new System.Drawing.Point(629, 159);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(75, 23);
             this.btnConfirm.TabIndex = 2;
@@ -289,23 +303,13 @@
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(277, 300);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 3;
-            this.btnSave.Text = "收藏";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.btnScale2);
             this.groupBox3.Controls.Add(this.btnScale1);
             this.groupBox3.Controls.Add(this.textBox2);
             this.groupBox3.Controls.Add(this.textBox1);
-            this.groupBox3.Location = new System.Drawing.Point(34, 271);
+            this.groupBox3.Location = new System.Drawing.Point(520, 42);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(195, 106);
             this.groupBox3.TabIndex = 4;
@@ -348,13 +352,187 @@
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "1";
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.lvSuit);
+            this.groupBox4.Controls.Add(this.lvMount);
+            this.groupBox4.Controls.Add(this.lvFoot);
+            this.groupBox4.Controls.Add(this.lvWaist);
+            this.groupBox4.Controls.Add(this.lvHand);
+            this.groupBox4.Controls.Add(this.lvEye);
+            this.groupBox4.Controls.Add(this.lvHead);
+            this.groupBox4.Location = new System.Drawing.Point(39, 276);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(676, 224);
+            this.groupBox4.TabIndex = 5;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "装扮";
+            // 
+            // lvSuit
+            // 
+            this.lvSuit.FullRowSelect = true;
+            this.lvSuit.HideSelection = false;
+            this.lvSuit.LabelWrap = false;
+            this.lvSuit.Location = new System.Drawing.Point(588, 30);
+            this.lvSuit.MultiSelect = false;
+            this.lvSuit.Name = "lvSuit";
+            this.lvSuit.Size = new System.Drawing.Size(64, 169);
+            this.lvSuit.TabIndex = 6;
+            this.lvSuit.UseCompatibleStateImageBehavior = false;
+            this.lvSuit.View = System.Windows.Forms.View.List;
+            this.lvSuit.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.lvSuit_ItemSelectionChanged);
+            // 
+            // lvMount
+            // 
+            this.lvMount.FullRowSelect = true;
+            this.lvMount.HideSelection = false;
+            this.lvMount.LabelWrap = false;
+            this.lvMount.Location = new System.Drawing.Point(494, 30);
+            this.lvMount.MultiSelect = false;
+            this.lvMount.Name = "lvMount";
+            this.lvMount.Size = new System.Drawing.Size(64, 169);
+            this.lvMount.TabIndex = 5;
+            this.lvMount.UseCompatibleStateImageBehavior = false;
+            this.lvMount.View = System.Windows.Forms.View.List;
+            // 
+            // lvFoot
+            // 
+            this.lvFoot.FullRowSelect = true;
+            this.lvFoot.HideSelection = false;
+            this.lvFoot.LabelWrap = false;
+            this.lvFoot.Location = new System.Drawing.Point(400, 30);
+            this.lvFoot.MultiSelect = false;
+            this.lvFoot.Name = "lvFoot";
+            this.lvFoot.Size = new System.Drawing.Size(64, 169);
+            this.lvFoot.TabIndex = 4;
+            this.lvFoot.UseCompatibleStateImageBehavior = false;
+            this.lvFoot.View = System.Windows.Forms.View.List;
+            // 
+            // lvWaist
+            // 
+            this.lvWaist.FullRowSelect = true;
+            this.lvWaist.HideSelection = false;
+            this.lvWaist.LabelWrap = false;
+            this.lvWaist.Location = new System.Drawing.Point(306, 30);
+            this.lvWaist.MultiSelect = false;
+            this.lvWaist.Name = "lvWaist";
+            this.lvWaist.Size = new System.Drawing.Size(64, 169);
+            this.lvWaist.TabIndex = 3;
+            this.lvWaist.UseCompatibleStateImageBehavior = false;
+            this.lvWaist.View = System.Windows.Forms.View.List;
+            // 
+            // lvHand
+            // 
+            this.lvHand.FullRowSelect = true;
+            this.lvHand.HideSelection = false;
+            this.lvHand.LabelWrap = false;
+            this.lvHand.Location = new System.Drawing.Point(212, 30);
+            this.lvHand.MultiSelect = false;
+            this.lvHand.Name = "lvHand";
+            this.lvHand.Size = new System.Drawing.Size(64, 169);
+            this.lvHand.TabIndex = 2;
+            this.lvHand.UseCompatibleStateImageBehavior = false;
+            this.lvHand.View = System.Windows.Forms.View.List;
+            // 
+            // lvEye
+            // 
+            this.lvEye.FullRowSelect = true;
+            this.lvEye.HideSelection = false;
+            this.lvEye.LabelWrap = false;
+            this.lvEye.Location = new System.Drawing.Point(118, 30);
+            this.lvEye.MultiSelect = false;
+            this.lvEye.Name = "lvEye";
+            this.lvEye.Size = new System.Drawing.Size(64, 169);
+            this.lvEye.TabIndex = 1;
+            this.lvEye.UseCompatibleStateImageBehavior = false;
+            this.lvEye.View = System.Windows.Forms.View.List;
+            // 
+            // lvHead
+            // 
+            this.lvHead.FullRowSelect = true;
+            this.lvHead.HideSelection = false;
+            this.lvHead.LabelWrap = false;
+            this.lvHead.Location = new System.Drawing.Point(24, 30);
+            this.lvHead.MultiSelect = false;
+            this.lvHead.Name = "lvHead";
+            this.lvHead.Size = new System.Drawing.Size(64, 169);
+            this.lvHead.TabIndex = 0;
+            this.lvHead.UseCompatibleStateImageBehavior = false;
+            this.lvHead.View = System.Windows.Forms.View.List;
+            // 
+            // tbSearch
+            // 
+            this.tbSearch.Location = new System.Drawing.Point(533, 198);
+            this.tbSearch.Name = "tbSearch";
+            this.tbSearch.Size = new System.Drawing.Size(73, 21);
+            this.tbSearch.TabIndex = 6;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(629, 196);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 7;
+            this.btnSearch.Text = "搜索";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // btnTrans
+            // 
+            this.btnTrans.Location = new System.Drawing.Point(531, 159);
+            this.btnTrans.Name = "btnTrans";
+            this.btnTrans.Size = new System.Drawing.Size(75, 23);
+            this.btnTrans.TabIndex = 8;
+            this.btnTrans.Text = "变形";
+            this.btnTrans.UseVisualStyleBackColor = true;
+            this.btnTrans.Click += new System.EventHandler(this.btnTrans_Click);
+            // 
+            // cbDefPet
+            // 
+            this.cbDefPet.AutoSize = true;
+            this.cbDefPet.Location = new System.Drawing.Point(594, 236);
+            this.cbDefPet.Name = "cbDefPet";
+            this.cbDefPet.Size = new System.Drawing.Size(48, 16);
+            this.cbDefPet.TabIndex = 9;
+            this.cbDefPet.Text = "跟随";
+            this.cbDefPet.UseVisualStyleBackColor = true;
+            this.cbDefPet.MouseUp += new System.Windows.Forms.MouseEventHandler(this.cbDefPet_MouseUp);
+            // 
+            // cbDefSuit
+            // 
+            this.cbDefSuit.AutoSize = true;
+            this.cbDefSuit.Location = new System.Drawing.Point(533, 236);
+            this.cbDefSuit.Name = "cbDefSuit";
+            this.cbDefSuit.Size = new System.Drawing.Size(48, 16);
+            this.cbDefSuit.TabIndex = 10;
+            this.cbDefSuit.Text = "幻化";
+            this.cbDefSuit.UseVisualStyleBackColor = true;
+            this.cbDefSuit.MouseUp += new System.Windows.Forms.MouseEventHandler(this.cbDefSuit_MouseUp);
+            // 
+            // cbScale
+            // 
+            this.cbScale.AutoSize = true;
+            this.cbScale.Location = new System.Drawing.Point(655, 236);
+            this.cbScale.Name = "cbScale";
+            this.cbScale.Size = new System.Drawing.Size(48, 16);
+            this.cbScale.TabIndex = 11;
+            this.cbScale.Text = "缩放";
+            this.cbScale.UseVisualStyleBackColor = true;
+            this.cbScale.MouseUp += new System.Windows.Forms.MouseEventHandler(this.cbScale_MouseUp);
+            // 
             // FormPetFollow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(518, 411);
+            this.ClientSize = new System.Drawing.Size(764, 534);
+            this.Controls.Add(this.cbScale);
+            this.Controls.Add(this.cbDefSuit);
+            this.Controls.Add(this.cbDefPet);
+            this.Controls.Add(this.btnTrans);
+            this.Controls.Add(this.btnSearch);
+            this.Controls.Add(this.tbSearch);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -369,7 +547,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_id2)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -396,11 +576,24 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown numericUpDown_id2;
         private System.Windows.Forms.Button btnConfirm;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnScale2;
         private System.Windows.Forms.Button btnScale1;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.ListView lvEye;
+        private System.Windows.Forms.ListView lvHead;
+        private System.Windows.Forms.ListView lvSuit;
+        private System.Windows.Forms.ListView lvMount;
+        private System.Windows.Forms.ListView lvFoot;
+        private System.Windows.Forms.ListView lvWaist;
+        private System.Windows.Forms.ListView lvHand;
+        private System.Windows.Forms.TextBox tbSearch;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Button btnTrans;
+        private System.Windows.Forms.CheckBox cbDefPet;
+        private System.Windows.Forms.CheckBox cbDefSuit;
+        private System.Windows.Forms.CheckBox cbScale;
     }
 }

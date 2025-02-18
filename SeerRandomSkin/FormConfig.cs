@@ -65,7 +65,6 @@ namespace SeerRandomSkin
             checkBox_flash_fight.Checked = SettingsDef.AutoLoadFightHandler;
             checkBox_screen_shot.Checked = SettingsDef.AutoLoadScreenShot;
             checkBox_flash_map.Checked = SettingsDef.AutoLoadFlashMap;
-            checkBox_flash_pet_follow.Checked = SettingsDef.AutoLoadPetFollow;
         }
 
         private void button_Save_Click(object sender, EventArgs e)
@@ -124,7 +123,6 @@ namespace SeerRandomSkin
             SettingsDef.AutoLoadScreenShot = checkBox_screen_shot.Checked;
             SettingsDef.AutoLoadFlashMap = checkBox_flash_map.Checked;
             SettingsDef.AutoLoadFD = checkBox_fd.Checked;
-            SettingsDef.AutoLoadPetFollow = checkBox_flash_pet_follow.Checked;
 
             SettingsDef.Save();
             MessageBox.Show("保存成功");

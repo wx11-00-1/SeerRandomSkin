@@ -799,13 +799,37 @@ namespace SeerRandomSkin.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool AutoLoadPetFollow {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Suits {
             get {
-                return ((bool)(this["AutoLoadPetFollow"]));
+                return ((string)(this["Suits"]));
             }
             set {
-                this["AutoLoadPetFollow"] = value;
+                this["Suits"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Mount {
+            get {
+                return ((string)(this["Mount"]));
+            }
+            set {
+                this["Mount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ScaleKeep {
+            get {
+                return ((bool)(this["ScaleKeep"]));
+            }
+            set {
+                this["ScaleKeep"] = value;
             }
         }
     }

@@ -156,10 +156,6 @@ namespace SeerRandomSkin
             {
                 var f = new FormFiddler(); f.Show();
             }
-            if (Configs.AutoLoadPetFollow)
-            {
-                var f = new FormPetFollow(); f.Show();
-            }
 
             SpecificPetSkins = Utils.TryJsonConvert<Dictionary<int, int>>(Configs.SpecificPetSkins);
             FiddleObjects = Utils.TryJsonConvert<List<FiddleObject>>(Configs.FiddleObjects);

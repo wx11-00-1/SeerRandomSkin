@@ -27,10 +27,85 @@ namespace SeerRandomSkin
         private const string KEY_LIGHT = "light";
         private const string KEY_SCALE = "sc";
 
-        private void FormPetFollow_Load(object sender, EventArgs e)
+        private const string CLASS_ITEMXMLINFO = "com.robot.core.config.xml.ItemXMLInfo";
+        private const string CLASS_SUITXMLINFO = "com.robot.core.config.xml.SuitXMLInfo";
+
+        private async void FormPetFollow_Load(object sender, EventArgs e)
         {
             try
             {
+                // 装扮
+                var resp = await Form1.chromiumBrowser.EvaluateScriptAsync($"JSON.stringify(WxFightHandler.Reflection.Func('{CLASS_ITEMXMLINFO}','getAllCloth'))");
+                if (!resp.Success) return;
+
+                var heads = InitLvItem();
+                var eyes = InitLvItem();
+                var hands = InitLvItem();
+                var waists = InitLvItem();
+                var foots = InitLvItem();
+                var mounts = InitLvItem();
+                mounts.First.Value.Text = "0";
+                var suits = InitLvItem();
+                suits.First.Value.Text = "0";
+
+                var clothes = JArray.Parse(resp.Result.ToString());
+                foreach (var cloth in clothes)
+                {
+                    var i = new ListViewItem()
+                    {
+                        Text = cloth["Name"].ToString()
+                    };
+                    i.SubItems.Add(cloth["ID"].ToString());
+                    switch (cloth["type"].ToString())
+                    {
+                        case "head":
+                            heads.AddLast(i); break;
+                        case "eye":
+                            eyes.AddLast(i); break;
+                        case "hand":
+                            hands.AddLast(i); break;
+                        case "waist":
+                            waists.AddLast(i); break;
+                        case "foot":
+                            foots.AddLast(i); break;
+                        default:
+                            MessageBox.Show($"未知类型部件：{cloth["type"]}");
+                            return;
+                    }
+                }
+
+                lvHead.Items.AddRange(heads.ToArray());
+                lvEye.Items.AddRange(eyes.ToArray());
+                lvHand.Items.AddRange(hands.ToArray());
+                lvWaist.Items.AddRange(waists.ToArray());
+                lvFoot.Items.AddRange(foots.ToArray());
+
+                resp = await Form1.chromiumBrowser.EvaluateScriptAsync($"JSON.stringify(WxFightHandler.Reflection.Func('{CLASS_ITEMXMLINFO}','getAllMount'))");
+                if (!resp.Success) return;
+                var ms = JArray.Parse(resp.Result.ToString());
+                foreach (var m in ms)
+                {
+                    var i = new ListViewItem()
+                    {
+                        Text = m.ToString(),
+                    };
+                    mounts.AddLast(i);
+                }
+                lvMount.Items.AddRange(mounts.ToArray());
+
+                resp = await Form1.chromiumBrowser.EvaluateScriptAsync($"JSON.stringify(WxFightHandler.Reflection.Func('{CLASS_SUITXMLINFO}','getAllSuitIds'))");
+                if (!resp.Success) return;
+                var ss = JArray.Parse(resp.Result.ToString());
+                foreach (var s in ss)
+                {
+                    var i = new ListViewItem()
+                    {
+                        Text = s.ToString()
+                    };
+                    suits.AddLast(i);
+                }
+                lvSuit.Items.AddRange(suits.ToArray());
+
                 numericUpDown_id1.Value = int.Parse(jPets[KEY_PET1][KEY_ID].ToString());
                 switch (jPets[KEY_PET1][KEY_ABILITY_TYPE].ToString())
                 {
@@ -68,8 +143,48 @@ namespace SeerRandomSkin
                 }
                 cbLight2.Checked = bool.Parse(jPets[KEY_PET2][KEY_LIGHT].ToString());
                 textBox2.Text = jPets[KEY_PET2][KEY_SCALE].ToString();
+
+                cbDefPet.Checked = Properties.Settings.Default.PetFollow.Length != 0;
+                if (Properties.Settings.Default.Suits.Length != 0)
+                {
+                    cbDefSuit.Checked = true;
+                    var a = JArray.Parse(Properties.Settings.Default.Suits).AsEnumerable().Select(i => i.ToString()).ToHashSet();
+                    a.Remove("0");
+                    SelectLvItem(lvHead, a);
+                    SelectLvItem(lvEye, a);
+                    SelectLvItem(lvHand, a);
+                    SelectLvItem(lvWaist, a);
+                    SelectLvItem(lvFoot, a);
+
+                    foreach (ListViewItem i in lvMount.Items)
+                    {
+                        if (i.Text == Properties.Settings.Default.Mount)
+                        {
+                            i.Selected = true;
+                            lvMount.TopItem = i;
+                            break;
+                        }
+                    }
+                    lvMount.ItemSelectionChanged += lvMount_ItemSelectionChanged;
+                }
+
+                AddLvEvent();
+
+                cbScale.Checked = Properties.Settings.Default.ScaleKeep;
             }
             catch (Exception) { }
+        }
+
+        private static LinkedList<ListViewItem> InitLvItem()
+        {
+            var i = new ListViewItem()
+            {
+                Text = "无"
+            };
+            i.SubItems.Add("0");
+            var result = new LinkedList<ListViewItem>();
+            result.AddLast(i);
+            return result;
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
@@ -83,26 +198,6 @@ namespace SeerRandomSkin
             else if (rbBlue2.Checked) ab2 = 20;
             else if (rbYellow2.Checked) ab2 = 32;
             WxPetFollow((int)numericUpDown_id1.Value, ab1, cbLight1.Checked, (int)numericUpDown_id2.Value, ab2, cbLight2.Checked);
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            jPets[KEY_PET1] = new JObject
-            {
-                { KEY_ID, numericUpDown_id1.Value },
-                { KEY_ABILITY_TYPE, rbRed1.Checked ? 1 : rbBlue1.Checked ? 2 : rbYellow1.Checked ? 3 : 0 },
-                { KEY_LIGHT, cbLight1.Checked },
-                { KEY_SCALE, textBox1.Text }
-            };
-            jPets[KEY_PET2] = new JObject
-            {
-                { KEY_ID, numericUpDown_id2.Value },
-                { KEY_ABILITY_TYPE, rbRed2.Checked ? 1 : rbBlue2.Checked ? 2 : rbYellow2.Checked ? 3 : 0 },
-                { KEY_LIGHT, cbLight2.Checked },
-                { KEY_SCALE, textBox2.Text }
-            };
-            Properties.Settings.Default.PetFollow = jPets.ToString();
-            Properties.Settings.Default.Save();
         }
 
         private void btnScale1_Click(object sender, EventArgs e)
@@ -169,6 +264,189 @@ namespace SeerRandomSkin
                 WxScale2(jPets[KEY_PET2][KEY_SCALE].ToString());
             }
             catch (Exception) { }
+        }
+
+        public static void ChangeCloth(string clothes)
+        {
+            if (clothes.Length == 0) return;
+            Form1.chromiumBrowser.ExecuteScriptAsync($"WxFightHandler.Utils.ChangeCloth({clothes},false)");
+        }
+        private string GetSelectedItem(ListView l)
+        {
+            var s = l.SelectedItems;
+            return s.Count == 1 ? s[0].SubItems[1].Text : "0";
+        }
+        private string GetClothesFromLv()
+        {
+            return $"[{GetSelectedItem(lvHead)},0,{GetSelectedItem(lvEye)},0,{GetSelectedItem(lvHand)},0,{GetSelectedItem(lvWaist)},0,{GetSelectedItem(lvFoot)},0]";
+        }
+        private void LvEvent(object s, ListViewItemSelectionChangedEventArgs e)
+        {
+            if (!e.IsSelected) return;
+            ChangeCloth(GetClothesFromLv());
+        }
+        private void AddLvEvent()
+        {
+            lvHead.ItemSelectionChanged += LvEvent;
+            lvEye.ItemSelectionChanged += LvEvent;
+            lvHand.ItemSelectionChanged += LvEvent;
+            lvWaist.ItemSelectionChanged += LvEvent;
+            lvFoot.ItemSelectionChanged += LvEvent;
+        }
+        private void RmLvEvent()
+        {
+            lvHead.ItemSelectionChanged -= LvEvent;
+            lvEye.ItemSelectionChanged -= LvEvent;
+            lvHand.ItemSelectionChanged -= LvEvent;
+            lvWaist.ItemSelectionChanged -= LvEvent;
+            lvFoot.ItemSelectionChanged -= LvEvent;
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            SearchLv(lvHead, tbSearch.Text);
+            SearchLv(lvEye, tbSearch.Text);
+            SearchLv(lvHand, tbSearch.Text);
+            SearchLv(lvWaist, tbSearch.Text);
+            SearchLv(lvFoot, tbSearch.Text);
+            SearchLv(lvMount, tbSearch.Text);
+            SearchLv(lvSuit, tbSearch.Text);
+        }
+        private async void SearchLv(ListView l,string s)
+        {
+            foreach (ListViewItem i in l.Items)
+            {
+                if (i.Text.Contains(s))
+                {
+                    l.TopItem = i;
+                    i.BackColor = Color.Aquamarine;
+                    await Task.Delay(5000);
+                    i.BackColor = Color.White;
+                    return;
+                }
+            }
+        }
+
+        private async void lvSuit_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            if (!e.IsSelected) return;
+            try
+            {
+                var id = (sender as ListView).SelectedItems[0].Text;
+                Form1.chromiumBrowser.ExecuteScriptAsync($"WxFightHandler.Utils.SimpleAlarm(WxFightHandler.Reflection.Func('{CLASS_SUITXMLINFO}','getName',false,{id}))");
+                var r = await Form1.chromiumBrowser.EvaluateScriptAsync($"JSON.stringify(WxFightHandler.Reflection.Func('{CLASS_SUITXMLINFO}','getCloths',false,{id}))");
+                if (!r.Success)
+                {
+                    MessageBox.Show("获取套装部件数组失败");
+                    return;
+                }
+                var json = r.Result.ToString();
+                Form1.chromiumBrowser.ExecuteScriptAsync($"((cs)=>{{let a=[];for(let c of cs){{a.push(c);a.push(0)}}WxFightHandler.Utils.ChangeCloth(a,false)}})({json})");
+                var a = JArray.Parse(json).AsEnumerable().Select(i => i.ToString()).ToHashSet();
+                RmLvEvent();
+                SelectLvItem(lvHead, a);
+                SelectLvItem(lvEye, a);
+                SelectLvItem(lvHand, a);
+                SelectLvItem(lvWaist, a);
+                SelectLvItem(lvFoot, a);
+                ChangeCloth(GetClothesFromLv());
+                AddLvEvent();
+            }
+            catch (Exception) { }
+        }
+        private static void SelectLvItem(ListView l,HashSet<string> s)
+        {
+            foreach(ListViewItem i in l.Items)
+            {
+                if (s.Contains(i.SubItems[1].Text))
+                {
+                    l.TopItem = i;
+                    i.Selected = true;
+                    return;
+                }
+            }
+            l.Items[0].Selected = true;
+            l.EnsureVisible(0);
+        }
+
+        private void btnTrans_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var id = lvSuit.SelectedItems[0].Text;
+                Form1.chromiumBrowser.ExecuteScriptAsync($"if(WxFightHandler.Reflection.Func('{CLASS_SUITXMLINFO}','getIsTransform',false,{id})){{let a=[];for(let c of WxFightHandler.Reflection.Func('{CLASS_SUITXMLINFO}','getCloths',false,{id})){{a.push(c);a.push(0)}}WxFightHandler.Utils.ChangeCloth(a,false);WxFightHandler.Reflection.Set(WxFightHandler.Const.MainManager,'actorModel.info.changeShape',{id},false);WxFightHandler.Reflection.AddObj('tr','com.robot.core.skeleton.TransformSkeleton');WxFightHandler.Reflection.Set(WxFightHandler.Const.MainManager,'actorModel.skeleton','tr',true)}}else WxFightHandler.Utils.SimpleAlarm('无法变形')");
+            }
+            catch (Exception) { }
+        }
+
+        private void lvMount_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            try
+            {
+                var id = lvMount.SelectedItems[0].Text;
+                ShowMount(id);
+            }
+            catch (Exception) { }
+        }
+        public static void ShowMount(string id)
+        {
+            if (id.Length == 0) return;
+            Form1.chromiumBrowser.ExecuteScriptAsync($"WxFightHandler.Reflection.Set(WxFightHandler.Const.MainManager,'actorModel.info.vip',1,false);WxFightHandler.Reflection.Action(WxFightHandler.Const.MainManager,'actorModel.showMount',false,{id})");
+        }
+
+        private void cbDefSuit_MouseUp(object sender, MouseEventArgs e)
+        {
+            if ((sender as CheckBox).Checked)
+            {
+                Properties.Settings.Default.Suits = GetClothesFromLv();
+                Properties.Settings.Default.Mount = lvMount.SelectedItems.Count == 1 ? lvMount.SelectedItems[0].Text : "0";
+            }
+            else
+            {
+                Properties.Settings.Default.Suits = String.Empty;
+                Properties.Settings.Default.Mount = String.Empty;
+            }
+            Properties.Settings.Default.Save();
+        }
+
+        private void cbDefPet_MouseUp(object sender, MouseEventArgs e)
+        {
+            if ((sender as CheckBox).Checked)
+            {
+                jPets[KEY_PET1] = new JObject
+                {
+                    { KEY_ID, numericUpDown_id1.Value },
+                    { KEY_ABILITY_TYPE, rbRed1.Checked ? 1 : rbBlue1.Checked ? 2 : rbYellow1.Checked ? 3 : 0 },
+                    { KEY_LIGHT, cbLight1.Checked },
+                    { KEY_SCALE, textBox1.Text }
+                };
+                jPets[KEY_PET2] = new JObject
+                {
+                    { KEY_ID, numericUpDown_id2.Value },
+                    { KEY_ABILITY_TYPE, rbRed2.Checked ? 1 : rbBlue2.Checked ? 2 : rbYellow2.Checked ? 3 : 0 },
+                    { KEY_LIGHT, cbLight2.Checked },
+                    { KEY_SCALE, textBox2.Text }
+                };
+                Properties.Settings.Default.PetFollow = jPets.ToString();
+            }
+            else
+            {
+                Properties.Settings.Default.PetFollow = String.Empty;
+            }
+            Properties.Settings.Default.Save();
+        }
+     
+        private void cbScale_MouseUp(object sender, MouseEventArgs e)
+        {
+            Properties.Settings.Default.ScaleKeep = cbScale.Checked;
+            Properties.Settings.Default.Save();
+        }
+        public static void ScaleKeep()
+        {
+            if (Properties.Settings.Default.ScaleKeep)
+            {
+                Form1.chromiumBrowser.ExecuteScriptAsync($"document.Client.WxScaleKeep({jPets[KEY_PET2][KEY_SCALE]})");
+            }
         }
     }
 }
