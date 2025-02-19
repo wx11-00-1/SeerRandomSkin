@@ -43,6 +43,8 @@ namespace SeerRandomSkin
             FormPetFollow.ChangeCloth(Properties.Settings.Default.Suits);
             FormPetFollow.ShowMount(Properties.Settings.Default.Mount);
             FormPetFollow.ScaleKeep();
+
+            Form1.chromiumBrowser.ExecuteScriptAsync($"(()=>{{WxFightHandler.Dict.AddCall('Jipai','k',()=>{{seerRandomSkinObj.screenShot()}});WxFightHandler.Refl.Func(WxFightHandler.Const.SocketConnection,'addCmdListener',false,45144,true,'Jipai')}})()");
         }
     }
 }

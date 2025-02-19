@@ -22,10 +22,8 @@ package
    import com.robot.core.info.pet.PetStorage2015PetInfo;
    import com.codecatalyst.promise.Promise;
    import com.robot.core.info.pet.PetInfo;
-   import com.robot.app.fight.FightManager;
    import flash.utils.getDefinitionByName;
     import com.codecatalyst.promise.Deferred;
-   import flash.utils.setTimeout;
    import com.robot.core.manager.UserInfoManager;
    import flash.utils.IDataInput;
    import flash.utils.Dictionary;
@@ -41,7 +39,7 @@ package
 
          if (SocketConnection.WxIsAutoCure != null) return;
 
-         SocketConnection.WxCallback = function(result:* = null):void { ExternalInterface.call("WxFightHandler.Private._as3Callback",result); }
+         SocketConnection.WxCallback = function(result:* = null):void { ExternalInterface.call("WxFightHandler.Priv.res",result); }
 
          // 隐藏其他用户
          ToolBarController.showOrHideAllUser(false);
@@ -117,7 +115,7 @@ package
                 pet.hideSKill = petInfo.hideSKill;
                 SocketConnection.WxFightingPets.push(pet);
             }
-            ExternalInterface.call("WxFightHandler.Private.RoundReset");
+            ExternalInterface.call("WxFightHandler.Priv.RoundReset");
             SocketConnection.WxIsPositiveChangePet = false;
          });
          // 首发精灵信息
@@ -162,7 +160,7 @@ package
                 }
             }
 
-            ExternalInterface.call("WxFightHandler.Private.ShowRound",(mySkillInfo.maxHp == 0 ? 0 : mySkillInfo.remainHP * 100 / mySkillInfo.maxHp),(enemySkillInfo.maxHp == 0 ? 0 : enemySkillInfo.remainHP * 100 / enemySkillInfo.maxHp));
+            ExternalInterface.call("WxFightHandler.Priv.ShowRound",(mySkillInfo.maxHp == 0 ? 0 : mySkillInfo.remainHP * 100 / mySkillInfo.maxHp),(enemySkillInfo.maxHp == 0 ? 0 : enemySkillInfo.remainHP * 100 / enemySkillInfo.maxHp));
             if (enemySkillInfo.remainHP == 0)
             {
                 var isEnemyAllDead:Boolean = true;
@@ -379,28 +377,6 @@ package
             ,parameterArray);
          });
 
-         // 自动与地图上的野生精灵对战
-         SocketConnection.WxOnOgreList = function(e:SocketEvent):void {
-            var ba:ByteArray = e.data as ByteArray;
-            ba.position = 0;
-            for (var i:int = 0; i < 9; ++i) {
-                if (ba.readUnsignedInt() == SocketConnection.WxWaitingForOrgeID) { FightManager.fightWithNpc(i); return; }
-            }
-         }
-         ExternalInterface.addCallback("WxAutoFight", function(petID:uint):void
-         {
-            SocketConnection.removeCmdListener(CommandID.MAP_OGRE_LIST,SocketConnection.WxOnOgreList);
-            SocketConnection.WxWaitingForOrgeID = petID;
-            SocketConnection.addCmdListener(CommandID.MAP_OGRE_LIST,SocketConnection.WxOnOgreList);
-         });
-
-         // 获取活动数据
-         ExternalInterface.addCallback("WxGetActivityValue",function(name:String,key:String):void {
-            getDefinitionByName("com.robot.app2.control.activityHelper.ActivityHelperManager").getHelper(name).then(function(param1:*):void {
-                SocketConnection.WxCallback(param1.getValue(key));
-            });
-         });
-
          SocketConnection.WxOs = new Dictionary(); // 对象池。使用场景：用js代码创建as3对象，作为参数传递给as3函数
          ExternalInterface.addCallback("WxAddObj",function(key:String,className:String,... rest):void {
             var c:Class = getDefinitionByName(className) as Class;
@@ -429,6 +405,12 @@ package
                     break;
             }
          });
+         ExternalInterface.addCallback("WxAddFunc",function(k1:String,k2:String):void {
+            SocketConnection.WxOs[k1] = function(... rest):void {
+                SocketConnection.WxOs[k2] = rest;
+                ExternalInterface.call("WxFightHandler.Priv."+k1);
+            }
+         });
          
          ExternalInterface.addCallback("WxRefl",function(type:uint,name:String,path:String,... rest):* {
             var keys:Array = path.split(".");  // 使用 `.` 分隔路径
@@ -453,23 +435,9 @@ package
             }
          });
 
-         setTimeout(function():void {SocketConnection.send(CommandID.NONO_FOLLOW_OR_HOOM,0);},800); // 将 nono 丢回仓库
+         getDefinitionByName('flash.utils.setTimeout').apply(null,[function():void {SocketConnection.send(CommandID.NONO_FOLLOW_OR_HOOM,0);},800]); // 将 nono 丢回仓库
 
          ExternalInterface.call("seerRandomSkinObj.onLogined");
-
-         // 巅峰记牌器
-         SocketConnection.WxScreenShot = function() : void
-         {
-            ExternalInterface.call("seerRandomSkinObj.screenShot");
-         }
-         SocketConnection.addCmdListener(45144,SocketConnection.WxScreenShot);
-
-         // 保持精灵缩放
-         ExternalInterface.addCallback("WxScaleKeep",function(s:Number):void {
-            getDefinitionByName("org.taomee.manager.EventManager").addEventListener(getDefinitionByName("com.robot.core.event.RobotEvent").CREATED_MAP_USER,function():void {
-                setTimeout(function():void {MainManager.actorModel.pet.scaleX=MainManager.actorModel.pet.scaleY=s;},1600);
-            })
-         });
       }
    }
 }

@@ -445,7 +445,7 @@ namespace SeerRandomSkin
         {
             if (Properties.Settings.Default.ScaleKeep)
             {
-                Form1.chromiumBrowser.ExecuteScriptAsync($"document.Client.WxScaleKeep({jPets[KEY_PET2][KEY_SCALE]})");
+                Form1.chromiumBrowser.ExecuteScriptAsync($"(()=>{{WxFightHandler.Dict.AddCall('ScaleKeep','k',()=>{{setTimeout(()=>{{WxFightHandler.Refl.Set(WxFightHandler.Const.MainManager,'actorModel.pet.scaleX',false,{jPets[KEY_PET2][KEY_SCALE]});WxFightHandler.Refl.Set(WxFightHandler.Const.MainManager,'actorModel.pet.scaleY',false,{jPets[KEY_PET2][KEY_SCALE]})}},2000)}});WxFightHandler.Refl.Func('org.taomee.manager.EventManager','addEventListener',false,'createdMapUser',true,'ScaleKeep');}})()");
             }
         }
     }
