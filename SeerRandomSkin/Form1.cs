@@ -321,7 +321,7 @@ namespace SeerRandomSkin
                         {
                             rid = GetRandomSkinId();
                         }
-                        chromiumBrowser.ExecuteScriptAsync($"console.log({rid}, WxFightHandler.Utils.GetPetNameByID({rid}))");
+                        chromiumBrowser.ExecuteScriptAsync($"console.log({rid}, WxSc.Util.GetPetNameByID({rid}))");
                         return new WxUrlResourceHandler(String.Format("https://seer.61.com/resource/fightResource/pet/swf/{0}.swf", rid));
                     }
                     if (url.StartsWith("https://seer.61.com/dll/PetFightDLL.swf?"))

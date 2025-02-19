@@ -67,11 +67,11 @@
   - 变速效果与以往的 IE 内核登录器有所不同
 
 ## API
-WxFightHandler 对象提供的属性和方法，通过 js 代码调用，用于编写日常脚本（登录器自带了一些脚本例子，参照着文档看，更容易理解；可以直接在开发者工具的控制台测试）
+WxSc 对象提供的属性和方法，通过 js 代码调用，用于编写日常脚本（登录器自带了一些脚本例子，参照着文档看，更容易理解；可以直接在开发者工具的控制台测试）
 ### 1 对战过程
-#### WxFightHandler.Utils.GetRound
+#### WxSc.Util.GetRound
 无参数。获取本次对战经过的回合数
-#### WxFightHandler.Utils.UseSkill
+#### WxSc.Util.UseSkill
 说明：
 
 使用技能
@@ -80,7 +80,7 @@ WxFightHandler 对象提供的属性和方法，通过 js 代码调用，用于�
 
 - skillID：技能 ID
 
-#### WxFightHandler.Utils.ChangePet
+#### WxSc.Util.ChangePet
 说明：
 
 切换精灵
@@ -89,7 +89,7 @@ WxFightHandler 对象提供的属性和方法，通过 js 代码调用，用于�
 
 - petCatchTime：精灵获取时间，用于标识精灵
 
-#### WxFightHandler.Utils.UsePetItem
+#### WxSc.Util.UsePetItem
 说明：
 
 在战斗中使用道具（药剂、胶囊等）
@@ -98,11 +98,11 @@ WxFightHandler 对象提供的属性和方法，通过 js 代码调用，用于�
 
 - itemID：道具 ID
 
-#### WxFightHandler.Utils.UsePetItem10PP
+#### WxSc.Util.UsePetItem10PP
 说明：
 
 无参数。先用赛尔豆买，再使用恢复 10 pp 的药剂
-#### WxFightHandler.Utils.ItemBuy
+#### WxSc.Util.ItemBuy
 说明：
 
 购买道具
@@ -111,11 +111,11 @@ WxFightHandler 对象提供的属性和方法，通过 js 代码调用，用于�
 
 - itemID：道具 ID
 
-#### WxFightHandler.Utils.GetFightingPetID
+#### WxSc.Util.GetFightingPetID
 说明：
 
 无参数。在战斗中，获取当前在场精灵的 ID
-#### WxFightHandler.Utils.ChangePetByID
+#### WxSc.Util.ChangePetByID
 说明：
 
 换上指定 ID 数组中的的精灵
@@ -124,7 +124,7 @@ WxFightHandler 对象提供的属性和方法，通过 js 代码调用，用于�
 
 - idArray：精灵 ID **数组**
 
-#### WxFightHandler.Utils.DelayAsync
+#### WxSc.Util.DelayAsync
 说明：
 
 等待一段时间。有些日常关卡出招太快会掉线；调试时可以使用，方便观察脚本运行情况
@@ -133,7 +133,7 @@ WxFightHandler 对象提供的属性和方法，通过 js 代码调用，用于�
 
 - millisecond：毫秒（一毫秒 = 一千分之一秒）
 
-#### WxFightHandler.Utils.GetFightingPets
+#### WxSc.Util.GetFightingPets
 
 说明：
 
@@ -141,7 +141,7 @@ WxFightHandler 对象提供的属性和方法，通过 js 代码调用，用于�
 
 ### 2 发包函数
 
-#### WxFightHandler.Utils.Send
+#### WxSc.Util.Send
 说明：
 
 发送封包
@@ -152,7 +152,7 @@ WxFightHandler 对象提供的属性和方法，通过 js 代码调用，用于�
 
 - ...args：任意数量的整数参数
 
-#### WxFightHandler.Utils.SendAsync
+#### WxSc.Util.SendAsync
 说明：
 
 发包，并接收返回值
@@ -178,7 +178,7 @@ WxFightHandler 对象提供的属性和方法，通过 js 代码调用，用于�
 
 有时需要获取游戏内部函数的返回值，这个返回值又是特殊类型，不能直接返回到 js 层，可以先放到暂存区，再读取其中一部分允许读取的属性
 
-#### WxFightHandler.Dict.Add
+#### WxSc.Dict.Add
 
 说明：
 
@@ -208,7 +208,7 @@ package com.robot.app {
 在暂存区创建 Test 类型对象，可以这样写：
 
 ```js
-WxFightHandler.Dict.Add('te','com.robot.app.Test',false,1);
+WxSc.Dict.Add('te','com.robot.app.Test',false,1);
 ```
 
 这样就创建出了一个 Test 对象，它的私有属性 _a 在构造时被赋值为 1。
@@ -235,12 +235,12 @@ package com.robot.app2 {
 那么创建 Test2 对象，可以用到之前放在暂存区的对象 te：
 
 ```js
-WxFightHandler.Dict.Add('te2','com.robot.app2.Test2',false,'1',true,'te');
+WxSc.Dict.Add('te2','com.robot.app2.Test2',false,'1',true,'te');
 ```
 
 之后的接口也是同样的情况，就不一一解释这些“多余的”布尔值啦
 
-#### WxFightHandler.Dict.Set
+#### WxSc.Dict.Set
 
 说明：
 
@@ -253,7 +253,7 @@ WxFightHandler.Dict.Add('te2','com.robot.app2.Test2',false,'1',true,'te');
 - usePool：是否使用暂存区的对象
 - value：通用类型变量，或者暂存区对象的标识字符串
 
-#### WxFightHandler.Dict.Get
+#### WxSc.Dict.Get
 
 说明：
 
@@ -264,7 +264,7 @@ WxFightHandler.Dict.Add('te2','com.robot.app2.Test2',false,'1',true,'te');
 - key：标识
 - attribute：属性名
 
-#### WxFightHandler.Dict.Func
+#### WxSc.Dict.Func
 
 说明：
 
@@ -276,7 +276,7 @@ WxFightHandler.Dict.Add('te2','com.robot.app2.Test2',false,'1',true,'te');
 - method：函数名
 - ...args：参数
 
-#### WxFightHandler.Dict.Tmp
+#### WxSc.Dict.Tmp
 
 执行暂存区对象的公开（public）函数，把函数的返回值也放到暂存区
 
@@ -287,7 +287,7 @@ WxFightHandler.Dict.Add('te2','com.robot.app2.Test2',false,'1',true,'te');
 
 ### 4 *反射*
 
-#### WxFightHandler.Refl.Get
+#### WxSc.Refl.Get
 
 说明：
 
@@ -301,11 +301,11 @@ WxFightHandler.Dict.Add('te2','com.robot.app2.Test2',false,'1',true,'te');
 示例：
 
 ```js
-WxFightHandler.Refl.Get('com.robot.core.manager.MainManager','actorInfo.userID'); // 自己的米米号
-WxFightHandler.Refl.Get('com.robot.core.manager.MainManager','actorInfo.nick'); // 昵称
+WxSc.Refl.Get('com.robot.core.manager.MainManager','actorInfo.userID'); // 自己的米米号
+WxSc.Refl.Get('com.robot.core.manager.MainManager','actorInfo.nick'); // 昵称
 ```
 
-#### WxFightHandler.Refl.Set
+#### WxSc.Refl.Set
 
 说明：
 
@@ -318,7 +318,7 @@ WxFightHandler.Refl.Get('com.robot.core.manager.MainManager','actorInfo.nick'); 
 - usePool：是否使用暂存区的对象
 - value：通用类型变量，或者暂存区对象的标识字符串
 
-#### WxFightHandler.Refl.Func
+#### WxSc.Refl.Func
 
 说明：
 
@@ -328,10 +328,10 @@ WxFightHandler.Refl.Get('com.robot.core.manager.MainManager','actorInfo.nick'); 
 
 ```js
 // 进入编号为 1 的地图
-WxFightHandler.Refl.Func('com.robot.core.manager.MapManager','changeMap',false,1);
+WxSc.Refl.Func('com.robot.core.manager.MapManager','changeMap',false,1);
 ```
 
-#### WxFightHandler.Dict.Tmp
+#### WxSc.Dict.Tmp
 
 说明：
 
@@ -344,7 +344,7 @@ WxFightHandler.Refl.Func('com.robot.core.manager.MapManager','changeMap',false,1
 
 ### 4 其他
 
-#### WxFightHandler.Utils.SetIsAutoCure
+#### WxSc.Util.SetIsAutoCure
 
 说明：
 
@@ -354,25 +354,25 @@ WxFightHandler.Refl.Func('com.robot.core.manager.MapManager','changeMap',false,1
 
 true 或 false
 
-#### WxFightHandler.Utils.CurePet20HP
+#### WxSc.Util.CurePet20HP
 
 说明：
 
 无参数。为出战背包的所有精灵恢复20HP、10PP
 
-#### WxFightHandler.Utils.CurePetAll
+#### WxSc.Util.CurePetAll
 
 说明：
 
 无参数。恢复整个背包所有精灵体力、PP
 
-#### WxFightHandler.Utils.LowHP
+#### WxSc.Util.LowHP
 
 说明：
 
 无参数。发起与白虎完全体的对战
 
-#### WxFightHandler.Utils.SimpleAlarm
+#### WxSc.Util.SimpleAlarm
 
 说明：
 

@@ -35,7 +35,7 @@ namespace SeerRandomSkin
             try
             {
                 // 装扮
-                var resp = await Form1.chromiumBrowser.EvaluateScriptAsync($"JSON.stringify(WxFightHandler.Refl.Func('{CLASS_ITEMXMLINFO}','getAllCloth'))");
+                var resp = await Form1.chromiumBrowser.EvaluateScriptAsync($"JSON.stringify(WxSc.Refl.Func('{CLASS_ITEMXMLINFO}','getAllCloth'))");
                 if (!resp.Success) return;
 
                 var heads = InitLvItem();
@@ -80,7 +80,7 @@ namespace SeerRandomSkin
                 lvWaist.Items.AddRange(waists.ToArray());
                 lvFoot.Items.AddRange(foots.ToArray());
 
-                resp = await Form1.chromiumBrowser.EvaluateScriptAsync($"JSON.stringify(WxFightHandler.Refl.Func('{CLASS_ITEMXMLINFO}','getAllMount'))");
+                resp = await Form1.chromiumBrowser.EvaluateScriptAsync($"JSON.stringify(WxSc.Refl.Func('{CLASS_ITEMXMLINFO}','getAllMount'))");
                 if (!resp.Success) return;
                 var ms = JArray.Parse(resp.Result.ToString());
                 foreach (var m in ms)
@@ -93,7 +93,7 @@ namespace SeerRandomSkin
                 }
                 lvMount.Items.AddRange(mounts.ToArray());
 
-                resp = await Form1.chromiumBrowser.EvaluateScriptAsync($"JSON.stringify(WxFightHandler.Refl.Func('{CLASS_SUITXMLINFO}','getAllSuitIds'))");
+                resp = await Form1.chromiumBrowser.EvaluateScriptAsync($"JSON.stringify(WxSc.Refl.Func('{CLASS_SUITXMLINFO}','getAllSuitIds'))");
                 if (!resp.Success) return;
                 var ss = JArray.Parse(resp.Result.ToString());
                 foreach (var s in ss)
@@ -212,15 +212,15 @@ namespace SeerRandomSkin
 
         private static void WxPetFollow(int id1, int ab1, bool l1, int id2, int ab2, bool l2)
         {
-            Form1.chromiumBrowser.ExecuteScriptAsync($"(()=>{{const k = 'psi';WxFightHandler.Dict.Add(k,'com.robot.core.info.pet.PetShowInfo');WxFightHandler.Dict.Set(k,'petID',false,{id1});WxFightHandler.Dict.Set(k,'abilityType',false,{ab1});WxFightHandler.Dict.Set(k,'isBright',false,{(l1 ? "true" : "false")});WxFightHandler.Dict.Set(k,'otherPetId',false,{id2});WxFightHandler.Dict.Set(k,'otherAbilityType',false,{ab2});WxFightHandler.Dict.Set(k,'otherBright',false,{(l2 ? "true" : "false")});WxFightHandler.Refl.Func(WxFightHandler.Const.MainManager,'actorModel.showPet',true,k)}})()");
+            Form1.chromiumBrowser.ExecuteScriptAsync($"(()=>{{const k = 'psi';WxSc.Dict.Add(k,'com.robot.core.info.pet.PetShowInfo');WxSc.Dict.Set(k,'petID',false,{id1});WxSc.Dict.Set(k,'abilityType',false,{ab1});WxSc.Dict.Set(k,'isBright',false,{(l1 ? "true" : "false")});WxSc.Dict.Set(k,'otherPetId',false,{id2});WxSc.Dict.Set(k,'otherAbilityType',false,{ab2});WxSc.Dict.Set(k,'otherBright',false,{(l2 ? "true" : "false")});WxSc.Refl.Func(WxSc.Const.MainManager,'actorModel.showPet',true,k)}})()");
         }
         private static void WxScale1(string s)
         {
-            Form1.chromiumBrowser.ExecuteScriptAsync($"WxFightHandler.Refl.Set(WxFightHandler.Const.MainManager,'actorModel.scaleX',false,{s});WxFightHandler.Refl.Set(WxFightHandler.Const.MainManager,'actorModel.scaleY',false,{s})");
+            Form1.chromiumBrowser.ExecuteScriptAsync($"WxSc.Refl.Set(WxSc.Const.MainManager,'actorModel.scaleX',false,{s});WxSc.Refl.Set(WxSc.Const.MainManager,'actorModel.scaleY',false,{s})");
         }
         private static void WxScale2(string s)
         {
-            Form1.chromiumBrowser.ExecuteScriptAsync($"WxFightHandler.Refl.Set(WxFightHandler.Const.MainManager,'actorModel.pet.scaleX',false,{s});WxFightHandler.Refl.Set(WxFightHandler.Const.MainManager,'actorModel.pet.scaleY',false,{s})");
+            Form1.chromiumBrowser.ExecuteScriptAsync($"WxSc.Refl.Set(WxSc.Const.MainManager,'actorModel.pet.scaleX',false,{s});WxSc.Refl.Set(WxSc.Const.MainManager,'actorModel.pet.scaleY',false,{s})");
         }
 
         public static void WxPetFollow()
@@ -269,7 +269,7 @@ namespace SeerRandomSkin
         public static void ChangeCloth(string clothes)
         {
             if (clothes.Length == 0) return;
-            Form1.chromiumBrowser.ExecuteScriptAsync($"WxFightHandler.Utils.ChangeCloth({clothes},false)");
+            Form1.chromiumBrowser.ExecuteScriptAsync($"WxSc.Util.ChangeCloth({clothes},false)");
         }
         private string GetSelectedItem(ListView l)
         {
@@ -333,15 +333,15 @@ namespace SeerRandomSkin
             try
             {
                 var id = (sender as ListView).SelectedItems[0].Text;
-                Form1.chromiumBrowser.ExecuteScriptAsync($"WxFightHandler.Utils.SimpleAlarm(WxFightHandler.Refl.Func('{CLASS_SUITXMLINFO}','getName',false,{id}))");
-                var r = await Form1.chromiumBrowser.EvaluateScriptAsync($"JSON.stringify(WxFightHandler.Refl.Func('{CLASS_SUITXMLINFO}','getCloths',false,{id}))");
+                Form1.chromiumBrowser.ExecuteScriptAsync($"WxSc.Util.SimpleAlarm(WxSc.Refl.Func('{CLASS_SUITXMLINFO}','getName',false,{id}))");
+                var r = await Form1.chromiumBrowser.EvaluateScriptAsync($"JSON.stringify(WxSc.Refl.Func('{CLASS_SUITXMLINFO}','getCloths',false,{id}))");
                 if (!r.Success)
                 {
                     MessageBox.Show("获取套装部件数组失败");
                     return;
                 }
                 var json = r.Result.ToString();
-                Form1.chromiumBrowser.ExecuteScriptAsync($"((cs)=>{{let a=[];for(let c of cs){{a.push(c);a.push(0)}}WxFightHandler.Utils.ChangeCloth(a,false)}})({json})");
+                Form1.chromiumBrowser.ExecuteScriptAsync($"((cs)=>{{let a=[];for(let c of cs){{a.push(c);a.push(0)}}WxSc.Util.ChangeCloth(a,false)}})({json})");
                 var a = JArray.Parse(json).AsEnumerable().Select(i => i.ToString()).ToHashSet();
                 RmLvEvent();
                 SelectLvItem(lvHead, a);
@@ -374,7 +374,7 @@ namespace SeerRandomSkin
             try
             {
                 var id = lvSuit.SelectedItems[0].Text;
-                Form1.chromiumBrowser.ExecuteScriptAsync($"if(WxFightHandler.Refl.Func('{CLASS_SUITXMLINFO}','getIsTransform',false,{id})){{let a=[];for(let c of WxFightHandler.Refl.Func('{CLASS_SUITXMLINFO}','getCloths',false,{id})){{a.push(c);a.push(0)}}WxFightHandler.Utils.ChangeCloth(a,false);WxFightHandler.Refl.Set(WxFightHandler.Const.MainManager,'actorModel.info.changeShape',{id},false);WxFightHandler.Dict.Add('tr','com.robot.core.skeleton.TransformSkeleton');WxFightHandler.Refl.Set(WxFightHandler.Const.MainManager,'actorModel.skeleton','tr',true)}}else WxFightHandler.Utils.SimpleAlarm('无法变形')");
+                Form1.chromiumBrowser.ExecuteScriptAsync($"if(WxSc.Refl.Func('{CLASS_SUITXMLINFO}','getIsTransform',false,{id})){{let a=[];for(let c of WxSc.Refl.Func('{CLASS_SUITXMLINFO}','getCloths',false,{id})){{a.push(c);a.push(0)}}WxSc.Util.ChangeCloth(a,false);WxSc.Refl.Set(WxSc.Const.MainManager,'actorModel.info.changeShape',{id},false);WxSc.Dict.Add('tr','com.robot.core.skeleton.TransformSkeleton');WxSc.Refl.Set(WxSc.Const.MainManager,'actorModel.skeleton','tr',true)}}else WxSc.Util.SimpleAlarm('无法变形')");
             }
             catch (Exception) { }
         }
@@ -391,7 +391,7 @@ namespace SeerRandomSkin
         public static void ShowMount(string id)
         {
             if (id.Length == 0) return;
-            Form1.chromiumBrowser.ExecuteScriptAsync($"WxFightHandler.Refl.Set(WxFightHandler.Const.MainManager,'actorModel.info.vip',1,false);WxFightHandler.Refl.Func(WxFightHandler.Const.MainManager,'actorModel.showMount',false,{id})");
+            Form1.chromiumBrowser.ExecuteScriptAsync($"WxSc.Refl.Set(WxSc.Const.MainManager,'actorModel.info.vip',1,false);WxSc.Refl.Func(WxSc.Const.MainManager,'actorModel.showMount',false,{id})");
         }
 
         private void cbDefSuit_MouseUp(object sender, MouseEventArgs e)
@@ -445,7 +445,7 @@ namespace SeerRandomSkin
         {
             if (Properties.Settings.Default.ScaleKeep)
             {
-                Form1.chromiumBrowser.ExecuteScriptAsync($"(()=>{{WxFightHandler.Dict.AddCall('ScaleKeep','k',()=>{{setTimeout(()=>{{WxFightHandler.Refl.Set(WxFightHandler.Const.MainManager,'actorModel.pet.scaleX',false,{jPets[KEY_PET2][KEY_SCALE]});WxFightHandler.Refl.Set(WxFightHandler.Const.MainManager,'actorModel.pet.scaleY',false,{jPets[KEY_PET2][KEY_SCALE]})}},2000)}});WxFightHandler.Refl.Func('org.taomee.manager.EventManager','addEventListener',false,'createdMapUser',true,'ScaleKeep');}})()");
+                Form1.chromiumBrowser.ExecuteScriptAsync($"(()=>{{WxSc.Dict.AddCall('ScaleKeep','k',()=>{{setTimeout(()=>{{WxSc.Refl.Set(WxSc.Const.MainManager,'actorModel.pet.scaleX',false,{jPets[KEY_PET2][KEY_SCALE]});WxSc.Refl.Set(WxSc.Const.MainManager,'actorModel.pet.scaleY',false,{jPets[KEY_PET2][KEY_SCALE]})}},2000)}});WxSc.Refl.Func('org.taomee.manager.EventManager','addEventListener',false,'createdMapUser',true,'ScaleKeep');}})()");
             }
         }
     }

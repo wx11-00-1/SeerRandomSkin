@@ -13,7 +13,7 @@ namespace SeerRandomSkin
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form1.chromiumBrowser.ExecuteScriptAsync(String.Format("WxFightHandler.Utils.ChangeMap({0})", numericUpDown1.Value));
+            Form1.chromiumBrowser.ExecuteScriptAsync(String.Format("WxSc.Util.ChangeMap({0})", numericUpDown1.Value));
         }
 
         private void FormStrollMap_Load(object sender, EventArgs e)
@@ -23,7 +23,7 @@ namespace SeerRandomSkin
 
         private async void btnRandom_Click(object sender, EventArgs e)
         {
-            int.TryParse((await Form1.chromiumBrowser.EvaluateScriptAsync("(()=>{ let maps=WxFightHandler.Refl.Func('com.robot.core.config.xml.MapXMLInfo','getIDList');let r=maps[Math.floor(Math.random() * maps.length)];WxFightHandler.Utils.ChangeMap(r);return r; })()")).Result.ToString(), out int id);
+            int.TryParse((await Form1.chromiumBrowser.EvaluateScriptAsync("(()=>{ let maps=WxSc.Refl.Func('com.robot.core.config.xml.MapXMLInfo','getIDList');let r=maps[Math.floor(Math.random() * maps.length)];WxSc.Util.ChangeMap(r);return r; })()")).Result.ToString(), out int id);
             numericUpDown2.Value = id;
         }
 
@@ -35,7 +35,7 @@ namespace SeerRandomSkin
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form1.chromiumBrowser.ExecuteScriptAsync(String.Format("WxFightHandler.Utils.ChangeMap({0})", numericUpDown2.Value));
+            Form1.chromiumBrowser.ExecuteScriptAsync(String.Format("WxSc.Util.ChangeMap({0})", numericUpDown2.Value));
         }
     }
 }

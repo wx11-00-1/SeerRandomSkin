@@ -30,7 +30,7 @@ namespace SeerRandomSkin
             Form1.childFormPack.ShowSendPack(cmd, pack);
         }
 
-        public void ShowFightInfo(double hp1, int round, double hp2)
+        public void ShowFightInfo(string hp1, int round, string hp2)
         {
             Form1.ChangeTitleAction(String.Format("{0} {1}% ({2}) {3}%", Form1.FormTitle, hp1, round, hp2));
         }
@@ -44,7 +44,7 @@ namespace SeerRandomSkin
             FormPetFollow.ShowMount(Properties.Settings.Default.Mount);
             FormPetFollow.ScaleKeep();
 
-            Form1.chromiumBrowser.ExecuteScriptAsync($"(()=>{{WxFightHandler.Dict.AddCall('Jipai','k',()=>{{seerRandomSkinObj.screenShot()}});WxFightHandler.Refl.Func(WxFightHandler.Const.SocketConnection,'addCmdListener',false,45144,true,'Jipai')}})()");
+            Form1.chromiumBrowser.ExecuteScriptAsync($"(()=>{{WxSc.Dict.AddCall('Jipai','k',()=>{{seerRandomSkinObj.screenShot()}});WxSc.Refl.Func(WxSc.Const.SocketConnection,'addCmdListener',false,45144,true,'Jipai')}})()");
         }
     }
 }
