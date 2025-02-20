@@ -170,9 +170,12 @@ namespace SeerRandomSkin
                     lvMount.ItemSelectionChanged += lvMount_ItemSelectionChanged;
                 }
 
-                    AddLvEvent();
+                AddLvEvent();
 
                 cbScale.Checked = Properties.Settings.Default.ScaleKeep;
+
+                tbPosX.Text = Properties.Settings.Default.PosX;
+                tbPosY.Text = Properties.Settings.Default.PosY;
             }
             catch (Exception) { }
         }
@@ -209,20 +212,20 @@ namespace SeerRandomSkin
 
         private void btnScale2_Click(object sender, EventArgs e)
         {
-            WxScale2(textBox2.Text);
+            WxScale2(textBox2.Text, tbPosX.Text, tbPosY.Text);
         }
 
         private static void WxPetFollow(int id1, int ab1, bool l1, int id2, int ab2, bool l2)
         {
-            Form1.chromiumBrowser.ExecuteScriptAsync($"(()=>{{const k = 'psi';WxSc.Dict.Add(k,'com.robot.core.info.pet.PetShowInfo');WxSc.Dict.Set(k,'petID',false,{id1});WxSc.Dict.Set(k,'abilityType',false,{ab1});WxSc.Dict.Set(k,'isBright',false,{(l1 ? "true" : "false")});WxSc.Dict.Set(k,'otherPetId',false,{id2});WxSc.Dict.Set(k,'otherAbilityType',false,{ab2});WxSc.Dict.Set(k,'otherBright',false,{(l2 ? "true" : "false")});WxSc.Refl.Func(WxSc.Const.MainManager,'actorModel.showPet',true,k)}})()");
+            Form1.chromiumBrowser.ExecuteScriptAsync($"(()=>{{const k = '_psi';WxSc.Dict.Add(k,'com.robot.core.info.pet.PetShowInfo');WxSc.Dict.Set(k,'petID',false,{id1});WxSc.Dict.Set(k,'abilityType',false,{ab1});WxSc.Dict.Set(k,'isBright',false,{(l1 ? "true" : "false")});WxSc.Dict.Set(k,'otherPetId',false,{id2});WxSc.Dict.Set(k,'otherAbilityType',false,{ab2});WxSc.Dict.Set(k,'otherBright',false,{(l2 ? "true" : "false")});WxSc.Refl.Func(WxSc.Const.MainManager,'actorModel.showPet',true,k)}})()");
         }
         private static void WxScale1(string s)
         {
             Form1.chromiumBrowser.ExecuteScriptAsync($"WxSc.Refl.Set(WxSc.Const.MainManager,'actorModel.scaleX',false,{s});WxSc.Refl.Set(WxSc.Const.MainManager,'actorModel.scaleY',false,{s})");
         }
-        private static void WxScale2(string s)
+        private static void WxScale2(string s, string x, string y)
         {
-            Form1.chromiumBrowser.ExecuteScriptAsync($"WxSc.Refl.Set(WxSc.Const.MainManager,'actorModel.pet.scaleX',false,{s});WxSc.Refl.Set(WxSc.Const.MainManager,'actorModel.pet.scaleY',false,{s})");
+            Form1.chromiumBrowser.ExecuteScriptAsync($"WxSc.Refl.Set(WxSc.Const.MainManager,'actorModel.pet.scaleX',false,{s});WxSc.Refl.Set(WxSc.Const.MainManager,'actorModel.pet.scaleY',false,{s});WxSc.Dict.Add('_pos','flash.geom.Point',false,{x},false,{y});WxSc.Refl.Set(WxSc.Const.MainManager,'actorModel.pet.pos',true,'_pos')");
         }
 
         public static void WxPetFollow()
@@ -263,7 +266,7 @@ namespace SeerRandomSkin
             try
             {
                 WxScale1(jPets[KEY_PET1][KEY_SCALE].ToString());
-                WxScale2(jPets[KEY_PET2][KEY_SCALE].ToString());
+                WxScale2(jPets[KEY_PET2][KEY_SCALE].ToString(), Properties.Settings.Default.PosX, Properties.Settings.Default.PosY);
             }
             catch (Exception) { }
         }
@@ -428,6 +431,8 @@ namespace SeerRandomSkin
                     { KEY_SCALE, textBox2.Text }
                 };
                 Properties.Settings.Default.PetFollow = jPets.ToString();
+                Properties.Settings.Default.PosX = tbPosX.Text;
+                Properties.Settings.Default.PosY = tbPosY.Text;
             }
             else
             {
@@ -445,7 +450,7 @@ namespace SeerRandomSkin
         {
             if (Properties.Settings.Default.ScaleKeep)
             {
-                Form1.chromiumBrowser.ExecuteScriptAsync($"(()=>{{WxSc.Dict.AddCall('_scale','_k',()=>{{setTimeout(()=>{{WxSc.Refl.Set(WxSc.Const.MainManager,'actorModel.pet.scaleX',false,{jPets[KEY_PET2][KEY_SCALE]});WxSc.Refl.Set(WxSc.Const.MainManager,'actorModel.pet.scaleY',false,{jPets[KEY_PET2][KEY_SCALE]})}},2000)}});WxSc.Refl.Func('org.taomee.manager.EventManager','addEventListener',false,'createdMapUser',true,'_scale');}})()");
+                Form1.chromiumBrowser.ExecuteScriptAsync($"(()=>{{WxSc.Dict.AddCall('_scale','_k',()=>{{setTimeout(()=>{{seerRandomSkinObj.petScale()}},2000)}});WxSc.Refl.Func('org.taomee.manager.EventManager','addEventListener',false,'createdMapUser',true,'_scale');}})()");
             }
         }
     }

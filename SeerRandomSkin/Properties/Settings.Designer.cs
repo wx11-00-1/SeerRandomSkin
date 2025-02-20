@@ -816,5 +816,29 @@ namespace SeerRandomSkin.Properties {
                 this["ScaleKeep"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("240")]
+        public string PosX {
+            get {
+                return ((string)(this["PosX"]));
+            }
+            set {
+                this["PosX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("240")]
+        public string PosY {
+            get {
+                return ((string)(this["PosY"]));
+            }
+            set {
+                this["PosY"] = value;
+            }
+        }
     }
 }

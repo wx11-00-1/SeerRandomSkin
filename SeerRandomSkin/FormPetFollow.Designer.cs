@@ -59,22 +59,26 @@
             this.lvSuit = new System.Windows.Forms.ListView();
             this.lvMount = new System.Windows.Forms.ListView();
             this.lvFoot = new System.Windows.Forms.ListView();
+            this.btnTrans = new System.Windows.Forms.Button();
             this.lvWaist = new System.Windows.Forms.ListView();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.lvHand = new System.Windows.Forms.ListView();
+            this.tbSearch = new System.Windows.Forms.TextBox();
             this.lvEye = new System.Windows.Forms.ListView();
             this.lvHead = new System.Windows.Forms.ListView();
-            this.tbSearch = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.btnTrans = new System.Windows.Forms.Button();
             this.cbDefPet = new System.Windows.Forms.CheckBox();
             this.cbDefSuit = new System.Windows.Forms.CheckBox();
             this.cbScale = new System.Windows.Forms.CheckBox();
+            this.tbPosX = new System.Windows.Forms.TextBox();
+            this.tbPosY = new System.Windows.Forms.TextBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_id1)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_id2)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -295,7 +299,7 @@
             // 
             // btnConfirm
             // 
-            this.btnConfirm.Location = new System.Drawing.Point(629, 159);
+            this.btnConfirm.Location = new System.Drawing.Point(607, 229);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(75, 23);
             this.btnConfirm.TabIndex = 2;
@@ -305,20 +309,22 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.tbPosY);
             this.groupBox3.Controls.Add(this.btnScale2);
+            this.groupBox3.Controls.Add(this.tbPosX);
             this.groupBox3.Controls.Add(this.btnScale1);
             this.groupBox3.Controls.Add(this.textBox2);
             this.groupBox3.Controls.Add(this.textBox1);
-            this.groupBox3.Location = new System.Drawing.Point(520, 42);
+            this.groupBox3.Location = new System.Drawing.Point(487, 42);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(195, 106);
+            this.groupBox3.Size = new System.Drawing.Size(195, 162);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "缩放";
+            this.groupBox3.Text = "缩放、精灵位置";
             // 
             // btnScale2
             // 
-            this.btnScale2.Location = new System.Drawing.Point(109, 62);
+            this.btnScale2.Location = new System.Drawing.Point(109, 56);
             this.btnScale2.Name = "btnScale2";
             this.btnScale2.Size = new System.Drawing.Size(64, 23);
             this.btnScale2.TabIndex = 3;
@@ -328,7 +334,7 @@
             // 
             // btnScale1
             // 
-            this.btnScale1.Location = new System.Drawing.Point(22, 62);
+            this.btnScale1.Location = new System.Drawing.Point(22, 56);
             this.btnScale1.Name = "btnScale1";
             this.btnScale1.Size = new System.Drawing.Size(64, 23);
             this.btnScale1.TabIndex = 2;
@@ -338,7 +344,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(109, 31);
+            this.textBox2.Location = new System.Drawing.Point(109, 25);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(64, 21);
             this.textBox2.TabIndex = 1;
@@ -346,7 +352,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(22, 31);
+            this.textBox1.Location = new System.Drawing.Point(22, 25);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(64, 21);
             this.textBox1.TabIndex = 0;
@@ -357,13 +363,16 @@
             this.groupBox4.Controls.Add(this.lvSuit);
             this.groupBox4.Controls.Add(this.lvMount);
             this.groupBox4.Controls.Add(this.lvFoot);
+            this.groupBox4.Controls.Add(this.btnTrans);
             this.groupBox4.Controls.Add(this.lvWaist);
+            this.groupBox4.Controls.Add(this.btnSearch);
             this.groupBox4.Controls.Add(this.lvHand);
+            this.groupBox4.Controls.Add(this.tbSearch);
             this.groupBox4.Controls.Add(this.lvEye);
             this.groupBox4.Controls.Add(this.lvHead);
             this.groupBox4.Location = new System.Drawing.Point(39, 276);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(676, 224);
+            this.groupBox4.Size = new System.Drawing.Size(817, 224);
             this.groupBox4.TabIndex = 5;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "装扮";
@@ -373,10 +382,10 @@
             this.lvSuit.FullRowSelect = true;
             this.lvSuit.HideSelection = false;
             this.lvSuit.LabelWrap = false;
-            this.lvSuit.Location = new System.Drawing.Point(588, 30);
+            this.lvSuit.Location = new System.Drawing.Point(624, 30);
             this.lvSuit.MultiSelect = false;
             this.lvSuit.Name = "lvSuit";
-            this.lvSuit.Size = new System.Drawing.Size(64, 169);
+            this.lvSuit.Size = new System.Drawing.Size(72, 169);
             this.lvSuit.TabIndex = 6;
             this.lvSuit.UseCompatibleStateImageBehavior = false;
             this.lvSuit.View = System.Windows.Forms.View.List;
@@ -387,10 +396,10 @@
             this.lvMount.FullRowSelect = true;
             this.lvMount.HideSelection = false;
             this.lvMount.LabelWrap = false;
-            this.lvMount.Location = new System.Drawing.Point(494, 30);
+            this.lvMount.Location = new System.Drawing.Point(524, 30);
             this.lvMount.MultiSelect = false;
             this.lvMount.Name = "lvMount";
-            this.lvMount.Size = new System.Drawing.Size(64, 169);
+            this.lvMount.Size = new System.Drawing.Size(72, 169);
             this.lvMount.TabIndex = 5;
             this.lvMount.UseCompatibleStateImageBehavior = false;
             this.lvMount.View = System.Windows.Forms.View.List;
@@ -400,49 +409,76 @@
             this.lvFoot.FullRowSelect = true;
             this.lvFoot.HideSelection = false;
             this.lvFoot.LabelWrap = false;
-            this.lvFoot.Location = new System.Drawing.Point(400, 30);
+            this.lvFoot.Location = new System.Drawing.Point(424, 30);
             this.lvFoot.MultiSelect = false;
             this.lvFoot.Name = "lvFoot";
-            this.lvFoot.Size = new System.Drawing.Size(64, 169);
+            this.lvFoot.Size = new System.Drawing.Size(72, 169);
             this.lvFoot.TabIndex = 4;
             this.lvFoot.UseCompatibleStateImageBehavior = false;
             this.lvFoot.View = System.Windows.Forms.View.List;
+            // 
+            // btnTrans
+            // 
+            this.btnTrans.Location = new System.Drawing.Point(722, 176);
+            this.btnTrans.Name = "btnTrans";
+            this.btnTrans.Size = new System.Drawing.Size(75, 23);
+            this.btnTrans.TabIndex = 8;
+            this.btnTrans.Text = "变形";
+            this.btnTrans.UseVisualStyleBackColor = true;
+            this.btnTrans.Click += new System.EventHandler(this.btnTrans_Click);
             // 
             // lvWaist
             // 
             this.lvWaist.FullRowSelect = true;
             this.lvWaist.HideSelection = false;
             this.lvWaist.LabelWrap = false;
-            this.lvWaist.Location = new System.Drawing.Point(306, 30);
+            this.lvWaist.Location = new System.Drawing.Point(324, 30);
             this.lvWaist.MultiSelect = false;
             this.lvWaist.Name = "lvWaist";
-            this.lvWaist.Size = new System.Drawing.Size(64, 169);
+            this.lvWaist.Size = new System.Drawing.Size(72, 169);
             this.lvWaist.TabIndex = 3;
             this.lvWaist.UseCompatibleStateImageBehavior = false;
             this.lvWaist.View = System.Windows.Forms.View.List;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(722, 63);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 7;
+            this.btnSearch.Text = "搜索";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // lvHand
             // 
             this.lvHand.FullRowSelect = true;
             this.lvHand.HideSelection = false;
             this.lvHand.LabelWrap = false;
-            this.lvHand.Location = new System.Drawing.Point(212, 30);
+            this.lvHand.Location = new System.Drawing.Point(224, 30);
             this.lvHand.MultiSelect = false;
             this.lvHand.Name = "lvHand";
-            this.lvHand.Size = new System.Drawing.Size(64, 169);
+            this.lvHand.Size = new System.Drawing.Size(72, 169);
             this.lvHand.TabIndex = 2;
             this.lvHand.UseCompatibleStateImageBehavior = false;
             this.lvHand.View = System.Windows.Forms.View.List;
+            // 
+            // tbSearch
+            // 
+            this.tbSearch.Location = new System.Drawing.Point(722, 30);
+            this.tbSearch.Name = "tbSearch";
+            this.tbSearch.Size = new System.Drawing.Size(73, 21);
+            this.tbSearch.TabIndex = 6;
             // 
             // lvEye
             // 
             this.lvEye.FullRowSelect = true;
             this.lvEye.HideSelection = false;
             this.lvEye.LabelWrap = false;
-            this.lvEye.Location = new System.Drawing.Point(118, 30);
+            this.lvEye.Location = new System.Drawing.Point(124, 30);
             this.lvEye.MultiSelect = false;
             this.lvEye.Name = "lvEye";
-            this.lvEye.Size = new System.Drawing.Size(64, 169);
+            this.lvEye.Size = new System.Drawing.Size(72, 169);
             this.lvEye.TabIndex = 1;
             this.lvEye.UseCompatibleStateImageBehavior = false;
             this.lvEye.View = System.Windows.Forms.View.List;
@@ -455,42 +491,15 @@
             this.lvHead.Location = new System.Drawing.Point(24, 30);
             this.lvHead.MultiSelect = false;
             this.lvHead.Name = "lvHead";
-            this.lvHead.Size = new System.Drawing.Size(64, 169);
+            this.lvHead.Size = new System.Drawing.Size(72, 169);
             this.lvHead.TabIndex = 0;
             this.lvHead.UseCompatibleStateImageBehavior = false;
             this.lvHead.View = System.Windows.Forms.View.List;
             // 
-            // tbSearch
-            // 
-            this.tbSearch.Location = new System.Drawing.Point(533, 198);
-            this.tbSearch.Name = "tbSearch";
-            this.tbSearch.Size = new System.Drawing.Size(73, 21);
-            this.tbSearch.TabIndex = 6;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Location = new System.Drawing.Point(629, 196);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 7;
-            this.btnSearch.Text = "搜索";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // btnTrans
-            // 
-            this.btnTrans.Location = new System.Drawing.Point(531, 159);
-            this.btnTrans.Name = "btnTrans";
-            this.btnTrans.Size = new System.Drawing.Size(75, 23);
-            this.btnTrans.TabIndex = 8;
-            this.btnTrans.Text = "变形";
-            this.btnTrans.UseVisualStyleBackColor = true;
-            this.btnTrans.Click += new System.EventHandler(this.btnTrans_Click);
-            // 
             // cbDefPet
             // 
             this.cbDefPet.AutoSize = true;
-            this.cbDefPet.Location = new System.Drawing.Point(594, 236);
+            this.cbDefPet.Location = new System.Drawing.Point(19, 30);
             this.cbDefPet.Name = "cbDefPet";
             this.cbDefPet.Size = new System.Drawing.Size(48, 16);
             this.cbDefPet.TabIndex = 9;
@@ -501,7 +510,7 @@
             // cbDefSuit
             // 
             this.cbDefSuit.AutoSize = true;
-            this.cbDefSuit.Location = new System.Drawing.Point(533, 236);
+            this.cbDefSuit.Location = new System.Drawing.Point(19, 92);
             this.cbDefSuit.Name = "cbDefSuit";
             this.cbDefSuit.Size = new System.Drawing.Size(48, 16);
             this.cbDefSuit.TabIndex = 10;
@@ -512,7 +521,7 @@
             // cbScale
             // 
             this.cbScale.AutoSize = true;
-            this.cbScale.Location = new System.Drawing.Point(655, 236);
+            this.cbScale.Location = new System.Drawing.Point(19, 61);
             this.cbScale.Name = "cbScale";
             this.cbScale.Size = new System.Drawing.Size(48, 16);
             this.cbScale.TabIndex = 11;
@@ -520,17 +529,38 @@
             this.cbScale.UseVisualStyleBackColor = true;
             this.cbScale.MouseUp += new System.Windows.Forms.MouseEventHandler(this.cbScale_MouseUp);
             // 
+            // tbPosX
+            // 
+            this.tbPosX.Location = new System.Drawing.Point(22, 106);
+            this.tbPosX.Name = "tbPosX";
+            this.tbPosX.Size = new System.Drawing.Size(64, 21);
+            this.tbPosX.TabIndex = 1;
+            // 
+            // tbPosY
+            // 
+            this.tbPosY.Location = new System.Drawing.Point(109, 106);
+            this.tbPosY.Name = "tbPosY";
+            this.tbPosY.Size = new System.Drawing.Size(64, 21);
+            this.tbPosY.TabIndex = 2;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.cbDefPet);
+            this.groupBox6.Controls.Add(this.cbDefSuit);
+            this.groupBox6.Controls.Add(this.cbScale);
+            this.groupBox6.Location = new System.Drawing.Point(705, 42);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(151, 162);
+            this.groupBox6.TabIndex = 13;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "默认";
+            // 
             // FormPetFollow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(764, 534);
-            this.Controls.Add(this.cbScale);
-            this.Controls.Add(this.cbDefSuit);
-            this.Controls.Add(this.cbDefPet);
-            this.Controls.Add(this.btnTrans);
-            this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.tbSearch);
+            this.ClientSize = new System.Drawing.Size(894, 534);
+            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btnConfirm);
@@ -548,8 +578,10 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -595,5 +627,8 @@
         private System.Windows.Forms.CheckBox cbDefPet;
         private System.Windows.Forms.CheckBox cbDefSuit;
         private System.Windows.Forms.CheckBox cbScale;
+        private System.Windows.Forms.TextBox tbPosY;
+        private System.Windows.Forms.TextBox tbPosX;
+        private System.Windows.Forms.GroupBox groupBox6;
     }
 }

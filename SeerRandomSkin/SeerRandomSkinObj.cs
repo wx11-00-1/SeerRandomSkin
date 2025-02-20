@@ -39,7 +39,7 @@ namespace SeerRandomSkin
         {
             FormPetFollow.WxPetFollow();
             await Task.Delay(3000);
-            FormPetFollow.WxScale();
+            PetScale();
             if (Properties.Settings.Default.Mount.Length > 0)
             {
                 FormPetFollow.ChangeCloth(Properties.Settings.Default.Suits);
@@ -48,6 +48,10 @@ namespace SeerRandomSkin
             FormPetFollow.ScaleKeep();
 
             Form1.chromiumBrowser.ExecuteScriptAsync($"(()=>{{WxSc.Dict.AddCall('_jipai','_k',()=>{{seerRandomSkinObj.screenShot()}});WxSc.Refl.Func(WxSc.Const.SocketConnection,'addCmdListener',false,45144,true,'_jipai')}})()");
+        }
+        public void PetScale()
+        {
+            FormPetFollow.WxScale();
         }
     }
 }
