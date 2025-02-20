@@ -431,8 +431,6 @@ namespace SeerRandomSkin
                     { KEY_SCALE, textBox2.Text }
                 };
                 Properties.Settings.Default.PetFollow = jPets.ToString();
-                Properties.Settings.Default.PosX = tbPosX.Text;
-                Properties.Settings.Default.PosY = tbPosY.Text;
             }
             else
             {
@@ -444,6 +442,8 @@ namespace SeerRandomSkin
         private void cbScale_MouseUp(object sender, MouseEventArgs e)
         {
             Properties.Settings.Default.ScaleKeep = cbScale.Checked;
+            Properties.Settings.Default.PosX = tbPosX.Text;
+            Properties.Settings.Default.PosY = tbPosY.Text;
             Properties.Settings.Default.Save();
         }
         public static void ScaleKeep()
