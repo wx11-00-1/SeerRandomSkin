@@ -57,13 +57,13 @@
             // 
             this.richTextBox_script.Location = new System.Drawing.Point(204, 37);
             this.richTextBox_script.Name = "richTextBox_script";
-            this.richTextBox_script.Size = new System.Drawing.Size(707, 451);
+            this.richTextBox_script.Size = new System.Drawing.Size(426, 315);
             this.richTextBox_script.TabIndex = 0;
             this.richTextBox_script.Text = "";
             // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(31, 558);
+            this.btnTest.Location = new System.Drawing.Point(31, 432);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(66, 23);
             this.btnTest.TabIndex = 1;
@@ -73,12 +73,12 @@
             // 
             // lvTemplate
             // 
+            this.lvTemplate.CheckBoxes = true;
             this.lvTemplate.FullRowSelect = true;
             this.lvTemplate.HideSelection = false;
             this.lvTemplate.Location = new System.Drawing.Point(31, 37);
-            this.lvTemplate.MultiSelect = false;
             this.lvTemplate.Name = "lvTemplate";
-            this.lvTemplate.Size = new System.Drawing.Size(141, 451);
+            this.lvTemplate.Size = new System.Drawing.Size(141, 315);
             this.lvTemplate.TabIndex = 2;
             this.lvTemplate.UseCompatibleStateImageBehavior = false;
             this.lvTemplate.View = System.Windows.Forms.View.List;
@@ -86,14 +86,14 @@
             // 
             // tbTemplateName
             // 
-            this.tbTemplateName.Location = new System.Drawing.Point(31, 511);
+            this.tbTemplateName.Location = new System.Drawing.Point(31, 385);
             this.tbTemplateName.Name = "tbTemplateName";
             this.tbTemplateName.Size = new System.Drawing.Size(141, 21);
             this.tbTemplateName.TabIndex = 3;
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(34, 647);
+            this.btnAdd.Location = new System.Drawing.Point(34, 521);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(66, 23);
             this.btnAdd.TabIndex = 4;
@@ -103,7 +103,7 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(106, 647);
+            this.btnRemove.Location = new System.Drawing.Point(106, 521);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(66, 23);
             this.btnRemove.TabIndex = 5;
@@ -113,7 +113,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(34, 603);
+            this.button1.Location = new System.Drawing.Point(34, 477);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(141, 23);
             this.button1.TabIndex = 6;
@@ -123,7 +123,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(106, 558);
+            this.btnSearch.Location = new System.Drawing.Point(106, 432);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(66, 23);
             this.btnSearch.TabIndex = 7;
@@ -139,7 +139,7 @@
             this.groupBox1.Controls.Add(this.btnItem150);
             this.groupBox1.Controls.Add(this.btnItem10pp);
             this.groupBox1.Controls.Add(this.btnItem170);
-            this.groupBox1.Location = new System.Drawing.Point(204, 511);
+            this.groupBox1.Location = new System.Drawing.Point(204, 385);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(208, 159);
             this.groupBox1.TabIndex = 8;
@@ -208,7 +208,7 @@
             // 
             // btnCureAll
             // 
-            this.btnCureAll.Location = new System.Drawing.Point(376, 716);
+            this.btnCureAll.Location = new System.Drawing.Point(376, 590);
             this.btnCureAll.Name = "btnCureAll";
             this.btnCureAll.Size = new System.Drawing.Size(87, 23);
             this.btnCureAll.TabIndex = 6;
@@ -218,7 +218,7 @@
             // 
             // btnCure20
             // 
-            this.btnCure20.Location = new System.Drawing.Point(376, 686);
+            this.btnCure20.Location = new System.Drawing.Point(376, 560);
             this.btnCure20.Name = "btnCure20";
             this.btnCure20.Size = new System.Drawing.Size(149, 23);
             this.btnCure20.TabIndex = 5;
@@ -228,7 +228,7 @@
             // 
             // btnFightPanelHide
             // 
-            this.btnFightPanelHide.Location = new System.Drawing.Point(31, 686);
+            this.btnFightPanelHide.Location = new System.Drawing.Point(31, 560);
             this.btnFightPanelHide.Name = "btnFightPanelHide";
             this.btnFightPanelHide.Size = new System.Drawing.Size(141, 23);
             this.btnFightPanelHide.TabIndex = 9;
@@ -238,7 +238,7 @@
             // 
             // btnFightPanelShow
             // 
-            this.btnFightPanelShow.Location = new System.Drawing.Point(31, 716);
+            this.btnFightPanelShow.Location = new System.Drawing.Point(31, 590);
             this.btnFightPanelShow.Name = "btnFightPanelShow";
             this.btnFightPanelShow.Size = new System.Drawing.Size(141, 23);
             this.btnFightPanelShow.TabIndex = 10;
@@ -248,7 +248,7 @@
             // 
             // btnAutoCureOpen
             // 
-            this.btnAutoCureOpen.Location = new System.Drawing.Point(204, 716);
+            this.btnAutoCureOpen.Location = new System.Drawing.Point(204, 590);
             this.btnAutoCureOpen.Name = "btnAutoCureOpen";
             this.btnAutoCureOpen.Size = new System.Drawing.Size(141, 23);
             this.btnAutoCureOpen.TabIndex = 11;
@@ -258,7 +258,7 @@
             // 
             // btnAutoCureStop
             // 
-            this.btnAutoCureStop.Location = new System.Drawing.Point(204, 686);
+            this.btnAutoCureStop.Location = new System.Drawing.Point(204, 560);
             this.btnAutoCureStop.Name = "btnAutoCureStop";
             this.btnAutoCureStop.Size = new System.Drawing.Size(141, 23);
             this.btnAutoCureStop.TabIndex = 12;
@@ -270,7 +270,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(944, 788);
+            this.ClientSize = new System.Drawing.Size(687, 652);
             this.Controls.Add(this.btnAutoCureStop);
             this.Controls.Add(this.btnAutoCureOpen);
             this.Controls.Add(this.btnFightPanelShow);

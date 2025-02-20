@@ -375,7 +375,10 @@ WxSc._in = () => {
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            jFightTemplate.Remove(tbTemplateName.Text);
+            foreach (ListViewItem del in lvTemplate.CheckedItems)
+            {
+                jFightTemplate.Remove(del.Text);
+            }
             SaveConfigTemplate();
         }
 
