@@ -151,7 +151,10 @@ WxSc.Util.CurePet20HP = () => {
     WxSc.Util.Send(2326,p.catchTime,300017);
   }
 }
-WxSc.Util.CurePetAll = () => document.Client.WxCureAll();
+WxSc.Util.CurePetAll = () => {
+  const p = WxSc.Refl.Func(WxSc.Const.PetManager,'getBagMap',false,true);
+  for (let i of p) WxSc.Util.Send(2310,i.catchTime);
+}
 WxSc.Util.LowHP = () => {
   const c = ((new Date()).getUTCHours() + 8) % 24;
   WxSc.Util.Send(41129,(c < 12 || c >= 15) ? 8692 : 8694);
@@ -305,7 +308,7 @@ WxSc._in = () => {
   });
   WxSc.Refl.Func(WxSc.Const.SocketConnection,'addCmdListener',false,2407,true,'_ChPet'); // CHANGE_PET
   WxSc.Dict.AddCall('_over','_ovIn',() => {
-    if (WxSc.Priv._cure) WxSc.Util.CurePetAll()
+    if (WxSc.Priv._cure) for (let i of WxSc.Priv._fPets) WxSc.Util.Send(2310,i.catchTime);
     WxSc.OnFightOver(WxSc.Dict.Get('_ovIn','0.data')); 
   });
   WxSc.Refl.Func(WxSc.Const.SocketConnection,'addCmdListener',false,2506,true,'_over'); // FIGHT_OVER

@@ -36,15 +36,6 @@ package
          // 关电池
          SocketConnection.send(41162,0);
 
-         // 治疗背包所有精灵
-         ExternalInterface.addCallback("WxCureAll",function():void {
-            for each (var p:PetInfo in PetManager.allInfos) {
-                if (p.hp < p.maxHp || !PetManager.getPetAllSkillPPIsFull(p)) {
-                    SocketConnection.send(CommandID.PET_ONE_CURE,p.catchTime);
-                }
-            }
-         });
-
          // readyData 无法直接传递到 js 层
          SocketConnection.addCmdListener(CommandID.NOTE_READY_TO_FIGHT,function(event:SocketEvent):void
         {
