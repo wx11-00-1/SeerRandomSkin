@@ -14,7 +14,7 @@ package
    import com.codecatalyst.promise.Promise;
    import com.robot.core.info.pet.PetInfo;
    import flash.utils.getDefinitionByName;
-    import com.codecatalyst.promise.Deferred;
+   import com.codecatalyst.promise.Deferred;
    import com.robot.core.manager.UserInfoManager;
    import flash.utils.IDataInput;
    import flash.utils.Dictionary;
@@ -35,6 +35,36 @@ package
 
          // 关电池
          SocketConnection.send(41162,0);
+
+         // 治疗背包所有精灵
+         ExternalInterface.addCallback("WxCureAll",function():void {
+            for each (var p:PetInfo in PetManager.allInfos) {
+                if (p.hp < p.maxHp || !PetManager.getPetAllSkillPPIsFull(p)) {
+                    SocketConnection.send(CommandID.PET_ONE_CURE,p.catchTime);
+                }
+            }
+         });
+
+         // readyData 无法直接传递到 js 层
+         SocketConnection.addCmdListener(CommandID.NOTE_READY_TO_FIGHT,function(event:SocketEvent):void
+        {
+            var readyData = event.data;
+            var ps:Array = []; // 记录所有出战精灵的血量、技能等信息
+            var cur:uint = 0;
+            for each (var petInfo:PetInfo in readyData.userInfos.myInfo.petInfoArr) {
+                var pet:Object = new Object();
+                pet.id = petInfo.id;
+                pet.catchTime = petInfo.catchTime;
+                pet.hp = petInfo.hp;
+                pet.skillArray = [];
+                for (var i:int = 0; i < Math.min(4,petInfo.skillNum); ++i, ++cur) {
+                    pet.skillArray.push(readyData.userInfos.allSkillID[cur]);
+                }
+                pet.hideSKill = petInfo.hideSKill;
+                ps.push(pet);
+            }
+            SocketConnection.WxOs["_rdData"] = ps;
+        });
 
          // 获取仓库精灵
          SocketConnection.WxGetStoragePets = function(allInfo:Array,startID:int = 1):void
@@ -248,6 +278,7 @@ package
                 ExternalInterface.call("WxSc.Priv."+k1);
             }
          });
+         ExternalInterface.addCallback("WxDelObj",function(k:String):void {SocketConnection.WxOs[k]=undefined;});
          
          ExternalInterface.addCallback("WxRefl",function(type:uint,name:String,path:String,... rest):* {
             var keys:Array = path.split(".");  // 使用 `.` 分隔路径

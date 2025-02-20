@@ -40,11 +40,14 @@ namespace SeerRandomSkin
             FormPetFollow.WxPetFollow();
             await Task.Delay(3000);
             FormPetFollow.WxScale();
-            FormPetFollow.ChangeCloth(Properties.Settings.Default.Suits);
-            FormPetFollow.ShowMount(Properties.Settings.Default.Mount);
+            if (Properties.Settings.Default.Mount.Length > 0)
+            {
+                FormPetFollow.ChangeCloth(Properties.Settings.Default.Suits);
+                FormPetFollow.ShowMount(Properties.Settings.Default.Mount);
+            }
             FormPetFollow.ScaleKeep();
 
-            Form1.chromiumBrowser.ExecuteScriptAsync($"(()=>{{WxSc.Dict.AddCall('Jipai','k',()=>{{seerRandomSkinObj.screenShot()}});WxSc.Refl.Func(WxSc.Const.SocketConnection,'addCmdListener',false,45144,true,'Jipai')}})()");
+            Form1.chromiumBrowser.ExecuteScriptAsync($"(()=>{{WxSc.Dict.AddCall('_jipai','_k',()=>{{seerRandomSkinObj.screenShot()}});WxSc.Refl.Func(WxSc.Const.SocketConnection,'addCmdListener',false,45144,true,'_jipai')}})()");
         }
     }
 }

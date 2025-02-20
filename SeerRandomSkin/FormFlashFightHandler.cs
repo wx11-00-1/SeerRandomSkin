@@ -28,9 +28,10 @@ WxSc.Refl.Tmp = (name,method,key,...args) => document.Client.WxRefl(4,name,metho
 WxSc.Dict = {}
 WxSc.Dict.Add = (key,name,...args) => document.Client.WxAddObj(key,name,...args);
 WxSc.Dict.Set = (key,a,u,v) => WxSc.Refl.Set(WxSc.Const.SocketConnection,`WxOs.${key}.${a}`,u,v);
-WxSc.Dict.Get = (key,a) => WxSc.Refl.Get(WxSc.Const.SocketConnection,`WxOs.${key}.${a}`);
+WxSc.Dict.Get = (key,a=undefined) => WxSc.Refl.Get(WxSc.Const.SocketConnection,`WxOs.${key}${a ? `.${a}` : ''}`);
 WxSc.Dict.Func = (key,method,...args) => WxSc.Refl.Func(WxSc.Const.SocketConnection,`WxOs.${key}.${method}`,...args);
 WxSc.Dict.Tmp = (key,method,key2,...args) => WxSc.Refl.Tmp(WxSc.Const.SocketConnection,`WxOs.${key}.${method}`,key2,...args);
+WxSc.Dict.Del = (k) => document.Client.WxDelObj(k);
 
 WxSc.Dict.AddCall = (n,r,f) => {
   WxSc.Priv[n] = f;
@@ -150,10 +151,7 @@ WxSc.Util.CurePet20HP = () => {
     WxSc.Util.Send(2326,p.catchTime,300017);
   }
 }
-WxSc.Util.CurePetAll = () => {
-  const p = WxSc.Refl.Func(WxSc.Const.PetManager,'getBagMap',false,true);
-  for (let i of p) WxSc.Util.Send(2310,i.catchTime);
-}
+WxSc.Util.CurePetAll = () => document.Client.WxCureAll();
 WxSc.Util.LowHP = () => {
   const c = ((new Date()).getUTCHours() + 8) % 24;
   WxSc.Util.Send(41129,(c < 12 || c >= 15) ? 8692 : 8694);
@@ -252,37 +250,19 @@ WxSc.Util.StateLoadAsync = async k => {
 
 // 对战
 WxSc._in = () => {
-  WxSc.Dict.AddCall('onReady','readyData',() => {
+  WxSc.Dict.AddCall('_start','_stIn',() => {
     WxSc.Priv.Round = 0;
     WxSc.Priv._posiCh = false; // 主动切换精灵
-    WxSc.Priv._fPets = [];
-    let sz = WxSc.Dict.Get('readyData','0.data.userInfos.myInfo.petInfoArr.length');
-    let cur = 0;
-    for (let i=0; i<sz; ++i) {
-      let o = {}
-      o.id = WxSc.Dict.Get('readyData',`0.data.userInfos.myInfo.petInfoArr.${i}.id`);
-      o.catchTime = WxSc.Dict.Get('readyData',`0.data.userInfos.myInfo.petInfoArr.${i}.catchTime`);
-      o.hp = WxSc.Dict.Get('readyData',`0.data.userInfos.myInfo.petInfoArr.${i}.hp`);
-      let num = Math.min(4,WxSc.Dict.Get('readyData',`0.data.userInfos.myInfo.petInfoArr.${i}.skillNum`));
-      o.skillArray = []
-      for (let j=0; j<num; ++j, ++cur) {
-        o.skillArray.push(WxSc.Dict.Get('readyData',`0.data.userInfos.allSkillID.${cur}`));
-      }
-      o.hideSKill = WxSc.Dict.Get('readyData',`0.data.userInfos.myInfo.petInfoArr.${i}.hideSKill`);
-      WxSc.Priv._fPets.push(o);
-    }
-  });
-  WxSc.Refl.Func(WxSc.Const.SocketConnection,'addCmdListener',false,2503,true,'onReady'); // NOTE_READY_TO_FIGHT
-  WxSc.Dict.AddCall('onStart','startInfo',() => {
-    const info = WxSc.Dict.Get('startInfo','0.data');
+    WxSc.Priv._fPets = WxSc.Dict.Get('_rdData');
+    const info = WxSc.Dict.Get('_stIn','0.data');
     WxSc.Priv._fCT = info.myInfo.catchTime;
     WxSc.Priv._fID = info.myInfo.petID;
     WxSc.Priv._fHP = info.myInfo.hp;
     WxSc.OnFirstRound(info);
   });
-  WxSc.Refl.Func(WxSc.Const.SocketConnection,'addCmdListener',false,2504,true,'onStart'); // NOTE_START_FIGHT
-  WxSc.Dict.AddCall('onUseSkill','skillInfo',() => {
-    const info = WxSc.Dict.Get('skillInfo','0.data');
+  WxSc.Refl.Func(WxSc.Const.SocketConnection,'addCmdListener',false,2504,true,'_start'); // NOTE_START_FIGHT
+  WxSc.Dict.AddCall('_skill','_skIn',() => {
+    const info = WxSc.Dict.Get('_skIn','0.data');
     let my, en;
     const isFi = (info.firstAttackInfo.userID === WxSc.Refl.Get(WxSc.Const.MainManager,'actorInfo.userID'));
     if (isFi) {
@@ -312,9 +292,9 @@ WxSc._in = () => {
     if (en.remainHP === 0 && en.changehps.every(p => p.hp === 0) || my.remainHP === 0 && my.changehps.every(p => p.hp === 0)) return;
     WxSc.OnUseSkill(my,en,isFi);
   });
-  WxSc.Refl.Func(WxSc.Const.SocketConnection,'addCmdListener',false,2505,true,'onUseSkill'); // NOTE_USE_SKILL
-  WxSc.Dict.AddCall('onChangePet','changeInfo',() => {
-    const info = WxSc.Dict.Get('changeInfo','0.data');
+  WxSc.Refl.Func(WxSc.Const.SocketConnection,'addCmdListener',false,2505,true,'_skill'); // NOTE_USE_SKILL
+  WxSc.Dict.AddCall('_ChPet','_chIn',() => {
+    const info = WxSc.Dict.Get('_chIn','0.data');
     if (info.userID === WxSc.Refl.Get(WxSc.Const.MainManager,'actorInfo.userID')) {
       WxSc.Priv._fCT = info.catchTime;
       WxSc.Priv._fID = info.petID;
@@ -323,12 +303,12 @@ WxSc._in = () => {
       else WxSc.OnChangePet(info); // 死亡切换
     }
   });
-  WxSc.Refl.Func(WxSc.Const.SocketConnection,'addCmdListener',false,2407,true,'onChangePet'); // CHANGE_PET
-  WxSc.Dict.AddCall('onFightOver','overInfo',() => {
+  WxSc.Refl.Func(WxSc.Const.SocketConnection,'addCmdListener',false,2407,true,'_ChPet'); // CHANGE_PET
+  WxSc.Dict.AddCall('_over','_ovIn',() => {
     if (WxSc.Priv._cure) WxSc.Util.CurePetAll()
-    WxSc.OnFightOver(WxSc.Dict.Get('overInfo','0.data')); 
+    WxSc.OnFightOver(WxSc.Dict.Get('_ovIn','0.data')); 
   });
-  WxSc.Refl.Func(WxSc.Const.SocketConnection,'addCmdListener',false,2506,true,'onFightOver'); // FIGHT_OVER
+  WxSc.Refl.Func(WxSc.Const.SocketConnection,'addCmdListener',false,2506,true,'_over'); // FIGHT_OVER
 }
 
 ";
