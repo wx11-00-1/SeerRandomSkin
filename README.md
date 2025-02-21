@@ -47,6 +47,7 @@
   - **对战助手**，用 js 代码制作日常脚本
   - 活动收藏夹
   - 精灵跟随 DIY
+  - 套装幻化增强版
 - H5 端
   - 保存当前套装、称号、精灵背包，一键更换
   - 战斗结束后自动治疗
@@ -262,7 +263,7 @@ WxSc.Dict.Add('te2','com.robot.app2.Test2',false,'1',true,'te');
 参数：
 
 - key：标识
-- attribute：属性名
+- attribute：属性名（可选）
 
 #### WxSc.Dict.Func
 
@@ -280,10 +281,32 @@ WxSc.Dict.Add('te2','com.robot.app2.Test2',false,'1',true,'te');
 
 执行暂存区对象的公开（public）函数，把函数的返回值也放到暂存区
 
+参数：
+
 - key：标识
 - method：函数名
 - key2：返回值的标识
 - ...args：参数
+
+#### WxSc.Dict.Del
+
+临时使用完对象后，从暂存区删除
+
+参数：
+
+- key：标识
+
+#### WxSc.Dict.AddCall
+
+添加回调函数
+
+参数：
+
+- key：标识
+- result：返回值标识
+- func：无参回调函数
+
+示例：参考内置脚本【野生精灵】
 
 ### 4 *反射*
 
