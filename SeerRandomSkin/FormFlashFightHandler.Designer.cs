@@ -50,20 +50,25 @@
             this.btnFightPanelShow = new System.Windows.Forms.Button();
             this.btnAutoCureOpen = new System.Windows.Forms.Button();
             this.btnAutoCureStop = new System.Windows.Forms.Button();
+            this.btnMultiExec = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnItemDown = new System.Windows.Forms.Button();
+            this.btnItemUp = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // richTextBox_script
             // 
-            this.richTextBox_script.Location = new System.Drawing.Point(204, 37);
+            this.richTextBox_script.Location = new System.Drawing.Point(541, 37);
             this.richTextBox_script.Name = "richTextBox_script";
-            this.richTextBox_script.Size = new System.Drawing.Size(426, 315);
+            this.richTextBox_script.Size = new System.Drawing.Size(94, 315);
             this.richTextBox_script.TabIndex = 0;
             this.richTextBox_script.Text = "";
             // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(31, 432);
+            this.btnTest.Location = new System.Drawing.Point(31, 423);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(66, 23);
             this.btnTest.TabIndex = 1;
@@ -78,7 +83,7 @@
             this.lvTemplate.HideSelection = false;
             this.lvTemplate.Location = new System.Drawing.Point(31, 37);
             this.lvTemplate.Name = "lvTemplate";
-            this.lvTemplate.Size = new System.Drawing.Size(141, 315);
+            this.lvTemplate.Size = new System.Drawing.Size(494, 315);
             this.lvTemplate.TabIndex = 2;
             this.lvTemplate.UseCompatibleStateImageBehavior = false;
             this.lvTemplate.View = System.Windows.Forms.View.List;
@@ -113,7 +118,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(34, 477);
+            this.button1.Location = new System.Drawing.Point(34, 492);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(141, 23);
             this.button1.TabIndex = 6;
@@ -123,7 +128,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(106, 432);
+            this.btnSearch.Location = new System.Drawing.Point(106, 423);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(66, 23);
             this.btnSearch.TabIndex = 7;
@@ -266,11 +271,54 @@
             this.btnAutoCureStop.UseVisualStyleBackColor = true;
             this.btnAutoCureStop.Click += new System.EventHandler(this.btnAutoCureStop_Click);
             // 
+            // btnMultiExec
+            // 
+            this.btnMultiExec.Location = new System.Drawing.Point(34, 452);
+            this.btnMultiExec.Name = "btnMultiExec";
+            this.btnMultiExec.Size = new System.Drawing.Size(138, 23);
+            this.btnMultiExec.TabIndex = 13;
+            this.btnMultiExec.Text = "批量执行";
+            this.btnMultiExec.UseVisualStyleBackColor = true;
+            this.btnMultiExec.Click += new System.EventHandler(this.btnMultiExec_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnItemDown);
+            this.groupBox2.Controls.Add(this.btnItemUp);
+            this.groupBox2.Location = new System.Drawing.Point(435, 385);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(200, 90);
+            this.groupBox2.TabIndex = 14;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "移动";
+            // 
+            // btnItemDown
+            // 
+            this.btnItemDown.Location = new System.Drawing.Point(106, 38);
+            this.btnItemDown.Name = "btnItemDown";
+            this.btnItemDown.Size = new System.Drawing.Size(66, 23);
+            this.btnItemDown.TabIndex = 9;
+            this.btnItemDown.Text = "下";
+            this.btnItemDown.UseVisualStyleBackColor = true;
+            this.btnItemDown.Click += new System.EventHandler(this.btnItemDown_Click);
+            // 
+            // btnItemUp
+            // 
+            this.btnItemUp.Location = new System.Drawing.Point(24, 38);
+            this.btnItemUp.Name = "btnItemUp";
+            this.btnItemUp.Size = new System.Drawing.Size(66, 23);
+            this.btnItemUp.TabIndex = 8;
+            this.btnItemUp.Text = "上";
+            this.btnItemUp.UseVisualStyleBackColor = true;
+            this.btnItemUp.Click += new System.EventHandler(this.btnItemUp_Click);
+            // 
             // FormFlashFightHandler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(687, 652);
+            this.ClientSize = new System.Drawing.Size(678, 652);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.btnMultiExec);
             this.Controls.Add(this.btnAutoCureStop);
             this.Controls.Add(this.btnAutoCureOpen);
             this.Controls.Add(this.btnFightPanelShow);
@@ -288,8 +336,10 @@
             this.Controls.Add(this.richTextBox_script);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormFlashFightHandler";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormFlashFightHandler_FormClosing);
             this.Load += new System.EventHandler(this.FormFlashFightHandler_Load);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -318,5 +368,9 @@
         private System.Windows.Forms.Button btnAutoCureStop;
         private System.Windows.Forms.Button btnItem200hp;
         private System.Windows.Forms.Button btnItem250hp;
+        private System.Windows.Forms.Button btnMultiExec;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button btnItemDown;
+        private System.Windows.Forms.Button btnItemUp;
     }
 }

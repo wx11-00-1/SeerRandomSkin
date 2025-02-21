@@ -53,5 +53,10 @@ namespace SeerRandomSkin
         {
             FormPetFollow.WxScale();
         }
+
+        public void Resolve(bool r)
+        {
+            FormFlashFightHandler._t.TrySetResult(r);
+        }
     }
 }

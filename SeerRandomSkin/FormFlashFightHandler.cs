@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -316,7 +317,12 @@ WxSc._in = () => {
 
 ";
 
-        private static readonly JObject jFightTemplate = Utils.TryGetJObject(Properties.Settings.Default.FlashFightTemplate);
+        private static JObject jFightTemplate = Utils.TryGetJObject(Properties.Settings.Default.FlashFightTemplate);
+
+        private const string K_CHECK = "c", K_SCRIPT = "s";
+        private const string CB_T = "1", CB_F = "";
+
+        public static TaskCompletionSource<bool> _t;
 
         public FormFlashFightHandler()
         {
@@ -326,14 +332,36 @@ WxSc._in = () => {
         private void FormFlashFightHandler_Load(object sender, EventArgs e)
         {
             ResetLvTemplate();
+            richTextBox_script.Text = Properties.Settings.Default.FlashFightTemplate;
+        }
+
+        private static string JsToAsync(string js)
+        {
+            return String.Format("(async ()=>{{try{{\n{0}\n;seerRandomSkinObj.resolve(true)}}catch(e){{console.error(e);seerRandomSkinObj.resolve(false)}}}})()", js);
         }
 
         private async void btnTest_Click(object sender, EventArgs e)
         {
             btnTest.Enabled = false;
-            Form1.chromiumBrowser.ExecuteScriptAsync(richTextBox_script.Text);
-            await Task.Delay(1000);
+            _t = new TaskCompletionSource<bool>();
+            Form1.chromiumBrowser.ExecuteScriptAsync(JsToAsync(richTextBox_script.Text));
+            await _t.Task;
             btnTest.Enabled = true;
+        }
+
+        private async void btnMultiExec_Click(object sender, EventArgs e)
+        {
+            btnMultiExec.Enabled = false;
+            foreach (ListViewItem i in lvTemplate.CheckedItems)
+            {
+                _t = new TaskCompletionSource<bool>();
+                Form1.chromiumBrowser.ExecuteScriptAsync(JsToAsync(jFightTemplate[i.Text][K_SCRIPT].ToString()));
+                if (await _t.Task)
+                {
+                    i.BackColor = Color.SpringGreen;
+                }
+            }
+            btnMultiExec.Enabled = true;
         }
 
         private void lvTemplate_SelectedIndexChanged(object sender, EventArgs e)
@@ -341,13 +369,12 @@ WxSc._in = () => {
             if (lvTemplate.SelectedItems.Count != 1) return;
             var item = lvTemplate.SelectedItems[0];
             tbTemplateName.Text = item.Text;
-            richTextBox_script.Text = jFightTemplate[item.Text].ToString();
+            richTextBox_script.Text = jFightTemplate[item.Text][K_SCRIPT].ToString();
         }
 
         private IEnumerable<ListViewItem> GetAllListViewItems()
         {
-            // 取所有 key
-            return jFightTemplate.AsJEnumerable().Select(item => new ListViewItem(item.Path));
+            return jFightTemplate.Properties().Select(item => new ListViewItem(item.Name) { Checked = item.Value[K_CHECK].ToString().Length != 0 });
         }
 
         private void ResetLvTemplate()
@@ -362,7 +389,12 @@ WxSc._in = () => {
             {
                 return;
             }
-            jFightTemplate[tbTemplateName.Text] = richTextBox_script.Text;
+            UpdateItemSel();
+            jFightTemplate[tbTemplateName.Text] = new JObject
+            {
+                { K_CHECK, CB_F },
+                { K_SCRIPT, richTextBox_script.Text }
+            };
             SaveConfigTemplate();
         }
 
@@ -408,6 +440,7 @@ WxSc._in = () => {
             lvTemplate.Items.AddRange(GetAllListViewItems().Where(item => item.Text.Contains(tbTemplateName.Text)).ToArray());
         }
 
+        #region 快捷方式
         private void btnCure20_Click(object sender, EventArgs e)
         {
             Form1.chromiumBrowser.ExecuteScriptAsync("WxSc.Util.CurePet20HP();");
@@ -466,6 +499,69 @@ WxSc._in = () => {
         private void btnAutoCureStop_Click(object sender, EventArgs e)
         {
             Form1.chromiumBrowser.ExecuteScriptAsync("WxSc.Util.SetIsAutoCure(false);");
+        }
+        #endregion
+
+        private void UpdateItemSel()
+        {
+            foreach (ListViewItem i in lvTemplate.Items)
+            {
+                jFightTemplate[i.Text][K_CHECK] = i.Checked ? CB_T : CB_F;
+            }
+            Properties.Settings.Default.FlashFightTemplate = jFightTemplate.ToString();
+            Properties.Settings.Default.Save();
+        }
+
+        private void ResetJObj()
+        {
+            var o = new JObject();
+            foreach (ListViewItem i in lvTemplate.Items)
+            {
+                o[i.Text] = new JObject
+                {
+                    { K_CHECK, i.Checked ? CB_T : CB_F },
+                    { K_SCRIPT, jFightTemplate[i.Text][K_SCRIPT] }
+                };
+            }
+            jFightTemplate = o;
+            Properties.Settings.Default.FlashFightTemplate = jFightTemplate.ToString();
+            Properties.Settings.Default.Save();
+        }
+
+        private void btnItemDown_Click(object sender, EventArgs e)
+        {
+            if (lvTemplate.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("请先在列表中点击要移动项的名字");
+                return;
+            }
+            int i = lvTemplate.SelectedIndices[0];
+            if (i == lvTemplate.Items.Count - 1) return;
+            (sender as Button).Enabled = false;
+            (lvTemplate.Items[i + 1].Text, lvTemplate.Items[i].Text) = (lvTemplate.Items[i].Text, lvTemplate.Items[i + 1].Text);
+            (lvTemplate.Items[i + 1].Checked, lvTemplate.Items[i].Checked) = (lvTemplate.Items[i].Checked, lvTemplate.Items[i + 1].Checked);
+            ResetJObj();
+            (sender as Button).Enabled = true;
+        }
+        private void btnItemUp_Click(object sender, EventArgs e)
+        {
+            if (lvTemplate.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("请先在列表中点击要移动项的名字");
+                return;
+            }
+            int i = lvTemplate.SelectedIndices[0];
+            if (i == 0) return;
+            (sender as Button).Enabled = false;
+            (lvTemplate.Items[i - 1].Text, lvTemplate.Items[i].Text) = (lvTemplate.Items[i].Text, lvTemplate.Items[i - 1].Text);
+            (lvTemplate.Items[i - 1].Checked, lvTemplate.Items[i].Checked) = (lvTemplate.Items[i].Checked, lvTemplate.Items[i - 1].Checked);
+            ResetJObj();
+            (sender as Button).Enabled = true;
+        }
+
+        private void FormFlashFightHandler_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            UpdateItemSel();
         }
     }
 }
