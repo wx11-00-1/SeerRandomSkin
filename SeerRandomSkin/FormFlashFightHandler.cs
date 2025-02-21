@@ -164,8 +164,8 @@ WxSc.Util.SimpleAlarm = msg => WxSc.Refl.Func('com.robot.core.ui.alert.SimpleAla
 
 WxSc.Util.CopyFireAsync = async (fireType = null) => {
   // 从地图上借
-  if (await new Promise((resolve) => {
-    WxSc.Priv.res = resolve;
+  if (await new Promise(res => {
+    WxSc.Priv.res = res;
     document.Client.WxCopyFireFromMap(fireType);
   })) {
     WxSc.Util.SimpleAlarm('借火成功');
@@ -332,7 +332,6 @@ WxSc._in = () => {
         private void FormFlashFightHandler_Load(object sender, EventArgs e)
         {
             ResetLvTemplate();
-            richTextBox_script.Text = Properties.Settings.Default.FlashFightTemplate;
         }
 
         private static string JsToAsync(string js)

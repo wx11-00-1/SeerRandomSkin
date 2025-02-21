@@ -523,85 +523,85 @@ namespace SeerRandomSkin.Properties {
             "   if (window.allMapInfo11813[i].doors.indexOf(door) != -1) {\\n          queue.p" +
             "ush(i);\\n          visited[i] = visited[cur].concat([door]);\\n        }\\n      }" +
             "\\n    }\\n  }\\n  return new Array(window.allMapInfo11813.length+1);\\n}\\n\\nconsole" +
-            ".log(\'=====\');\\nawait findPath();\"\r\n  },\r\n  \"日常-通行证-养成任务\": {\r\n    \"c\": \"1\",\r\n   " +
-            " \"s\": \"let bag1 = WxSc.Util.GetBag1();\\nlet bag2 = WxSc.Util.GetBag2();\\nlet pet" +
-            "s = await WxSc.Util.GetStoragePetsAsync();\\n// 从仓库取出一只 皮皮\\npets = pets.filter(pe" +
-            "t => pet.id===10);\\nif (pets.length === 0) {\\n  pets = bag1.concat(bag2).filter(" +
-            "pet => pet.id===10);\\n  if (pets.length === 0) WxSc.Util.SimpleAlarm(\'没有精灵皮皮，任务失" +
-            "败\');\\n}\\nlet ct = pets[0].catchTime;\\nawait WxSc.Util.SetPetBagAsync([ct]);\\n// " +
-            "性格\\nWxSc.Util.Send(2326,ct,300070);\\n// 恢复背包\\nawait WxSc.Util.SetPetBagAsync(bag" +
-            "1.map(pet => pet.catchTime),bag2.map(pet => pet.catchTime));\\n// 领奖\\nWxSc.Util.S" +
-            "end(41916,1,3);\\nWxSc.Util.SimpleAlarm(\'ok\');\"\r\n  },\r\n  \"关卡-暗黑托鲁克\": {\r\n    \"c\": " +
-            "\"1\",\r\n    \"s\": \"// 需要有精灵：3437 艾欧丽娅（携带技能疾击之刺、第五技能侍君奉此生）\\nfunction ReadInt(data) {" +
-            " return (data.byteArray[data.position++] << 24) + (data.byteArray[data.position+" +
-            "+] << 16) + (data.byteArray[data.position++] << 8) + data.byteArray[data.positio" +
-            "n++]; }\\nfunction ReadByte(data) { return data.byteArray[data.position++]; }\\n\\n" +
-            "async function getMultiValue(arr) {\\n  arr.unshift(arr.length); // 赛发送数组的特殊格式，首位" +
-            "是数组长度\\n  let data = {};\\n  data.byteArray = await WxSc.Util.SendAsync(46046, arr" +
-            ");\\n  data.position = 0;\\n  // 将收到的包解析成数组\\n  let result = [];\\n  let arrayLength" +
-            " = ReadInt(data);\\n  for (let i = 0; i < arrayLength; ++i) { result.push(ReadInt" +
-            "(data)); }\\n  return result;\\n}\\n\\nasync function updateItems(arr) {\\n  arr.unsh" +
-            "ift(arr.length);\\n  let data = {};\\n  data.byteArray = await WxSc.Util.SendAsync" +
-            "(42399, arr); // MULTI_ITEM_LIST\\n  data.position = 0;\\n  let result = [];\\n  le" +
-            "t arrayLength = ReadInt(data);\\n  for (let i = 0; i < arrayLength; ++i) {\\n    l" +
-            "et item = {};\\n    item.itemID = ReadInt(data);\\n    item.itemNum = ReadInt(data" +
-            ");\\n    item.leftTime = ReadInt(data);\\n    item._itemLevel = ReadInt(data);\\n  " +
-            "  item.updateTime = ReadInt(data);\\n    result.push(item);\\n  }\\n  return result" +
-            ";\\n}\\n\\nconst 艾欧丽娅 = 3437;\\nconst 疾击之刺 = 31114;\\nconst 侍君奉此生 = 31117;\\nlet bag1 " +
-            "= WxSc.Util.GetBag1();\\nlet bag2 = WxSc.Util.GetBag2();\\nlet pets = await WxSc.U" +
-            "til.GetStoragePetsAsync();\\npets = pets.filter(pet => pet.id===艾欧丽娅);\\nif (pets." +
-            "length===0) {\\n  // 再看看背包里有没有\\n  pets = bag1.concat(bag2).filter(pet => pet.id==" +
-            "=艾欧丽娅);\\n  if (pets.length===0) {\\n    alert(\'未找到艾欧丽娅，任务终止\');\\n    return;\\n  }\\" +
-            "n}\\nawait WxSc.Util.SetPetBagAsync([pets[0].catchTime]);\\nlet petInfo = WxSc.Uti" +
-            "l.GetBagPetInfos()[0];\\nif (petInfo.skillArray.filter(sk => sk.id===疾击之刺).length" +
-            "===0) {\\n  alert(\'【艾欧丽娅】没有搭配技能【疾击之刺】，任务终止\');\\n  return;\\n}\\nif (petInfo.hideSKil" +
-            "l.id!==侍君奉此生) {\\n  alert(\'【艾欧丽娅】没有搭配技能【侍君奉此生】，任务终止\');\\n  return;\\n}\\n\\nWxSc.Util" +
-            ".SimpleAlarm(\'崩塌吧！天空之城！\');\\nWxSc.Util.SetIsHidePetFight(true);\\n\\n// 发起战斗\\nlet f" +
-            "ightWithTlk = (region) => {\\n  return new Promise(res => {\\n    WxSc.OnFightOver" +
-            " = (overInfo) => {\\n      res (overInfo.winnerID != 0);\\n    }\\n    WxSc.Util.Se" +
-            "nd(41129, region);\\n  });\\n}\\n\\nwhile (true) {\\n  // 剩余挑战次数\\n  let arr = await g" +
-            "etMultiValue([12045,2065]);\\n  if (3 - arr[0] + arr[1] === 0) break;\\n  // conso" +
-            "le.log(\'新一轮挑战\');\\n  for (let i = 0; i < 6; ++i) {\\n    let data = {};\\n    data." +
-            "byteArray = await WxSc.Util.SendAsync(47087, []); // SKY_CITY_GET_BOSS_REGION\\n " +
-            "   data.position = 0;\\n    let region = ReadInt(data);\\n    if (region === 251) " +
-            "{\\n      // 真身\\n      // 出招\\n      WxSc.OnFirstRound = () => WxSc.Util.UseSkill(" +
-            "侍君奉此生);\\n      WxSc.OnUseSkill = async (mySkillInfo) => {\\n        await WxSc.Ut" +
-            "il.DelayAsync(200);\\n        WxSc.Util.UseSkill(侍君奉此生);\\n      }\\n      let isWi" +
-            "n = await fightWithTlk(region);\\n      // console.log(`对战真身，${isWin?\'胜利\':\'失败\'}`)" +
-            ";\\n      // 失败后的情况有点奇怪，没看明白，就不处理了\\n      await WxSc.Util.DelayAsync(5000);\\n    " +
-            "  break;\\n    }\\n    else {\\n      // 出招\\n      WxSc.OnFirstRound = () => WxSc.U" +
-            "til.UseSkill(疾击之刺);\\n      WxSc.OnUseSkill = async (mySkillInfo) => {\\n        a" +
-            "wait WxSc.Util.DelayAsync(200);\\n        WxSc.Util.UseSkill(疾击之刺);\\n      }\\n   " +
-            "   let isWin = await fightWithTlk(region);\\n      // console.log(`对战分身，${isWin?\'" +
-            "胜利\':\'失败\'}`);\\n      await WxSc.Util.DelayAsync(5000);\\n    }\\n  }\\n}\\n\\nlet item" +
-            "s = await updateItems([1700364,1700365]);\\nif (items[1].itemNum<100 && items[0]." +
-            "itemNum>150) {\\n  // 合成\\n  while (items[0].itemNum >= 150) {\\n    WxSc.Util.Send" +
-            "(2901, 1768);\\n    items[0].itemNum -= 50;\\n    ++items[1].itemNum;\\n  }\\n}\\nWxS" +
-            "c.Util.StopAutoFight();\\nWxSc.Util.SetIsHidePetFight(false);\\n// 恢复背包\\nawait WxS" +
-            "c.Util.SetPetBagAsync(bag1.map(pet => pet.catchTime),bag2.map(pet => pet.catchTi" +
-            "me));\\nif (items[0].itemNum>=100 && items[1].itemNum>=100) {\\n  alert(\'可以去地图965领" +
-            "取精灵了\');\\n}\\nelse {\\n  alert(`当前进度：${items[0].itemNum}/100 | ${items[1].itemNum}/" +
-            "100`);\\n}\\n\\n// 参考资料：\\n// https://seer.61.com/module/com/robot/module/app/BlackB" +
-            "ulukeMainPanel.swf\\n// https://seer.61.com/dll/RobotAppDLL.swf\\n// https://seer." +
-            "61.com/dll/PetFightDLL_201308.swf\\n// com.robot.app.task.control.TianKongZhiChen" +
-            "gController\\n// com.robot.app2.control.BlackTuolukeGame\"\r\n  },\r\n  \"状态-pvp-保存\": {" +
-            "\r\n    \"c\": \"\",\r\n    \"s\": \"WxSc.Util.StateSave(\'pvp\')\"\r\n  },\r\n  \"状态-pvp-更换\": {\r\n " +
-            "   \"c\": \"\",\r\n    \"s\": \"WxSc.Util.StateLoadAsync(\'pvp\')\"\r\n  },\r\n  \"状态-日常-保存\": {\r\n" +
-            "    \"c\": \"\",\r\n    \"s\": \"WxSc.Util.StateSave(\'日常\')\"\r\n  },\r\n  \"状态-日常-更换\": {\r\n    \"" +
-            "c\": \"\",\r\n    \"s\": \"WxSc.Util.StateLoadAsync(\'日常\')\"\r\n  },\r\n  \"野生精灵\": {\r\n    \"c\": " +
-            "\"\",\r\n    \"s\": \"WxSc.OnFirstRound = () => {\\n  // 对战首回合，使用特殊胶囊捕捉\\n  WxSc.Util.Sen" +
-            "d(2409,300505);\\n  WxSc.Util.ItemBuy(300505);\\n  alert(\'捕捉成功\');\\n}\\n(() => {\\n  " +
-            "const 闪光皮皮 = 164, keyFunc = \'catch\', keyResult = \'catchRes\', SocketConnection = " +
-            "\'com.robot.core.net.SocketConnection\', MAP_OGRE_LIST = 2004;\\n  try {\\n    WxSc." +
-            "Refl.Func(SocketConnection,\'removeCmdListener\',false,MAP_OGRE_LIST,true,keyFunc)" +
-            "; // 防止重复\\n  } catch (e) {}\\n  WxSc.Dict.AddCall(keyFunc,keyResult,() => {\\n    " +
-            "// 接收到的参数会存放到 keyResult 数组中，这里需要的是第一个参数（下标为 0），类型为 SocketEvent\\n    for (let i =" +
-            " 0; i < 9; i++) {\\n      WxSc.Dict.Set(keyResult,\'0.data.position\',false,0);\\n  " +
-            "    let o = WxSc.Dict.Func(keyResult,\'0.data.readUnsignedInt\');\\n      if (o ===" +
-            " 闪光皮皮) {\\n        WxSc.Refl.Func(\'com.robot.app.fight.FightManager\',\'fightWithNp" +
-            "c\',false,闪光皮皮);\\n        return;\\n      }\\n    }\\n    WxSc.Util.SimpleAlarm(\'等待\'" +
-            ");\\n  });\\n  WxSc.Refl.Func(SocketConnection,\'addCmdListener\',false,MAP_OGRE_LIS" +
-            "T,true,keyFunc);\\n})()\\nWxSc.Util.ChangeMap(10); // 克洛斯星\"\r\n  }\r\n}")]
+            ".log(\'=====\');\\nawait findPath();\"\r\n  },\r\n  \"关卡-暗黑托鲁克\": {\r\n    \"c\": \"1\",\r\n    \"s" +
+            "\": \"// 需要有精灵：3437 艾欧丽娅（携带技能疾击之刺、第五技能侍君奉此生）\\nfunction ReadInt(data) { return (dat" +
+            "a.byteArray[data.position++] << 24) + (data.byteArray[data.position++] << 16) + " +
+            "(data.byteArray[data.position++] << 8) + data.byteArray[data.position++]; }\\nfun" +
+            "ction ReadByte(data) { return data.byteArray[data.position++]; }\\n\\nasync functi" +
+            "on getMultiValue(arr) {\\n  arr.unshift(arr.length); // 赛发送数组的特殊格式，首位是数组长度\\n  let" +
+            " data = {};\\n  data.byteArray = await WxSc.Util.SendAsync(46046, arr);\\n  data.p" +
+            "osition = 0;\\n  // 将收到的包解析成数组\\n  let result = [];\\n  let arrayLength = ReadInt(d" +
+            "ata);\\n  for (let i = 0; i < arrayLength; ++i) { result.push(ReadInt(data)); }\\n" +
+            "  return result;\\n}\\n\\nasync function updateItems(arr) {\\n  arr.unshift(arr.leng" +
+            "th);\\n  let data = {};\\n  data.byteArray = await WxSc.Util.SendAsync(42399, arr)" +
+            "; // MULTI_ITEM_LIST\\n  data.position = 0;\\n  let result = [];\\n  let arrayLengt" +
+            "h = ReadInt(data);\\n  for (let i = 0; i < arrayLength; ++i) {\\n    let item = {}" +
+            ";\\n    item.itemID = ReadInt(data);\\n    item.itemNum = ReadInt(data);\\n    item" +
+            ".leftTime = ReadInt(data);\\n    item._itemLevel = ReadInt(data);\\n    item.updat" +
+            "eTime = ReadInt(data);\\n    result.push(item);\\n  }\\n  return result;\\n}\\n\\ncons" +
+            "t 艾欧丽娅 = 3437;\\nconst 疾击之刺 = 31114;\\nconst 侍君奉此生 = 31117;\\nlet bag1 = WxSc.Util." +
+            "GetBag1();\\nlet bag2 = WxSc.Util.GetBag2();\\nlet pets = await WxSc.Util.GetStora" +
+            "gePetsAsync();\\npets = pets.filter(pet => pet.id===艾欧丽娅);\\nif (pets.length===0) " +
+            "{\\n  // 再看看背包里有没有\\n  pets = bag1.concat(bag2).filter(pet => pet.id===艾欧丽娅);\\n  i" +
+            "f (pets.length===0) {\\n    alert(\'未找到艾欧丽娅，任务终止\');\\n    return;\\n  }\\n}\\nawait Wx" +
+            "Sc.Util.SetPetBagAsync([pets[0].catchTime]);\\nlet petInfo = WxSc.Util.GetBagPetI" +
+            "nfos()[0];\\nif (petInfo.skillArray.filter(sk => sk.id===疾击之刺).length===0) {\\n  a" +
+            "lert(\'【艾欧丽娅】没有搭配技能【疾击之刺】，任务终止\');\\n  return;\\n}\\nif (petInfo.hideSKill.id!==侍君奉此生" +
+            ") {\\n  alert(\'【艾欧丽娅】没有搭配技能【侍君奉此生】，任务终止\');\\n  return;\\n}\\n\\nWxSc.Util.SimpleAlarm" +
+            "(\'崩塌吧！天空之城！\');\\nWxSc.Util.SetIsHidePetFight(true);\\n\\n// 发起战斗\\nlet fightWithTlk " +
+            "= (region) => {\\n  return new Promise(res => {\\n    WxSc.OnFightOver = (overInfo" +
+            ") => {\\n      res (overInfo.winnerID != 0);\\n    }\\n    WxSc.Util.Send(41129, re" +
+            "gion);\\n  });\\n}\\n\\nwhile (true) {\\n  // 剩余挑战次数\\n  let arr = await getMultiValue" +
+            "([12045,2065]);\\n  if (3 - arr[0] + arr[1] === 0) break;\\n  // console.log(\'新一轮挑" +
+            "战\');\\n  for (let i = 0; i < 6; ++i) {\\n    let data = {};\\n    data.byteArray = " +
+            "await WxSc.Util.SendAsync(47087, []); // SKY_CITY_GET_BOSS_REGION\\n    data.posi" +
+            "tion = 0;\\n    let region = ReadInt(data);\\n    if (region === 251) {\\n      // " +
+            "真身\\n      // 出招\\n      WxSc.OnFirstRound = () => WxSc.Util.UseSkill(侍君奉此生);\\n   " +
+            "   WxSc.OnUseSkill = async (mySkillInfo) => {\\n        await WxSc.Util.DelayAsyn" +
+            "c(200);\\n        WxSc.Util.UseSkill(侍君奉此生);\\n      }\\n      let isWin = await fi" +
+            "ghtWithTlk(region);\\n      // console.log(`对战真身，${isWin?\'胜利\':\'失败\'}`);\\n      // " +
+            "失败后的情况有点奇怪，没看明白，就不处理了\\n      await WxSc.Util.DelayAsync(5000);\\n      break;\\n  " +
+            "  }\\n    else {\\n      // 出招\\n      WxSc.OnFirstRound = () => WxSc.Util.UseSkill" +
+            "(疾击之刺);\\n      WxSc.OnUseSkill = async (mySkillInfo) => {\\n        await WxSc.Ut" +
+            "il.DelayAsync(200);\\n        WxSc.Util.UseSkill(疾击之刺);\\n      }\\n      let isWin" +
+            " = await fightWithTlk(region);\\n      // console.log(`对战分身，${isWin?\'胜利\':\'失败\'}`);" +
+            "\\n      await WxSc.Util.DelayAsync(5000);\\n    }\\n  }\\n}\\n\\nlet items = await up" +
+            "dateItems([1700364,1700365]);\\nif (items[1].itemNum<100 && items[0].itemNum>150)" +
+            " {\\n  // 合成\\n  while (items[0].itemNum >= 150) {\\n    WxSc.Util.Send(2901, 1768)" +
+            ";\\n    items[0].itemNum -= 50;\\n    ++items[1].itemNum;\\n  }\\n}\\nWxSc.Util.StopA" +
+            "utoFight();\\nWxSc.Util.SetIsHidePetFight(false);\\n// 恢复背包\\nawait WxSc.Util.SetPe" +
+            "tBagAsync(bag1.map(pet => pet.catchTime),bag2.map(pet => pet.catchTime));\\nif (i" +
+            "tems[0].itemNum>=100 && items[1].itemNum>=100) {\\n  alert(\'可以去地图965领取精灵了\');\\n}\\n" +
+            "else {\\n  WxSc.Util.SimpleAlarm(`当前进度：${items[0].itemNum}/100 | ${items[1].itemN" +
+            "um}/100`);\\n}\\n\\n// 参考资料：\\n// https://seer.61.com/module/com/robot/module/app/Bl" +
+            "ackBulukeMainPanel.swf\\n// https://seer.61.com/dll/RobotAppDLL.swf\\n// https://s" +
+            "eer.61.com/dll/PetFightDLL_201308.swf\\n// com.robot.app.task.control.TianKongZhi" +
+            "ChengController\\n// com.robot.app2.control.BlackTuolukeGame\"\r\n  },\r\n  \"日常-通行证-养成" +
+            "任务\": {\r\n    \"c\": \"1\",\r\n    \"s\": \"let bag1 = WxSc.Util.GetBag1();\\nlet bag2 = WxS" +
+            "c.Util.GetBag2();\\nlet pets = await WxSc.Util.GetStoragePetsAsync();\\n// 从仓库取出一只" +
+            " 皮皮\\npets = pets.filter(pet => pet.id===10);\\nif (pets.length === 0) {\\n  pets =" +
+            " bag1.concat(bag2).filter(pet => pet.id===10);\\n  if (pets.length === 0) WxSc.Ut" +
+            "il.SimpleAlarm(\'没有精灵皮皮，任务失败\');\\n}\\nlet ct = pets[0].catchTime;\\nawait WxSc.Util." +
+            "SetPetBagAsync([ct]);\\n// 性格\\nWxSc.Util.Send(2326,ct,300070);\\n// 恢复背包\\nawait Wx" +
+            "Sc.Util.SetPetBagAsync(bag1.map(pet => pet.catchTime),bag2.map(pet => pet.catchT" +
+            "ime));\\n// 领奖\\nWxSc.Util.Send(41916,1,3);\\nWxSc.Util.SimpleAlarm(\'ok\');\"\r\n  },\r\n" +
+            "  \"状态-pvp-保存\": {\r\n    \"c\": \"\",\r\n    \"s\": \"WxSc.Util.StateSave(\'pvp\')\"\r\n  },\r\n  \"" +
+            "状态-pvp-更换\": {\r\n    \"c\": \"\",\r\n    \"s\": \"WxSc.Util.StateLoadAsync(\'pvp\')\"\r\n  },\r\n " +
+            " \"状态-日常-保存\": {\r\n    \"c\": \"\",\r\n    \"s\": \"WxSc.Util.StateSave(\'日常\')\"\r\n  },\r\n  \"状态-" +
+            "日常-更换\": {\r\n    \"c\": \"\",\r\n    \"s\": \"WxSc.Util.StateLoadAsync(\'日常\')\"\r\n  },\r\n  \"野生精" +
+            "灵\": {\r\n    \"c\": \"\",\r\n    \"s\": \"WxSc.OnFirstRound = () => {\\n  // 对战首回合，使用特殊胶囊捕捉\\" +
+            "n  WxSc.Util.Send(2409,300505);\\n  WxSc.Util.ItemBuy(300505);\\n}\\n(() => {\\n  co" +
+            "nst 闪光皮皮 = 164, keyFunc = \'catch\', keyResult = \'catchRes\', SocketConnection = \'c" +
+            "om.robot.core.net.SocketConnection\', MAP_OGRE_LIST = 2004;\\n  try {\\n    WxSc.Re" +
+            "fl.Func(SocketConnection,\'removeCmdListener\',false,MAP_OGRE_LIST,true,keyFunc); " +
+            "// 防止重复\\n  } catch (e) {}\\n  WxSc.Dict.AddCall(keyFunc,keyResult,() => {\\n    //" +
+            " 接收到的参数会存放到 keyResult 数组中，这里需要的是第一个参数（下标为 0），类型为 SocketEvent\\n    for (let i = 0" +
+            "; i < 9; i++) {\\n      WxSc.Dict.Set(keyResult,\'0.data.position\',false,0);\\n    " +
+            "  let o = WxSc.Dict.Func(keyResult,\'0.data.readUnsignedInt\');\\n      if (o === 闪" +
+            "光皮皮) {\\n        WxSc.Refl.Func(\'com.robot.app.fight.FightManager\',\'fightWithNpc\'" +
+            ",false,i);\\n        return;\\n      }\\n    }\\n    WxSc.Util.SimpleAlarm(\'等待\');\\n " +
+            " });\\n  WxSc.Refl.Func(SocketConnection,\'addCmdListener\',false,MAP_OGRE_LIST,tru" +
+            "e,keyFunc);\\n})()\\nWxSc.Util.ChangeMap(10); // 克洛斯星\"\r\n  }\r\n}")]
         public string FlashFightTemplate {
             get {
                 return ((string)(this["FlashFightTemplate"]));
