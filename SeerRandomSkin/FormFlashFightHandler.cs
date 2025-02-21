@@ -332,6 +332,7 @@ WxSc._in = () => {
         private void FormFlashFightHandler_Load(object sender, EventArgs e)
         {
             ResetLvTemplate();
+            richTextBox_script.Text = Properties.Settings.Default.FlashFightTemplate;
         }
 
         private static string JsToAsync(string js)
