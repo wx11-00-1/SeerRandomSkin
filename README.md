@@ -404,3 +404,14 @@ true 或 false
 参数：
 
 字符串
+
+#### WxSc.Util.ShowAppModule
+
+打开活动页面
+
+示例：
+
+```js
+WxSc.Util.ShowAppModule('AssessorPanel'); // https://seer.61.com/module/com/robot/module/app/AssessorPanel.swf
+```
+

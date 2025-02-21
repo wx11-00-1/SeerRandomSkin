@@ -437,7 +437,6 @@ WxSc._in = () => {
         private void btnSearch_Click(object sender, EventArgs e)
         {
             lvTemplate.Items.Clear();
-            lvTemplate.Items.AddRange(GetAllListViewItems().Where(item => item.Text.Contains(tbTemplateName.Text)).ToArray());
         }
 
         #region 快捷方式
