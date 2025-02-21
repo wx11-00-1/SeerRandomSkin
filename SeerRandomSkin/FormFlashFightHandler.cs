@@ -539,6 +539,8 @@ WxSc._in = () => {
             (sender as Button).Enabled = false;
             (lvTemplate.Items[i + 1].Text, lvTemplate.Items[i].Text) = (lvTemplate.Items[i].Text, lvTemplate.Items[i + 1].Text);
             (lvTemplate.Items[i + 1].Checked, lvTemplate.Items[i].Checked) = (lvTemplate.Items[i].Checked, lvTemplate.Items[i + 1].Checked);
+            lvTemplate.Items[i].Selected = false;
+            lvTemplate.Items[i + 1].Selected = true;
             ResetJObj();
             (sender as Button).Enabled = true;
         }
@@ -554,6 +556,8 @@ WxSc._in = () => {
             (sender as Button).Enabled = false;
             (lvTemplate.Items[i - 1].Text, lvTemplate.Items[i].Text) = (lvTemplate.Items[i].Text, lvTemplate.Items[i - 1].Text);
             (lvTemplate.Items[i - 1].Checked, lvTemplate.Items[i].Checked) = (lvTemplate.Items[i].Checked, lvTemplate.Items[i - 1].Checked);
+            lvTemplate.Items[i].Selected = false;
+            lvTemplate.Items[i - 1].Selected = true;
             ResetJObj();
             (sender as Button).Enabled = true;
         }
