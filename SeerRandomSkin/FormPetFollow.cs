@@ -379,7 +379,7 @@ namespace SeerRandomSkin
             try
             {
                 var id = lvSuit.SelectedItems[0].Text;
-                Form1.chromiumBrowser.ExecuteScriptAsync($"if(WxSc.Refl.Func('{CLASS_SUITXMLINFO}','getIsTransform',false,{id})){{let a=[];for(let c of WxSc.Refl.Func('{CLASS_SUITXMLINFO}','getCloths',false,{id})){{a.push(c);a.push(0)}}WxSc.Util.ChangeCloth(a,false);WxSc.Refl.Set(WxSc.Const.MainManager,'actorModel.info.changeShape',{id},false);WxSc.Dict.Add('tr','com.robot.core.skeleton.TransformSkeleton');WxSc.Refl.Set(WxSc.Const.MainManager,'actorModel.skeleton','tr',true)}}else WxSc.Util.SimpleAlarm('无法变形')");
+                Form1.chromiumBrowser.ExecuteScriptAsync($"if(WxSc.Refl.Func('{CLASS_SUITXMLINFO}','getIsTransform',false,{id})){{WxSc.Refl.Set(WxSc.Const.MainManager,'actorModel.info.changeShape',false,{id});WxSc.Dict.Add('tr','com.robot.core.skeleton.TransformSkeleton');WxSc.Refl.Set(WxSc.Const.MainManager,'actorModel.skeleton',true,'tr')}}else WxSc.Util.SimpleAlarm('无法变形')");
             }
             catch (Exception) { }
         }
@@ -395,7 +395,7 @@ namespace SeerRandomSkin
         }
         public static void ShowMount(string id)
         {
-            Form1.chromiumBrowser.ExecuteScriptAsync($"WxSc.Refl.Set(WxSc.Const.MainManager,'actorModel.info.vip',1,false);WxSc.Refl.Func(WxSc.Const.MainManager,'actorModel.showMount',false,{id})");
+            Form1.chromiumBrowser.ExecuteScriptAsync($"WxSc.Refl.Set(WxSc.Const.MainManager,'actorModel.info.vip',false,1);WxSc.Refl.Func(WxSc.Const.MainManager,'actorModel.showMount',false,{id})");
         }
 
         private void cbDefSuit_MouseUp(object sender, MouseEventArgs e)
