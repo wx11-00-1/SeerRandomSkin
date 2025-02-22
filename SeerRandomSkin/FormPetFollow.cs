@@ -283,7 +283,7 @@ namespace SeerRandomSkin
         }
         private string GetClothesFromLv()
         {
-            return $"[{GetSelectedItem(lvHead)},0,{GetSelectedItem(lvEye)},0,{GetSelectedItem(lvHand)},0,{GetSelectedItem(lvWaist)},0,{GetSelectedItem(lvFoot)},0]";
+            return String.Format("[{1},{0},{2},{0},{3},{0},{4},{0},{5},{0}]", tbClothLv.Text, GetSelectedItem(lvHead), GetSelectedItem(lvEye), GetSelectedItem(lvHand), GetSelectedItem(lvWaist), GetSelectedItem(lvFoot));
         }
         private void LvEvent(object s, ListViewItemSelectionChangedEventArgs e)
         {

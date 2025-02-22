@@ -51,7 +51,9 @@
             this.numericUpDown_id2 = new System.Windows.Forms.NumericUpDown();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tbPosY = new System.Windows.Forms.TextBox();
             this.btnScale2 = new System.Windows.Forms.Button();
+            this.tbPosX = new System.Windows.Forms.TextBox();
             this.btnScale1 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -69,9 +71,9 @@
             this.cbDefPet = new System.Windows.Forms.CheckBox();
             this.cbDefSuit = new System.Windows.Forms.CheckBox();
             this.cbScale = new System.Windows.Forms.CheckBox();
-            this.tbPosX = new System.Windows.Forms.TextBox();
-            this.tbPosY = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tbClothLv = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_id1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -322,6 +324,13 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "缩放、精灵位置";
             // 
+            // tbPosY
+            // 
+            this.tbPosY.Location = new System.Drawing.Point(109, 106);
+            this.tbPosY.Name = "tbPosY";
+            this.tbPosY.Size = new System.Drawing.Size(64, 21);
+            this.tbPosY.TabIndex = 2;
+            // 
             // btnScale2
             // 
             this.btnScale2.Location = new System.Drawing.Point(109, 56);
@@ -331,6 +340,13 @@
             this.btnScale2.Text = "精灵";
             this.btnScale2.UseVisualStyleBackColor = true;
             this.btnScale2.Click += new System.EventHandler(this.btnScale2_Click);
+            // 
+            // tbPosX
+            // 
+            this.tbPosX.Location = new System.Drawing.Point(22, 106);
+            this.tbPosX.Name = "tbPosX";
+            this.tbPosX.Size = new System.Drawing.Size(64, 21);
+            this.tbPosX.TabIndex = 1;
             // 
             // btnScale1
             // 
@@ -360,6 +376,8 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.tbClothLv);
+            this.groupBox4.Controls.Add(this.label7);
             this.groupBox4.Controls.Add(this.lvSuit);
             this.groupBox4.Controls.Add(this.lvMount);
             this.groupBox4.Controls.Add(this.lvFoot);
@@ -419,7 +437,7 @@
             // 
             // btnTrans
             // 
-            this.btnTrans.Location = new System.Drawing.Point(722, 176);
+            this.btnTrans.Location = new System.Drawing.Point(724, 176);
             this.btnTrans.Name = "btnTrans";
             this.btnTrans.Size = new System.Drawing.Size(75, 23);
             this.btnTrans.TabIndex = 8;
@@ -529,20 +547,6 @@
             this.cbScale.UseVisualStyleBackColor = true;
             this.cbScale.MouseUp += new System.Windows.Forms.MouseEventHandler(this.cbScale_MouseUp);
             // 
-            // tbPosX
-            // 
-            this.tbPosX.Location = new System.Drawing.Point(22, 106);
-            this.tbPosX.Name = "tbPosX";
-            this.tbPosX.Size = new System.Drawing.Size(64, 21);
-            this.tbPosX.TabIndex = 1;
-            // 
-            // tbPosY
-            // 
-            this.tbPosY.Location = new System.Drawing.Point(109, 106);
-            this.tbPosY.Name = "tbPosY";
-            this.tbPosY.Size = new System.Drawing.Size(64, 21);
-            this.tbPosY.TabIndex = 2;
-            // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.cbDefPet);
@@ -554,6 +558,23 @@
             this.groupBox6.TabIndex = 13;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "默认";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(722, 111);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(65, 12);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "套装等级：";
+            // 
+            // tbClothLv
+            // 
+            this.tbClothLv.Location = new System.Drawing.Point(724, 130);
+            this.tbClothLv.Name = "tbClothLv";
+            this.tbClothLv.Size = new System.Drawing.Size(73, 21);
+            this.tbClothLv.TabIndex = 23;
+            this.tbClothLv.Text = "0";
             // 
             // FormPetFollow
             // 
@@ -630,5 +651,7 @@
         private System.Windows.Forms.TextBox tbPosY;
         private System.Windows.Forms.TextBox tbPosX;
         private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.TextBox tbClothLv;
+        private System.Windows.Forms.Label label7;
     }
 }
