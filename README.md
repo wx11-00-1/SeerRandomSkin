@@ -415,3 +415,11 @@ true 或 false
 WxSc.Util.ShowAppModule('AssessorPanel'); // https://seer.61.com/module/com/robot/module/app/AssessorPanel.swf
 ```
 
+#### WxSc.Util.ChangeCloth
+
+更换套装
+
+参数：
+
+- 套装数组
+- 更换模式（可选，默认是 true）
