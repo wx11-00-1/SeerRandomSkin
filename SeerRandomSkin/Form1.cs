@@ -23,16 +23,13 @@ namespace SeerRandomSkin
     {
         //游戏网址
         public const string gameAddress = "https://seer.61.com/play.shtml";
-        public const string gameH5Address = "https://seerh5.61.com";
 
         static readonly Properties.Settings Configs = Properties.Settings.Default;
 
         public static ChromiumWebBrowser chromiumBrowser;
         private Form2 childForm2 = null;
         private FormConfig childFormConfig = null;
-        private FormPetBag childFormPetBag = null;
         public static FormScreenShot childFormScreenShot = null;
-        public static FormPack childFormPack = null;
 
         public bool isFullScreen = false;
         private static int[] skinIds;
@@ -196,72 +193,10 @@ namespace SeerRandomSkin
                 {
                     // 自动静音
                     args.Browser.GetHost().SetAudioMuted(Configs.AutoMute);
-                    // 隐藏滚动条
-                    args.Browser.MainFrame.ExecuteJavaScriptAsync("document.body.style.overflow = 'hidden'");
-                    if (address == gameH5Address)
-                    {
-                        args.Browser.MainFrame.ExecuteJavaScriptAsync(
-                            "WxSeerUtil = {};" +
-                            "WxSeerUtil.AutoCurePet = true;" +
-                            "WxSeerUtil.Initialized = false;" +
-
-                            // 是否显示收发包的标志
-                            "WxSeerUtil.HideRecv = true;" +
-                            "WxSeerUtil.HideSend = true;" +
-                            // hook 对象 prototype 函数
-                            "WxSeerUtil.rsPrototypeWrapRecv = (obj, meth) => {" +
-                            "   var orig = obj[meth];" +
-                            "   obj[meth] = function rsPrototypeWrapper(){" +
-                            "       if(!WxSeerUtil.HideRecv) {" +
-                            "           let view = arguments[0].data;" +
-                            "           let abLen = view.buffer.byteLength;" +
-                            "           let packStr=\"\";" +
-                            "           for(var i=0; i<abLen; ++i) { packStr += (view.getUint8(i)).toString(16).padStart(2, '0').toUpperCase(); }" +
-                            "           seerRandomSkinObj.getRecvPackArray((view.getUint32(5)).toString(), packStr);" +
-                            "       }" +
-                            "       var res = orig.apply(this, arguments);" +
-                            "       return res;" +
-                            "   }" +
-                            "};" +
-                            "WxSeerUtil.rsPrototypeWrapSend = (obj, meth) => {" +
-                            "   var orig = obj[meth];" +
-                            "   obj[meth] = function rsPrototypeWrapper(){" +
-                            "       var res = orig.apply(this, arguments);" +
-                            "       if (!WxSeerUtil.HideSend) {" +
-                            "           let view = res.data;" +
-                            "           let abLen = view.buffer.byteLength;" +
-                            "           let packStr = '';" +
-                            "           for (var i = 0; i < abLen; ++i) { packStr += (view.getUint8(i)).toString(16).padStart(2, '0').toUpperCase(); }" +
-                            "           seerRandomSkinObj.getSendPackArray((view.getUint32(5)).toString(), packStr);" +
-                            "       }" +
-                            "       return res;" +
-                            "   }" +
-                            "};" +
-
-                            "Object.defineProperty(window, 'ActivityAnnouncement', {" +
-                            "   get: () => {" +
-                            "       if (WxSeerUtil.Initialized) return;" +
-                            // 自动治疗
-                            "       SocketConnection.addCmdListener(2506, () => { if (WxSeerUtil.AutoCurePet) PetManager.noAlarmCureAll(); });" +
-                            // H5 巅峰记牌器
-                            "       SocketConnection.addCmdListener(45144, () => { seerRandomSkinObj.screenShot(); });" +
-
-                            // hook 接受包的数据解析函数
-                            "       WxSeerUtil.rsPrototypeWrapRecv(SocketEncryptImpl.prototype, 'parseData');" +
-                            // hook 发送包
-                            "       WxSeerUtil.rsPrototypeWrapSend(SocketEncryptImpl.prototype, 'pack');" +
-
-                            "       WxSeerUtil.Initialized = true;" +
-                            "       return 0;" +
-                            "   }," +
-                            "   set: () => {}" +
-                            "});");
-                    }
-                    else if (address == gameAddress)
-                    {
-                        args.Browser.MainFrame.ExecuteJavaScriptAsync(String.Format("document.body.style.zoom = {0};", Configs.FlashZoom));
-                        args.Browser.MainFrame.ExecuteJavaScriptAsync(FormFlashFightHandler.JS_FIGHT_ENVIRONMENT);
-                    }
+                    // 隐藏滚动条、缩放
+                    args.Browser.MainFrame.ExecuteJavaScriptAsync(String.Format("document.body.style.overflow = 'hidden';document.body.style.zoom = {0}", Configs.FlashZoom));
+                    // 脚本功能初始化
+                    args.Browser.MainFrame.ExecuteJavaScriptAsync(FormFlashFightHandler.JS_FIGHT_ENVIRONMENT);
                 }
             };
             return chromium;
@@ -485,38 +420,9 @@ namespace SeerRandomSkin
             return 0;
         }
 
-        private void flashToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            panelBrowser.Controls.Remove(chromiumBrowser);
-            chromiumBrowser.Dispose();
-            chromiumBrowser = null;
-            chromiumBrowser = CreateChromium(gameAddress);
-            panelBrowser.Controls.Add(chromiumBrowser);
-        }
-
-        private void h5ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            panelBrowser.Controls.Remove(chromiumBrowser);
-            chromiumBrowser.Dispose();
-            chromiumBrowser = null;
-            chromiumBrowser = CreateChromium(gameH5Address);
-            panelBrowser.Controls.Add(chromiumBrowser);
-
-        }
-
         private void 开发者工具ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             chromiumBrowser.ShowDevTools();
-        }
-
-        private void toolStripMenuItem_CureOpen_Click(object sender, EventArgs e)
-        {
-            chromiumBrowser.GetMainFrame().ExecuteJavaScriptAsync("WxSeerUtil.AutoCurePet = true;");
-        }
-
-        private void toolStripMenuItem_AutoCureClose_Click(object sender, EventArgs e)
-        {
-            chromiumBrowser.GetMainFrame().ExecuteJavaScriptAsync("WxSeerUtil.AutoCurePet = false;");
         }
 
         private void 关于ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -588,15 +494,6 @@ namespace SeerRandomSkin
             }
         }
 
-        private void 换装ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (childFormPetBag == null)
-            {
-                childFormPetBag = new FormPetBag();
-                childFormPetBag.Show();
-            }
-        }
-
         private class KeyBoardHandler : IKeyboardHandler
         {
             public Form1 mainForm = null;
@@ -649,11 +546,6 @@ namespace SeerRandomSkin
             int pid = (int)GetCefSubprocessPid("type=network.mojom");
             if (pid == 0) return;
             RemoteHooking.Inject(pid, libPath, libPath, Handle);
-        }
-
-        private void 收发包ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            childFormPack = new FormPack(); childFormPack.Show();
         }
 
         private void 巅峰记牌ToolStripMenuItem_Click(object sender, EventArgs e)

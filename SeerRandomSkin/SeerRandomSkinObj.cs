@@ -9,25 +9,10 @@ namespace SeerRandomSkin
     /// </summary>
     internal class SeerRandomSkinObj
     {
-        public void GetCloth(string bag)
-        {
-            FormPetBag.SeerCloth = bag;
-        }
-
         public void ScreenShot()
         {
             if (Form1.childFormScreenShot == null) return;
             Form1.childFormScreenShot.ScreenShot();
-        }
-
-        public void GetRecvPackArray(string cmd, string pack)
-        {
-            Form1.childFormPack.ShowRecvPack(cmd, pack);
-        }
-
-        public void GetSendPackArray(string cmd, string pack)
-        {
-            Form1.childFormPack.ShowSendPack(cmd, pack);
         }
 
         public void ShowFightInfo(string hp1, int round, string hp2)
