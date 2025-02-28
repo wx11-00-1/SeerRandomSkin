@@ -336,7 +336,7 @@ WxSc._in = () => {
 
         private static string JsToAsync(string js)
         {
-            return String.Format("(async ()=>{{try{{\n{0}\n;seerRandomSkinObj.resolve(true)}}catch(e){{console.error(e);seerRandomSkinObj.resolve(false)}}}})()", js);
+            return String.Format("(async ()=>{{try{{{0}\n;seerRandomSkinObj.resolve(true)}}catch(e){{console.error(e);seerRandomSkinObj.resolve(false)}}}})()", js);
         }
 
         private async void btnTest_Click(object sender, EventArgs e)
@@ -415,7 +415,7 @@ WxSc._in = () => {
 
         public static void StopAutoFight()
         {
-            Form1.chromiumBrowser.ExecuteScriptAsync("WxSc.Util.StopAutoFight");
+            Form1.chromiumBrowser.ExecuteScriptAsync("WxSc.Util.StopAutoFight()");
         }
 
         public static bool SetFightTemplate(string name)
