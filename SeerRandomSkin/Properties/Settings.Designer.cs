@@ -823,19 +823,70 @@ namespace SeerRandomSkin.Properties {
             "-pvp-更换\": {\r\n    \"c\": \"\",\r\n    \"s\": \"WxSc.Util.StateLoadAsync(\'pvp\')\"\r\n  },\r\n  \"" +
             "状态-日常-保存\": {\r\n    \"c\": \"\",\r\n    \"s\": \"WxSc.Util.StateSave(\'日常\')\"\r\n  },\r\n  \"状态-日常" +
             "-更换\": {\r\n    \"c\": \"\",\r\n    \"s\": \"WxSc.Util.StateLoadAsync(\'日常\')\"\r\n  },\r\n  \"野生精灵\"" +
-            ": {\r\n    \"c\": \"\",\r\n    \"s\": \"WxSc.OnFirstRound = () => {\\n  // 对战首回合，使用特殊胶囊捕捉\\n " +
-            " WxSc.Util.Send(2409,300505);\\n  WxSc.Util.ItemBuy(300505);\\n}\\n(() => {\\n  cons" +
-            "t 闪光皮皮 = 164, keyFunc = \'catch\', keyResult = \'catchRes\', SocketConnection = \'com" +
-            ".robot.core.net.SocketConnection\', MAP_OGRE_LIST = 2004;\\n  try {\\n    WxSc.Refl" +
-            ".Func(SocketConnection,\'removeCmdListener\',false,MAP_OGRE_LIST,true,keyFunc); //" +
-            " 防止重复\\n  } catch (e) {}\\n  WxSc.Dict.AddCall(keyFunc,keyResult,() => {\\n    // 接" +
-            "收到的参数会存放到 keyResult 数组中，这里需要的是第一个参数（下标为 0），类型为 SocketEvent\\n    for (let i = 0; " +
-            "i < 9; i++) {\\n      WxSc.Dict.Set(keyResult,\'0.data.position\',false,0);\\n      " +
-            "let o = WxSc.Dict.Func(keyResult,\'0.data.readUnsignedInt\');\\n      if (o === 闪光皮" +
-            "皮) {\\n        WxSc.Refl.Func(\'com.robot.app.fight.FightManager\',\'fightWithNpc\',f" +
-            "alse,i);\\n        return;\\n      }\\n    }\\n    WxSc.Util.SimpleAlarm(\'等待\');\\n  }" +
-            ");\\n  WxSc.Refl.Func(SocketConnection,\'addCmdListener\',false,MAP_OGRE_LIST,true," +
-            "keyFunc);\\n})()\\nWxSc.Util.ChangeMap(10); // 克洛斯星\"\r\n  }\r\n}")]
+            ":  {\r\n    \"c\": \"\",\r\n    \"s\": \"WxSc.OnFirstRound = () => {\\n  // 对战首回合，使用特殊胶囊捕捉\\n" +
+            "  WxSc.Util.Send(2409,300505);\\n  WxSc.Util.ItemBuy(300505);\\n}\\n(() => {\\n  con" +
+            "st 闪光皮皮 = 164, keyFunc = \'catch\', keyResult = \'catchRes\', SocketConnection = \'co" +
+            "m.robot.core.net.SocketConnection\', MAP_OGRE_LIST = 2004;\\n  try {\\n    WxSc.Ref" +
+            "l.Func(SocketConnection,\'removeCmdListener\',false,MAP_OGRE_LIST,true,keyFunc); /" +
+            "/ 防止重复\\n  } catch (e) {}\\n  WxSc.Dict.AddCall(keyFunc,keyResult,() => {\\n    // " +
+            "接收到的参数会存放到 keyResult 数组中，这里需要的是第一个参数（下标为 0），类型为 SocketEvent\\n    WxSc.Dict.Set(k" +
+            "eyResult,\'0.data.position\',false,0);\\n    for (let i = 0; i < 9; i++) {\\n      l" +
+            "et o = WxSc.Dict.Func(keyResult,\'0.data.readUnsignedInt\');\\n      if (o === 闪光皮皮" +
+            ") {\\n        WxSc.Refl.Func(\'com.robot.app.fight.FightManager\',\'fightWithNpc\',fa" +
+            "lse,i);\\n        return;\\n      }\\n    }\\n    WxSc.Util.SimpleAlarm(\'等待\');\\n  })" +
+            ";\\n  WxSc.Refl.Func(SocketConnection,\'addCmdListener\',false,MAP_OGRE_LIST,true,k" +
+            "eyFunc);\\n})()\\nWxSc.Util.ChangeMap(10); // 克洛斯星\"\r\n  },\r\n  \"杰丹\": {\r\n    \"c\": \"\"," +
+            "\r\n    \"s\": \"const catchNum = 5;\\nlet caughtNum = 0;\\nlet onePetCt;\\nconst infos " +
+            "= WxSc.Util.GetBagPetInfos();\\nif (infos.length === 0) {\\n  // 从仓库中随便找出一个精灵\\n  c" +
+            "onst pets = await WxSc.Util.GetStoragePetsAsync();\\n  if (pets.length === 0) {\\n" +
+            "    alert(\'获取仓库精灵失败，已停止运行\');\\n    return;\\n  }\\n  onePetCt = pets[0].catchTime;\\" +
+            "n  await WxSc.Util.SetPetBagAsync([onePetCt]);\\n}\\nelse if (infos.length != 1) {" +
+            "\\n  // 开始时背包只留一个精灵\\n  onePetCt = infos[0].catchTime;\\n  await WxSc.Util.SetPetBa" +
+            "gAsync([onePetCt]);\\n}\\n\\n// 获取胶囊数量\\nfunction ReadInt(data) { return (data.byteA" +
+            "rray[data.position++] << 24) + (data.byteArray[data.position++] << 16) + (data.b" +
+            "yteArray[data.position++] << 8) + data.byteArray[data.position++]; }\\nasync func" +
+            "tion updateItems(arr) {\\n  arr.unshift(arr.length);\\n  let data = {};\\n  data.by" +
+            "teArray = await WxSc.Util.SendAsync(42399, arr); // MULTI_ITEM_LIST\\n  data.posi" +
+            "tion = 0;\\n  let result = [];\\n  let arrayLength = ReadInt(data);\\n  for (let i " +
+            "= 0; i < arrayLength; ++i) {\\n    let item = {};\\n    item.itemID = ReadInt(data" +
+            ");\\n    item.itemNum = ReadInt(data);\\n    item.leftTime = ReadInt(data);\\n    i" +
+            "tem._itemLevel = ReadInt(data);\\n    item.updateTime = ReadInt(data);\\n    resul" +
+            "t.push(item);\\n  }\\n  return result;\\n}\\nconst item = await updateItems([300505]" +
+            ");\\nif (item.length === 0) {\\n  for (let i = 0; i < 6; i++) {\\n    WxSc.Util.Ite" +
+            "mBuy(300505); \\n  }\\n}\\n\\nconst PET_ID = 632;\\nconst keyFunc = \'catch\', keyResul" +
+            "t = \'catchRes\', SocketConnection = \'com.robot.core.net.SocketConnection\', MAP_OG" +
+            "RE_LIST = 2004, PetManager = \'com.robot.core.manager.PetManager\';\\n\\nWxSc.OnFirs" +
+            "tRound = async () => {\\n  // 对战首回合，使用特殊胶囊捕捉\\n  WxSc.Util.Send(2409,300505);\\n  W" +
+            "xSc.Util.ItemBuy(300505);\\n}\\n\\nWxSc.Util.SetIsHidePetFight(true); // 隐藏战斗界面\\n\\n" +
+            "(() => {\\n  const keyFunc2409 = \'catch2409\', keyResult2409 = \'catchRes2409\';\\n  " +
+            "try {\\n    WxSc.Refl.Func(SocketConnection,\'removeCmdListener\',false,MAP_OGRE_LI" +
+            "ST,true,keyFunc); // 防止重复\\n    WxSc.Refl.Func(SocketConnection,\'removeCmdListene" +
+            "r\',false,2409,true,keyFunc2409);\\n  } catch (e) {}\\n  WxSc.Dict.AddCall(keyFunc," +
+            "keyResult, async () => {\\n    // 接收到的参数会存放到 keyResult 数组中，这里需要的是第一个参数（下标为 0），类型为" +
+            " SocketEvent\\n    WxSc.Dict.Set(keyResult,\'0.data.position\',false,0);\\n    for (" +
+            "let i = 0; i < 9; i++) {\\n      let o = WxSc.Dict.Func(keyResult,\'0.data.readUns" +
+            "ignedInt\');\\n      if (o === PET_ID) {\\n        WxSc.Refl.Func(\'com.robot.app.fi" +
+            "ght.FightManager\',\'fightWithNpc\',false,i);\\n        return;\\n      }\\n    }\\n   " +
+            " WxSc.Util.SimpleAlarm(\'等待\');\\n  });\\n  WxSc.Refl.Func(SocketConnection,\'addCmdL" +
+            "istener\',false,MAP_OGRE_LIST,true,keyFunc);\\n  \\n  WxSc.Dict.AddCall(keyFunc2409" +
+            ",keyResult2409, async () => {\\n    const newPetCt = WxSc.Dict.Get(keyResult2409," +
+            "\'0.data.catchTime\');\\n    // 放入背包后，自动开启特性\\n    WxSc.Util.Send(2304, newPetCt,1);" +
+            " // PET_RELEASE\\n    WxSc.Refl.Func(PetManager,\'upDateByOnce\'); // 更新精灵信息\\n    a" +
+            "wait WxSc.Util.DelayAsync(2400);\\n    const infos = WxSc.Util.GetBagPetInfos();\\" +
+            "n    for (let info of infos) {\\n      if (info.catchTime === newPetCt) {\\n      " +
+            "  if (info.effectList.length === 0) {\\n          alert(\'开启特性失败，已停止运行\');\\n       " +
+            "   throw new Error(\'开启特性失败\');\\n        }\\n        if (info.effectList[0].effectI" +
+            "D === 6 && (info.effectList[0].args === \'0 3\' || info.effectList[0].args === \'6 " +
+            "3\')) {\\n          // 带电 阴森\\n          console.log(\'+1\');\\n          if (++caught" +
+            "Num === catchNum) {\\n            try {\\n              WxSc.Refl.Func(SocketConne" +
+            "ction,\'removeCmdListener\',false,MAP_OGRE_LIST,true,keyFunc);\\n              WxSc" +
+            ".Refl.Func(SocketConnection,\'removeCmdListener\',false,2409,true,keyFunc2409);\\n " +
+            "           } catch (e) {}\\n            WxSc.Util.SetIsHidePetFight(false);\\n    " +
+            "        alert(\'任务完成，请打开背包查看\');\\n            return;\\n          }\\n        } else" +
+            " {\\n          console.log(info.effectList[0].effectID, info.effectList[0].args);" +
+            "\\n          WxSc.Util.Send(2304, newPetCt,0); // 放回仓库\\n        }\\n        break;" +
+            "\\n      }\\n    }\\n  });\\n  WxSc.Refl.Func(SocketConnection,\'addCmdListener\',fals" +
+            "e,2409,true,keyFunc2409);\\n})()\\nWxSc.Util.ChangeMap(1216);\"\r\n  }\r\n}")]
         public string FlashFightTemplate {
             get {
                 return ((string)(this["FlashFightTemplate"]));
