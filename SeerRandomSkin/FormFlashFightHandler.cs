@@ -406,6 +406,7 @@ WxSc._in = () => {
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
+            if (lvTemplate.CheckedItems.Count > 0 && MessageBox.Show($"确定要删除【{lvTemplate.CheckedItems[0].Text}】等 {lvTemplate.CheckedItems.Count} 个脚本吗？", "提示", MessageBoxButtons.OKCancel) != DialogResult.OK) return;
             foreach (ListViewItem del in lvTemplate.CheckedItems)
             {
                 jFightTemplate.Remove(del.Text);
