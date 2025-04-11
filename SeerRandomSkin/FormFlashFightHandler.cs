@@ -74,6 +74,20 @@ WxSc.Util.GetClothes = () => {
   }
   return result;
 }
+WxSc.Util.GetClothesAsync = () => new Promise(resolve => {
+  const KEY_CALLBACK = '_cbInfo', KEY_RESULT = '_kInfo';
+  WxSc.Dict.AddCall(KEY_CALLBACK, KEY_RESULT, () => {
+    const info = WxSc.Dict.Get(KEY_RESULT);
+    let result = [];
+    for (let c of info[0].clothes) {
+      result.push(c.id);
+      result.push(c.level);
+    }
+    WxSc.Dict.Del(KEY_RESULT);
+    resolve(result)
+  });
+  WxSc.Refl.Func('com.robot.core.manager.UserInfoManager','getInfo',false,WxSc.Refl.Get(WxSc.Const.MainManager,'actorInfo.userID'),true,KEY_CALLBACK);
+})
 WxSc.Util.ChangeCloth = (clothes,isNet=true) => {
   const k1 = 'cl', k2 = 'it', k3 = 'be';
   WxSc.Dict.Add(k1,'Array');
@@ -230,9 +244,9 @@ WxSc.Util.CopyFireAsync = async (fireType = null) => {
 WxSc.Util.ChangeMap = id => WxSc.Refl.Func('com.robot.core.manager.MapManager','changeMap',false,id);
 WxSc.Util.ShowAppModule = id => WxSc.Refl.Func('com.robot.core.manager.ModuleManager','showAppModule',false,id);
 
-WxSc.Util.StateSave = k => {
+WxSc.Util.StateSave = async k => {
   let s = {};
-  s.clothes = WxSc.Util.GetClothes();
+  s.clothes = await WxSc.Util.GetClothesAsync();
   s.title = WxSc.Util.GetTitle();
   s.bag1 = WxSc.Util.GetBag1().map(pet => pet.catchTime);
   s.bag2 = WxSc.Util.GetBag2().map(pet => pet.catchTime);
