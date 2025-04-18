@@ -33,9 +33,6 @@ package
          // 隐藏其他用户
          getDefinitionByName("com.robot.app.toolBar.ToolBarController").showOrHideAllUser(false);
 
-         // 关电池
-         SocketConnection.send(41162,0);
-
          // readyData 无法直接传递到 js 层
          SocketConnection.addCmdListener(CommandID.NOTE_READY_TO_FIGHT,function(event:SocketEvent):void
         {
