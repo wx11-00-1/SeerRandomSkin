@@ -32,6 +32,7 @@ WxSc.Dict.Set = (key,a,u,v) => WxSc.Refl.Set(WxSc.Const.SocketConnection,`WxOs.$
 WxSc.Dict.Get = (key,a=undefined) => WxSc.Refl.Get(WxSc.Const.SocketConnection,`WxOs.${key}${a ? `.${a}` : ''}`);
 WxSc.Dict.Func = (key,method,...args) => WxSc.Refl.Func(WxSc.Const.SocketConnection,`WxOs.${key}.${method}`,...args);
 WxSc.Dict.Tmp = (key,method,key2,...args) => WxSc.Refl.Tmp(WxSc.Const.SocketConnection,`WxOs.${key}.${method}`,key2,...args);
+WxSc.Dict.TmpAttrib = (key,attrib,key2) => document.Client.WxTmpAttrib(key,attrib,key2);
 WxSc.Dict.Del = (k) => document.Client.WxDelObj(k);
 
 WxSc.Dict.AddCall = (n,r,f) => {

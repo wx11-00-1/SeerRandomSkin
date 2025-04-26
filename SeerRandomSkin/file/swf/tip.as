@@ -260,6 +260,7 @@ package
                     break;
             }
          });
+         // 回调函数
          ExternalInterface.addCallback("WxAddFunc",function(k1:String,k2:String):void {
             SocketConnection.WxOs[k1] = function(... rest):void {
                 SocketConnection.WxOs[k2] = rest;
@@ -289,6 +290,11 @@ package
                     else SocketConnection.WxOs[rest[0]] = current[lastKey].apply(null,ps);
                     break;
             }
+         });
+
+         // 暂存 对象池 中，指定对象的属性（通常也是对象）
+         ExternalInterface.addCallback("WxTmpAttrib",function(k1:String,attrib:String,k2:String):void {
+             SocketConnection.WxOs[k2] = SocketConnection.WxOs[k1][attrib];
          });
 
          getDefinitionByName("flash.utils.setTimeout").apply(null,[function():void {SocketConnection.send(CommandID.NONO_FOLLOW_OR_HOOM,0);},800]); // 将 nono 丢回仓库
