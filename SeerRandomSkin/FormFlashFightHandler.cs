@@ -344,8 +344,9 @@ WxSc._in = () => {
             InitializeComponent();
         }
 
-        private void FormFlashFightHandler_Load(object sender, EventArgs e)
+        private async void FormFlashFightHandler_Load(object sender, EventArgs e)
         {
+            await Task.Delay(5000);
             ResetLvTemplate();
         }
 
