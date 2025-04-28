@@ -179,6 +179,10 @@ WxSc 对象提供的属性和方法，通过 js 代码调用，用于编写日�
 
 有时需要获取游戏内部函数的返回值，这个返回值又是特殊类型，不能直接返回到 js 层，可以先放到暂存区，再读取其中一部分允许读取的属性
 
+#### 使用示例
+
+参考对战助手中的示例脚本：杂项-刻印仓库脚本、杂项-野生精灵
+
 #### WxSc.Dict.Add
 
 说明：
@@ -288,6 +292,16 @@ WxSc.Dict.Add('te2','com.robot.app2.Test2',false,'1',true,'te');
 - key2：返回值的标识
 - ...args：参数
 
+#### WxSc.Dict.TmpAttrib
+
+获取暂存区对象的属性，保存为另一个暂存区对象
+
+参数：
+
+- key：原暂存区对象的标识
+- attrib：属性名称
+- key2：新暂存区对象的标识
+
 #### WxSc.Dict.Del
 
 临时使用完对象后，从暂存区删除
@@ -305,8 +319,6 @@ WxSc.Dict.Add('te2','com.robot.app2.Test2',false,'1',true,'te');
 - key：标识
 - result：返回值标识
 - func：无参回调函数
-
-示例：参考内置脚本【野生精灵】
 
 ### 4 *反射*
 
@@ -354,7 +366,7 @@ WxSc.Refl.Get('com.robot.core.manager.MainManager','actorInfo.nick'); // 昵称
 WxSc.Refl.Func('com.robot.core.manager.MapManager','changeMap',false,1);
 ```
 
-#### WxSc.Dict.Tmp
+#### WxSc.Refl.Tmp
 
 说明：
 
@@ -365,7 +377,23 @@ WxSc.Refl.Func('com.robot.core.manager.MapManager','changeMap',false,1);
 - key2：返回值的标识
 - ...args：参数
 
-### 4 其他
+#### 关卡脚本常用函数
+
+使用示例：【关卡-噬梦魔灵-第二关】【关卡-暗黑托鲁克】
+
+##### WxSc.KTool.getMultiValueAsync
+
+46046 包，通常用于获取关卡进度
+
+##### WxSc.KTool.subByte
+
+接收包的处理
+
+##### WxSc.ItemManager.updateItemsAsync
+
+42399 包，获取拥有道具的数量
+
+### 5 其他
 
 #### WxSc.Util.SetIsAutoCure
 
