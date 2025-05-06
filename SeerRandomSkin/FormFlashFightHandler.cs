@@ -392,7 +392,7 @@ WxSc.ItemManager.updateItemsAsync = async arr => {
 
         private async void FormFlashFightHandler_Load(object sender, EventArgs e)
         {
-            await Task.Delay(5000);
+            await Task.Delay(1000);
             ResetLvTemplate();
         }
 
