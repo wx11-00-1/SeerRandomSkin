@@ -104,6 +104,7 @@ namespace SeerRandomSkin
                 }
                 lvSuit.Items.AddRange(suits.ToArray());
 
+                // 精灵跟随
                 numericUpDown_id1.Value = int.Parse(jPets[KEY_PET1][KEY_ID].ToString());
                 switch (jPets[KEY_PET1][KEY_ABILITY_TYPE].ToString())
                 {
@@ -170,10 +171,32 @@ namespace SeerRandomSkin
 
                 AddLvEvent();
 
+                // 缩放
                 cbScale.Checked = Properties.Settings.Default.ScaleKeep;
 
                 tbPosX.Text = Properties.Settings.Default.PosX;
                 tbPosY.Text = Properties.Settings.Default.PosY;
+
+                // 称号
+                if (Properties.Settings.Default.Title != String.Empty) cbTitle.Checked = true;
+
+                resp = await Form1.chromiumBrowser.EvaluateScriptAsync($"(()=>{{const KEY_XML = 'xml', KEY_ATTRIBUTE = 'SpeNameBonus';WxSc.Dict.Add(KEY_XML, 'com.robot.core.config.xml.AchieveXMLInfo_xmlClass');const parser = new DOMParser();const xmlDoc = parser.parseFromString(WxSc.Dict.Func(KEY_XML,'readUTFBytes', false,WxSc.Dict.Get(KEY_XML,'length')), 'text/xml');return JSON.stringify([...xmlDoc.getElementsByTagName('Rule')].filter(node => node.attributes[KEY_ATTRIBUTE]!=undefined && node.attributes[KEY_ATTRIBUTE].value!='').map(node => node.attributes[KEY_ATTRIBUTE].value));}})()");
+                if (!resp.Success) return;
+                var ts = JArray.Parse(resp.Result.ToString());
+                var titles = new LinkedList<ListViewItem>();
+                foreach (var s in ts)
+                {
+                    var i = new ListViewItem()
+                    {
+                        Text = s.ToString()
+                    };
+                    titles.AddLast(i);
+                }
+                titles.AddFirst(new ListViewItem()
+                {
+                    Text = "0"
+                });
+                lvTitle.Items.AddRange(titles.ToArray());
             }
             catch (Exception) { }
         }
@@ -450,6 +473,28 @@ namespace SeerRandomSkin
             {
                 Form1.chromiumBrowser.ExecuteScriptAsync($"(()=>{{WxSc.Dict.AddCall('_scale','_k',()=>{{setTimeout(()=>{{seerRandomSkinObj.petScale()}},2000)}});WxSc.Refl.Func('org.taomee.manager.EventManager','addEventListener',false,'createdMapUser',true,'_scale');}})()");
             }
+        }
+
+        public static void ShowTitle(string id)
+        {
+            Form1.chromiumBrowser.ExecuteScriptAsync($"(() => {{ let originId=WxSc.Util.GetTitle(); WxSc.Refl.Func(WxSc.Const.MainManager,'actorModel.refreshTitle',false,{id}); WxSc.Refl.Set(WxSc.Const.MainManager,'actorInfo.curTitle',false,originId) }})()");
+        }
+
+        private void lvTitle_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            try
+            {
+                var id = lvTitle.SelectedItems[0].Text;
+                ShowTitle(id);
+            }
+            catch { }
+        }
+
+        private void cbTitle_MouseUp(object sender, MouseEventArgs e)
+        {
+            if ((sender as CheckBox).Checked && lvTitle.SelectedItems.Count == 1) Properties.Settings.Default.Title = lvTitle.SelectedItems[0].Text;
+            else Properties.Settings.Default.Title = String.Empty;
+            Properties.Settings.Default.Save();
         }
     }
 }

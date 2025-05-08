@@ -247,5 +247,8 @@
     <Setting Name="PosY" Type="System.String" Scope="User">
       <Value Profile="(Default)">240</Value>
     </Setting>
+    <Setting Name="Title" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>
