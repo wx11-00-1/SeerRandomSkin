@@ -28,6 +28,8 @@ package
       {
          super();
 
+         if (SocketConnection.hasOwnProperty("WxOs")) return;
+
          SocketConnection.WxCallback = function(result:* = null):void { ExternalInterface.call("WxSc.Priv.res",result); }
 
          // 隐藏其他用户
@@ -296,7 +298,7 @@ package
          ExternalInterface.addCallback("WxTmpAttrib",function(k1:String,attrib:String,k2:String):void {
              SocketConnection.WxOs[k2] = SocketConnection.WxOs[k1][attrib];
          });
-
+         
          getDefinitionByName("flash.utils.setTimeout").apply(null,[function():void {SocketConnection.send(CommandID.NONO_FOLLOW_OR_HOOM,0);},800]); // 将 nono 丢回仓库
          ExternalInterface.call("WxSc._in");
          ExternalInterface.call("seerRandomSkinObj.onLogined");
