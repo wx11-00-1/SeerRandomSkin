@@ -114,6 +114,17 @@ namespace SeerRandomSkin
                 return id;
             }).Where(id => id != 0).ToHashSet();
 
+            SpecificPetSkins = Utils.TryJsonConvert<Dictionary<int, int>>(Configs.SpecificPetSkins);
+            FiddleObjects = Utils.TryJsonConvert<List<FiddleObject>>(Configs.FiddleObjects);
+            if (FiddleObjects == null)
+            {
+                FiddleObjects = new List<FiddleObject>(); // 有可能解析失败
+            }
+            foreach (var fiddleObject in FiddleObjects)
+            {
+                fiddleObject.FromReg = new Regex(fiddleObject.From);
+            }
+
             chromiumBrowser = CreateChromium(Configs.DefaultURL);
             panelBrowser.Controls.Add(chromiumBrowser);
 
@@ -152,17 +163,6 @@ namespace SeerRandomSkin
             if (Configs.AutoLoadFD)
             {
                 var f = new FormFiddler(); f.Show();
-            }
-
-            SpecificPetSkins = Utils.TryJsonConvert<Dictionary<int, int>>(Configs.SpecificPetSkins);
-            FiddleObjects = Utils.TryJsonConvert<List<FiddleObject>>(Configs.FiddleObjects);
-            if (FiddleObjects == null)
-            {
-                FiddleObjects = new List<FiddleObject>(); // 有可能解析失败
-            }
-            foreach (var fiddleObject in FiddleObjects)
-            {
-                fiddleObject.FromReg = new Regex(fiddleObject.From);
             }
         }
 
