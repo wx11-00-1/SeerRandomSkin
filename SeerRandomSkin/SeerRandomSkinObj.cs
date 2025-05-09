@@ -28,7 +28,7 @@ namespace SeerRandomSkin
             if (Properties.Settings.Default.Mount.Length > 0)
             {
                 FormPetFollow.ChangeCloth(Properties.Settings.Default.Suits);
-                FormPetFollow.ShowMount(Properties.Settings.Default.Mount);
+                if (Properties.Settings.Default.Mount != "0") FormPetFollow.ShowMount(Properties.Settings.Default.Mount);
             }
             FormPetFollow.ScaleKeep();
 
