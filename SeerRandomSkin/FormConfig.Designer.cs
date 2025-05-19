@@ -71,6 +71,8 @@
             this.btnBackup = new System.Windows.Forms.Button();
             this.btnLoadConfig = new System.Windows.Forms.Button();
             this.cbLoadFormSpeedhack = new System.Windows.Forms.CheckBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBox_autoAlarmOk = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_width)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_height)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -135,7 +137,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(447, 78);
+            this.label4.Location = new System.Drawing.Point(448, 161);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 12);
             this.label4.TabIndex = 8;
@@ -144,7 +146,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(561, 78);
+            this.label5.Location = new System.Drawing.Point(562, 161);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(11, 12);
             this.label5.TabIndex = 10;
@@ -152,7 +154,7 @@
             // 
             // numericUpDown_win_width
             // 
-            this.numericUpDown_win_width.Location = new System.Drawing.Point(512, 75);
+            this.numericUpDown_win_width.Location = new System.Drawing.Point(513, 158);
             this.numericUpDown_win_width.Maximum = new decimal(new int[] {
             40000,
             0,
@@ -164,7 +166,7 @@
             // 
             // numericUpDown_win_height
             // 
-            this.numericUpDown_win_height.Location = new System.Drawing.Point(576, 75);
+            this.numericUpDown_win_height.Location = new System.Drawing.Point(577, 158);
             this.numericUpDown_win_height.Maximum = new decimal(new int[] {
             40000,
             0,
@@ -440,15 +442,15 @@
             // 
             // textBox_defaultURL
             // 
-            this.textBox_defaultURL.Location = new System.Drawing.Point(425, 152);
+            this.textBox_defaultURL.Location = new System.Drawing.Point(361, 158);
             this.textBox_defaultURL.Name = "textBox_defaultURL";
-            this.textBox_defaultURL.Size = new System.Drawing.Size(196, 21);
+            this.textBox_defaultURL.Size = new System.Drawing.Size(66, 21);
             this.textBox_defaultURL.TabIndex = 34;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(362, 157);
+            this.label12.Location = new System.Drawing.Point(296, 161);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(65, 12);
             this.label12.TabIndex = 35;
@@ -457,7 +459,7 @@
             // checkBox_HideBattleStrategy
             // 
             this.checkBox_HideBattleStrategy.AutoSize = true;
-            this.checkBox_HideBattleStrategy.Location = new System.Drawing.Point(191, 41);
+            this.checkBox_HideBattleStrategy.Location = new System.Drawing.Point(178, 41);
             this.checkBox_HideBattleStrategy.Name = "checkBox_HideBattleStrategy";
             this.checkBox_HideBattleStrategy.Size = new System.Drawing.Size(108, 16);
             this.checkBox_HideBattleStrategy.TabIndex = 36;
@@ -467,7 +469,7 @@
             // cbAutoMute
             // 
             this.cbAutoMute.AutoSize = true;
-            this.cbAutoMute.Location = new System.Drawing.Point(336, 41);
+            this.cbAutoMute.Location = new System.Drawing.Point(476, 41);
             this.cbAutoMute.Name = "cbAutoMute";
             this.cbAutoMute.Size = new System.Drawing.Size(72, 16);
             this.cbAutoMute.TabIndex = 37;
@@ -507,18 +509,36 @@
             // cbLoadFormSpeedhack
             // 
             this.cbLoadFormSpeedhack.AutoSize = true;
-            this.cbLoadFormSpeedhack.Location = new System.Drawing.Point(448, 41);
+            this.cbLoadFormSpeedhack.Location = new System.Drawing.Point(316, 41);
             this.cbLoadFormSpeedhack.Name = "cbLoadFormSpeedhack";
             this.cbLoadFormSpeedhack.Size = new System.Drawing.Size(144, 16);
             this.cbLoadFormSpeedhack.TabIndex = 41;
             this.cbLoadFormSpeedhack.Text = "自动打开调整倍速窗口";
             this.cbLoadFormSpeedhack.UseVisualStyleBackColor = true;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(296, 78);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(281, 12);
+            this.label11.TabIndex = 42;
+            this.label11.Text = "自动确认时间间隔（单位为毫秒，0 表示不开启）：";
+            // 
+            // textBox_autoAlarmOk
+            // 
+            this.textBox_autoAlarmOk.Location = new System.Drawing.Point(583, 75);
+            this.textBox_autoAlarmOk.Name = "textBox_autoAlarmOk";
+            this.textBox_autoAlarmOk.Size = new System.Drawing.Size(38, 21);
+            this.textBox_autoAlarmOk.TabIndex = 43;
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(680, 673);
+            this.Controls.Add(this.textBox_autoAlarmOk);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.cbLoadFormSpeedhack);
             this.Controls.Add(this.btnLoadConfig);
             this.Controls.Add(this.btnBackup);
@@ -614,5 +634,7 @@
         private System.Windows.Forms.Button btnBackup;
         private System.Windows.Forms.Button btnLoadConfig;
         private System.Windows.Forms.CheckBox cbLoadFormSpeedhack;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox textBox_autoAlarmOk;
     }
 }

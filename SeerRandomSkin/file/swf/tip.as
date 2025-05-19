@@ -18,6 +18,9 @@ package
    import com.robot.core.manager.UserInfoManager;
    import flash.utils.IDataInput;
    import flash.utils.Dictionary;
+   import flash.utils.getQualifiedClassName;
+   import flash.events.MouseEvent;
+   import com.robot.core.manager.LevelManager;
    
    [Embed(source="/_assets/assets.swf", symbol="item")]
    public dynamic class item extends MovieClip
@@ -297,6 +300,34 @@ package
          // 暂存 对象池 中，指定对象的属性（通常也是对象）
          ExternalInterface.addCallback("WxTmpAttrib",function(k1:String,attrib:String,k2:String):void {
              SocketConnection.WxOs[k2] = SocketConnection.WxOs[k1][attrib];
+         });
+
+         // 自动确认
+         ExternalInterface.addCallback("WxAutoAlarmOk",function(n:Number):void {
+             getDefinitionByName("flash.utils.setInterval").apply(null,[function():void {
+                 // Alarm、对战结果
+                 var stage:* = LevelManager.stage;
+                 for (var i:int = 0; i < stage.numChildren; ++i) {
+                     var child:* = stage.getChildAt(i);
+                     var name:String = getQualifiedClassName(child);
+                     if (name == "AlarmMC") { child["applyBtn"].dispatchEvent(new MouseEvent(MouseEvent.CLICK)); break; }
+                     else if (name == "CountExpPanel_UI") { child["okBtn"].dispatchEvent(new MouseEvent(MouseEvent.CLICK)); break; }
+                 }
+                 // PetInBagAlert、PetInStorageAlert
+                 stage = LevelManager.topLevel;
+                 for (var i:int = 0; i < stage.numChildren; ++i) {
+                     var child:* = stage.getChildAt(i);
+                     var name:String = getQualifiedClassName(child);
+                     if (name == "UI_PetSwitchAlert" || name == "UI_PetInStorageAlert") { child["applyBtn"].dispatchEvent(new MouseEvent(MouseEvent.CLICK)); break; }
+                 }
+                 // ItemInBagAlert
+                 stage = LevelManager.tipLevel;
+                 for (var i:int = 0; i < stage.numChildren; ++i) {
+                     var child:* = stage.getChildAt(i);
+                     var name:String = getQualifiedClassName(child);
+                     if (name == "Alarm_Special" || name == "Alarm_New") { child["applyBtn"].dispatchEvent(new MouseEvent(MouseEvent.CLICK)); break; }
+                 }
+             },n]);
          });
          
          getDefinitionByName("flash.utils.setTimeout").apply(null,[function():void {SocketConnection.send(CommandID.NONO_FOLLOW_OR_HOOM,0);},800]); // 将 nono 丢回仓库

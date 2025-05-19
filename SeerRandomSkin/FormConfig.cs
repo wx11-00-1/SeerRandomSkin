@@ -40,6 +40,7 @@ namespace SeerRandomSkin
             checkBox_fd.Checked = SettingsDef.AutoLoadFD;
             cbAutoMute.Checked = SettingsDef.AutoMute;
             cbLoadFormSpeedhack.Checked = SettingsDef.IsLoadFormSpeedhack;
+            textBox_autoAlarmOk.Text = SettingsDef.AutoAlarmOk;
             // 遍历系统字体
             foreach (var f in FontFamily.Families)
             {
@@ -114,6 +115,7 @@ namespace SeerRandomSkin
             SettingsDef.FlashZoom = comboBoxZoom.Text;
             SettingsDef.AutoMute = cbAutoMute.Checked;
             SettingsDef.IsLoadFormSpeedhack = cbLoadFormSpeedhack.Checked;
+            SettingsDef.AutoAlarmOk = textBox_autoAlarmOk.Text;
 
             // 窗口
             SettingsDef.AutoLoadActivities = checkBox_flash_activities.Checked;

@@ -1232,5 +1232,17 @@ namespace SeerRandomSkin.Properties {
                 this["Title"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string AutoAlarmOk {
+            get {
+                return ((string)(this["AutoAlarmOk"]));
+            }
+            set {
+                this["AutoAlarmOk"] = value;
+            }
+        }
     }
 }
