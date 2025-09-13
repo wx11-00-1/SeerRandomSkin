@@ -73,6 +73,9 @@
             this.cbLoadFormSpeedhack = new System.Windows.Forms.CheckBox();
             this.label11 = new System.Windows.Forms.Label();
             this.textBox_autoAlarmOk = new System.Windows.Forms.TextBox();
+            this.tbDownloadPath = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.btnOpenDownloadPath = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_width)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_win_height)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -83,7 +86,7 @@
             // 
             // button_Save
             // 
-            this.button_Save.Location = new System.Drawing.Point(551, 621);
+            this.button_Save.Location = new System.Drawing.Point(551, 701);
             this.button_Save.Name = "button_Save";
             this.button_Save.Size = new System.Drawing.Size(75, 23);
             this.button_Save.TabIndex = 1;
@@ -478,7 +481,7 @@
             // 
             // btnRemoveSettings
             // 
-            this.btnRemoveSettings.Location = new System.Drawing.Point(54, 621);
+            this.btnRemoveSettings.Location = new System.Drawing.Point(54, 701);
             this.btnRemoveSettings.Name = "btnRemoveSettings";
             this.btnRemoveSettings.Size = new System.Drawing.Size(131, 23);
             this.btnRemoveSettings.TabIndex = 38;
@@ -488,7 +491,7 @@
             // 
             // btnBackup
             // 
-            this.btnBackup.Location = new System.Drawing.Point(191, 621);
+            this.btnBackup.Location = new System.Drawing.Point(191, 701);
             this.btnBackup.Name = "btnBackup";
             this.btnBackup.Size = new System.Drawing.Size(75, 23);
             this.btnBackup.TabIndex = 39;
@@ -498,7 +501,7 @@
             // 
             // btnLoadConfig
             // 
-            this.btnLoadConfig.Location = new System.Drawing.Point(272, 621);
+            this.btnLoadConfig.Location = new System.Drawing.Point(272, 701);
             this.btnLoadConfig.Name = "btnLoadConfig";
             this.btnLoadConfig.Size = new System.Drawing.Size(75, 23);
             this.btnLoadConfig.TabIndex = 40;
@@ -532,11 +535,39 @@
             this.textBox_autoAlarmOk.Size = new System.Drawing.Size(38, 21);
             this.textBox_autoAlarmOk.TabIndex = 43;
             // 
+            // tbDownloadPath
+            // 
+            this.tbDownloadPath.Location = new System.Drawing.Point(54, 653);
+            this.tbDownloadPath.Name = "tbDownloadPath";
+            this.tbDownloadPath.Size = new System.Drawing.Size(194, 21);
+            this.tbDownloadPath.TabIndex = 44;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(52, 625);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(209, 12);
+            this.label13.TabIndex = 45;
+            this.label13.Text = "文件下载路径（不填则放默认位置）：";
+            // 
+            // btnOpenDownloadPath
+            // 
+            this.btnOpenDownloadPath.Location = new System.Drawing.Point(254, 651);
+            this.btnOpenDownloadPath.Name = "btnOpenDownloadPath";
+            this.btnOpenDownloadPath.Size = new System.Drawing.Size(75, 23);
+            this.btnOpenDownloadPath.TabIndex = 46;
+            this.btnOpenDownloadPath.Text = "查看";
+            this.btnOpenDownloadPath.UseVisualStyleBackColor = true;
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(680, 673);
+            this.ClientSize = new System.Drawing.Size(680, 754);
+            this.Controls.Add(this.btnOpenDownloadPath);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.tbDownloadPath);
             this.Controls.Add(this.textBox_autoAlarmOk);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.cbLoadFormSpeedhack);
@@ -636,5 +667,8 @@
         private System.Windows.Forms.CheckBox cbLoadFormSpeedhack;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBox_autoAlarmOk;
+        private System.Windows.Forms.TextBox tbDownloadPath;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button btnOpenDownloadPath;
     }
 }

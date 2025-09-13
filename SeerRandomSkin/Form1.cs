@@ -172,6 +172,7 @@ namespace SeerRandomSkin
             {
                 Dock = DockStyle.Fill,
                 RequestHandler = new MyRequestHandler(),
+                DownloadHandler = new MyDownloadHandler(),
                 BrowserSettings = new BrowserSettings(),
                 KeyboardHandler = new KeyBoardHandler() { mainForm = this }
             };
@@ -401,6 +402,30 @@ namespace SeerRandomSkin
 
                     }
                 }
+            }
+        }
+
+        public class MyDownloadHandler : IDownloadHandler
+        {
+            private static string downloadPath;
+
+            public MyDownloadHandler()
+            {
+                downloadPath = Configs.DownloadPath == string.Empty ? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "downloads") : Configs.DownloadPath;
+                if (!Directory.Exists(downloadPath))
+                {
+                    Directory.CreateDirectory(downloadPath);
+                }
+            }
+
+            public void OnBeforeDownload(IWebBrowser chromiumWebBrowser, IBrowser browser, DownloadItem downloadItem, IBeforeDownloadCallback callback)
+            {
+                callback.Continue(Path.Combine(downloadPath, downloadItem.SuggestedFileName), false); // 不弹出下载对话框
+            }
+
+            public void OnDownloadUpdated(IWebBrowser chromiumWebBrowser, IBrowser browser, DownloadItem downloadItem, IDownloadItemCallback callback)
+            {
+                
             }
         }
 
