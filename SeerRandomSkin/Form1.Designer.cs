@@ -48,6 +48,7 @@
             this.指定皮肤ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.精灵跟随ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelBrowser = new System.Windows.Forms.Panel();
+            this.更新精灵头像ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,21 +83,21 @@
             // 开发者工具ToolStripMenuItem
             // 
             this.开发者工具ToolStripMenuItem.Name = "开发者工具ToolStripMenuItem";
-            this.开发者工具ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.开发者工具ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.开发者工具ToolStripMenuItem.Text = "开发者工具";
             this.开发者工具ToolStripMenuItem.Click += new System.EventHandler(this.开发者工具ToolStripMenuItem_Click);
             // 
             // 关于ToolStripMenuItem
             // 
             this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
-            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.关于ToolStripMenuItem.Text = "关于";
             this.关于ToolStripMenuItem.Click += new System.EventHandler(this.关于ToolStripMenuItem_Click);
             // 
             // 获取皮肤数据ToolStripMenuItem
             // 
             this.获取皮肤数据ToolStripMenuItem.Name = "获取皮肤数据ToolStripMenuItem";
-            this.获取皮肤数据ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.获取皮肤数据ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.获取皮肤数据ToolStripMenuItem.Text = "更新皮肤数据";
             this.获取皮肤数据ToolStripMenuItem.Click += new System.EventHandler(this.获取皮肤数据ToolStripMenuItem_Click);
             // 
@@ -106,7 +107,7 @@
             this.开启ToolStripMenuItem,
             this.静音ToolStripMenuItem});
             this.音量ToolStripMenuItem.Name = "音量ToolStripMenuItem";
-            this.音量ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.音量ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.音量ToolStripMenuItem.Text = "音量";
             // 
             // 开启ToolStripMenuItem
@@ -126,28 +127,28 @@
             // 配置ToolStripMenuItem
             // 
             this.配置ToolStripMenuItem.Name = "配置ToolStripMenuItem";
-            this.配置ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.配置ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.配置ToolStripMenuItem.Text = "配置";
             this.配置ToolStripMenuItem.Click += new System.EventHandler(this.配置ToolStripMenuItem_Click);
             // 
             // 巅峰记牌ToolStripMenuItem
             // 
             this.巅峰记牌ToolStripMenuItem.Name = "巅峰记牌ToolStripMenuItem";
-            this.巅峰记牌ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.巅峰记牌ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.巅峰记牌ToolStripMenuItem.Text = "巅峰记牌";
             this.巅峰记牌ToolStripMenuItem.Click += new System.EventHandler(this.巅峰记牌ToolStripMenuItem_Click);
             // 
             // fDToolStripMenuItem
             // 
             this.fDToolStripMenuItem.Name = "fDToolStripMenuItem";
-            this.fDToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fDToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.fDToolStripMenuItem.Text = "FD";
             this.fDToolStripMenuItem.Click += new System.EventHandler(this.fDToolStripMenuItem_Click);
             // 
             // 清除缓存ToolStripMenuItem
             // 
             this.清除缓存ToolStripMenuItem.Name = "清除缓存ToolStripMenuItem";
-            this.清除缓存ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.清除缓存ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.清除缓存ToolStripMenuItem.Text = "清除缓存";
             this.清除缓存ToolStripMenuItem.Click += new System.EventHandler(this.清除缓存ToolStripMenuItem_Click);
             // 
@@ -158,7 +159,8 @@
             this.活动收藏夹ToolStripMenuItem,
             this.逛地图ToolStripMenuItem,
             this.指定皮肤ToolStripMenuItem,
-            this.精灵跟随ToolStripMenuItem});
+            this.精灵跟随ToolStripMenuItem,
+            this.更新精灵头像ToolStripMenuItem});
             this.flashToolStripMenuItem1.Name = "flashToolStripMenuItem1";
             this.flashToolStripMenuItem1.Size = new System.Drawing.Size(49, 21);
             this.flashToolStripMenuItem1.Text = "Flash";
@@ -206,6 +208,13 @@
             this.panelBrowser.Size = new System.Drawing.Size(960, 560);
             this.panelBrowser.TabIndex = 1;
             // 
+            // 更新精灵头像ToolStripMenuItem
+            // 
+            this.更新精灵头像ToolStripMenuItem.Name = "更新精灵头像ToolStripMenuItem";
+            this.更新精灵头像ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.更新精灵头像ToolStripMenuItem.Text = "更新精灵头像";
+            this.更新精灵头像ToolStripMenuItem.Click += new System.EventHandler(this.更新精灵头像ToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -246,6 +255,7 @@
         private System.Windows.Forms.Panel panelBrowser;
         private System.Windows.Forms.ToolStripMenuItem 精灵跟随ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 清除缓存ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 更新精灵头像ToolStripMenuItem;
     }
 }
 

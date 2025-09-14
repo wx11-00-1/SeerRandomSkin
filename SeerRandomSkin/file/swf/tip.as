@@ -21,11 +21,20 @@ package
    import flash.utils.getQualifiedClassName;
    import flash.events.MouseEvent;
    import com.robot.core.manager.LevelManager;
+   import flash.display.Loader;
+   import flash.net.URLRequest;
+   import flash.events.Event;
+   import flash.display.DisplayObject;
+   import flash.geom.Rectangle;
+   import flash.display.BitmapData;
+   import com.adobe.images.JPGEncoder;
+   import flash.net.URLRequestMethod;
+   import flash.system.ApplicationDomain;
+   import flash.system.LoaderContext;
    
    [Embed(source="/_assets/assets.swf", symbol="item")]
    public dynamic class item extends MovieClip
    {
-       
       
       public function item()
       {
@@ -328,6 +337,46 @@ package
                      if (name == "Alarm_Special" || name == "Alarm_New") { child["applyBtn"].dispatchEvent(new MouseEvent(MouseEvent.CLICK)); break; }
                  }
              },n]);
+         });
+
+         // 保存 swf 第一帧图片
+         ExternalInterface.addCallback("WxSwf2Jpg", function(url:String, name:String):void {
+            SocketConnection.WxDownloadFileName = name;
+            SocketConnection.WxMcload = new Loader();
+            var lc:LoaderContext = new LoaderContext(false,ApplicationDomain.currentDomain);
+            SocketConnection.WxMcload.contentLoaderInfo.addEventListener(Event.COMPLETE, function(e:Event) : void {
+                try {
+                    var swfContent:DisplayObject = SocketConnection.WxMcload.content;
+                    if (swfContent is MovieClip) {
+                        MovieClip(swfContent).stop(); // 停留在第一帧
+                    }
+
+                    // 获取尺寸
+                    var bounds:Rectangle = swfContent.getBounds(swfContent);
+                    var width:Number = bounds.width;
+                    var height:Number = bounds.height;
+
+                    // 创建透明背景的 bitmap
+                    var bmData:BitmapData = new BitmapData(width,height,true,0);
+                    // 绘制
+                    bmData.draw(swfContent);
+                    // 编码成 ByteArray
+                    var imgBytes:ByteArray = (new JPGEncoder()).encode(bmData);
+
+                    // 下载
+                    var byteArray:Array = [];
+                    imgBytes.position = 0;
+                    for (var i:int = 0; i < imgBytes.length; i++)
+                    {
+                        byteArray.push(imgBytes.readUnsignedByte());
+                    }
+
+                    ExternalInterface.call("WxSc.Priv.DownloadJpg", byteArray,SocketConnection.WxDownloadFileName);
+                } catch (err:Error) {
+                    ExternalInterface.call("console.log",err.message);
+                }
+            });
+            SocketConnection.WxMcload.load(new URLRequest(url), lc);
          });
          
          getDefinitionByName("flash.utils.setTimeout").apply(null,[function():void {SocketConnection.send(CommandID.NONO_FOLLOW_OR_HOOM,0);},800]); // 将 nono 丢回仓库
