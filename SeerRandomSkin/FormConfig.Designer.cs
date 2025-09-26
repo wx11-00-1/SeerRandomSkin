@@ -559,6 +559,7 @@
             this.btnOpenDownloadPath.TabIndex = 46;
             this.btnOpenDownloadPath.Text = "查看";
             this.btnOpenDownloadPath.UseVisualStyleBackColor = true;
+            this.btnOpenDownloadPath.Click += new System.EventHandler(this.btnOpenDownloadPath_Click);
             // 
             // FormConfig
             // 

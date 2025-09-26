@@ -636,46 +636,6 @@ namespace SeerRandomSkin
             }
         }
 
-        private async void 更新精灵头像ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            更新精灵头像ToolStripMenuItem.Enabled = false;
-
-            var allPetIds = await GetAllPetIds();
-            if (allPetIds == null)
-            {
-                MessageBox.Show("请先在游戏中登录");
-                return;
-            }
-            // 检查现有精灵头像
-            var files = Directory.EnumerateFiles(
-                Configs.DownloadPath == string.Empty ? DefaultDownloadPath : Configs.DownloadPath,
-                "*.*");
-            var exists = new HashSet<int>();
-            foreach (var f in files)
-            {
-                var match = Regex.Match(Path.GetFileName(f), @"^h(\d+)\.jpg");
-                if (match.Success)
-                {
-                    exists.Add(int.Parse(match.Groups[1].Value));
-                }
-            }
-            // 下载
-            int total = allPetIds.Count - exists.Count, cur = 0;
-            foreach (var id in allPetIds)
-            {
-                if (!exists.Contains(id))
-                {
-                    if (cur % 10 == 1) chromiumBrowser.ExecuteScriptAsync($"WxSc.Util.SimpleAlarm('{cur} / {total}')");
-                    ++cur;
-                    chromiumBrowser.ExecuteScriptAsync($"WxSc.Util.DowloadSwfFirstFrame('https://seer.61.com/resource/pet/head/{id}.swf','h{id}.jpg')");
-                    await Task.Delay(1000);
-                }
-            }
-            chromiumBrowser.ExecuteScriptAsync("WxSc.Util.SimpleAlarm('全部下载完成')");
-
-            更新精灵头像ToolStripMenuItem.Enabled = true;
-        }
-
         private async Task<List<int>> GetAllPetIds()
         {
             var resp = await chromiumBrowser.EvaluateScriptAsync($"JSON.stringify(WxSc.Refl.Func('com.robot.core.config.xml.PetXMLInfo','getIdList'))");

@@ -20,10 +20,10 @@ WxSc.Util = {}
 WxSc.Priv._cure = true;
 WxSc.Priv.ShowRound = (hp1,hp2) => { WxSc.Priv.Round += 1; seerRandomSkinObj.showFightInfo(hp1,WxSc.Priv.Round,hp2); };
 
-WxSc.Util.DowloadSwfFirstFrame = (url,fileName) => document.Client.WxSwf2Jpg(url,fileName);
+WxSc.Util.DowloadSwfFirstFrame = (url,fileName,scaleMain,scaleStage) => document.Client.WxSwf2Jpg(url,fileName,scaleMain,scaleStage);
 WxSc.Priv.DownloadJpg = (byteArray, fileName) => {
   const u8Arr = new Uint8Array(byteArray);
-  const blob = new Blob([u8Arr], { type: 'image/jpeg' });
+  const blob = new Blob([u8Arr], { type: 'image/png' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
@@ -33,6 +33,7 @@ WxSc.Priv.DownloadJpg = (byteArray, fileName) => {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 }
+WxSc.Util.GetDownloadedFileNames = seerRandomSkinObj.getDownloadedFileNames;
 
 WxSc.Refl = {}
 WxSc.Refl.Set = (name,a,u,v) => document.Client.WxRefl(1,name,a,u,v);

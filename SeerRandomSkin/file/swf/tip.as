@@ -28,9 +28,11 @@ package
    import flash.geom.Rectangle;
    import flash.display.BitmapData;
    import com.adobe.images.JPGEncoder;
+   import com.adobe.images.PNGEncoder;
    import flash.net.URLRequestMethod;
    import flash.system.ApplicationDomain;
    import flash.system.LoaderContext;
+   import flash.geom.Matrix;
    
    [Embed(source="/_assets/assets.swf", symbol="item")]
    public dynamic class item extends MovieClip
@@ -340,7 +342,7 @@ package
          });
 
          // 保存 swf 第一帧图片
-         ExternalInterface.addCallback("WxSwf2Jpg", function(url:String, name:String):void {
+         ExternalInterface.addCallback("WxSwf2Jpg", function(url:String, name:String, scaleMain:Number, scaleStage:Number):void {
             SocketConnection.WxDownloadFileName = name;
             SocketConnection.WxMcload = new Loader();
             var lc:LoaderContext = new LoaderContext(false,ApplicationDomain.currentDomain);
@@ -351,17 +353,16 @@ package
                         MovieClip(swfContent).stop(); // 停留在第一帧
                     }
 
-                    // 获取尺寸
-                    var bounds:Rectangle = swfContent.getBounds(swfContent);
-                    var width:Number = bounds.width;
-                    var height:Number = bounds.height;
-
-                    // 创建透明背景的 bitmap
-                    var bmData:BitmapData = new BitmapData(width,height,true,0);
+                    var bounds:Rectangle = swfContent.getBounds(null);
+                    var bmData:BitmapData = new BitmapData(bounds.width * scaleStage, bounds.height * scaleStage, true, 0xFFFFFF);
+                    // 缩放
+                    var matrix:Matrix = new Matrix();
+                    matrix.scale(scaleMain, scaleMain);
                     // 绘制
-                    bmData.draw(swfContent);
+                    bmData.draw(swfContent, matrix);
                     // 编码成 ByteArray
-                    var imgBytes:ByteArray = (new JPGEncoder()).encode(bmData);
+                    // var imgBytes:ByteArray = (new JPGEncoder(100)).encode(bmData);
+                    var imgBytes:ByteArray = PNGEncoder.encode(bmData);
 
                     // 下载
                     var byteArray:Array = [];

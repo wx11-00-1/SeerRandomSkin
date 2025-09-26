@@ -48,7 +48,6 @@
             this.指定皮肤ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.精灵跟随ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelBrowser = new System.Windows.Forms.Panel();
-            this.更新精灵头像ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -159,8 +158,7 @@
             this.活动收藏夹ToolStripMenuItem,
             this.逛地图ToolStripMenuItem,
             this.指定皮肤ToolStripMenuItem,
-            this.精灵跟随ToolStripMenuItem,
-            this.更新精灵头像ToolStripMenuItem});
+            this.精灵跟随ToolStripMenuItem});
             this.flashToolStripMenuItem1.Name = "flashToolStripMenuItem1";
             this.flashToolStripMenuItem1.Size = new System.Drawing.Size(49, 21);
             this.flashToolStripMenuItem1.Text = "Flash";
@@ -208,13 +206,6 @@
             this.panelBrowser.Size = new System.Drawing.Size(960, 560);
             this.panelBrowser.TabIndex = 1;
             // 
-            // 更新精灵头像ToolStripMenuItem
-            // 
-            this.更新精灵头像ToolStripMenuItem.Name = "更新精灵头像ToolStripMenuItem";
-            this.更新精灵头像ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.更新精灵头像ToolStripMenuItem.Text = "更新精灵头像";
-            this.更新精灵头像ToolStripMenuItem.Click += new System.EventHandler(this.更新精灵头像ToolStripMenuItem_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -255,7 +246,6 @@
         private System.Windows.Forms.Panel panelBrowser;
         private System.Windows.Forms.ToolStripMenuItem 精灵跟随ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 清除缓存ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 更新精灵头像ToolStripMenuItem;
     }
 }
 

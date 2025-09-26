@@ -1,5 +1,8 @@
 ﻿using CefSharp;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SeerRandomSkin
@@ -47,6 +50,13 @@ namespace SeerRandomSkin
         public void Resolve(bool r)
         {
             FormFlashFightHandler._t.TrySetResult(r);
+        }
+
+        public string[] GetDownloadedFileNames()
+        {
+            return Directory.EnumerateFiles(Properties.Settings.Default.DownloadPath == string.Empty ? Form1.DefaultDownloadPath : Properties.Settings.Default.DownloadPath)
+                .Select(name => Path.GetFileName(name))
+                .ToArray();
         }
     }
 }

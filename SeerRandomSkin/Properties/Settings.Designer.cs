@@ -687,303 +687,297 @@ namespace SeerRandomSkin.Properties {
             "c\": \"\",\r\n    \"s\": \"WxSc.Util.ChangeCloth([1300950,0,1300951,0,1300952,0,1300953," +
             "0,1300874,0]);\\nWxSc.Util.SetTitle(300);\"\r\n  },\r\n  \"pve-套装-银翼-假面-吉光\": {\r\n    \"c\"" +
             ": \"\",\r\n    \"s\": \"WxSc.Util.ChangeCloth([1300670,0,1300671,0,1300672,0,1300673,0," +
-            "1300954,0]);\\nWxSc.Util.SetTitle(272);\"\r\n  },\r\n  \"pve-状态-因子1-保存\": {\r\n    \"c\": \"\"" +
-            ",\r\n    \"s\": \"WxSc.Util.StateSave(\'因子1\')\"\r\n  },\r\n  \"pve-状态-因子1-更换\": {\r\n    \"c\": \"" +
-            "\",\r\n    \"s\": \"WxSc.Util.StateLoadAsync(\'因子1\')\"\r\n  },\r\n  \"pve-状态-因子2-保存\": {\r\n    " +
-            "\"c\": \"\",\r\n    \"s\": \"WxSc.Util.StateSave(\'因子2\')\"\r\n  },\r\n  \"pve-状态-因子2-更换\": {\r\n   " +
-            " \"c\": \"\",\r\n    \"s\": \"WxSc.Util.StateLoadAsync(\'因子2\')\"\r\n  },\r\n  \"pve-状态-因子3-保存\": " +
-            "{\r\n    \"c\": \"\",\r\n    \"s\": \"WxSc.Util.StateSave(\'因子3\')\"\r\n  },\r\n  \"pve-状态-因子3-更换\":" +
-            " {\r\n    \"c\": \"\",\r\n    \"s\": \"WxSc.Util.StateLoadAsync(\'因子3\')\"\r\n  },\r\n  \"pve-状态-因子" +
-            "4-保存\": {\r\n    \"c\": \"\",\r\n    \"s\": \"WxSc.Util.StateSave(\'因子4\')\"\r\n  },\r\n  \"pve-状态-因" +
-            "子4-更换\": {\r\n    \"c\": \"\",\r\n    \"s\": \"WxSc.Util.StateLoadAsync(\'因子4\')\"\r\n  },\r\n  \"pv" +
-            "e-状态-因子5-保存\": {\r\n    \"c\": \"\",\r\n    \"s\": \"WxSc.Util.StateSave(\'因子5\')\"\r\n  },\r\n  \"p" +
-            "ve-状态-因子5-更换\": {\r\n    \"c\": \"\",\r\n    \"s\": \"WxSc.Util.StateLoadAsync(\'因子5\')\"\r\n  }," +
-            "\r\n  \"pve-绿火\": {\r\n    \"c\": \"\",\r\n    \"s\": \"let FIRE_BLUE_SMALL = 2;\\nlet FIRE_PURP" +
-            "LE_SMALL = 3;\\nlet FIRE_GOLD_SMALL = 4;\\nlet FIRE_GREEN_SMALL = 5;\\nlet FIRE_GRE" +
-            "EN_BIG = 6;\\nlet FIRE_BLUE_BIG = 7;\\nlet FIRE_PURPLE_BIG = 8;\\nlet FIRE_GOLD_BIG" +
-            " = 9;\\nif (await WxSc.Util.CopyFireAsync([FIRE_GREEN_SMALL])) {\\n  setTimeout(()" +
-            " => {\\n    WxSc.Util.SimpleAlarm(\'火焰好像快失效了\');\\n  }, 10 * 60 * 1000);\\n}\"\r\n  },\r\n" +
-            "  \"pve-金火\": {\r\n    \"c\": \"\",\r\n    \"s\": \"await WxSc.Util.CopyFireAsync([9,4]);\"\r\n " +
-            " },\r\n  \"关卡-噬梦魔灵-第二关\": {\r\n    \"c\": \"\",\r\n    \"s\": \"// 打开开发者工具，在 console 页面查看指引\\n//" +
-            " 制作过程视频：BV1fm8nexENV\\n\\nfunction getBit(p1, p2) { return (p1 >> (p2 - 1)) & 1; }" +
-            "\\nfunction getByte(p1, p2) { return (p1 >> (8 * p2)) & 255; }\\n\\nasync function " +
-            "getMapInfo(curMap) {\\n  let mapObj = {};\\n\\n  let arr = await WxSc.KTool.getMult" +
-            "iValueAsync([\\n    103296 + (curMap - 1) / 4,\\n    103309 + curMap - 1,\\n    103" +
-            "360 + (curMap - 1) / 32\\n  ]);\\n  arr[0] = getByte(arr[0], (curMap - 1) % 4);\\n " +
-            " if (arr[0] < 5) {\\n    // 一共 4 种颜色的球，arr[0] 分别为 1 2 3 4 时，表示地图上有对应的球\\n    if (a" +
-            "rr[0] > 0) {\\n      mapObj.ballType = arr[0];\\n    }\\n  }\\n  else if (arr[0] < 9" +
-            ") {\\n    // 地图上有井，种类为 (arr[0] - 5)\\n    // 数值从 0 开始，与球的标号不同，但是按照顺序，颜色还是对应得上的\\n  " +
-            "  mapObj.holeType = arr[0] - 5;\\n  }\\n  else {\\n    // 地图上有 NPC\\n  }\\n\\n  // 每张地" +
-            "图都有 4 个门\\n  // doors 数组中，从左到右依次对应界面上显示的门\\n  // 0 表示此路不通\\n  // 其他数字，在不同的地图中相同数字的门" +
-            "，表示互相连通\\n  mapObj.doors = [];\\n  for (let i = 1; i <= 4; ++i) {\\n    mapObj.door" +
-            "s[i - 1] = getByte(arr[1], i - 1);\\n  }\\n\\n  return mapObj;\\n}\\n\\nasync function" +
-            " findPath() {\\n  if (window.allMapInfo11813 === undefined) {\\n    window.allMapI" +
-            "nfo11813 = [];\\n    for (let i = 1; i < 21; ++i) { window.allMapInfo11813.push(a" +
-            "wait getMapInfo(i)); }\\n    console.log(\'世界地图\', window.allMapInfo11813);\\n  }\\n\\" +
-            "n  // 当前地图\\n  let globalObj = {};\\n  let arr = await WxSc.KTool.getMultiValueAsy" +
-            "nc([103294, 103295]);\\n  globalObj.curMap = arr[0] & 255; // 地图标号（一共 20 张地图，标号从 " +
-            "1 开始）\\n  globalObj.curEnergy = arr[0] >> 8 & 255; // 灵魂能量\\n  globalObj.curHasBal" +
-            "l = arr[0] >> 16 & 255;\\n  globalObj.hasTransferNum = arr[0] >> 24 & 255; // 已走过" +
-            "的步数\\n\\n  globalObj.hasBall = []\\n  for (let i = 1; i <= 4; ++i) {\\n    if (getBi" +
-            "t(arr[1], i) == 1) {\\n      globalObj.hasBall[i - 1] = 1;\\n    }\\n    else {\\n  " +
-            "    globalObj.hasBall[i - 1] = 0;\\n    }\\n  }\\n\\n  globalObj.doors = window.allM" +
-            "apInfo11813[globalObj.curMap - 1].doors;\\n\\n  // console.log(globalObj);\\n  cons" +
-            "ole.log(`当前地图上，门的编号（从左到右）分别是：[${globalObj.doors.filter(door => door!=0).join(\' \'" +
-            ")}]`);\\n  if (globalObj.curHasBall === 0) {\\n    console.log(\'寻找最近的球\');\\n    let" +
-            " path = bfs(globalObj.curMap, m => (\'ballType\' in m && globalObj.hasBall[m.ballT" +
-            "ype-1] === 0));\\n    if (path.length === 0) {\\n      console.log(\'请捡起当前地图上的球\');\\" +
-            "n    }\\n    else if (path.length > window.allMapInfo11813.length) {\\n      conso" +
-            "le.log(\'剩下的球无法获取，请先耗尽灵魂能量，重置关卡\');\\n    }\\n    else {\\n      console.log(`请进入 ${p" +
-            "ath[0]} 号门`);\\n    }\\n  }\\n  else {\\n    console.log(\'寻找井\');\\n    let path = bfs" +
-            "(globalObj.curMap, m => (\'holeType\' in m && m.holeType === globalObj.curHasBall-" +
-            "1));\\n    if (path.length === 0) {\\n      console.log(\'请将球投入当前地图上的井\');\\n    }\\n " +
-            "   else if (path.length > window.allMapInfo11813.length) {\\n      console.log(\'剩" +
-            "下的井所在位置无法到达，请先耗尽灵魂能量，重置关卡\');\\n    }\\n    else {\\n      console.log(`请进入 ${path[0" +
-            "]} 号门`);\\n    }\\n  }\\n}\\n\\nfunction bfs(curMap, predicate) {\\n  let visited = (n" +
-            "ew Array(window.allMapInfo11813.length)).fill(null); // 记录路径\\n  let queue = [];\\" +
-            "n  queue.push(curMap-1);\\n  visited[curMap-1] = [];\\n\\n  while (queue.length > 0" +
-            ") {\\n    let cur = queue.shift();\\n    if (predicate(window.allMapInfo11813[cur]" +
-            ")) {\\n      return visited[cur];\\n    }\\n    for (let door of window.allMapInfo1" +
-            "1813[cur].doors) {\\n      if (door === 0) continue;\\n      // 若两个地图有相同编号的门，则说明这两" +
-            "个地图相互连通\\n      for (let i = 0; i < window.allMapInfo11813.length; ++i) {\\n      " +
-            "  if (i === cur || visited[i] != null) continue;\\n        if (window.allMapInfo1" +
-            "1813[i].doors.indexOf(door) != -1) {\\n          queue.push(i);\\n          visite" +
-            "d[i] = visited[cur].concat([door]);\\n        }\\n      }\\n    }\\n  }\\n  return ne" +
-            "w Array(window.allMapInfo11813.length+1);\\n}\\n\\nconsole.log(\'=====\');\\nawait fin" +
-            "dPath();\"\r\n  },\r\n  \"关卡-暗黑托鲁克\": {\r\n    \"c\": \"\",\r\n    \"s\": \"// 需要有精灵：3437 艾欧丽娅（携带技" +
-            "能疾击之刺、第五技能侍君奉此生）\\nfunction ReadInt(data) { return (data.byteArray[data.position+" +
-            "+] << 24) + (data.byteArray[data.position++] << 16) + (data.byteArray[data.posit" +
-            "ion++] << 8) + data.byteArray[data.position++]; }\\n\\nconst 艾欧丽娅 = 3437;\\nconst 疾" +
-            "击之刺 = 31114;\\nconst 侍君奉此生 = 31117;\\nlet bag1 = WxSc.Util.GetBag1();\\nlet bag2 = " +
-            "WxSc.Util.GetBag2();\\nlet pets = await WxSc.Util.GetStoragePetsAsync();\\npets = " +
-            "pets.filter(pet => pet.id===艾欧丽娅);\\nif (pets.length===0) {\\n  // 再看看背包里有没有\\n  pe" +
-            "ts = bag1.concat(bag2).filter(pet => pet.id===艾欧丽娅);\\n  if (pets.length===0) {\\n" +
-            "    alert(\'未找到艾欧丽娅，任务终止\');\\n    return;\\n  }\\n}\\nawait WxSc.Util.SetPetBagAsync(" +
-            "[pets[0].catchTime]);\\nlet petInfo = WxSc.Util.GetBagPetInfos()[0];\\nif (petInfo" +
-            ".skillArray.filter(sk => sk.id===疾击之刺).length===0) {\\n  alert(\'【艾欧丽娅】没有搭配技能【疾击之刺" +
-            "】，任务终止\');\\n  return;\\n}\\nif (petInfo.hideSKill.id!==侍君奉此生) {\\n  alert(\'【艾欧丽娅】没有搭" +
-            "配技能【侍君奉此生】，任务终止\');\\n  return;\\n}\\n\\nWxSc.Util.SimpleAlarm(\'崩塌吧！天空之城！\');\\nWxSc.Ut" +
-            "il.SetIsHidePetFight(true);\\n\\n// 发起战斗\\nlet fightWithTlk = (region) => {\\n  retu" +
-            "rn new Promise(res => {\\n    WxSc.OnFightOver = (overInfo) => {\\n      res (over" +
-            "Info.winnerID != 0);\\n    }\\n    WxSc.Util.Send(41129, region);\\n  });\\n}\\n\\nwhi" +
-            "le (true) {\\n  // 剩余挑战次数\\n  let arr = await WxSc.KTool.getMultiValueAsync([12045" +
-            ",2065]);\\n  if (3 - arr[0] + arr[1] === 0) break;\\n  // console.log(\'新一轮挑战\');\\n " +
-            " for (let i = 0; i < 6; ++i) {\\n    let data = {};\\n    data.byteArray = await W" +
-            "xSc.Util.SendAsync(47087, []); // SKY_CITY_GET_BOSS_REGION\\n    data.position = " +
-            "0;\\n    let region = ReadInt(data);\\n    if (region === 251) {\\n      // 真身\\n   " +
-            "   // 出招\\n      WxSc.OnFirstRound = () => WxSc.Util.UseSkill(侍君奉此生);\\n      WxSc" +
-            ".OnUseSkill = async (mySkillInfo) => {\\n        await WxSc.Util.DelayAsync(200);" +
-            "\\n        WxSc.Util.UseSkill(侍君奉此生);\\n      }\\n      let isWin = await fightWith" +
-            "Tlk(region);\\n      // console.log(`对战真身，${isWin?\'胜利\':\'失败\'}`);\\n      // 失败后的情况有" +
-            "点奇怪，没看明白，就不处理了\\n      await WxSc.Util.DelayAsync(5000);\\n      break;\\n    }\\n  " +
-            "  else {\\n      // 出招\\n      WxSc.OnFirstRound = () => WxSc.Util.UseSkill(疾击之刺);" +
-            "\\n      WxSc.OnUseSkill = async (mySkillInfo) => {\\n        await WxSc.Util.Dela" +
-            "yAsync(200);\\n        WxSc.Util.UseSkill(疾击之刺);\\n      }\\n      let isWin = awai" +
-            "t fightWithTlk(region);\\n      // console.log(`对战分身，${isWin?\'胜利\':\'失败\'}`);\\n     " +
-            " await WxSc.Util.DelayAsync(5000);\\n    }\\n  }\\n}\\n\\nlet items = await WxSc.Item" +
-            "Manager.updateItemsAsync([1700364,1700365]);\\nlet 黑暗之羽 = 0, 魔化之心 = 0;\\nfor (cons" +
-            "t item of items) {\\n  switch (item.itemID) {\\n    case 1700364:\\n      黑暗之羽 = it" +
-            "em.itemNum;\\n      break;\\n    case 1700365:\\n      魔化之心 = item.itemNum;\\n      " +
-            "break;\\n  }\\n}\\nif (魔化之心<100 && 黑暗之羽>150) {\\n  // 合成\\n  while (黑暗之羽 >= 150) {\\n " +
-            "   WxSc.Util.Send(2901, 1768);\\n    黑暗之羽 -= 50;\\n    魔化之心;\\n  }\\n}\\nWxSc.Util.St" +
-            "opAutoFight();\\nWxSc.Util.SetIsHidePetFight(false);\\n// 恢复背包\\nawait WxSc.Util.Se" +
-            "tPetBagAsync(bag1.map(pet => pet.catchTime),bag2.map(pet => pet.catchTime));\\nif" +
-            " (黑暗之羽>=100 && 魔化之心>=100) {\\n  alert(\'可以去地图965领取精灵了\');\\n}\\nelse {\\n  WxSc.Util.S" +
-            "impleAlarm(`当前进度：${黑暗之羽}/100 | ${魔化之心}/100`);\\n}\\n\\n// 参考资料：\\n// https://seer.61" +
-            ".com/module/com/robot/module/app/BlackBulukeMainPanel.swf\\n// https://seer.61.co" +
-            "m/dll/RobotAppDLL.swf\\n// https://seer.61.com/dll/PetFightDLL_201308.swf\\n// com" +
-            ".robot.app.task.control.TianKongZhiChengController\\n// com.robot.app2.control.Bl" +
-            "ackTuolukeGame\"\r\n  },\r\n  \"日常-通行证-养成任务\": {\r\n    \"c\": \"\",\r\n    \"s\": \"let bag1 = Wx" +
-            "Sc.Util.GetBag1();\\nlet bag2 = WxSc.Util.GetBag2();\\nlet pets = await WxSc.Util." +
-            "GetStoragePetsAsync();\\n// 从仓库取出一只 皮皮\\npets = pets.filter(pet => pet.id===10);\\n" +
-            "if (pets.length === 0) {\\n  pets = bag1.concat(bag2).filter(pet => pet.id===10);" +
-            "\\n  if (pets.length === 0) WxSc.Util.SimpleAlarm(\'没有精灵皮皮，任务失败\');\\n}\\nlet ct = pe" +
-            "ts[0].catchTime;\\nawait WxSc.Util.SetPetBagAsync([ct]);\\n// 性格\\nWxSc.Util.Send(2" +
-            "326,ct,300070);\\n// 恢复背包\\nawait WxSc.Util.SetPetBagAsync(bag1.map(pet => pet.cat" +
-            "chTime),bag2.map(pet => pet.catchTime));\\n// 领奖\\nWxSc.Util.Send(41916,1,3);\\nWxS" +
-            "c.Util.SimpleAlarm(\'ok\');\"\r\n  },\r\n  \"状态-pvp-保存\": {\r\n    \"c\": \"\",\r\n    \"s\": \"WxSc" +
-            ".Util.StateSave(\'pvp\')\"\r\n  },\r\n  \"状态-pvp-更换\": {\r\n    \"c\": \"\",\r\n    \"s\": \"WxSc.Ut" +
-            "il.StateLoadAsync(\'pvp\')\"\r\n  },\r\n  \"状态-日常-保存\": {\r\n    \"c\": \"\",\r\n    \"s\": \"WxSc.U" +
-            "til.StateSave(\'日常\')\"\r\n  },\r\n  \"状态-日常-更换\": {\r\n    \"c\": \"\",\r\n    \"s\": \"WxSc.Util.S" +
-            "tateLoadAsync(\'日常\')\"\r\n  },\r\n  \"因子-id测试\": {\r\n    \"c\": \"\",\r\n    \"s\": \"const id = 3" +
-            "4;\\n\\nWxSc.Refl.Tmp(\'com.robot.core.config.xml.NewSuperdesignXmlInfo\', \'getRewar" +
-            "dInfoById\', \'rewardInfo\', false,id);\\nWxSc.Util.SimpleAlarm(WxSc.Util.GetPetName" +
-            "ByID(WxSc.Dict.Get(\'rewardInfo\', \'MonsterID\')))\\n\"\r\n  },\r\n  \"因子-简单模式\": {\r\n    \"c" +
-            "\": \"\",\r\n    \"s\": \"const 自动兑换 = true; // 默认自动兑换，如果不想自动兑换，将true改成false\\n\\nlet CONF" +
-            "IGS = [\\n  {\\n    id: 195, // 绮芒·蝠迪\\n    strategies: [\\n      {\\n        clothes" +
-            ": [1301043,0,1301044,0,1301045,0,1301046,0,1300954,0], // 漆黑天使套装 + 倒吊的假面\\n      " +
-            "  title: 272, // 吉光凤羽称号\\n        pets: [[4648,5000], [2727,2735,3409,3519]], // " +
-            "出战：星光·鲁斯王、圣谱。备战：西游\\n        skill: () => 一直第五,\\n      },\\n      { skill: () => 一" +
-            "直第五 }, // 没有设置 clothes 等属性，表示沿用上一关的套装、阵容\\n      { skill: () => 一直第五 },\\n      { " +
-            "skill: () => 一直第五 },\\n      {\\n        // 仅作示例，这关不建议使用这种打法，因为运气不好可能要耗几千回合\\n     " +
-            "   clothes: [1300950,0,1300951,0,1300952,0,1300953,0,1300874,0], // 耀世战铠 + 魔界之风目" +
-            "镜\\n        title: 300, // 神话称号\\n        pets: [[4487], [2727,2735,3409,3519]], /" +
-            "/ 出战：希可洛。备战：西游\\n        skill: () => 一直第一, // 奇镰解放（一般都是把这个技能放首位的吧）\\n      },\\n  " +
-            "  ]\\n  },\\n  {\\n    id: 198, // 星光·纳多雷\\n    扫荡: 7, // 简单：5；困难：6；地狱：7；\\n  },\\n];\\" +
-            "n\\nconst 一直第五 = () => {\\n  WxSc.OnFirstRound = () => {\\n    let firstPetCatchtim" +
-            "e = WxSc.Util.GetFightingPetCatchTime();\\n    for (let pet of WxSc.Util.GetFight" +
-            "ingPets()) {\\n      if (pet.catchTime === firstPetCatchtime) {\\n        WxSc.Uti" +
-            "l.UseSkill(pet.hideSKill === null ? pet.skillArray[0] : pet.hideSKill.id); // 若无" +
-            "第五，则用一技能\\n        break;\\n      }\\n    }\\n  };\\n\\n  WxSc.OnUseSkill = async (myS" +
-            "killInfo) => {\\n    await WxSc.Util.DelayAsync(WxSc.Const.DelayMs); // 出招间隔太短会掉线" +
-            "，默认是200ms\\n    let petID = WxSc.Util.GetFightingPetID();\\n    if (mySkillInfo.re" +
-            "mainHP !== 0) {\\n      let skillList = mySkillInfo.skillList;\\n      let i = ski" +
-            "llList.length < 5 ? 0 : 4;\\n      if (skillList[i][1] > 0) {\\n        WxSc.Util." +
-            "UseSkill(skillList[i][0]);\\n      }\\n      else {\\n        WxSc.Util.UsePetItem1" +
-            "0PP();\\n      }\\n    }\\n    else {\\n      WxSc.Util.ChangePetByID([]);\\n    }\\n " +
-            " };\\n\\n  WxSc.OnChangePet = (petInfo) => {\\n    let skillList = petInfo.skillLis" +
-            "t;\\n    WxSc.Util.UseSkill(skillList[skillList.length < 5 ? 0 : 4][0]);\\n  };\\n}" +
-            "\\n\\nconst 一直第一 = () => {\\n  WxSc.OnFirstRound = () => {\\n    let firstPetCatchti" +
-            "me = WxSc.Util.GetFightingPetCatchTime();\\n    for (let pet of WxSc.Util.GetFigh" +
-            "tingPets()) {\\n      if (pet.catchTime === firstPetCatchtime) {\\n        WxSc.Ut" +
-            "il.UseSkill(pet.skillArray[0]);\\n        break;\\n      }\\n    }\\n  };\\n\\n  WxSc." +
-            "OnUseSkill = async (mySkillInfo) => {\\n    await WxSc.Util.DelayAsync(WxSc.Const" +
-            ".DelayMs);\\n    let petID = WxSc.Util.GetFightingPetID();\\n    if (mySkillInfo.r" +
-            "emainHP !== 0) {\\n      let skillList = mySkillInfo.skillList;\\n      let i = 0;" +
-            "\\n      if (skillList[i][1] > 0) {\\n        WxSc.Util.UseSkill(skillList[i][0]);" +
-            "\\n      }\\n      else {\\n        WxSc.Util.UsePetItem10PP();\\n      }\\n    }\\n  " +
-            "  else {\\n      WxSc.Util.ChangePetByID([]);\\n    }\\n  };\\n\\n  WxSc.OnChangePet " +
-            "= (petInfo) => {\\n    let skillList = petInfo.skillList;\\n    WxSc.Util.UseSkill" +
-            "(skillList[0][0]);\\n  };\\n}\\n\\nfunction ReadByte(data) { return data.byteArray[d" +
-            "ata.position++]; }\\n\\nconst changeBagByIDs = async (ids) => {\\n  const bag1 = Wx" +
-            "Sc.Util.GetBag1();\\n  const bag2 = WxSc.Util.GetBag2();\\n  let allPet = await Wx" +
-            "Sc.Util.GetStoragePetsAsync();\\n  allPet = allPet.concat(bag1, bag2);\\n  let cat" +
-            "chTimes = [];\\n  catchTimes.push([]);\\n  for (const id of ids[0]) {\\n    let tar" +
-            "gets = allPet.filter(pet => pet.id === id);\\n    if (targets.length === 0) {\\n  " +
-            "    throw new Error(`找不到 ID 为 ${id} 的宠物`);\\n    }\\n    catchTimes[0].push(target" +
-            "s[0].catchTime);\\n  }\\n  if (ids[1] !== undefined) {\\n    catchTimes.push([]);\\n" +
-            "    for (const id of ids[1]) {\\n      let targets = allPet.filter(pet => pet.id " +
-            "=== id);\\n      if (targets.length === 0) {\\n        throw new Error(`找不到 ID 为 $" +
-            "{id} 的宠物`);\\n      }\\n      catchTimes[1].push(targets[0].catchTime);\\n    }\\n  " +
-            "}\\n  await WxSc.Util.SetPetBagAsync(...catchTimes);\\n}\\n\\nconst fightWithEasyBos" +
-            "s = (id) => {\\n  return new Promise(async res => {\\n    WxSc.OnFightOver = (over" +
-            "Info) => {\\n      res (overInfo.winnerID != 0);\\n    }\\n    let data = {}\\n    d" +
-            "ata.byteArray = await WxSc.Util.SendAsync(41282, [id,1]);\\n    data.position = 0" +
-            ";\\n    const fightCode = ReadByte(data);\\n    if (fightCode != 0) {\\n      alert" +
-            "(`发起战斗 ${id} 失败，错误码：${fightCode}`);\\n      throw new Error(\'\');\\n    }\\n  });\\n}" +
-            "\\n\\nawait WxSc.Util.StateSave(\'简单因子\');\\n\\nWxSc.Util.SetIsHidePetFight(true);\\nco" +
-            "nst NewSuperdesignXmlInfo = \'com.robot.core.config.xml.NewSuperdesignXmlInfo\';\\n" +
-            "const SpiritFragmentXmlInfo = \'com.robot.core.config.xml.SpiritFragmentXmlInfo\';" +
-            "\\nconst KEY_REWARD_INFO = \'rewardInfo\';\\nfor (const config of CONFIGS) {\\n  // 基" +
-            "本信息\\n  WxSc.Refl.Tmp(NewSuperdesignXmlInfo, \'getRewardInfoById\', KEY_REWARD_INFO" +
-            ", false,config.id);\\n  const MOSTER_ID = WxSc.Dict.Get(KEY_REWARD_INFO, \'Monster" +
-            "ID\');\\n  const BOSS_NAME = WxSc.Util.GetPetNameByID(MOSTER_ID);\\n  const _config" +
-            "ureInfo = WxSc.Refl.Func(NewSuperdesignXmlInfo, \'getConfigureInfoById\', false,co" +
-            "nfig.id);\\n\\n  // 兑换\\n  const itemId = WxSc.Dict.Get(KEY_REWARD_INFO, \'ItemID\')\\" +
-            "n  const items = await WxSc.ItemManager.updateItemsAsync([itemId])\\n  if (自动兑换 &" +
-            "& items.length > 0 && items[0].itemNum >= WxSc.Refl.Func(SpiritFragmentXmlInfo,\'" +
-            "getTotalNum\', false,MOSTER_ID)) {\\n    const bag1 = WxSc.Util.GetBag1();\\n    co" +
-            "nst bag2 = WxSc.Util.GetBag2();\\n    WxSc.Util.Send(41413,items[0].itemID,1,0); " +
-            "// 精灵\\n    await WxSc.Util.DelayAsync(2000);\\n    try {\\n      await changeBagBy" +
-            "IDs([[MOSTER_ID]]);\\n      WxSc.Util.Send(41413,items[0].itemID,2,0);\\n      WxS" +
-            "c.Util.Send(41413,items[0].itemID,3,0);\\n      alert(`【${BOSS_NAME}】 已兑换`);\\n   " +
-            " } catch (e) {\\n      alert(`【${BOSS_NAME}】 兑换出错，可能需要精灵的前置形态`);\\n    }\\n    // 恢" +
-            "复背包\\n    await WxSc.Util.SetPetBagAsync(bag1.map(pet => pet.catchTime),bag2.map(" +
-            "pet => pet.catchTime));\\n    continue;\\n  }\\n\\n  if (config.扫荡 !== undefined) {\\" +
-            "n    for (let i=0; i<3; ++i) WxSc.Util.Send(41283, config.id,config.扫荡);\\n    co" +
-            "ntinue;\\n  }\\n  \\n  let va = await WxSc.KTool.getMultiValueAsync([_configureInfo" +
-            ".ProgressValue, _configureInfo.TimeValue]);\\n  let _curlv = WxSc.KTool.subByte(v" +
-            "a[0], 16, 8); // 数值为 0、1、2、3、4\\n  let levelNum = WxSc.KTool.subByte(va[0], 8, 8)" +
-            "; // 难度（简单模式是 1）\\n  let _surplusNum = _configureInfo.Times - va[1]; // 剩余轮数\\n  i" +
-            "f (_curlv != 0 || levelNum != 0) ++_surplusNum;\\n  for (let i = 0; i < _surplusN" +
-            "um; i++) {\\n    do {\\n      const index = _curlv;\\n      if (config.strategies[i" +
-            "ndex].clothes !== undefined) {\\n        WxSc.Util.ChangeCloth(config.strategies[" +
-            "index].clothes);\\n      }\\n      if (config.strategies[index].title!== undefined" +
-            ") {\\n        WxSc.Util.SetTitle(config.strategies[index].title);\\n      }\\n     " +
-            " if (config.strategies[index].pets !== undefined) {\\n        await changeBagByID" +
-            "s(config.strategies[index].pets);\\n      }\\n      config.strategies[index].skill" +
-            "()();\\n      const win = await fightWithEasyBoss(config.id);\\n      WxSc.Util.Si" +
-            "mpleAlarm(`【${BOSS_NAME}】 ${_curlv} ${win ? \'胜利\' : \'失败\'}`);\\n      await WxSc.Ut" +
-            "il.DelayAsync(16000);\\n      va = await WxSc.KTool.getMultiValueAsync([_configur" +
-            "eInfo.ProgressValue]);\\n      _curlv = WxSc.KTool.subByte(va[0], 16, 8);\\n      " +
-            "levelNum = WxSc.KTool.subByte(va[0], 8, 8);\\n    } while (_curlv != 0 || levelNu" +
-            "m != 0);\\n  }\\n}\\nWxSc.Util.SetIsHidePetFight(false);\\n\\n// 恢复背包、套装、称号\\nawait Wx" +
-            "Sc.Util.StateLoadAsync(\'简单因子\');\\nconsole.log(\'因子任务完成\')\\n\\n// 参考：\\n// https://see" +
-            "r.61.com/module/com/robot/module/app/SpetBaseLvPanel.swf\\n// https://seer.61.com" +
-            "/module/com/robot/module/app/SpetBaseBattlePanel.swf\\n// https://seer.61.com/mod" +
-            "ule/com/robot/module/app/SpetYiMangFuDiMainPanel.swf\\n// https://seer.61.com/dll" +
-            "/RobotCoreDLL.swf\"\r\n  },\r\n  \"杂项-刻印仓库\": {\r\n    \"c\": \"\",\r\n    \"s\": \"function ReadI" +
-            "nt(data) { return (data.byteArray[data.position++] << 24) + (data.byteArray[data" +
-            ".position++] << 16) + (data.byteArray[data.position++] << 8) + data.byteArray[da" +
-            "ta.position++]; }\\n\\nasync function GetBagCountmarkAsync() {\\n  const cmdID = 46" +
-            "160; // QUERY_COUNTMARK_BY_TYPE_PAGE\\n  const batchSize = 100;\\n  let startID = " +
-            "0;\\n  const keyFuncParse = \'marks\', keyResult = \'markRes\', keySocketEvent = \'soc" +
-            "ketEvent\', keyByteArray = \'markBA\', keyCountermarkInfo = \'CountermarkInfo\', keyA" +
-            "llMark = \'allMark\';\\n  WxSc.Dict.Add(keyAllMark,\'Array\');\\n  while (true) {\\n   " +
-            " const markNum = await new Promise(res => {\\n      WxSc.Dict.AddCall(keyFuncPars" +
-            "e,keyResult,() => {\\n        // 接收到的参数会存放到 keyResult 数组中\\n        // 这里将接收到的 返回值" +
-            "数组 的 第一个成员（下标为 0，类型为 SocketEvent）的 data 属性（类型为 ByteArray）转存到 keyByteArray 中，后续就能" +
-            "作为参数传递给 CountermarkInfo 的构造函数\\n        WxSc.Dict.TmpAttrib(keyResult, \'0\', keySo" +
-            "cketEvent);\\n        WxSc.Dict.TmpAttrib(keySocketEvent, \'data\', keyByteArray);\\" +
-            "n        WxSc.Dict.Set(keyByteArray,\'position\',false,0);\\n        const num = Wx" +
-            "Sc.Dict.Func(keyByteArray,\'readUnsignedInt\') / 14;\\n        for (let i = 0; i < " +
-            "num; i++) {\\n          WxSc.Dict.Add(keyCountermarkInfo, \'com.robot.core.info.us" +
-            "erItem.CountermarkInfo\', true, keyByteArray);\\n          WxSc.Dict.Func(keyAllMa" +
-            "rk,\'push\',true,keyCountermarkInfo);\\n        }\\n        WxSc.Dict.Del(keyFuncPar" +
-            "se);\\n        WxSc.Dict.Del(keyResult);\\n        WxSc.Dict.Del(keySocketEvent);\\" +
-            "n        WxSc.Dict.Del(keyByteArray);\\n        WxSc.Dict.Del(keyCountermarkInfo)" +
-            ";\\n        res(num);\\n      });\\n      WxSc.Refl.Func(\'com.robot.core.net.Socket" +
-            "Connection\',\'sendByQueue\',false,cmdID, false,[1, 1, startID, batchSize], true,ke" +
-            "yFuncParse);\\n    });\\n    if (markNum < batchSize) break;\\n    startID += batch" +
-            "Size;\\n    await WxSc.Util.DelayAsync(100);\\n  }\\n  const result = WxSc.Dict.Get" +
-            "(keyAllMark);\\n  WxSc.Dict.Del(keyAllMark);\\n  return result;\\n}\\n\\nconst arr = " +
-            "await GetBagCountmarkAsync();\\nfor (let i = 0; i < 10; ++i) {\\n  console.log(arr" +
-            "[i]);\\n}\"\r\n  },\r\n  \"杂项-野生精灵\": {\r\n    \"c\": \"\",\r\n    \"s\": \"WxSc.OnFirstRound = () " +
-            "=> {\\n  // 对战首回合，使用特殊胶囊捕捉\\n  WxSc.Util.Send(2409,300505);\\n  WxSc.Util.ItemBuy(3" +
-            "00505);\\n}\\n(() => {\\n  const 闪光皮皮 = 164, keyFunc = \'catch\', keyResult = \'catchR" +
-            "es\', SocketConnection = \'com.robot.core.net.SocketConnection\', MAP_OGRE_LIST = 2" +
-            "004;\\n  try {\\n    WxSc.Refl.Func(SocketConnection,\'removeCmdListener\',false,MAP" +
-            "_OGRE_LIST,true,keyFunc); // 防止重复\\n  } catch (e) {}\\n  WxSc.Dict.AddCall(keyFunc" +
-            ",keyResult,() => {\\n    // 接收到的参数会存放到 keyResult 数组中，这里需要的是第一个参数（下标为 0），类型为 Socke" +
-            "tEvent\\n    WxSc.Dict.Set(keyResult,\'0.data.position\',false,0);\\n    for (let i " +
-            "= 0; i < 9; i++) {\\n      let o = WxSc.Dict.Func(keyResult,\'0.data.readUnsignedI" +
-            "nt\');\\n      if (o === 闪光皮皮) {\\n        WxSc.Refl.Func(\'com.robot.app.fight.Figh" +
-            "tManager\',\'fightWithNpc\',false,i);\\n        return;\\n      }\\n    }\\n    WxSc.Ut" +
-            "il.SimpleAlarm(\'等待\');\\n  });\\n  WxSc.Refl.Func(SocketConnection,\'addCmdListener\'" +
-            ",false,MAP_OGRE_LIST,true,keyFunc);\\n})()\\nWxSc.Util.ChangeMap(10); // 克洛斯星\"\r\n  " +
-            "},\r\n  \"杂项-杰丹\": {\r\n    \"c\": \"\",\r\n    \"s\": \"const catchNum = 5;\\nlet caughtNum = 0" +
-            ";\\nlet onePetCt;\\nconst infos = WxSc.Util.GetBagPetInfos();\\nif (infos.length ==" +
-            "= 0) {\\n  // 从仓库中随便找出一个精灵\\n  const pets = await WxSc.Util.GetStoragePetsAsync();" +
-            "\\n  if (pets.length === 0) {\\n    alert(\'获取仓库精灵失败，已停止运行\');\\n    return;\\n  }\\n  " +
-            "onePetCt = pets[0].catchTime;\\n  await WxSc.Util.SetPetBagAsync([onePetCt]);\\n}\\" +
-            "nelse if (infos.length != 1) {\\n  // 开始时背包只留一个精灵\\n  onePetCt = infos[0].catchTim" +
-            "e;\\n  await WxSc.Util.SetPetBagAsync([onePetCt]);\\n}\\n\\n// 获取胶囊数量\\nconst item = " +
-            "await WxSc.ItemManager.updateItemsAsync([300505]);\\nif (item.length === 0) {\\n  " +
-            "for (let i = 0; i < 6; i++) {\\n    WxSc.Util.ItemBuy(300505); \\n  }\\n}\\n\\nconst " +
-            "PET_ID = 632;\\nconst keyFunc = \'catch\', keyResult = \'catchRes\', SocketConnection" +
-            " = \'com.robot.core.net.SocketConnection\', MAP_OGRE_LIST = 2004, PetManager = \'co" +
-            "m.robot.core.manager.PetManager\';\\n\\nWxSc.OnFirstRound = async () => {\\n  // 对战首" +
-            "回合，使用特殊胶囊捕捉\\n  WxSc.Util.Send(2409,300505);\\n  WxSc.Util.ItemBuy(300505);\\n}\\n\\n" +
-            "WxSc.Util.SetIsHidePetFight(true); // 隐藏战斗界面\\n\\n(() => {\\n  const keyFunc2409 = " +
-            "\'catch2409\', keyResult2409 = \'catchRes2409\';\\n  try {\\n    WxSc.Refl.Func(Socket" +
-            "Connection,\'removeCmdListener\',false,MAP_OGRE_LIST,true,keyFunc); // 防止重复\\n    W" +
-            "xSc.Refl.Func(SocketConnection,\'removeCmdListener\',false,2409,true,keyFunc2409);" +
-            "\\n  } catch (e) {}\\n  WxSc.Dict.AddCall(keyFunc,keyResult, async () => {\\n    //" +
-            " 接收到的参数会存放到 keyResult 数组中，这里需要的是第一个参数（下标为 0），类型为 SocketEvent\\n    WxSc.Dict.Set(" +
-            "keyResult,\'0.data.position\',false,0);\\n    for (let i = 0; i < 9; i++) {\\n      " +
-            "let o = WxSc.Dict.Func(keyResult,\'0.data.readUnsignedInt\');\\n      if (o === PET" +
-            "_ID) {\\n        WxSc.Refl.Func(\'com.robot.app.fight.FightManager\',\'fightWithNpc\'" +
-            ",false,i);\\n        return;\\n      }\\n    }\\n    WxSc.Util.SimpleAlarm(\'等待\');\\n " +
-            " });\\n  WxSc.Refl.Func(SocketConnection,\'addCmdListener\',false,MAP_OGRE_LIST,tru" +
-            "e,keyFunc);\\n  \\n  WxSc.Dict.AddCall(keyFunc2409,keyResult2409, async () => {\\n " +
-            "   const newPetCt = WxSc.Dict.Get(keyResult2409,\'0.data.catchTime\');\\n    // 放入背" +
-            "包后，自动开启特性\\n    WxSc.Util.Send(2304, newPetCt,1); // PET_RELEASE\\n    WxSc.Refl.F" +
-            "unc(PetManager,\'upDateByOnce\'); // 更新精灵信息\\n    await WxSc.Util.DelayAsync(2400);" +
-            "\\n    const infos = WxSc.Util.GetBagPetInfos();\\n    for (let info of infos) {\\n" +
-            "      if (info.catchTime === newPetCt) {\\n        if (info.effectList.length ===" +
-            " 0) {\\n          alert(\'开启特性失败，已停止运行\');\\n          throw new Error(\'开启特性失败\');\\n " +
-            "       }\\n        if (info.effectList[0].effectID === 6 && (info.effectList[0].a" +
-            "rgs === \'0 3\' || info.effectList[0].args === \'6 3\')) {\\n          // 带电 阴森\\n    " +
-            "      console.log(\'+1\');\\n          if (++caughtNum === catchNum) {\\n           " +
-            " try {\\n              WxSc.Refl.Func(SocketConnection,\'removeCmdListener\',false," +
-            "MAP_OGRE_LIST,true,keyFunc);\\n              WxSc.Refl.Func(SocketConnection,\'rem" +
-            "oveCmdListener\',false,2409,true,keyFunc2409);\\n            } catch (e) {}\\n     " +
-            "       WxSc.Util.SetIsHidePetFight(false);\\n            alert(\'任务完成，请打开背包查看\');\\n" +
-            "            return;\\n          }\\n        } else {\\n          console.log(info.e" +
-            "ffectList[0].effectID, info.effectList[0].args);\\n          WxSc.Util.Send(2304," +
-            " newPetCt,0); // 放回仓库\\n        }\\n        break;\\n      }\\n    }\\n  });\\n  WxSc." +
-            "Refl.Func(SocketConnection,\'addCmdListener\',false,2409,true,keyFunc2409);\\n})()\\" +
-            "nWxSc.Util.ChangeMap(1216);\"\r\n  }\r\n}")]
+            "1300954,0]);\\nWxSc.Util.SetTitle(272);\"\r\n  },\r\n  \"pve-绿火\": {\r\n    \"c\": \"\",\r\n    " +
+            "\"s\": \"let FIRE_BLUE_SMALL = 2;\\nlet FIRE_PURPLE_SMALL = 3;\\nlet FIRE_GOLD_SMALL " +
+            "= 4;\\nlet FIRE_GREEN_SMALL = 5;\\nlet FIRE_GREEN_BIG = 6;\\nlet FIRE_BLUE_BIG = 7;" +
+            "\\nlet FIRE_PURPLE_BIG = 8;\\nlet FIRE_GOLD_BIG = 9;\\nif (await WxSc.Util.CopyFire" +
+            "Async([FIRE_GREEN_SMALL])) {\\n  setTimeout(() => {\\n    WxSc.Util.SimpleAlarm(\'火" +
+            "焰好像快失效了\');\\n  }, 10 * 60 * 1000);\\n}\"\r\n  },\r\n  \"pve-金火\": {\r\n    \"c\": \"\",\r\n    \"s" +
+            "\": \"await WxSc.Util.CopyFireAsync([9,4]);\"\r\n  },\r\n  \"关卡-噬梦魔灵-第二关\": {\r\n    \"c\": \"" +
+            "\",\r\n    \"s\": \"// 打开开发者工具，在 console 页面查看指引\\n// 制作过程视频：BV1fm8nexENV\\n\\nfunction ge" +
+            "tBit(p1, p2) { return (p1 >> (p2 - 1)) & 1; }\\nfunction getByte(p1, p2) { return" +
+            " (p1 >> (8 * p2)) & 255; }\\n\\nasync function getMapInfo(curMap) {\\n  let mapObj " +
+            "= {};\\n\\n  let arr = await WxSc.KTool.getMultiValueAsync([\\n    103296 + (curMap" +
+            " - 1) / 4,\\n    103309 + curMap - 1,\\n    103360 + (curMap - 1) / 32\\n  ]);\\n  a" +
+            "rr[0] = getByte(arr[0], (curMap - 1) % 4);\\n  if (arr[0] < 5) {\\n    // 一共 4 种颜色" +
+            "的球，arr[0] 分别为 1 2 3 4 时，表示地图上有对应的球\\n    if (arr[0] > 0) {\\n      mapObj.ballType" +
+            " = arr[0];\\n    }\\n  }\\n  else if (arr[0] < 9) {\\n    // 地图上有井，种类为 (arr[0] - 5)\\" +
+            "n    // 数值从 0 开始，与球的标号不同，但是按照顺序，颜色还是对应得上的\\n    mapObj.holeType = arr[0] - 5;\\n  " +
+            "}\\n  else {\\n    // 地图上有 NPC\\n  }\\n\\n  // 每张地图都有 4 个门\\n  // doors 数组中，从左到右依次对应界面" +
+            "上显示的门\\n  // 0 表示此路不通\\n  // 其他数字，在不同的地图中相同数字的门，表示互相连通\\n  mapObj.doors = [];\\n  fo" +
+            "r (let i = 1; i <= 4; ++i) {\\n    mapObj.doors[i - 1] = getByte(arr[1], i - 1);\\" +
+            "n  }\\n\\n  return mapObj;\\n}\\n\\nasync function findPath() {\\n  if (window.allMapI" +
+            "nfo11813 === undefined) {\\n    window.allMapInfo11813 = [];\\n    for (let i = 1;" +
+            " i < 21; ++i) { window.allMapInfo11813.push(await getMapInfo(i)); }\\n    console" +
+            ".log(\'世界地图\', window.allMapInfo11813);\\n  }\\n\\n  // 当前地图\\n  let globalObj = {};\\n" +
+            "  let arr = await WxSc.KTool.getMultiValueAsync([103294, 103295]);\\n  globalObj." +
+            "curMap = arr[0] & 255; // 地图标号（一共 20 张地图，标号从 1 开始）\\n  globalObj.curEnergy = arr[" +
+            "0] >> 8 & 255; // 灵魂能量\\n  globalObj.curHasBall = arr[0] >> 16 & 255;\\n  globalOb" +
+            "j.hasTransferNum = arr[0] >> 24 & 255; // 已走过的步数\\n\\n  globalObj.hasBall = []\\n  " +
+            "for (let i = 1; i <= 4; ++i) {\\n    if (getBit(arr[1], i) == 1) {\\n      globalO" +
+            "bj.hasBall[i - 1] = 1;\\n    }\\n    else {\\n      globalObj.hasBall[i - 1] = 0;\\n" +
+            "    }\\n  }\\n\\n  globalObj.doors = window.allMapInfo11813[globalObj.curMap - 1].d" +
+            "oors;\\n\\n  // console.log(globalObj);\\n  console.log(`当前地图上，门的编号（从左到右）分别是：[${glo" +
+            "balObj.doors.filter(door => door!=0).join(\' \')}]`);\\n  if (globalObj.curHasBall " +
+            "=== 0) {\\n    console.log(\'寻找最近的球\');\\n    let path = bfs(globalObj.curMap, m => " +
+            "(\'ballType\' in m && globalObj.hasBall[m.ballType-1] === 0));\\n    if (path.lengt" +
+            "h === 0) {\\n      console.log(\'请捡起当前地图上的球\');\\n    }\\n    else if (path.length > " +
+            "window.allMapInfo11813.length) {\\n      console.log(\'剩下的球无法获取，请先耗尽灵魂能量，重置关卡\');\\n" +
+            "    }\\n    else {\\n      console.log(`请进入 ${path[0]} 号门`);\\n    }\\n  }\\n  else {" +
+            "\\n    console.log(\'寻找井\');\\n    let path = bfs(globalObj.curMap, m => (\'holeType\'" +
+            " in m && m.holeType === globalObj.curHasBall-1));\\n    if (path.length === 0) {\\" +
+            "n      console.log(\'请将球投入当前地图上的井\');\\n    }\\n    else if (path.length > window.al" +
+            "lMapInfo11813.length) {\\n      console.log(\'剩下的井所在位置无法到达，请先耗尽灵魂能量，重置关卡\');\\n    }" +
+            "\\n    else {\\n      console.log(`请进入 ${path[0]} 号门`);\\n    }\\n  }\\n}\\n\\nfunction" +
+            " bfs(curMap, predicate) {\\n  let visited = (new Array(window.allMapInfo11813.len" +
+            "gth)).fill(null); // 记录路径\\n  let queue = [];\\n  queue.push(curMap-1);\\n  visited" +
+            "[curMap-1] = [];\\n\\n  while (queue.length > 0) {\\n    let cur = queue.shift();\\n" +
+            "    if (predicate(window.allMapInfo11813[cur])) {\\n      return visited[cur];\\n " +
+            "   }\\n    for (let door of window.allMapInfo11813[cur].doors) {\\n      if (door " +
+            "=== 0) continue;\\n      // 若两个地图有相同编号的门，则说明这两个地图相互连通\\n      for (let i = 0; i < " +
+            "window.allMapInfo11813.length; ++i) {\\n        if (i === cur || visited[i] != nu" +
+            "ll) continue;\\n        if (window.allMapInfo11813[i].doors.indexOf(door) != -1) " +
+            "{\\n          queue.push(i);\\n          visited[i] = visited[cur].concat([door]);" +
+            "\\n        }\\n      }\\n    }\\n  }\\n  return new Array(window.allMapInfo11813.leng" +
+            "th+1);\\n}\\n\\nconsole.log(\'=====\');\\nawait findPath();\"\r\n  },\r\n  \"关卡-暗黑托鲁克\": {\r\n " +
+            "   \"c\": \"\",\r\n    \"s\": \"// 需要有精灵：3437 艾欧丽娅（携带技能疾击之刺、第五技能侍君奉此生）\\nfunction ReadInt(" +
+            "data) { return (data.byteArray[data.position++] << 24) + (data.byteArray[data.po" +
+            "sition++] << 16) + (data.byteArray[data.position++] << 8) + data.byteArray[data." +
+            "position++]; }\\n\\nconst 艾欧丽娅 = 3437;\\nconst 疾击之刺 = 31114;\\nconst 侍君奉此生 = 31117;\\" +
+            "nlet bag1 = WxSc.Util.GetBag1();\\nlet bag2 = WxSc.Util.GetBag2();\\nlet pets = aw" +
+            "ait WxSc.Util.GetStoragePetsAsync();\\npets = pets.filter(pet => pet.id===艾欧丽娅);\\" +
+            "nif (pets.length===0) {\\n  // 再看看背包里有没有\\n  pets = bag1.concat(bag2).filter(pet =" +
+            "> pet.id===艾欧丽娅);\\n  if (pets.length===0) {\\n    alert(\'未找到艾欧丽娅，任务终止\');\\n    ret" +
+            "urn;\\n  }\\n}\\nawait WxSc.Util.SetPetBagAsync([pets[0].catchTime]);\\nlet petInfo " +
+            "= WxSc.Util.GetBagPetInfos()[0];\\nif (petInfo.skillArray.filter(sk => sk.id===疾击" +
+            "之刺).length===0) {\\n  alert(\'【艾欧丽娅】没有搭配技能【疾击之刺】，任务终止\');\\n  return;\\n}\\nif (petInf" +
+            "o.hideSKill.id!==侍君奉此生) {\\n  alert(\'【艾欧丽娅】没有搭配技能【侍君奉此生】，任务终止\');\\n  return;\\n}\\n\\" +
+            "nWxSc.Util.SimpleAlarm(\'崩塌吧！天空之城！\');\\nWxSc.Util.SetIsHidePetFight(true);\\n\\n// 发" +
+            "起战斗\\nlet fightWithTlk = (region) => {\\n  return new Promise(res => {\\n    WxSc.O" +
+            "nFightOver = (overInfo) => {\\n      res (overInfo.winnerID != 0);\\n    }\\n    Wx" +
+            "Sc.Util.Send(41129, region);\\n  });\\n}\\n\\nwhile (true) {\\n  // 剩余挑战次数\\n  let arr" +
+            " = await WxSc.KTool.getMultiValueAsync([12045,2065]);\\n  if (3 - arr[0] + arr[1]" +
+            " === 0) break;\\n  // console.log(\'新一轮挑战\');\\n  for (let i = 0; i < 6; ++i) {\\n   " +
+            " let data = {};\\n    data.byteArray = await WxSc.Util.SendAsync(47087, []); // S" +
+            "KY_CITY_GET_BOSS_REGION\\n    data.position = 0;\\n    let region = ReadInt(data);" +
+            "\\n    if (region === 251) {\\n      // 真身\\n      // 出招\\n      WxSc.OnFirstRound =" +
+            " () => WxSc.Util.UseSkill(侍君奉此生);\\n      WxSc.OnUseSkill = async (mySkillInfo) =" +
+            "> {\\n        await WxSc.Util.DelayAsync(200);\\n        WxSc.Util.UseSkill(侍君奉此生)" +
+            ";\\n      }\\n      let isWin = await fightWithTlk(region);\\n      // console.log(" +
+            "`对战真身，${isWin?\'胜利\':\'失败\'}`);\\n      // 失败后的情况有点奇怪，没看明白，就不处理了\\n      await WxSc.Ut" +
+            "il.DelayAsync(5000);\\n      break;\\n    }\\n    else {\\n      // 出招\\n      WxSc.O" +
+            "nFirstRound = () => WxSc.Util.UseSkill(疾击之刺);\\n      WxSc.OnUseSkill = async (my" +
+            "SkillInfo) => {\\n        await WxSc.Util.DelayAsync(200);\\n        WxSc.Util.Use" +
+            "Skill(疾击之刺);\\n      }\\n      let isWin = await fightWithTlk(region);\\n      // c" +
+            "onsole.log(`对战分身，${isWin?\'胜利\':\'失败\'}`);\\n      await WxSc.Util.DelayAsync(5000);\\" +
+            "n    }\\n  }\\n}\\n\\nlet items = await WxSc.ItemManager.updateItemsAsync([1700364,1" +
+            "700365]);\\nlet 黑暗之羽 = 0, 魔化之心 = 0;\\nfor (const item of items) {\\n  switch (item." +
+            "itemID) {\\n    case 1700364:\\n      黑暗之羽 = item.itemNum;\\n      break;\\n    case" +
+            " 1700365:\\n      魔化之心 = item.itemNum;\\n      break;\\n  }\\n}\\nif (魔化之心<100 && 黑暗之" +
+            "羽>150) {\\n  // 合成\\n  while (黑暗之羽 >= 150) {\\n    WxSc.Util.Send(2901, 1768);\\n   " +
+            " 黑暗之羽 -= 50;\\n    魔化之心;\\n  }\\n}\\nWxSc.Util.StopAutoFight();\\nWxSc.Util.SetIsHide" +
+            "PetFight(false);\\n// 恢复背包\\nawait WxSc.Util.SetPetBagAsync(bag1.map(pet => pet.ca" +
+            "tchTime),bag2.map(pet => pet.catchTime));\\nif (黑暗之羽>=100 && 魔化之心>=100) {\\n  aler" +
+            "t(\'可以去地图965领取精灵了\');\\n}\\nelse {\\n  WxSc.Util.SimpleAlarm(`当前进度：${黑暗之羽}/100 | ${魔化" +
+            "之心}/100`);\\n}\\n\\n// 参考资料：\\n// https://seer.61.com/module/com/robot/module/app/Bl" +
+            "ackBulukeMainPanel.swf\\n// https://seer.61.com/dll/RobotAppDLL.swf\\n// https://s" +
+            "eer.61.com/dll/PetFightDLL_201308.swf\\n// com.robot.app.task.control.TianKongZhi" +
+            "ChengController\\n// com.robot.app2.control.BlackTuolukeGame\"\r\n  },\r\n  \"日常-通行证-养成" +
+            "任务\": {\r\n    \"c\": \"\",\r\n    \"s\": \"let bag1 = WxSc.Util.GetBag1();\\nlet bag2 = WxSc" +
+            ".Util.GetBag2();\\nlet pets = await WxSc.Util.GetStoragePetsAsync();\\n// 从仓库取出一只 " +
+            "皮皮\\npets = pets.filter(pet => pet.id===10);\\nif (pets.length === 0) {\\n  pets = " +
+            "bag1.concat(bag2).filter(pet => pet.id===10);\\n  if (pets.length === 0) WxSc.Uti" +
+            "l.SimpleAlarm(\'没有精灵皮皮，任务失败\');\\n}\\nlet ct = pets[0].catchTime;\\nawait WxSc.Util.S" +
+            "etPetBagAsync([ct]);\\n// 性格\\nWxSc.Util.Send(2326,ct,300070);\\n// 恢复背包\\nawait WxS" +
+            "c.Util.SetPetBagAsync(bag1.map(pet => pet.catchTime),bag2.map(pet => pet.catchTi" +
+            "me));\\n// 领奖\\nWxSc.Util.Send(41916,1,3);\\nWxSc.Util.SimpleAlarm(\'ok\');\"\r\n  },\r\n " +
+            " \"状态-pvp-保存\": {\r\n    \"c\": \"\",\r\n    \"s\": \"WxSc.Util.StateSave(\'pvp\')\"\r\n  },\r\n  \"状" +
+            "态-pvp-更换\": {\r\n    \"c\": \"\",\r\n    \"s\": \"WxSc.Util.StateLoadAsync(\'pvp\')\"\r\n  },\r\n  " +
+            "\"状态-日常-保存\": {\r\n    \"c\": \"\",\r\n    \"s\": \"WxSc.Util.StateSave(\'日常\')\"\r\n  },\r\n  \"状态-日" +
+            "常-更换\": {\r\n    \"c\": \"\",\r\n    \"s\": \"WxSc.Util.StateLoadAsync(\'日常\')\"\r\n  },\r\n  \"因子-i" +
+            "d测试\": {\r\n    \"c\": \"\",\r\n    \"s\": \"const id = 34;\\n\\nWxSc.Refl.Tmp(\'com.robot.core" +
+            ".config.xml.NewSuperdesignXmlInfo\', \'getRewardInfoById\', \'rewardInfo\', false,id)" +
+            ";\\nWxSc.Util.SimpleAlarm(WxSc.Util.GetPetNameByID(WxSc.Dict.Get(\'rewardInfo\', \'M" +
+            "onsterID\')))\\n\"\r\n  },\r\n  \"因子-简单模式\": {\r\n    \"c\": \"\",\r\n    \"s\": \"const 自动兑换 = true" +
+            "; // 默认自动兑换，如果不想自动兑换，将true改成false\\n\\nlet CONFIGS = [\\n  {\\n    id: 215,\\n    str" +
+            "ategies: [\\n      {\\n        clothes: [1301043,0,1301044,0,1301045,0,1301046,0,1" +
+            "300954,0], // 漆黑天使套装 + 倒吊的假面\\n        title: 272, // 吉光凤羽称号\\n        pets: [[464" +
+            "8,5000], [2727,2735,3409,3519]], // 出战：星光·鲁斯王、圣谱。备战：西游\\n        skill: () => 一直第" +
+            "五,\\n      },\\n      { skill: () => 一直第五 },\\n      { skill: () => 一直第五 },\\n      " +
+            "{ skill: () => 一直第五 },\\n      { skill: () => 一直第五 },\\n    ]\\n  },\\n  {\\n    id: " +
+            "216, // 娜诺\\n    扫荡: 7, // 简单：5；困难：6；地狱：7；\\n  },\\n];\\n\\nconst 一直第五 = () => {\\n  W" +
+            "xSc.OnFirstRound = () => {\\n    let firstPetCatchtime = WxSc.Util.GetFightingPet" +
+            "CatchTime();\\n    for (let pet of WxSc.Util.GetFightingPets()) {\\n      if (pet." +
+            "catchTime === firstPetCatchtime) {\\n        WxSc.Util.UseSkill(pet.hideSKill ===" +
+            " null ? pet.skillArray[0] : pet.hideSKill.id); // 若无第五，则用一技能\\n        break;\\n  " +
+            "    }\\n    }\\n  };\\n\\n  WxSc.OnUseSkill = async (mySkillInfo) => {\\n    await Wx" +
+            "Sc.Util.DelayAsync(WxSc.Const.DelayMs); // 出招间隔太短会掉线，默认是200ms\\n    let petID = W" +
+            "xSc.Util.GetFightingPetID();\\n    if (mySkillInfo.remainHP !== 0) {\\n      let s" +
+            "killList = mySkillInfo.skillList;\\n      let i = skillList.length < 5 ? 0 : 4;\\n" +
+            "      if (skillList[i][1] > 0) {\\n        WxSc.Util.UseSkill(skillList[i][0]);\\n" +
+            "      }\\n      else {\\n        WxSc.Util.UsePetItem10PP();\\n      }\\n    }\\n    " +
+            "else {\\n      WxSc.Util.ChangePetByID([]);\\n    }\\n  };\\n\\n  WxSc.OnChangePet = " +
+            "(petInfo) => {\\n    let skillList = petInfo.skillList;\\n    WxSc.Util.UseSkill(s" +
+            "killList[skillList.length < 5 ? 0 : 4][0]);\\n  };\\n}\\n\\nconst 一直第一 = () => {\\n  " +
+            "WxSc.OnFirstRound = () => {\\n    let firstPetCatchtime = WxSc.Util.GetFightingPe" +
+            "tCatchTime();\\n    for (let pet of WxSc.Util.GetFightingPets()) {\\n      if (pet" +
+            ".catchTime === firstPetCatchtime) {\\n        WxSc.Util.UseSkill(pet.skillArray[0" +
+            "]);\\n        break;\\n      }\\n    }\\n  };\\n\\n  WxSc.OnUseSkill = async (mySkillI" +
+            "nfo) => {\\n    await WxSc.Util.DelayAsync(WxSc.Const.DelayMs);\\n    let petID = " +
+            "WxSc.Util.GetFightingPetID();\\n    if (mySkillInfo.remainHP !== 0) {\\n      let " +
+            "skillList = mySkillInfo.skillList;\\n      let i = 0;\\n      if (skillList[i][1] " +
+            "> 0) {\\n        WxSc.Util.UseSkill(skillList[i][0]);\\n      }\\n      else {\\n   " +
+            "     WxSc.Util.UsePetItem10PP();\\n      }\\n    }\\n    else {\\n      WxSc.Util.Ch" +
+            "angePetByID([]);\\n    }\\n  };\\n\\n  WxSc.OnChangePet = (petInfo) => {\\n    let sk" +
+            "illList = petInfo.skillList;\\n    WxSc.Util.UseSkill(skillList[0][0]);\\n  };\\n}\\" +
+            "n\\nfunction ReadByte(data) { return data.byteArray[data.position++]; }\\n\\nconst " +
+            "changeBagByIDs = async (ids) => {\\n  const bag1 = WxSc.Util.GetBag1();\\n  const " +
+            "bag2 = WxSc.Util.GetBag2();\\n  let allPet = await WxSc.Util.GetStoragePetsAsync(" +
+            ");\\n  allPet = allPet.concat(bag1, bag2);\\n  let catchTimes = [];\\n  catchTimes." +
+            "push([]);\\n  for (const id of ids[0]) {\\n    let targets = allPet.filter(pet => " +
+            "pet.id === id);\\n    if (targets.length === 0) {\\n      throw new Error(`找不到 ID " +
+            "为 ${id} 的宠物`);\\n    }\\n    catchTimes[0].push(targets[0].catchTime);\\n  }\\n  if " +
+            "(ids[1] !== undefined) {\\n    catchTimes.push([]);\\n    for (const id of ids[1])" +
+            " {\\n      let targets = allPet.filter(pet => pet.id === id);\\n      if (targets." +
+            "length === 0) {\\n        throw new Error(`找不到 ID 为 ${id} 的宠物`);\\n      }\\n      " +
+            "catchTimes[1].push(targets[0].catchTime);\\n    }\\n  }\\n  await WxSc.Util.SetPetB" +
+            "agAsync(...catchTimes);\\n}\\n\\nconst fightWithEasyBoss = (id) => {\\n  return new " +
+            "Promise(async res => {\\n    WxSc.OnFightOver = (overInfo) => {\\n      res (overI" +
+            "nfo.winnerID != 0);\\n    }\\n    let data = {}\\n    data.byteArray = await WxSc.U" +
+            "til.SendAsync(41282, [id,1]);\\n    data.position = 0;\\n    const fightCode = Rea" +
+            "dByte(data);\\n    if (fightCode != 0) {\\n      alert(`发起战斗 ${id} 失败，错误码：${fightC" +
+            "ode}`);\\n      throw new Error(\'\');\\n    }\\n  });\\n}\\n\\nawait WxSc.Util.StateSav" +
+            "e(\'简单因子\');\\n\\nWxSc.Util.SetIsHidePetFight(true);\\nconst NewSuperdesignXmlInfo = " +
+            "\'com.robot.core.config.xml.NewSuperdesignXmlInfo\';\\nconst SpiritFragmentXmlInfo " +
+            "= \'com.robot.core.config.xml.SpiritFragmentXmlInfo\';\\nconst KEY_REWARD_INFO = \'r" +
+            "ewardInfo\';\\nfor (const config of CONFIGS) {\\n  // 基本信息\\n  WxSc.Refl.Tmp(NewSupe" +
+            "rdesignXmlInfo, \'getRewardInfoById\', KEY_REWARD_INFO, false,config.id);\\n  const" +
+            " MOSTER_ID = WxSc.Dict.Get(KEY_REWARD_INFO, \'MonsterID\');\\n  const BOSS_NAME = W" +
+            "xSc.Util.GetPetNameByID(MOSTER_ID);\\n  const _configureInfo = WxSc.Refl.Func(New" +
+            "SuperdesignXmlInfo, \'getConfigureInfoById\', false,config.id);\\n\\n  // 兑换\\n  cons" +
+            "t itemId = WxSc.Dict.Get(KEY_REWARD_INFO, \'ItemID\')\\n  const items = await WxSc." +
+            "ItemManager.updateItemsAsync([itemId])\\n  if (自动兑换 && items.length > 0 && items[" +
+            "0].itemNum >= WxSc.Refl.Func(SpiritFragmentXmlInfo,\'getTotalNum\', false,MOSTER_I" +
+            "D)) {\\n    const bag1 = WxSc.Util.GetBag1();\\n    const bag2 = WxSc.Util.GetBag2" +
+            "();\\n    WxSc.Util.Send(41413,items[0].itemID,1,0); // 精灵\\n    await WxSc.Util.D" +
+            "elayAsync(2000);\\n    try {\\n      await changeBagByIDs([[MOSTER_ID]]);\\n      W" +
+            "xSc.Util.Send(41413,items[0].itemID,2,0);\\n      WxSc.Util.Send(41413,items[0].i" +
+            "temID,3,0);\\n      alert(`【${BOSS_NAME}】 已兑换`);\\n    } catch (e) {\\n      alert(" +
+            "`【${BOSS_NAME}】 兑换出错，可能需要精灵的前置形态`);\\n    }\\n    // 恢复背包\\n    await WxSc.Util.Set" +
+            "PetBagAsync(bag1.map(pet => pet.catchTime),bag2.map(pet => pet.catchTime));\\n   " +
+            " continue;\\n  }\\n\\n  if (config.扫荡 !== undefined) {\\n    for (let i=0; i<3; ++i)" +
+            " WxSc.Util.Send(41283, config.id,config.扫荡);\\n    continue;\\n  }\\n  \\n  let va =" +
+            " await WxSc.KTool.getMultiValueAsync([_configureInfo.ProgressValue, _configureIn" +
+            "fo.TimeValue]);\\n  let _curlv = WxSc.KTool.subByte(va[0], 16, 8); // 数值为 0、1、2、3" +
+            "、4\\n  let levelNum = WxSc.KTool.subByte(va[0], 8, 8); // 难度（简单模式是 1）\\n  let _sur" +
+            "plusNum = _configureInfo.Times - va[1]; // 剩余轮数\\n  if (_curlv != 0 || levelNum !" +
+            "= 0) ++_surplusNum;\\n  for (let i = 0; i < _surplusNum; i++) {\\n    do {\\n      " +
+            "const index = _curlv;\\n      if (config.strategies[index].clothes !== undefined)" +
+            " {\\n        WxSc.Util.ChangeCloth(config.strategies[index].clothes);\\n      }\\n " +
+            "     if (config.strategies[index].title!== undefined) {\\n        WxSc.Util.SetTi" +
+            "tle(config.strategies[index].title);\\n      }\\n      if (config.strategies[index" +
+            "].pets !== undefined) {\\n        await changeBagByIDs(config.strategies[index].p" +
+            "ets);\\n      }\\n      config.strategies[index].skill()();\\n      const win = awa" +
+            "it fightWithEasyBoss(config.id);\\n      WxSc.Util.SimpleAlarm(`【${BOSS_NAME}】 ${" +
+            "_curlv} ${win ? \'胜利\' : \'失败\'}`);\\n      await WxSc.Util.DelayAsync(16000);\\n     " +
+            " va = await WxSc.KTool.getMultiValueAsync([_configureInfo.ProgressValue]);\\n    " +
+            "  _curlv = WxSc.KTool.subByte(va[0], 16, 8);\\n      levelNum = WxSc.KTool.subByt" +
+            "e(va[0], 8, 8);\\n    } while (_curlv != 0 || levelNum != 0);\\n  }\\n}\\nWxSc.Util." +
+            "SetIsHidePetFight(false);\\n\\n// 恢复背包、套装、称号\\nawait WxSc.Util.StateLoadAsync(\'简单因子" +
+            "\');\\nconsole.log(\'因子任务完成\')\\n\\n// 参考：\\n// https://seer.61.com/module/com/robot/mo" +
+            "dule/app/SpetBaseLvPanel.swf\\n// https://seer.61.com/module/com/robot/module/app" +
+            "/SpetBaseBattlePanel.swf\\n// https://seer.61.com/module/com/robot/module/app/Spe" +
+            "tYiMangFuDiMainPanel.swf\\n// https://seer.61.com/dll/RobotCoreDLL.swf\"\r\n  },\r\n  " +
+            "\"杂项-刻印仓库\": {\r\n    \"c\": \"\",\r\n    \"s\": \"function ReadInt(data) { return (data.byte" +
+            "Array[data.position++] << 24) + (data.byteArray[data.position++] << 16) + (data." +
+            "byteArray[data.position++] << 8) + data.byteArray[data.position++]; }\\n\\nasync f" +
+            "unction GetBagCountmarkAsync() {\\n  const cmdID = 46160; // QUERY_COUNTMARK_BY_T" +
+            "YPE_PAGE\\n  const batchSize = 100;\\n  let startID = 0;\\n  const keyFuncParse = \'" +
+            "marks\', keyResult = \'markRes\', keySocketEvent = \'socketEvent\', keyByteArray = \'m" +
+            "arkBA\', keyCountermarkInfo = \'CountermarkInfo\', keyAllMark = \'allMark\';\\n  WxSc." +
+            "Dict.Add(keyAllMark,\'Array\');\\n  while (true) {\\n    const markNum = await new P" +
+            "romise(res => {\\n      WxSc.Dict.AddCall(keyFuncParse,keyResult,() => {\\n       " +
+            " // 接收到的参数会存放到 keyResult 数组中\\n        // 这里将接收到的 返回值数组 的 第一个成员（下标为 0，类型为 SocketE" +
+            "vent）的 data 属性（类型为 ByteArray）转存到 keyByteArray 中，后续就能作为参数传递给 CountermarkInfo 的构造函" +
+            "数\\n        WxSc.Dict.TmpAttrib(keyResult, \'0\', keySocketEvent);\\n        WxSc.Di" +
+            "ct.TmpAttrib(keySocketEvent, \'data\', keyByteArray);\\n        WxSc.Dict.Set(keyBy" +
+            "teArray,\'position\',false,0);\\n        const num = WxSc.Dict.Func(keyByteArray,\'r" +
+            "eadUnsignedInt\') / 14;\\n        for (let i = 0; i < num; i++) {\\n          WxSc." +
+            "Dict.Add(keyCountermarkInfo, \'com.robot.core.info.userItem.CountermarkInfo\', tru" +
+            "e, keyByteArray);\\n          WxSc.Dict.Func(keyAllMark,\'push\',true,keyCountermar" +
+            "kInfo);\\n        }\\n        WxSc.Dict.Del(keyFuncParse);\\n        WxSc.Dict.Del(" +
+            "keyResult);\\n        WxSc.Dict.Del(keySocketEvent);\\n        WxSc.Dict.Del(keyBy" +
+            "teArray);\\n        WxSc.Dict.Del(keyCountermarkInfo);\\n        res(num);\\n      " +
+            "});\\n      WxSc.Refl.Func(\'com.robot.core.net.SocketConnection\',\'sendByQueue\',fa" +
+            "lse,cmdID, false,[1, 1, startID, batchSize], true,keyFuncParse);\\n    });\\n    i" +
+            "f (markNum < batchSize) break;\\n    startID += batchSize;\\n    await WxSc.Util.D" +
+            "elayAsync(100);\\n  }\\n  const result = WxSc.Dict.Get(keyAllMark);\\n  WxSc.Dict.D" +
+            "el(keyAllMark);\\n  return result;\\n}\\n\\nconst arr = await GetBagCountmarkAsync()" +
+            ";\\nfor (let i = 0; i < 10; ++i) {\\n  console.log(arr[i]);\\n}\"\r\n  },\r\n  \"杂项-野生精灵\"" +
+            ": {\r\n    \"c\": \"\",\r\n    \"s\": \"WxSc.OnFirstRound = () => {\\n  // 对战首回合，使用特殊胶囊捕捉\\n " +
+            " WxSc.Util.Send(2409,300505);\\n  WxSc.Util.ItemBuy(300505);\\n}\\n(() => {\\n  cons" +
+            "t 闪光皮皮 = 164, keyFunc = \'catch\', keyResult = \'catchRes\', SocketConnection = \'com" +
+            ".robot.core.net.SocketConnection\', MAP_OGRE_LIST = 2004;\\n  try {\\n    WxSc.Refl" +
+            ".Func(SocketConnection,\'removeCmdListener\',false,MAP_OGRE_LIST,true,keyFunc); //" +
+            " 防止重复\\n  } catch (e) {}\\n  WxSc.Dict.AddCall(keyFunc,keyResult,() => {\\n    // 接" +
+            "收到的参数会存放到 keyResult 数组中，这里需要的是第一个参数（下标为 0），类型为 SocketEvent\\n    WxSc.Dict.Set(ke" +
+            "yResult,\'0.data.position\',false,0);\\n    for (let i = 0; i < 9; i++) {\\n      le" +
+            "t o = WxSc.Dict.Func(keyResult,\'0.data.readUnsignedInt\');\\n      if (o === 闪光皮皮)" +
+            " {\\n        WxSc.Refl.Func(\'com.robot.app.fight.FightManager\',\'fightWithNpc\',fal" +
+            "se,i);\\n        return;\\n      }\\n    }\\n    WxSc.Util.SimpleAlarm(\'等待\');\\n  });" +
+            "\\n  WxSc.Refl.Func(SocketConnection,\'addCmdListener\',false,MAP_OGRE_LIST,true,ke" +
+            "yFunc);\\n})()\\nWxSc.Util.ChangeMap(10); // 克洛斯星\"\r\n  },\r\n  \"杂项-杰丹\": {\r\n    \"c\": \"" +
+            "\",\r\n    \"s\": \"const catchNum = 5;\\nlet caughtNum = 0;\\nlet onePetCt;\\nconst info" +
+            "s = WxSc.Util.GetBagPetInfos();\\nif (infos.length === 0) {\\n  // 从仓库中随便找出一个精灵\\n " +
+            " const pets = await WxSc.Util.GetStoragePetsAsync();\\n  if (pets.length === 0) {" +
+            "\\n    alert(\'获取仓库精灵失败，已停止运行\');\\n    return;\\n  }\\n  onePetCt = pets[0].catchTime" +
+            ";\\n  await WxSc.Util.SetPetBagAsync([onePetCt]);\\n}\\nelse if (infos.length != 1)" +
+            " {\\n  // 开始时背包只留一个精灵\\n  onePetCt = infos[0].catchTime;\\n  await WxSc.Util.SetPet" +
+            "BagAsync([onePetCt]);\\n}\\n\\n// 获取胶囊数量\\nconst item = await WxSc.ItemManager.updat" +
+            "eItemsAsync([300505]);\\nif (item.length === 0) {\\n  for (let i = 0; i < 6; i++) " +
+            "{\\n    WxSc.Util.ItemBuy(300505); \\n  }\\n}\\n\\nconst PET_ID = 632;\\nconst keyFunc" +
+            " = \'catch\', keyResult = \'catchRes\', SocketConnection = \'com.robot.core.net.Socke" +
+            "tConnection\', MAP_OGRE_LIST = 2004, PetManager = \'com.robot.core.manager.PetMana" +
+            "ger\';\\n\\nWxSc.OnFirstRound = async () => {\\n  // 对战首回合，使用特殊胶囊捕捉\\n  WxSc.Util.Sen" +
+            "d(2409,300505);\\n  WxSc.Util.ItemBuy(300505);\\n}\\n\\nWxSc.Util.SetIsHidePetFight(" +
+            "true); // 隐藏战斗界面\\n\\n(() => {\\n  const keyFunc2409 = \'catch2409\', keyResult2409 =" +
+            " \'catchRes2409\';\\n  try {\\n    WxSc.Refl.Func(SocketConnection,\'removeCmdListene" +
+            "r\',false,MAP_OGRE_LIST,true,keyFunc); // 防止重复\\n    WxSc.Refl.Func(SocketConnecti" +
+            "on,\'removeCmdListener\',false,2409,true,keyFunc2409);\\n  } catch (e) {}\\n  WxSc.D" +
+            "ict.AddCall(keyFunc,keyResult, async () => {\\n    // 接收到的参数会存放到 keyResult 数组中，这里" +
+            "需要的是第一个参数（下标为 0），类型为 SocketEvent\\n    WxSc.Dict.Set(keyResult,\'0.data.position\'," +
+            "false,0);\\n    for (let i = 0; i < 9; i++) {\\n      let o = WxSc.Dict.Func(keyRe" +
+            "sult,\'0.data.readUnsignedInt\');\\n      if (o === PET_ID) {\\n        WxSc.Refl.Fu" +
+            "nc(\'com.robot.app.fight.FightManager\',\'fightWithNpc\',false,i);\\n        return;\\" +
+            "n      }\\n    }\\n    WxSc.Util.SimpleAlarm(\'等待\');\\n  });\\n  WxSc.Refl.Func(Socke" +
+            "tConnection,\'addCmdListener\',false,MAP_OGRE_LIST,true,keyFunc);\\n  \\n  WxSc.Dict" +
+            ".AddCall(keyFunc2409,keyResult2409, async () => {\\n    const newPetCt = WxSc.Dic" +
+            "t.Get(keyResult2409,\'0.data.catchTime\');\\n    // 放入背包后，自动开启特性\\n    WxSc.Util.Sen" +
+            "d(2304, newPetCt,1); // PET_RELEASE\\n    WxSc.Refl.Func(PetManager,\'upDateByOnce" +
+            "\'); // 更新精灵信息\\n    await WxSc.Util.DelayAsync(2400);\\n    const infos = WxSc.Uti" +
+            "l.GetBagPetInfos();\\n    for (let info of infos) {\\n      if (info.catchTime ===" +
+            " newPetCt) {\\n        if (info.effectList.length === 0) {\\n          alert(\'开启特性" +
+            "失败，已停止运行\');\\n          throw new Error(\'开启特性失败\');\\n        }\\n        if (info.e" +
+            "ffectList[0].effectID === 6 && (info.effectList[0].args === \'0 3\' || info.effect" +
+            "List[0].args === \'6 3\')) {\\n          // 带电 阴森\\n          console.log(\'+1\');\\n  " +
+            "        if (++caughtNum === catchNum) {\\n            try {\\n              WxSc.R" +
+            "efl.Func(SocketConnection,\'removeCmdListener\',false,MAP_OGRE_LIST,true,keyFunc);" +
+            "\\n              WxSc.Refl.Func(SocketConnection,\'removeCmdListener\',false,2409,t" +
+            "rue,keyFunc2409);\\n            } catch (e) {}\\n            WxSc.Util.SetIsHidePe" +
+            "tFight(false);\\n            alert(\'任务完成，请打开背包查看\');\\n            return;\\n       " +
+            "   }\\n        } else {\\n          console.log(info.effectList[0].effectID, info." +
+            "effectList[0].args);\\n          WxSc.Util.Send(2304, newPetCt,0); // 放回仓库\\n     " +
+            "   }\\n        break;\\n      }\\n    }\\n  });\\n  WxSc.Refl.Func(SocketConnection,\'" +
+            "addCmdListener\',false,2409,true,keyFunc2409);\\n})()\\nWxSc.Util.ChangeMap(1216);\"" +
+            "\r\n  },\r\n  \"下载精灵头像\": {\r\n    \"c\": \"\",\r\n    \"s\": \"// 头像链接：https://seer.61.com/resou" +
+            "rce/pet/head/?.swf\\n\\nconst exists = WxSc.Util.GetDownloadedFileNames().filter(f" +
+            " => f.startsWith(\'h\') && f.endsWith(\'.png\')).map(f => parseInt(f.slice(1, -4)));" +
+            "\\nconst all = WxSc.Refl.Func(\'com.robot.core.config.xml.PetXMLInfo\',\'getIdList\')" +
+            ";\\nconst need = all.filter(id => !exists.includes(id));\\nfor (var i = 0; i < nee" +
+            "d.length; i++) {\\n\\tconst id = need[i];\\n\\tconst url = `https://seer.61.com/reso" +
+            "urce/pet/head/${id}.swf`;\\n\\tWxSc.Util.DowloadSwfFirstFrame(url, `h${id}.png`, 8" +
+            ", 8);\\n\\tif (i % 10 == 0) WxSc.Util.SimpleAlarm(`${i} / ${need.length}`);\\n\\tawa" +
+            "it WxSc.Util.DelayAsync(1000);\\n}\"\r\n  }\r\n}")]
         public string FlashFightTemplate {
             get {
                 return ((string)(this["FlashFightTemplate"]));

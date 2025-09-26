@@ -451,3 +451,18 @@ WxSc.Util.ShowAppModule('AssessorPanel'); // https://seer.61.com/module/com/robo
 
 - 套装数组
 - 更换模式（可选，默认是 true）
+
+#### WxSc.Util.GetDownloadedFileNames
+
+获取已下载的文件名称（可以在配置窗口修改下载路径，默认放在程序所在目录下的downloads文件夹）
+
+#### WxSc.Util.DowloadSwfFirstFrame
+
+将 swf 的第一帧转成图片，保存到设置的下载文件夹
+
+参数：
+
+- 链接
+- 文件名
+- swf 主体内容缩放
+- swf 舞台缩放（可以先尝试与主体内容缩放一致，如果显示不完整，再增加）

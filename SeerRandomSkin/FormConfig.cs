@@ -217,5 +217,10 @@ namespace SeerRandomSkin
                 }
             }
         }
+
+        private void btnOpenDownloadPath_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(SettingsDef.DownloadPath == string.Empty ? Form1.DefaultDownloadPath : SettingsDef.DownloadPath);
+        }
     }
 }
