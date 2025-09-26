@@ -469,38 +469,30 @@ namespace SeerRandomSkin
 
         private static async Task GetSkinData()
         {
-            string version_str = await GetJsonStringAsync("https://seerh5.61.com/version/version.json");
-            Match m = Regex.Match(version_str, "\"monsters\\.json\":\"(.*?\\.json)\"");
-            if(!m.Success)
-            {
-                return;
-            }
             var blackList = Configs.SkinBlackList.Replace(" ", "").Split(',').Select(s =>
             {
                 int.TryParse(s, out int id);
                 return id;
             }).ToHashSet();
-            string monsters_str = await GetJsonStringAsync("http://seerh5.61.com/resource/config/xml/" + m.Groups[1].Value);
-            skinIds = Regex.Matches(monsters_str, "\"ID\":(\\d+),\"DefName", RegexOptions.None).Cast<Match>().Select(match =>
+            var resp = await chromiumBrowser.EvaluateScriptAsync($"JSON.stringify(WxSc.Refl.Func('com.robot.core.config.xml.PetXMLInfo','getIdList'))");
+            var arr = resp.Success ? JArray.Parse(resp.Result.ToString())
+                .Select(id => int.Parse(id.ToString()))
+                .Where(id => !blackList.Contains(id))
+                .ToArray() : null;
+            if (arr == null)
             {
-                int.TryParse(match.Groups[1].Value, out int id);
-                return id;
-            }).Where(id => !blackList.Contains(id)).ToArray();
-            SaveConfigSkinIds();
-            MessageBox.Show("获取皮肤数据完成");
+                MessageBox.Show("请先进入游戏");
+            } else {
+                skinIds = arr;
+                SaveConfigSkinIds();
+                MessageBox.Show("获取皮肤数据完成");
+            }
         }
 
         private static void SaveConfigSkinIds()
         {
             Configs.SkinIds = string.Join(",", skinIds);
             Configs.Save();
-        }
-
-        private static async Task<string> GetJsonStringAsync(string url)//从url获取文件内容
-        {
-            var client = new HttpClient();
-            byte[] content = await client.GetByteArrayAsync(url);
-            return Encoding.UTF8.GetString(content, 0, content.Length);
         }
 
         private void 开启ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -636,10 +628,5 @@ namespace SeerRandomSkin
             }
         }
 
-        private async Task<List<int>> GetAllPetIds()
-        {
-            var resp = await chromiumBrowser.EvaluateScriptAsync($"JSON.stringify(WxSc.Refl.Func('com.robot.core.config.xml.PetXMLInfo','getIdList'))");
-            return resp.Success ? JArray.Parse(resp.Result.ToString()).Select(id => int.Parse(id.ToString())).ToList() : null;
-        }
     }
 }
