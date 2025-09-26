@@ -466,3 +466,7 @@ WxSc.Util.ShowAppModule('AssessorPanel'); // https://seer.61.com/module/com/robo
 - 文件名
 - swf 主体内容缩放
 - swf 舞台缩放（可以先尝试与主体内容缩放一致，如果显示不完整，再增加）
+
+#### WxSc.Util.SetDownloadPath
+
+修改下载路径

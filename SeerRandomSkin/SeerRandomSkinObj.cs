@@ -58,5 +58,11 @@ namespace SeerRandomSkin
                 .Select(name => Path.GetFileName(name))
                 .ToArray();
         }
+
+        public void SetDownloadPath(string path)
+        {
+            Properties.Settings.Default.DownloadPath = path;
+            Properties.Settings.Default.Save();
+        }
     }
 }

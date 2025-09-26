@@ -34,6 +34,7 @@ WxSc.Priv.DownloadJpg = (byteArray, fileName) => {
   URL.revokeObjectURL(url);
 }
 WxSc.Util.GetDownloadedFileNames = seerRandomSkinObj.getDownloadedFileNames;
+WxSc.Util.SetDownloadPath = (path) => { seerRandomSkinObj.setDownloadPath(path); }
 
 WxSc.Refl = {}
 WxSc.Refl.Set = (name,a,u,v) => document.Client.WxRefl(1,name,a,u,v);
