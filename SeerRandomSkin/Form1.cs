@@ -414,6 +414,11 @@ namespace SeerRandomSkin
 
             public MyDownloadHandler()
             {
+                ResetDownloadPath();
+            }
+
+            public static void ResetDownloadPath()
+            {
                 downloadPath = Configs.DownloadPath == string.Empty ? DefaultDownloadPath : Configs.DownloadPath;
                 if (!Directory.Exists(downloadPath))
                 {

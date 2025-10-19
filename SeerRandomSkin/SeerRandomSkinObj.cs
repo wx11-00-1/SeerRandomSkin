@@ -63,6 +63,7 @@ namespace SeerRandomSkin
         {
             Properties.Settings.Default.DownloadPath = path;
             Properties.Settings.Default.Save();
+            Form1.MyDownloadHandler.ResetDownloadPath();
         }
     }
 }
