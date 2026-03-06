@@ -123,7 +123,13 @@ WxSc.Util.SetTitle = title => document.Client.WxSetTitle(title);
 
 WxSc.Util.GetRound = () => WxSc.Priv.Round;
 
-WxSc.Util.UseSkill = skillID => WxSc.Util.Send(2405,skillID);
+WxSc.Util.UseSkill = skillID => {
+  if (skillID === 0) {
+    WxSc.Util.UsePetItem10PP();
+  } else {
+    WxSc.Util.Send(2405,skillID);
+  }
+};
 WxSc.Util.ChangePet = ct => {
   if (WxSc.Priv._fHP > 0) WxSc.Priv._posiCh = true;
   WxSc.Util.Send(2407,ct);
